@@ -1,0 +1,493 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		33C9885D1C42401D00262141 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 33C9885C1C42401D00262141 /* AppDelegate.m */; };
+		33F06F901C4244E100DAC58F /* libStudioCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33C988991C42418B00262141 /* libStudioCommon.a */; };
+		33F06F961C42477300DAC58F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33F06F931C42477300DAC58F /* Images.xcassets */; };
+		33F06F981C42477300DAC58F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 33F06F951C42477300DAC58F /* main.m */; };
+		33F06FBF1C424D2600DAC58F /* StudioCommonBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 33F06FB61C424A8F00DAC58F /* StudioCommonBundle.bundle */; };
+		49A440E851BCC056B96B1CCC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 51B5961869359BC6C0460396 /* libPods.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		33C988981C42418B00262141 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 33C988941C42418B00262141 /* StudioCommon.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 33C988881C42418A00262141;
+			remoteInfo = StudioCommon;
+		};
+		33F06F8E1C4244BA00DAC58F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 33C988941C42418B00262141 /* StudioCommon.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 33C988871C42418A00262141;
+			remoteInfo = StudioCommon;
+		};
+		33F06FB51C424A8F00DAC58F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 33C988941C42418B00262141 /* StudioCommon.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 33F06FAC1C424A3200DAC58F;
+			remoteInfo = StudioCommonBundle;
+		};
+		33F06FB71C424ABF00DAC58F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 33C988941C42418B00262141 /* StudioCommon.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 33F06FAB1C424A3200DAC58F;
+			remoteInfo = StudioCommonBundle;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		33C988551C42401C00262141 /* Dentist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dentist.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		33C9885B1C42401D00262141 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		33C9885C1C42401D00262141 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		33C988941C42418B00262141 /* StudioCommon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = StudioCommon.xcodeproj; path = StudioCommon/StudioCommon.xcodeproj; sourceTree = "<group>"; };
+		33F06F931C42477300DAC58F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		33F06F941C42477300DAC58F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		33F06F951C42477300DAC58F /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		390308D4EA1697DF926D8B12 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		430052BE562558A3994A1C1C /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		51B5961869359BC6C0460396 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A11DE1C2BA504D2B28E4F469 /* Pods.distribute.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.distribute.xcconfig; path = "Pods/Target Support Files/Pods/Pods.distribute.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		33C988521C42401C00262141 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33F06F901C4244E100DAC58F /* libStudioCommon.a in Frameworks */,
+				49A440E851BCC056B96B1CCC /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		118494DD823B252C0394B5A7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				51B5961869359BC6C0460396 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		33C9884C1C42401C00262141 = {
+			isa = PBXGroup;
+			children = (
+				33C988941C42418B00262141 /* StudioCommon.xcodeproj */,
+				33C988571C42401C00262141 /* Dentist */,
+				33C988561C42401C00262141 /* Products */,
+				A5E898AFEE1719ED2D5007E0 /* Pods */,
+				118494DD823B252C0394B5A7 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		33C988561C42401C00262141 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				33C988551C42401C00262141 /* Dentist.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		33C988571C42401C00262141 /* Dentist */ = {
+			isa = PBXGroup;
+			children = (
+				33F06F921C42477300DAC58F /* Supporting Files */,
+				33C9885B1C42401D00262141 /* AppDelegate.h */,
+				33C9885C1C42401D00262141 /* AppDelegate.m */,
+			);
+			path = Dentist;
+			sourceTree = "<group>";
+		};
+		33C988951C42418B00262141 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				33C988991C42418B00262141 /* libStudioCommon.a */,
+				33F06FB61C424A8F00DAC58F /* StudioCommonBundle.bundle */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		33F06F921C42477300DAC58F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				33F06F931C42477300DAC58F /* Images.xcassets */,
+				33F06F941C42477300DAC58F /* Info.plist */,
+				33F06F951C42477300DAC58F /* main.m */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A5E898AFEE1719ED2D5007E0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				390308D4EA1697DF926D8B12 /* Pods.debug.xcconfig */,
+				430052BE562558A3994A1C1C /* Pods.release.xcconfig */,
+				A11DE1C2BA504D2B28E4F469 /* Pods.distribute.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		33C988541C42401C00262141 /* Dentist */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 33C9886C1C42401D00262141 /* Build configuration list for PBXNativeTarget "Dentist" */;
+			buildPhases = (
+				7A09F7996231BC0CDB1D664A /* Check Pods Manifest.lock */,
+				33C988511C42401C00262141 /* Sources */,
+				33C988521C42401C00262141 /* Frameworks */,
+				33C988531C42401C00262141 /* Resources */,
+				1E3BE709920B5A289C5E680C /* Embed Pods Frameworks */,
+				1A9C38E6D0F18AF6A7FF717E /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				33F06FB81C424ABF00DAC58F /* PBXTargetDependency */,
+				33F06F8F1C4244BA00DAC58F /* PBXTargetDependency */,
+			);
+			name = Dentist;
+			productName = Dentist;
+			productReference = 33C988551C42401C00262141 /* Dentist.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		33C9884D1C42401C00262141 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = iOSStudio;
+				TargetAttributes = {
+					33C988541C42401C00262141 = {
+						CreatedOnToolsVersion = 7.2;
+					};
+				};
+			};
+			buildConfigurationList = 33C988501C42401C00262141 /* Build configuration list for PBXProject "Dentist" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 33C9884C1C42401C00262141;
+			productRefGroup = 33C988561C42401C00262141 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 33C988951C42418B00262141 /* Products */;
+					ProjectRef = 33C988941C42418B00262141 /* StudioCommon.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				33C988541C42401C00262141 /* Dentist */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		33C988991C42418B00262141 /* libStudioCommon.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libStudioCommon.a;
+			remoteRef = 33C988981C42418B00262141 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		33F06FB61C424A8F00DAC58F /* StudioCommonBundle.bundle */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = StudioCommonBundle.bundle;
+			remoteRef = 33F06FB51C424A8F00DAC58F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		33C988531C42401C00262141 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33F06F961C42477300DAC58F /* Images.xcassets in Resources */,
+				33F06FBF1C424D2600DAC58F /* StudioCommonBundle.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1A9C38E6D0F18AF6A7FF717E /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1E3BE709920B5A289C5E680C /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7A09F7996231BC0CDB1D664A /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		33C988511C42401C00262141 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33F06F981C42477300DAC58F /* main.m in Sources */,
+				33C9885D1C42401D00262141 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		33F06F8F1C4244BA00DAC58F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = StudioCommon;
+			targetProxy = 33F06F8E1C4244BA00DAC58F /* PBXContainerItemProxy */;
+		};
+		33F06FB81C424ABF00DAC58F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = StudioCommonBundle;
+			targetProxy = 33F06FB71C424ABF00DAC58F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		33C9886A1C42401D00262141 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		33C9886B1C42401D00262141 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		33C9886D1C42401D00262141 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 390308D4EA1697DF926D8B12 /* Pods.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = "Dentist/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = iOSStudio.Dentist;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		33C9886E1C42401D00262141 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 430052BE562558A3994A1C1C /* Pods.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = "Dentist/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = iOSStudio.Dentist;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		33C9886F1C42402400262141 /* Distribute */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Distribute;
+		};
+		33C988701C42402400262141 /* Distribute */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A11DE1C2BA504D2B28E4F469 /* Pods.distribute.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = "Dentist/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = iOSStudio.Dentist;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Distribute;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		33C988501C42401C00262141 /* Build configuration list for PBXProject "Dentist" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				33C9886A1C42401D00262141 /* Debug */,
+				33C9886B1C42401D00262141 /* Release */,
+				33C9886F1C42402400262141 /* Distribute */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		33C9886C1C42401D00262141 /* Build configuration list for PBXNativeTarget "Dentist" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				33C9886D1C42401D00262141 /* Debug */,
+				33C9886E1C42401D00262141 /* Release */,
+				33C988701C42402400262141 /* Distribute */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 33C9884D1C42401C00262141 /* Project object */;
+}

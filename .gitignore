@@ -1,0 +1,30 @@
+# SVN Related
+.svn
+.svnignore
+*.svn-base
+.GitFolder
+
+# XCode Related
+.DS_Store
+build/
+packages/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+*.xcworkspace
+!Dentist.xcworkspace
+xcuserdata
+xcshareddata
+*.moved-aside
+DerivedData
+.idea/
+
+# CocoaPods Related（暂时纳入版本控制）
+#Podfile.lock
+#Pods/
+
