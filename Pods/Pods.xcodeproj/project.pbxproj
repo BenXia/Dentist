@@ -1409,6 +1409,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 88323BDA1BB12B1A9059E9E6FB71B3CA /* Masonry.xcconfig */;
 			buildSettings = {
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/Masonry/Masonry-prefix.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -1427,6 +1428,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 88323BDA1BB12B1A9059E9E6FB71B3CA /* Masonry.xcconfig */;
 			buildSettings = {
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/Masonry/Masonry-prefix.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -1445,6 +1447,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CF28303CB80D4A1426CCBAE7D420521D /* SDWebImage.xcconfig */;
 			buildSettings = {
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/SDWebImage/SDWebImage-prefix.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -1463,6 +1466,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D9D6D264AB507FFD661041075B54A9A4 /* Pods.release.xcconfig */;
 			buildSettings = {
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MACH_O_TYPE = staticlib;
@@ -1480,6 +1484,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 88323BDA1BB12B1A9059E9E6FB71B3CA /* Masonry.xcconfig */;
 			buildSettings = {
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/Masonry/Masonry-prefix.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -1498,6 +1503,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FD05E3F5D4A99F26234F7EFD5F0196DF /* ReactiveCocoa.xcconfig */;
 			buildSettings = {
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/ReactiveCocoa/ReactiveCocoa-prefix.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -1516,6 +1522,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CF28303CB80D4A1426CCBAE7D420521D /* SDWebImage.xcconfig */;
 			buildSettings = {
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/SDWebImage/SDWebImage-prefix.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -1534,6 +1541,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CF28303CB80D4A1426CCBAE7D420521D /* SDWebImage.xcconfig */;
 			buildSettings = {
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/SDWebImage/SDWebImage-prefix.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -1552,6 +1560,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B651A67017A98506E8E7B85DE26CC299 /* Pods.distribute.xcconfig */;
 			buildSettings = {
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MACH_O_TYPE = staticlib;
@@ -1569,6 +1578,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2514A3F09C52C9AEAF652F18264006DA /* Pods.debug.xcconfig */;
 			buildSettings = {
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MACH_O_TYPE = staticlib;
@@ -1658,6 +1668,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FD05E3F5D4A99F26234F7EFD5F0196DF /* ReactiveCocoa.xcconfig */;
 			buildSettings = {
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/ReactiveCocoa/ReactiveCocoa-prefix.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -1676,6 +1687,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FD05E3F5D4A99F26234F7EFD5F0196DF /* ReactiveCocoa.xcconfig */;
 			buildSettings = {
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/ReactiveCocoa/ReactiveCocoa-prefix.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;

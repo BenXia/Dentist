@@ -7,6 +7,9 @@
 //
 
 #import "AppDelegate.h"
+#import "AppInitializer.h"
+#import "AppDeinitializer.h"
+#import "LaunchViewController.h"
 
 @interface AppDelegate ()
 
@@ -14,6 +17,29 @@
 
 @implementation AppDelegate
 
+#pragma mark - Public methods
+
++ (AppDelegate *)sharedAppDelegate {
+    UIApplication *app = [UIApplication sharedApplication];
+    return (AppDelegate *)app.delegate;
+}
+
+- (void)replaceRootControllerBy:(UIViewController *)vc {
+    self.rootNavigationController = [[BaseNavigationController alloc] initWithRootViewController:vc];
+    self.rootNavigationController.navigationBarHidden = YES;
+    self.window.rootViewController = self.rootNavigationController;
+}
+
+- (void)replaceRootControllerBy:(UIViewController *)vc
+                     completion:(Block)completeBlock {
+    [self replaceRootControllerBy:vc];
+    
+    if (completeBlock) {
+        completeBlock();
+    }
+}
+
+#pragma mark - UIApplicationDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
@@ -21,12 +47,14 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    UINavigationController *navigationVC = [UINavigationController new];
-    UIViewController* homePageVC = [[UIViewController alloc] init];
+    BaseNavigationController *navigationVC = [BaseNavigationController new];
+    UIViewController* launchVC = [[LaunchViewController alloc] init];
     navigationVC.navigationBar.hidden = YES;
-    [navigationVC pushViewController:homePageVC animated:NO];
+    [navigationVC pushViewController:launchVC animated:NO];
     
     self.window.rootViewController = navigationVC;
+    
+    [[AppInitializer sharedInstance] initiateAppAfterLaunching];
     
     return YES;
 }

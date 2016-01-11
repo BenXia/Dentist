@@ -12,6 +12,11 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
+@property (nonatomic, strong) UINavigationController *rootNavigationController;
 
++ (AppDelegate *)sharedAppDelegate;
+
+- (void)replaceRootControllerBy:(UIViewController *)vc;
+- (void)replaceRootControllerBy:(UIViewController *)vc completion:(Block)completeBlock;
 @end
 
