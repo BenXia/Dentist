@@ -18,8 +18,8 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.tabBarItem.title = @"个人";
-        self.tabBarItem.image = [UIImage imageNamed:@"icon_home1"];
-        self.tabBarItem.selectedImage = [[UIImage imageNamed:@"icon_home2"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        self.tabBarItem.image = [UIImage imageNamed:@"btn_user_f"];
+        self.tabBarItem.selectedImage = [[UIImage imageNamed:@"btn_user_t"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     }
     return self;
 }
