@@ -45,6 +45,7 @@
 		33F071A81C42CF1900DAC58F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F071A71C42CF1900DAC58F /* Security.framework */; };
 		33F071DB1C42DAAB00DAC58F /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F071DA1C42DAAB00DAC58F /* libstdc++.6.0.9.dylib */; };
 		49A440E851BCC056B96B1CCC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 51B5961869359BC6C0460396 /* libPods.a */; };
+		B5F386011C4493DC00E666F7 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F071C51C42D12900DAC58F /* CoreFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -159,6 +160,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5F386011C4493DC00E666F7 /* CoreFoundation.framework in Frameworks */,
 				33F071A81C42CF1900DAC58F /* Security.framework in Frameworks */,
 				33F071A61C42CF1200DAC58F /* CFNetwork.framework in Frameworks */,
 				33F071641C42CB8500DAC58F /* SystemConfiguration.framework in Frameworks */,
@@ -481,8 +483,8 @@
 			buildRules = (
 			);
 			dependencies = (
-				33F06FB81C424ABF00DAC58F /* PBXTargetDependency */,
 				33F06F8F1C4244BA00DAC58F /* PBXTargetDependency */,
+				33F06FB81C424ABF00DAC58F /* PBXTargetDependency */,
 			);
 			name = Dentist;
 			productName = Dentist;
@@ -741,6 +743,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Dentist/Supporting Files/Dentist-Prefix.pch";
 				INFOPLIST_FILE = "Dentist/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -749,6 +752,7 @@
 					"$(inherited)",
 					"-ObjC",
 					"-fobjc-arc",
+					"-lstdc++",
 					"-l\"Masonry\"",
 					"-l\"ReactiveCocoa\"",
 					"-l\"SDWebImage\"",
@@ -772,6 +776,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				ENABLE_BITCODE = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Dentist/Supporting Files/Dentist-Prefix.pch";
 				INFOPLIST_FILE = "Dentist/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -780,6 +785,7 @@
 					"$(inherited)",
 					"-ObjC",
 					"-fobjc-arc",
+					"-lstdc++",
 					"-l\"Masonry\"",
 					"-l\"ReactiveCocoa\"",
 					"-l\"SDWebImage\"",
@@ -840,6 +846,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				ENABLE_BITCODE = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Dentist/Supporting Files/Dentist-Prefix.pch";
 				INFOPLIST_FILE = "Dentist/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -848,6 +855,7 @@
 					"$(inherited)",
 					"-ObjC",
 					"-fobjc-arc",
+					"-lstdc++",
 					"-l\"Masonry\"",
 					"-l\"ReactiveCocoa\"",
 					"-l\"SDWebImage\"",

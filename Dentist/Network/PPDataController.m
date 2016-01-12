@@ -400,7 +400,7 @@ NSString* const kDataControllerErrorDomain = @"NetworkErrorDomain";
                                 withObject:self
                                 withObject:[NSError errorWithDomain:kDataControllerErrorDomain
                                                                code:PPDataStatusCodeError
-                                                           userInfo:@{@"错误原因":[NSString stringWithFormat:@"%d : %@", statusCode, [NSHTTPURLResponse localizedStringForStatusCode:statusCode]]}]];
+                                                           userInfo:@{@"错误原因":[NSString stringWithFormat:@"%zd : %@", statusCode, [NSHTTPURLResponse localizedStringForStatusCode:statusCode]]}]];
         }
     }
 }
