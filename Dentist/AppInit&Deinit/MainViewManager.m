@@ -125,6 +125,10 @@ static MainViewManager* sInstance = nil;
     [self selectTabHomeVC];
 }
 
+- (void)loadLoginVC {
+    
+}
+
 #pragma mark - Prepare view branching
 
 - (id)tabSelectIndex:(NSInteger)index {

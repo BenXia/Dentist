@@ -135,7 +135,9 @@
 		93624CBD1C44170C00262B65 /* pic_logo2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93624C731C44170C00262B65 /* pic_logo2x.png */; };
 		93624CBE1C44170C00262B65 /* tv_msg_number_r.png in Resources */ = {isa = PBXBuildFile; fileRef = 93624C741C44170C00262B65 /* tv_msg_number_r.png */; };
 		93624CBF1C44170C00262B65 /* tv_msg_number_w.png in Resources */ = {isa = PBXBuildFile; fileRef = 93624C751C44170C00262B65 /* tv_msg_number_w.png */; };
-		93F2A0121C49E73C0034486B /* LoginVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 93F2A0111C49E73C0034486B /* LoginVM.m */; };
+		93B405CA1C4A8304005499C4 /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 93B405C81C4A8304005499C4 /* LoginVC.m */; };
+		93B405CB1C4A8304005499C4 /* LoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93B405C91C4A8304005499C4 /* LoginVC.xib */; };
+		93B405CF1C4A8C5B005499C4 /* LoginVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 93B405CE1C4A8C5B005499C4 /* LoginVM.m */; };
 		93F2A0161C49E93C0034486B /* LoginDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 93F2A0151C49E93C0034486B /* LoginDC.m */; };
 		93F2A01A1C49F0330034486B /* UserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 93F2A0191C49F0330034486B /* UserInfoModel.m */; };
 		B5F386061C45ED3A00E666F7 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F071C51C42D12900DAC58F /* CoreFoundation.framework */; };
@@ -335,8 +337,11 @@
 		93624C731C44170C00262B65 /* pic_logo2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pic_logo2x.png; sourceTree = "<group>"; };
 		93624C741C44170C00262B65 /* tv_msg_number_r.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tv_msg_number_r.png; sourceTree = "<group>"; };
 		93624C751C44170C00262B65 /* tv_msg_number_w.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tv_msg_number_w.png; sourceTree = "<group>"; };
-		93F2A0101C49E73C0034486B /* LoginVM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginVM.h; path = StudioCommon/StudioCommon/Storage/LoginVM.h; sourceTree = SOURCE_ROOT; };
-		93F2A0111C49E73C0034486B /* LoginVM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginVM.m; path = StudioCommon/StudioCommon/Storage/LoginVM.m; sourceTree = SOURCE_ROOT; };
+		93B405C71C4A8304005499C4 /* LoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginVC.h; path = Dentist/GlobalDate/LoginVC.h; sourceTree = SOURCE_ROOT; };
+		93B405C81C4A8304005499C4 /* LoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginVC.m; path = Dentist/GlobalDate/LoginVC.m; sourceTree = SOURCE_ROOT; };
+		93B405C91C4A8304005499C4 /* LoginVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginVC.xib; path = Dentist/GlobalDate/LoginVC.xib; sourceTree = SOURCE_ROOT; };
+		93B405CD1C4A8C5B005499C4 /* LoginVM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginVM.h; sourceTree = "<group>"; };
+		93B405CE1C4A8C5B005499C4 /* LoginVM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginVM.m; sourceTree = "<group>"; };
 		93F2A0141C49E93C0034486B /* LoginDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginDC.h; sourceTree = "<group>"; };
 		93F2A0151C49E93C0034486B /* LoginDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginDC.m; sourceTree = "<group>"; };
 		93F2A0181C49F0330034486B /* UserInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoModel.h; sourceTree = "<group>"; };
@@ -419,12 +424,12 @@
 		33C988571C42401C00262141 /* Dentist */ = {
 			isa = PBXGroup;
 			children = (
+				93B405CC1C4A8C5B005499C4 /* viewModel */,
 				93F2A0171C49F01E0034486B /* GlobalDate */,
 				33F070481C429AD300DAC58F /* AppInit&Deinit */,
 				33F070771C42AB8300DAC58F /* Application */,
 				33F070851C42B46E00DAC58F /* Images */,
 				33F070321C4295F200DAC58F /* Base */,
-				33F070351C4295F200DAC58F /* Models */,
 				33F070361C4295F200DAC58F /* Network */,
 				33F070371C4295F200DAC58F /* Utilities */,
 				33F070381C4295F200DAC58F /* Vendors */,
@@ -464,15 +469,6 @@
 				33F070341C4295F200DAC58F /* BaseNavigationController.m */,
 			);
 			path = Base;
-			sourceTree = "<group>";
-		};
-		33F070351C4295F200DAC58F /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				93F2A0101C49E73C0034486B /* LoginVM.h */,
-				93F2A0111C49E73C0034486B /* LoginVM.m */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		33F070361C4295F200DAC58F /* Network */ = {
@@ -561,6 +557,9 @@
 		33F0703F1C42964A00DAC58F /* 登录 */ = {
 			isa = PBXGroup;
 			children = (
+				93B405C71C4A8304005499C4 /* LoginVC.h */,
+				93B405C81C4A8304005499C4 /* LoginVC.m */,
+				93B405C91C4A8304005499C4 /* LoginVC.xib */,
 			);
 			path = "登录";
 			sourceTree = "<group>";
@@ -747,6 +746,15 @@
 			path = temp;
 			sourceTree = "<group>";
 		};
+		93B405CC1C4A8C5B005499C4 /* viewModel */ = {
+			isa = PBXGroup;
+			children = (
+				93B405CD1C4A8C5B005499C4 /* LoginVM.h */,
+				93B405CE1C4A8C5B005499C4 /* LoginVM.m */,
+			);
+			path = viewModel;
+			sourceTree = "<group>";
+		};
 		93F2A0131C49E8EE0034486B /* 注册登录 */ = {
 			isa = PBXGroup;
 			children = (
@@ -866,6 +874,7 @@
 				93624C8C1C44170C00262B65 /* btn_numberplus90_default.png in Resources */,
 				93624C201C44170100262B65 /* btn_clinical_default.png in Resources */,
 				93624C951C44170C00262B65 /* Btn_Search_pressed@2X.png in Resources */,
+				93B405CB1C4A8304005499C4 /* LoginVC.xib in Resources */,
 				93624C931C44170C00262B65 /* Btn_PhotoPlus_pressed@2X.png in Resources */,
 				93624C231C44170100262B65 /* btn_custommade_pressed.png in Resources */,
 				93624CBB1C44170C00262B65 /* msg_null.png in Resources */,
@@ -1021,16 +1030,17 @@
 			files = (
 				33F070CE1C42BE1E00DAC58F /* SendSmsDataController.m in Sources */,
 				33F0704F1C429AD300DAC58F /* AppDeinitializer.m in Sources */,
+				93B405CA1C4A8304005499C4 /* LoginVC.m in Sources */,
 				93F2A0161C49E93C0034486B /* LoginDC.m in Sources */,
 				33F06F981C42477300DAC58F /* main.m in Sources */,
 				33F070501C429AD300DAC58F /* AppInitializer.m in Sources */,
 				33C9885D1C42401D00262141 /* AppDelegate.m in Sources */,
 				33F070951C42B58E00DAC58F /* PPDataController.m in Sources */,
-				93F2A0121C49E73C0034486B /* LoginVM.m in Sources */,
 				33F0706E1C42A43200DAC58F /* ProfileVC.m in Sources */,
 				33F070641C42A40F00DAC58F /* CategoryVC.m in Sources */,
 				33F070941C42B58E00DAC58F /* PPDataCache.m in Sources */,
 				93F2A01A1C49F0330034486B /* UserInfoModel.m in Sources */,
+				93B405CF1C4A8C5B005499C4 /* LoginVM.m in Sources */,
 				33F0705B1C42A3D400DAC58F /* MainPageTabBarVC.m in Sources */,
 				33F0705F1C42A3F500DAC58F /* HomePageVC.m in Sources */,
 				33F0707A1C42AB8300DAC58F /* AppAppearance.m in Sources */,
