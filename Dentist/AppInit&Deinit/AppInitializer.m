@@ -56,8 +56,16 @@ static AppInitializer* sInstance = nil;
 
 - (void)initiateWithServerData {
      dispatch_async(dispatch_get_main_queue(), ^{
-         [[MainViewManager sharedInstance] loadMainVC];
-         [[MainViewManager sharedInstance] selectTabHomeVC];
+         //登录
+         if ([Cache sharedCache].username.length>0 && [Cache sharedCache].password.length>0) {
+             //自动登录
+             
+         } else {
+             //手动登录
+             [[MainViewManager sharedInstance] loadMainVC];
+             [[MainViewManager sharedInstance] selectTabHomeVC];
+         }
+         
      });
 }
 

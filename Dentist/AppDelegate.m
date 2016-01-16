@@ -42,7 +42,7 @@
 #pragma mark - UIApplicationDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    [[AppInitializer sharedInstance] initiateAppAfterLaunching];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
@@ -53,8 +53,6 @@
     [navigationVC pushViewController:launchVC animated:NO];
     
     self.window.rootViewController = navigationVC;
-    
-    [[AppInitializer sharedInstance] initiateAppAfterLaunching];
     
     return YES;
 }

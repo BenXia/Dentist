@@ -135,6 +135,9 @@
 		93624CBD1C44170C00262B65 /* pic_logo2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93624C731C44170C00262B65 /* pic_logo2x.png */; };
 		93624CBE1C44170C00262B65 /* tv_msg_number_r.png in Resources */ = {isa = PBXBuildFile; fileRef = 93624C741C44170C00262B65 /* tv_msg_number_r.png */; };
 		93624CBF1C44170C00262B65 /* tv_msg_number_w.png in Resources */ = {isa = PBXBuildFile; fileRef = 93624C751C44170C00262B65 /* tv_msg_number_w.png */; };
+		93F2A0121C49E73C0034486B /* LoginVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 93F2A0111C49E73C0034486B /* LoginVM.m */; };
+		93F2A0161C49E93C0034486B /* LoginDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 93F2A0151C49E93C0034486B /* LoginDC.m */; };
+		93F2A01A1C49F0330034486B /* UserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 93F2A0191C49F0330034486B /* UserInfoModel.m */; };
 		B5F386061C45ED3A00E666F7 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F071C51C42D12900DAC58F /* CoreFoundation.framework */; };
 /* End PBXBuildFile section */
 
@@ -332,6 +335,12 @@
 		93624C731C44170C00262B65 /* pic_logo2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pic_logo2x.png; sourceTree = "<group>"; };
 		93624C741C44170C00262B65 /* tv_msg_number_r.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tv_msg_number_r.png; sourceTree = "<group>"; };
 		93624C751C44170C00262B65 /* tv_msg_number_w.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tv_msg_number_w.png; sourceTree = "<group>"; };
+		93F2A0101C49E73C0034486B /* LoginVM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginVM.h; path = StudioCommon/StudioCommon/Storage/LoginVM.h; sourceTree = SOURCE_ROOT; };
+		93F2A0111C49E73C0034486B /* LoginVM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginVM.m; path = StudioCommon/StudioCommon/Storage/LoginVM.m; sourceTree = SOURCE_ROOT; };
+		93F2A0141C49E93C0034486B /* LoginDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginDC.h; sourceTree = "<group>"; };
+		93F2A0151C49E93C0034486B /* LoginDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginDC.m; sourceTree = "<group>"; };
+		93F2A0181C49F0330034486B /* UserInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoModel.h; sourceTree = "<group>"; };
+		93F2A0191C49F0330034486B /* UserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoModel.m; sourceTree = "<group>"; };
 		A11DE1C2BA504D2B28E4F469 /* Pods.distribute.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.distribute.xcconfig; path = "Pods/Target Support Files/Pods/Pods.distribute.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -410,6 +419,7 @@
 		33C988571C42401C00262141 /* Dentist */ = {
 			isa = PBXGroup;
 			children = (
+				93F2A0171C49F01E0034486B /* GlobalDate */,
 				33F070481C429AD300DAC58F /* AppInit&Deinit */,
 				33F070771C42AB8300DAC58F /* Application */,
 				33F070851C42B46E00DAC58F /* Images */,
@@ -459,6 +469,8 @@
 		33F070351C4295F200DAC58F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				93F2A0101C49E73C0034486B /* LoginVM.h */,
+				93F2A0111C49E73C0034486B /* LoginVM.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -471,8 +483,8 @@
 				33F070911C42B58E00DAC58F /* PPDataController.h */,
 				33F070921C42B58E00DAC58F /* PPDataController.m */,
 				33F070931C42B58E00DAC58F /* PPDataControllerError.h */,
+				93F2A0131C49E8EE0034486B /* 注册登录 */,
 				33F070C81C42BE1E00DAC58F /* 公用 */,
-				33F070CB1C42BE1E00DAC58F /* 检查升级 */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -635,13 +647,6 @@
 			path = "公用";
 			sourceTree = "<group>";
 		};
-		33F070CB1C42BE1E00DAC58F /* 检查升级 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "检查升级";
-			sourceTree = "<group>";
-		};
 		93624C121C44170100262B65 /* 首页 */ = {
 			isa = PBXGroup;
 			children = (
@@ -740,6 +745,24 @@
 				93624C751C44170C00262B65 /* tv_msg_number_w.png */,
 			);
 			path = temp;
+			sourceTree = "<group>";
+		};
+		93F2A0131C49E8EE0034486B /* 注册登录 */ = {
+			isa = PBXGroup;
+			children = (
+				93F2A0141C49E93C0034486B /* LoginDC.h */,
+				93F2A0151C49E93C0034486B /* LoginDC.m */,
+			);
+			path = "注册登录";
+			sourceTree = "<group>";
+		};
+		93F2A0171C49F01E0034486B /* GlobalDate */ = {
+			isa = PBXGroup;
+			children = (
+				93F2A0181C49F0330034486B /* UserInfoModel.h */,
+				93F2A0191C49F0330034486B /* UserInfoModel.m */,
+			);
+			path = GlobalDate;
 			sourceTree = "<group>";
 		};
 		A5E898AFEE1719ED2D5007E0 /* Pods */ = {
@@ -998,13 +1021,16 @@
 			files = (
 				33F070CE1C42BE1E00DAC58F /* SendSmsDataController.m in Sources */,
 				33F0704F1C429AD300DAC58F /* AppDeinitializer.m in Sources */,
+				93F2A0161C49E93C0034486B /* LoginDC.m in Sources */,
 				33F06F981C42477300DAC58F /* main.m in Sources */,
 				33F070501C429AD300DAC58F /* AppInitializer.m in Sources */,
 				33C9885D1C42401D00262141 /* AppDelegate.m in Sources */,
 				33F070951C42B58E00DAC58F /* PPDataController.m in Sources */,
+				93F2A0121C49E73C0034486B /* LoginVM.m in Sources */,
 				33F0706E1C42A43200DAC58F /* ProfileVC.m in Sources */,
 				33F070641C42A40F00DAC58F /* CategoryVC.m in Sources */,
 				33F070941C42B58E00DAC58F /* PPDataCache.m in Sources */,
+				93F2A01A1C49F0330034486B /* UserInfoModel.m in Sources */,
 				33F0705B1C42A3D400DAC58F /* MainPageTabBarVC.m in Sources */,
 				33F0705F1C42A3F500DAC58F /* HomePageVC.m in Sources */,
 				33F0707A1C42AB8300DAC58F /* AppAppearance.m in Sources */,
