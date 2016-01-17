@@ -1,13 +1,14 @@
 //
 //  HomePageVC.h
-//  Dentist
+//  QQing
 //
-//  Created by Ben on 16/1/10.
-//  Copyright © 2016年 iOSStudio. All rights reserved.
+//  Created by Ben on 15/11/26.
+//
 //
 
-#import <UIKit/UIKit.h>
 
 @interface HomePageVC : UIViewController
+
+@property (nonatomic, assign) BOOL needHideNavBarWithAnimation;
 
 @end

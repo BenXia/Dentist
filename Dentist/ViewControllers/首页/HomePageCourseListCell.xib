@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HomePageCourseListCell" id="KGk-i7-Jjw" customClass="HomePageCourseListCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="79.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kz6-Gk-pa2">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CUz-g5-JBY" userLabel="ScrollContentView">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+                                <color key="backgroundColor" red="0.93725490196078431" green="0.94117647058823528" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="z12-On-fhm"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.94117647059999998" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="CUz-g5-JBY" secondAttribute="bottom" id="8KX-eH-tvu"/>
+                            <constraint firstAttribute="trailing" secondItem="CUz-g5-JBY" secondAttribute="trailing" id="F91-AF-GJx"/>
+                            <constraint firstItem="CUz-g5-JBY" firstAttribute="leading" secondItem="kz6-Gk-pa2" secondAttribute="leading" id="ZqQ-zK-4RN"/>
+                            <constraint firstItem="CUz-g5-JBY" firstAttribute="centerY" secondItem="kz6-Gk-pa2" secondAttribute="centerY" id="bhq-SO-yp3"/>
+                            <constraint firstItem="CUz-g5-JBY" firstAttribute="top" secondItem="kz6-Gk-pa2" secondAttribute="top" id="rFM-ih-PKa"/>
+                        </constraints>
+                        <connections>
+                            <outlet property="delegate" destination="KGk-i7-Jjw" id="oTa-cz-Lmt"/>
+                        </connections>
+                    </scrollView>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="kz6-Gk-pa2" secondAttribute="trailing" constant="-8" id="McA-Zt-mPJ"/>
+                    <constraint firstItem="kz6-Gk-pa2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="UbD-9H-qOX"/>
+                    <constraint firstItem="kz6-Gk-pa2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-8" id="aqb-fs-xCC"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="kz6-Gk-pa2" secondAttribute="bottom" constant="-9" id="rG1-Jd-N5k"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="scrollContentView" destination="CUz-g5-JBY" id="WFd-nT-2H3"/>
+                <outlet property="scrollContentViewWidthConstaint" destination="z12-On-fhm" id="fag-dT-X74"/>
+                <outlet property="scrollView" destination="kz6-Gk-pa2" id="dCF-E5-Bvh"/>
+            </connections>
+            <point key="canvasLocation" x="512" y="250"/>
+        </tableViewCell>
+    </objects>
+</document>
