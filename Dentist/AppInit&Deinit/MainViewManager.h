@@ -18,6 +18,8 @@
 
 - (void)loadMainVC;
 
+- (void)loadLoginVC;
+
 #pragma mark - 工具方法
 
 + (UINavigationController *)rootNavigationController;

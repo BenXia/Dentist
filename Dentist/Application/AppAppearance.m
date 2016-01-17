@@ -54,17 +54,17 @@ static AppAppearance* sInstance = nil;
 }
 
 - (void)navigationBarAppearance {
-    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:247.0/255 green:247.0/255 blue:247.0/255 alpha:1.0f]];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor teBlueColor]];
     
     //设置导航栏返回按钮颜色
-    [[UINavigationBar appearance] setTintColor:[UIColor grayColor]];
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     
     if (IOS8_OR_LATER) {
         [[UINavigationBar appearance] setTranslucent:NO];
     }
     
     UIFont *font = [UIFont systemFontOfSize:18.0];
-    UIColor *foregroundColor = RGB(51, 51, 51);
+    UIColor *foregroundColor = [UIColor whiteColor];
     UIColor *backgroundColor = [UIColor clearColor];
     [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                           foregroundColor, NSForegroundColorAttributeName,

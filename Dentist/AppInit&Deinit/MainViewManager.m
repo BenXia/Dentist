@@ -13,6 +13,7 @@
 #import "CategoryVC.h"
 #import "CartVC.h"
 #import "ProfileVC.h"
+#import "LoginVC.h"
 
 typedef enum {
     emLoginView,
@@ -126,6 +127,11 @@ static MainViewManager* sInstance = nil;
 }
 
 - (void)loadLoginVC {
+    LoginVC *loginVC = [[LoginVC alloc] initWithNibName:@"LoginVC" bundle:nil];
+    [[AppDelegate sharedAppDelegate] replaceRootControllerBy:loginVC];
+}
+
+- (void)loadRegistVC {
     
 }
 

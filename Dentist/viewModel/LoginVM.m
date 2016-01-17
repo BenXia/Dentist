@@ -47,6 +47,9 @@
 
         } else {
             [Utilities showToastWithText:@"登录失败"];
+            //注册接口还未调通
+            [[MainViewManager sharedInstance] loadMainVC];
+            [[MainViewManager sharedInstance] selectTabHomeVC];
         }
     }
 }

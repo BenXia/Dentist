@@ -9,9 +9,10 @@
 #import "AppInitializer.h"
 #import "AppDelegate.h"
 #import "AppAppearance.h"
+#import "LoginVM.h"
 
 @interface AppInitializer ()
-
+@property (nonatomic, strong)LoginVM *loginVM;
 @end
 
 @implementation AppInitializer
@@ -59,11 +60,10 @@ static AppInitializer* sInstance = nil;
          //登录
          if ([Cache sharedCache].username.length>0 && [Cache sharedCache].password.length>0) {
              //自动登录
-             
+             [self.loginVM autoLogin];
          } else {
              //手动登录
-             [[MainViewManager sharedInstance] loadMainVC];
-             [[MainViewManager sharedInstance] selectTabHomeVC];
+             [[MainViewManager sharedInstance] loadLoginVC];
          }
          
      });
@@ -89,6 +89,15 @@ static AppInitializer* sInstance = nil;
     [SDImageCache sharedImageCache].maxMemoryCost = 30 * 1024 * 1024;   // 30M内存缓存，非精确值
     [SDImageCache sharedImageCache].maxCacheAge = [[NSDate distantFuture] timeIntervalSince1970];  // 永远不过期，通过下面的缓存大小限制，减轻服务器压力
     [SDImageCache sharedImageCache].maxCacheSize = 50 * 1024 * 1024;    // 50M磁盘缓存，精确值
+}
+
+#pragma mark - Getters
+
+- (LoginVM *)loginVM {
+    if (!_loginVM) {
+        _loginVM = [[LoginVM alloc] init];
+    }
+    return _loginVM;
 }
 
 @end

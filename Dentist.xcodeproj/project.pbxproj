@@ -138,6 +138,12 @@
 		93B405CA1C4A8304005499C4 /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 93B405C81C4A8304005499C4 /* LoginVC.m */; };
 		93B405CB1C4A8304005499C4 /* LoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93B405C91C4A8304005499C4 /* LoginVC.xib */; };
 		93B405CF1C4A8C5B005499C4 /* LoginVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 93B405CE1C4A8C5B005499C4 /* LoginVM.m */; };
+		93DEA85D1C4B9874008211F7 /* RegistVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 93DEA85B1C4B9874008211F7 /* RegistVC.m */; };
+		93DEA85E1C4B9874008211F7 /* RegistVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93DEA85C1C4B9874008211F7 /* RegistVC.xib */; };
+		93DEA8611C4B9999008211F7 /* Ico_Successed@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 93DEA8601C4B9999008211F7 /* Ico_Successed@2X.png */; };
+		93DEA8651C4BA188008211F7 /* AgreementVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 93DEA8631C4BA188008211F7 /* AgreementVC.m */; };
+		93DEA8661C4BA188008211F7 /* AgreementVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93DEA8641C4BA188008211F7 /* AgreementVC.xib */; };
+		93DEA8691C4BA2D2008211F7 /* RegistDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 93DEA8681C4BA2D2008211F7 /* RegistDC.m */; };
 		93F2A0161C49E93C0034486B /* LoginDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 93F2A0151C49E93C0034486B /* LoginDC.m */; };
 		93F2A01A1C49F0330034486B /* UserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 93F2A0191C49F0330034486B /* UserInfoModel.m */; };
 		B5F386061C45ED3A00E666F7 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F071C51C42D12900DAC58F /* CoreFoundation.framework */; };
@@ -342,6 +348,15 @@
 		93B405C91C4A8304005499C4 /* LoginVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginVC.xib; path = Dentist/GlobalDate/LoginVC.xib; sourceTree = SOURCE_ROOT; };
 		93B405CD1C4A8C5B005499C4 /* LoginVM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginVM.h; sourceTree = "<group>"; };
 		93B405CE1C4A8C5B005499C4 /* LoginVM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginVM.m; sourceTree = "<group>"; };
+		93DEA85A1C4B9874008211F7 /* RegistVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegistVC.h; path = Dentist/viewModel/RegistVC.h; sourceTree = SOURCE_ROOT; };
+		93DEA85B1C4B9874008211F7 /* RegistVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegistVC.m; path = Dentist/viewModel/RegistVC.m; sourceTree = SOURCE_ROOT; };
+		93DEA85C1C4B9874008211F7 /* RegistVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RegistVC.xib; path = Dentist/viewModel/RegistVC.xib; sourceTree = SOURCE_ROOT; };
+		93DEA8601C4B9999008211F7 /* Ico_Successed@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Ico_Successed@2X.png"; sourceTree = "<group>"; };
+		93DEA8621C4BA188008211F7 /* AgreementVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AgreementVC.h; path = Dentist/viewModel/AgreementVC.h; sourceTree = SOURCE_ROOT; };
+		93DEA8631C4BA188008211F7 /* AgreementVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AgreementVC.m; path = Dentist/viewModel/AgreementVC.m; sourceTree = SOURCE_ROOT; };
+		93DEA8641C4BA188008211F7 /* AgreementVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AgreementVC.xib; path = Dentist/viewModel/AgreementVC.xib; sourceTree = SOURCE_ROOT; };
+		93DEA8671C4BA2D2008211F7 /* RegistDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistDC.h; sourceTree = "<group>"; };
+		93DEA8681C4BA2D2008211F7 /* RegistDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistDC.m; sourceTree = "<group>"; };
 		93F2A0141C49E93C0034486B /* LoginDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginDC.h; sourceTree = "<group>"; };
 		93F2A0151C49E93C0034486B /* LoginDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginDC.m; sourceTree = "<group>"; };
 		93F2A0181C49F0330034486B /* UserInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoModel.h; sourceTree = "<group>"; };
@@ -586,6 +601,12 @@
 		33F070421C42964A00DAC58F /* 注册 */ = {
 			isa = PBXGroup;
 			children = (
+				93DEA85A1C4B9874008211F7 /* RegistVC.h */,
+				93DEA85B1C4B9874008211F7 /* RegistVC.m */,
+				93DEA85C1C4B9874008211F7 /* RegistVC.xib */,
+				93DEA8621C4BA188008211F7 /* AgreementVC.h */,
+				93DEA8631C4BA188008211F7 /* AgreementVC.m */,
+				93DEA8641C4BA188008211F7 /* AgreementVC.xib */,
 			);
 			path = "注册";
 			sourceTree = "<group>";
@@ -615,6 +636,7 @@
 		33F070851C42B46E00DAC58F /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				93DEA85F1C4B9991008211F7 /* 登录注册 */,
 				93624C2B1C44170C00262B65 /* temp */,
 				93624C121C44170100262B65 /* 首页 */,
 				33F070861C42B46E00DAC58F /* 公共 */,
@@ -755,11 +777,21 @@
 			path = viewModel;
 			sourceTree = "<group>";
 		};
+		93DEA85F1C4B9991008211F7 /* 登录注册 */ = {
+			isa = PBXGroup;
+			children = (
+				93DEA8601C4B9999008211F7 /* Ico_Successed@2X.png */,
+			);
+			path = "登录注册";
+			sourceTree = "<group>";
+		};
 		93F2A0131C49E8EE0034486B /* 注册登录 */ = {
 			isa = PBXGroup;
 			children = (
 				93F2A0141C49E93C0034486B /* LoginDC.h */,
 				93F2A0151C49E93C0034486B /* LoginDC.m */,
+				93DEA8671C4BA2D2008211F7 /* RegistDC.h */,
+				93DEA8681C4BA2D2008211F7 /* RegistDC.m */,
 			);
 			path = "注册登录";
 			sourceTree = "<group>";
@@ -897,6 +929,7 @@
 				93624C291C44170100262B65 /* btn_mechanic_pressed.png in Resources */,
 				93624CA71C44170C00262B65 /* ico_adress.png in Resources */,
 				93624C241C44170100262B65 /* btn_homepage _f.png in Resources */,
+				93DEA8611C4B9999008211F7 /* Ico_Successed@2X.png in Resources */,
 				93624C881C44170C00262B65 /* btn_numberminus90_default.png in Resources */,
 				93624C211C44170100262B65 /* btn_clinical_pressed.png in Resources */,
 				33F070651C42A40F00DAC58F /* CategoryVC.xib in Resources */,
@@ -915,6 +948,7 @@
 				93624CBA1C44170C00262B65 /* like_ts.png in Resources */,
 				93624CB11C44170C00262B65 /* ico_ordered.png in Resources */,
 				93624BE21C44152D00262B65 /* btn_cart_t.png in Resources */,
+				93DEA8661C4BA188008211F7 /* AgreementVC.xib in Resources */,
 				33F070601C42A3F500DAC58F /* HomePageVC.xib in Resources */,
 				93624CA61C44170C00262B65 /* home_Bg_time@2x.png in Resources */,
 				33F0706F1C42A43200DAC58F /* ProfileVC.xib in Resources */,
@@ -970,6 +1004,7 @@
 				93624C8D1C44170C00262B65 /* btn_NumberPlus90_pressed@2X.png in Resources */,
 				93624CAE1C44170C00262B65 /* ico_idvip.png in Resources */,
 				93624C821C44170C00262B65 /* Btn_Go_default@2X.png in Resources */,
+				93DEA85E1C4B9874008211F7 /* RegistVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1042,11 +1077,14 @@
 				93F2A01A1C49F0330034486B /* UserInfoModel.m in Sources */,
 				93B405CF1C4A8C5B005499C4 /* LoginVM.m in Sources */,
 				33F0705B1C42A3D400DAC58F /* MainPageTabBarVC.m in Sources */,
+				93DEA8691C4BA2D2008211F7 /* RegistDC.m in Sources */,
 				33F0705F1C42A3F500DAC58F /* HomePageVC.m in Sources */,
 				33F0707A1C42AB8300DAC58F /* AppAppearance.m in Sources */,
 				33F070691C42A42100DAC58F /* CartVC.m in Sources */,
+				93DEA8651C4BA188008211F7 /* AgreementVC.m in Sources */,
 				33F070511C429AD300DAC58F /* MainViewManager.m in Sources */,
 				33F0703E1C4295F200DAC58F /* BaseNavigationController.m in Sources */,
+				93DEA85D1C4B9874008211F7 /* RegistVC.m in Sources */,
 				33F070461C429A2700DAC58F /* LaunchViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
