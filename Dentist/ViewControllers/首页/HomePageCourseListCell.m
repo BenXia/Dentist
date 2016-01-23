@@ -8,9 +8,6 @@
 
 #import "HomePageCourseListCell.h"
 
-static const CGFloat kCourseItemOffsetX = 10;
-static const CGFloat kCourseItemHorizontalGap = 10;
-static const CGFloat kCourseItemWidth = 70;
 static const CGFloat kCourseItemHeight = 60;
 
 static NSArray* kHomePageCourseListSortArray;
@@ -28,7 +25,7 @@ NSString* const kHomePageCourseListCellIdentifier = @"HomePageCourseListCell";
 + (void)initialize {
     [super initialize];
     
-    kHomePageCourseListSortArray = @[@"数学", @"英语", @"语文", @"物理", @"化学", @"生物", @"政治", @"历史", @"地理", @"奥数"];
+    kHomePageCourseListSortArray = @[@"临床", @"技工", @"定制套装", @"培训课程"];
 }
 
 - (void)prepareForReuse {
@@ -39,37 +36,24 @@ NSString* const kHomePageCourseListCellIdentifier = @"HomePageCourseListCell";
 
 - (void)reloadData {
     [self.scrollContentView removeAllSubviews];
-    
-    NSArray *courseArray = @[@"1",@"2",@"3",@"4"];
-    self.scrollContentViewWidthConstaint.constant = kCourseItemOffsetX + (kCourseItemWidth + kCourseItemHorizontalGap) * courseArray.count;
+    NSArray *courseArray = @[@"临床", @"技工", @"定制套装", @"培训课程"];
+    self.scrollContentViewWidthConstaint.constant = kScreenWidth;
     
     for (int i = 0; i < courseArray.count; i++) {
         NSString *courseModel = [courseArray objectAtIndexIfIndexInBounds:i];
-        
-        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(kCourseItemOffsetX + i * (kCourseItemWidth + kCourseItemHorizontalGap), 10, kCourseItemWidth, kCourseItemHeight)];
+        float step = kScreenWidth/courseArray.count*1.0;
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(i * step, 10, step, kCourseItemHeight)];
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [button setBackgroundImage:[UIImage imageNamed:@"bg_class"] forState:UIControlStateNormal];
+        [button setImage:[UIImage imageNamed:courseModel] forState:UIControlStateNormal];
         [button setTitle:courseModel forState:UIControlStateNormal];
         button.titleLabel.font = [UIFont systemFontOfSize:18.f];
-        button.tag = courseModel;
+        button.tag = 1000+i;
         [button addTarget:self action:@selector(didClickOnCourseButton:) forControlEvents:UIControlEventTouchUpInside];
+        //[button centerImageAndTitle];
         
         [self.scrollContentView addSubview:button];
     }
-    
-#ifdef DEBUG
-    self.scrollContentViewWidthConstaint.constant = kCourseItemOffsetX + (kCourseItemWidth + kCourseItemHorizontalGap) * (courseArray.count + 1);
-    
-    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(kCourseItemOffsetX + courseArray.count * (kCourseItemWidth + kCourseItemHorizontalGap), 10, kCourseItemWidth, kCourseItemHeight)];
-    [button setTitleColor:[UIColor gray007Color] forState:UIControlStateNormal];
-    [button setBackgroundImage:[UIImage imageNamed:@"pic_index_qq02"] forState:UIControlStateNormal];
-    [button setTitle:@"测试" forState:UIControlStateNormal];
-    button.titleLabel.font = [UIFont boldSystemFontOfSize:18.f];
-    button.tag = 0;
-    [button addTarget:self action:@selector(didClickOnTestButton:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [self.scrollContentView addSubview:button];
-#endif
+
 }
 
 #pragma mark - IBActions
@@ -77,12 +61,6 @@ NSString* const kHomePageCourseListCellIdentifier = @"HomePageCourseListCell";
 - (void)didClickOnCourseButton:(UIButton *)courseButton {
     if ([self.delegate respondsToSelector:@selector(didSelectCourseWithId:)]) {
         [self.delegate didSelectCourseWithId:(int)courseButton.tag];
-    }
-}
-
-- (void)didClickOnTestButton:(UIButton *)testButton {
-    if ([self.delegate respondsToSelector:@selector(didClickOnTestButtonAction:)]) {
-        [self.delegate didClickOnTestButtonAction:testButton];
     }
 }
 

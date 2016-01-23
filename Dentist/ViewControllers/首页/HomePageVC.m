@@ -10,6 +10,8 @@
 #import "SDCycleScrollView.h"
 #import "HomePageCourseListCell.h"
 #import "AppDeinitializer.h"
+#import "ADBannerDC.h"
+#import "BannerModel.h"
 
 static const CGFloat kTopImageViewRatio = 16.f/9;
 static CGFloat kHomePageTopBarHeight = 64;
@@ -18,7 +20,8 @@ static CGFloat kHomePageTopBarHeight = 64;
 SDCycleScrollViewDelegate,
 UITableViewDataSource,
 UITableViewDelegate,
-HomePageCourseListCellDelegate>
+HomePageCourseListCellDelegate,
+PPDataControllerDelegate>
 
 @property (weak,   nonatomic) IBOutlet UITableView* tableView;
 
@@ -26,17 +29,16 @@ HomePageCourseListCellDelegate>
 @property (weak,   nonatomic) IBOutlet SDCycleScrollView *cycleScrollView;
 @property (weak,   nonatomic) IBOutlet UIView *topBar;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topBarHeightConstraint;
-@property (weak, nonatomic) IBOutlet UIView *topBarBackgroundView;
 @property (weak, nonatomic) IBOutlet UILabel *cityNameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *arrowImageView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *arrowImageViewWidthConstraint;
 @property (weak, nonatomic) IBOutlet UIView *searchContentView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topBarButtonTrailingConstaint;
-
 @property (nonatomic, assign) UIStatusBarStyle statusBarStyle;
-
 @property (nonatomic, strong) HomePageCourseListCell *tableViewCourseListCell;   // TableView中的科目列表
 @property (nonatomic, strong) HomePageCourseListCell *headerCourseListView;      // 当滑动到上面后需要常
+//网络请求
+@property (nonatomic, strong) ADBannerDC *adBannerRequest;
 
 
 @end
@@ -69,7 +71,7 @@ HomePageCourseListCellDelegate>
     
     [self initUIReleated];
     
-    //[self bindViewModel];
+    [self downLoadfromNet];
     
     self.needHideNavBarWithAnimation = YES;
 }
@@ -117,16 +119,16 @@ HomePageCourseListCellDelegate>
 - (void)initUIReleated {
     self.view.backgroundColor = [UIColor backGroundGrayColor];
     self.topBarHeightConstraint.constant = kHomePageTopBarHeight;
-    
-    self.statusBarStyle = UIStatusBarStyleLightContent;
-    
-    self.searchContentView.backgroundColor = RGBA(239, 240, 241, 0.8);
-    //[self.searchContentView circular:((kScreenWidth > 320) ? 8 : 6)];
-    self.arrowImageViewWidthConstraint.constant = ((kScreenWidth > 320) ? 18 : 12);
-    
+    [self initNavigationBar];
     [self initBanner];
     [self initHeaderCourseListView];
     [self initTableView];
+}
+
+- (void)initNavigationBar {
+    self.searchContentView.backgroundColor = RGBA(239, 240, 241, 0.8);
+    self.searchContentView.layer.cornerRadius = (kScreenWidth > 320) ? 8 : 6;
+    self.searchContentView.layer.masksToBounds = YES;
 }
 
 - (void)initBanner {
@@ -167,8 +169,6 @@ HomePageCourseListCellDelegate>
 
 - (void)initTableView {
     self.tableView.tableHeaderView = self.tableHeaderView;
-    
-    //[self.tableView registerNib:[UINib nibWithNibName:@"HomePageTeacherListCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:kHomePageTeacherListCellIdentifier];
     self.tableViewCourseListCell = (HomePageCourseListCell *)[[[NSBundle mainBundle] loadNibNamed:@"HomePageCourseListCell" owner:nil options:nil] objectAtIndex:0];
     self.tableViewCourseListCell.delegate = self;
     [self.tableViewCourseListCell reloadData];
@@ -178,42 +178,41 @@ HomePageCourseListCellDelegate>
 - (void)refreshBanner {
 //    CGFloat topViewWidth = kScreenWidth;
 //    CGFloat topViewHeight = topViewWidth / kTopImageViewRatio;
-//    NSArray* bannersArray = self.bannerVM.bannerWithPageItems;
-//    NSMutableArray *imagesURLStrings = [NSMutableArray arrayWithCapacity:bannersArray.count];
-//    for (GPBBannerItemWithPage* banner in bannersArray) {
-//        NSString* imageUrl = [ImageUtil urlForDownloadImageWithPath:banner.imagePath Operation:kImageOperationResize Size:CGSizeMake(topViewWidth, topViewHeight)];
-//        [imagesURLStrings addObject:imageUrl];
-//    }
-//    
-//    if (imagesURLStrings.count > 1) {
-//        _cycleScrollView.autoScroll=YES;
-//    } else {
-//        _cycleScrollView.autoScroll=NO;
-//        
-//    }
-//    _cycleScrollView.imageURLStringsGroup = imagesURLStrings;
-//    _cycleScrollView.hidden=NO;
+    NSMutableArray *imagesURLStrings = [NSMutableArray array];
+    for (BannerModel* banner in self.adBannerRequest.bannerArr) {
+        NSString* imageUrl = banner.imaUrl;
+        [imagesURLStrings addObject:imageUrl];
+    }
+    
+    if (imagesURLStrings.count > 1) {
+        _cycleScrollView.autoScroll=YES;
+    } else {
+        _cycleScrollView.autoScroll=NO;
+        
+    }
+    _cycleScrollView.imageURLStringsGroup = imagesURLStrings;
+    _cycleScrollView.placeholderImage = [UIImage imageNamed:@"pic_index_qq01"];
+    _cycleScrollView.hidden=NO;
 }
 
 - (void)refreshHeaderCourseListView {
-//    if ([StudentInfoModel sharedInstance].isLoggedin && [StudentInfoModel sharedInstance].isFromZhiKang) {
-//        self.headerCourseListView.hidden = YES;
-//    } else {
-//        CGPoint point = self.tableView.contentOffset;
-//        CGFloat originHeaderHeight = self.tableHeaderView.height;
-//    
-//        if (point.y >= (originHeaderHeight - kHomePageTopBarHeight)) {
-//            self.headerCourseListView.hidden = NO;
-//        } else {
-//            self.headerCourseListView.hidden = YES;
-//        }
-//    }
+    CGPoint point = self.tableView.contentOffset;
+    CGFloat originHeaderHeight = self.tableHeaderView.height;
+    
+    if (point.y >= (originHeaderHeight - kHomePageTopBarHeight)) {
+        self.headerCourseListView.hidden = NO;
+    } else {
+        self.headerCourseListView.hidden = YES;
+    }
+
 }
 
-- (void)setStatusBarStyle:(UIStatusBarStyle)statusBarStyle {
-    _statusBarStyle = statusBarStyle;
-    
-    [self setNeedsStatusBarAppearanceUpdate];
+#pragma mark - NetWork
+
+- (void)downLoadfromNet {
+    self.adBannerRequest = [[ADBannerDC alloc] init];
+    self.adBannerRequest.delegate = self;
+    [self.adBannerRequest requestWithArgs:nil];
 }
 
 #pragma mark - IBActions
@@ -264,8 +263,6 @@ HomePageCourseListCellDelegate>
     CGFloat originHeaderHeight = self.tableHeaderView.height;
     if (point.y < 0) {
         self.statusBarStyle = UIStatusBarStyleLightContent;
-        self.topBarBackgroundView.alpha = 0;
-        self.topBarBackgroundView.layer.shadowOpacity = 0;
         
         CGFloat cycleScrollViewHeight = kScreenWidth / kTopImageViewRatio - point.y;
         CGFloat cycleScrollViewWidth = cycleScrollViewHeight * kTopImageViewRatio;
@@ -275,8 +272,6 @@ HomePageCourseListCellDelegate>
         
         [_cycleScrollView stopAutoScrollTimer];
     } else {
-        self.topBarBackgroundView.alpha = ((point.y > (originHeaderHeight - kHomePageTopBarHeight)) ? 1 : (point.y / (originHeaderHeight - kHomePageTopBarHeight)));
-        self.topBarBackgroundView.layer.shadowOpacity = ((point.y > (originHeaderHeight - kHomePageTopBarHeight)) ? 0.2 : (point.y / (originHeaderHeight - kHomePageTopBarHeight) * 0.2));
         
         if (point.y > (originHeaderHeight - kHomePageTopBarHeight - 30)) {
             //self.cityNameLabel.textColor = kWhiteHighlightedColor;
@@ -338,6 +333,26 @@ HomePageCourseListCellDelegate>
         if (cell == self.tableViewCourseListCell) {
             self.headerCourseListView.scrollView.contentOffset = offset;
         }
+    }
+}
+
+#pragma mark - PPDataControllerDelegate
+
+- (void)loadingData:(PPDataController *)controller failedWithError:(NSError *)error {
+    [[GCDQueue mainQueue] queueBlock:^{
+        if (controller == self.adBannerRequest) {
+            [Utilities showToastWithText:[NSString stringWithFormat:@"获取Banner位失败:%@", error]];
+        } else {
+            [Utilities showToastWithText:[NSString stringWithFormat:@"验证码获取失败:%@", error]];
+        }    }];
+}
+
+- (void)loadingDataFinished:(PPDataController *)controller {
+    if (controller == self.adBannerRequest) {
+        [self refreshBanner];
+        
+    } else {
+        
     }
 }
 
