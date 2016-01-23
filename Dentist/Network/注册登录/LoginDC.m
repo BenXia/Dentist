@@ -50,10 +50,10 @@
 
 - (void)saveUserInfo:(NSDictionary *)resultDict {
     NSDictionary *userDict = [resultDict objectForKey:@"user"];
-    [[Cache sharedCache] setToken:[resultDict objectForKey:@"auth"]];
-    [[Cache sharedCache] setUserIDString:[userDict objectForKey:@"uid"]];
-    [[Cache sharedCache] setUsername:[userDict objectForKey:@"mobile"] password:self.password];
-    [[Cache sharedCache] setNickname:[userDict objectForKey:@"nickname"]];
+    [[UserCache sharedUserCache] setToken:[resultDict objectForKey:@"auth"]];
+    [[UserCache sharedUserCache] setUserIDString:[userDict objectForKey:@"uid"]];
+    [[UserCache sharedUserCache] setUsername:[userDict objectForKey:@"mobile"] password:self.password];
+    [[UserCache sharedUserCache] setNickname:[userDict objectForKey:@"nickname"]];
     [UserInfoModel sharedUserInfoModel].nickName = [userDict objectForKey:@"nickname"];
     [UserInfoModel sharedUserInfoModel].headPath = [userDict objectForKey:@"avator"];
     [UserInfoModel sharedUserInfoModel].vipLevel = [userDict objectForKey:@"vip_level"];

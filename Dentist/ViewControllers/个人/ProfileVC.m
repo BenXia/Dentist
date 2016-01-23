@@ -17,9 +17,9 @@
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.tabBarItem.title = @"个人";
-        self.tabBarItem.image = [UIImage imageNamed:@"btn_user_f"];
-        self.tabBarItem.selectedImage = [[UIImage imageNamed:@"btn_user_t"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        //self.tabBarItem.title = @"个人";
+        self.tabBarItem.image = [UIImage imageNamed:@"user"];
+        self.tabBarItem.selectedImage = [[UIImage imageNamed:@"user_s"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     }
     return self;
 }

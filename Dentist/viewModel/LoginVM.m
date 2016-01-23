@@ -24,8 +24,8 @@
 
 - (void)autoLogin {
     self.loginRequest = [[LoginDC alloc] initWithDelegate:self];
-    self.loginRequest.mobile = [Cache sharedCache].username;
-    self.loginRequest.password = [Cache sharedCache].password;
+    self.loginRequest.mobile = [UserCache sharedUserCache].username;
+    self.loginRequest.password = [UserCache sharedUserCache].password;
     [self.loginRequest requestWithArgs:nil];
 }
 

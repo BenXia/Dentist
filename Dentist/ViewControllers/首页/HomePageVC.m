@@ -9,7 +9,7 @@
 #import "HomePageVC.h"
 #import "SDCycleScrollView.h"
 #import "HomePageCourseListCell.h"
-
+#import "AppDeinitializer.h"
 
 static const CGFloat kTopImageViewRatio = 16.f/9;
 static CGFloat kHomePageTopBarHeight = 64;
@@ -52,9 +52,9 @@ HomePageCourseListCellDelegate>
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.tabBarItem.title = @"首页";
-        self.tabBarItem.image = [UIImage imageNamed:@"icon_home1"];
-        self.tabBarItem.selectedImage = [[UIImage imageNamed:@"icon_home2"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        //self.tabBarItem.title = @"首页";
+        self.tabBarItem.image = [UIImage imageNamed:@"homepage"];
+        self.tabBarItem.selectedImage = [[UIImage imageNamed:@"homepage_s"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     }
     return self;
 }
@@ -226,6 +226,8 @@ HomePageCourseListCellDelegate>
 - (IBAction)didTouchUpInsideSelectCityButton:(id)sender {
     self.cityNameLabel.alpha = 1.0;
     self.arrowImageView.alpha = 1.0;
+    //测试退出功能
+    [[AppDeinitializer sharedInstance] cleanUpWhenLogout];
 }
 
 - (IBAction)didTouchUpOutsideSelectCityButton:(id)sender {

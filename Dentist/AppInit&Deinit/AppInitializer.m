@@ -58,7 +58,7 @@ static AppInitializer* sInstance = nil;
 - (void)initiateWithServerData {
      dispatch_async(dispatch_get_main_queue(), ^{
          //登录
-         if ([Cache sharedCache].username.length>0 && [Cache sharedCache].password.length>0) {
+         if ([UserCache sharedUserCache].username.length>0 && [UserCache sharedUserCache].password.length>0) {
              //自动登录
              [self.loginVM autoLogin];
          } else {

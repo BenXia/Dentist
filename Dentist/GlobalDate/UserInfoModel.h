@@ -14,4 +14,5 @@
 @property (nonatomic ,strong) NSString *nickName;
 @property (nonatomic ,strong) NSString *headPath;
 @property (nonatomic ,strong) NSString *vipLevel;
+- (void)cleanWhenLogOut;
 @end

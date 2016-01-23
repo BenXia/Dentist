@@ -10,5 +10,10 @@
 
 @implementation UserInfoModel
 SINGLETON_GCD(UserInfoModel);
-
+- (void)cleanWhenLogOut {
+    self.mobile = nil;
+    self.nickName = nil;
+    self.headPath = nil;
+    self.vipLevel = nil;
+}
 @end

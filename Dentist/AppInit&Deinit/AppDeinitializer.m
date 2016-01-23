@@ -8,6 +8,8 @@
 
 #import "AppDeinitializer.h"
 #import "AppDelegate.h"
+#import "UserInfoModel.h"
+#import "Cache.h"
 
 @implementation AppDeinitializer
 
@@ -43,6 +45,14 @@ static AppDeinitializer* sInstance = nil;
 }
 
 - (void)cleanUpWhenLogout {
+    [[UserCache sharedUserCache] resetUser];
+    UserInfoModel *userInfo = [UserInfoModel sharedUserInfoModel];
+    [userInfo cleanWhenLogOut];
+    [[GCDQueue mainQueue] queueBlock:^{
+        [[MainViewManager sharedInstance] popAllTabNavToRoot];
+        [[MainViewManager sharedInstance] clearAllTabRemindDot];
+        [[MainViewManager sharedInstance] loadLoginVC];
+    }];
 
 }
 

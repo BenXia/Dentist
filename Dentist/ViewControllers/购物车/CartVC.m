@@ -17,9 +17,9 @@
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.tabBarItem.title = @"购物车";
-        self.tabBarItem.image = [UIImage imageNamed:@"btn_cart_f"];
-        self.tabBarItem.selectedImage = [[UIImage imageNamed:@"btn_cart_t"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        //self.tabBarItem.title = @"购物车";
+        self.tabBarItem.image = [UIImage imageNamed:@"cart"];
+        self.tabBarItem.selectedImage = [[UIImage imageNamed:@"cart_s"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     }
     return self;
 }
