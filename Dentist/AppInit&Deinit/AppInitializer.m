@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "AppAppearance.h"
 #import "LoginVM.h"
+#import "IQKeyboardManager.h"
 
 @interface AppInitializer ()
 @property (nonatomic, strong)LoginVM *loginVM;
@@ -81,6 +82,10 @@ static AppInitializer* sInstance = nil;
     
     // 初始化外观类
     [AppAppearance sharedAppearance];
+    
+    // 键盘管理 第三方
+    [[IQKeyboardManager sharedManager] setShouldResignOnTouchOutside:YES];
+    [[IQKeyboardManager sharedManager] setShouldShowTextFieldPlaceholder:NO];
 }
 
 #pragma mark - Private methods

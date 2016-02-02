@@ -90,13 +90,13 @@ static MainViewManager* sInstance = nil;
                                          nil];
     
     [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                       [UIColor lightGrayColor], NSForegroundColorAttributeName,
-                                                       [UIFont systemFontOfSize:16.0], NSFontAttributeName,
+                                                       RGB(146,146,146), NSForegroundColorAttributeName,
+                                                       [UIFont systemFontOfSize:14.0], NSFontAttributeName,
                                                        nil]
                                              forState:UIControlStateNormal];
     [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                       [UIColor greenColor], NSForegroundColorAttributeName,
-                                                       [UIFont systemFontOfSize:16.0], NSFontAttributeName,
+                                                       [UIColor themeBlueColor], NSForegroundColorAttributeName,
+                                                       [UIFont systemFontOfSize:14.0], NSFontAttributeName,
                                                        nil]
                                              forState:UIControlStateSelected];
     

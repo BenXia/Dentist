@@ -1,8 +1,8 @@
 //
 //  HomePageVC.m
-//  QQing
+//  StudioCommon
 //
-//  Created by Ben on 15/11/26.
+//  Created by Ben on 2/2/16.
 //
 //
 
@@ -54,9 +54,9 @@ PPDataControllerDelegate>
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        //self.tabBarItem.title = @"首页";
-        self.tabBarItem.image = [UIImage imageNamed:@"homepage"];
-        self.tabBarItem.selectedImage = [[UIImage imageNamed:@"homepage_s"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        self.tabBarItem.title = @"首页";
+        self.tabBarItem.image = [UIImage imageNamed:@"btn_homepage_f"];
+        self.tabBarItem.selectedImage = [[UIImage imageNamed:@"btn_homepage_t"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     }
     return self;
 }
@@ -112,6 +112,20 @@ PPDataControllerDelegate>
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return self.statusBarStyle;
+}
+
+#pragma mark - Navigation Style
+
+- (UIColor*)preferNavBarBackgroundColor{
+    return [UIColor themeBlueColor];
+}
+
+- (UIColor*)preferNavBarNormalTitleColor{
+    return [UIColor whiteColor];
+}
+
+- (UIColor*)preferNavBarHighlightedTitleColor {
+    return kWhiteHighlightedColor;
 }
 
 #pragma mark - Private methods

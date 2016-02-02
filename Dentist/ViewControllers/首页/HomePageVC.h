@@ -1,13 +1,13 @@
 //
 //  HomePageVC.h
-//  QQing
+//  StudioCommon
 //
-//  Created by Ben on 15/11/26.
+//  Created by Ben on 2/2/16.
 //
 //
 
 
-@interface HomePageVC : UIViewController
+@interface HomePageVC : BaseViewController
 
 @property (nonatomic, assign) BOOL needHideNavBarWithAnimation;
 

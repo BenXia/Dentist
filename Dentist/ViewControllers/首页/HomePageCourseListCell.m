@@ -1,8 +1,8 @@
 //
 //  HomePageCourseListCell.m
-//  QQing
+//  StudioCommon
 //
-//  Created by Ben on 15/11/26.
+//  Created by Ben on 2/2/16.
 //
 //
 

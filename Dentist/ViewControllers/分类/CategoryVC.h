@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CategoryVC : UIViewController
+@interface CategoryVC : BaseViewController
 
 @end
