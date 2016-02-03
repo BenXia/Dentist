@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -85,7 +85,7 @@
                                         <state key="normal" image="btn_numberplus72_default.png">
                                             <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
-                                        <state key="highlighted" image="btn_NumberPlus72_pressed@2X.png"/>
+                                        <state key="highlighted" image="btn_numberplus72_pressed.png"/>
                                         <connections>
                                             <action selector="didClickEditPlusButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="U3Z-9p-Dhg"/>
                                         </connections>
@@ -273,14 +273,15 @@
                 <outlet property="subContentView1" destination="8dI-pH-vea" id="vlw-YP-yuJ"/>
                 <outlet property="subContentView2" destination="hIw-b2-Pkv" id="JdH-gy-QHP"/>
             </connections>
+            <point key="canvasLocation" x="280" y="321"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="btn_NumberPlus72_pressed@2X.png" width="72" height="72"/>
         <image name="btn_choice_f.png" width="22" height="22"/>
         <image name="btn_choice_t.png" width="22" height="22"/>
-        <image name="btn_numberminus72_default.png" width="72" height="72"/>
+        <image name="btn_numberminus72_default.png" width="36" height="36"/>
         <image name="btn_numberminus72_pressed@2X.png" width="72" height="72"/>
-        <image name="btn_numberplus72_default.png" width="72" height="72"/>
+        <image name="btn_numberplus72_default.png" width="36" height="36"/>
+        <image name="btn_numberplus72_pressed.png" width="36" height="36"/>
     </resources>
 </document>
