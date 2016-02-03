@@ -3,7 +3,7 @@
 //  Dentist
 //
 //  Created by Ben on 15/8/6.
-//
+//  Copyright © 2016年 iOSStudio. All rights reserved.
 //
 
 #import "MainViewManager.h"

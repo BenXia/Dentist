@@ -86,10 +86,12 @@ static NSString* const kCellReuseIdentifier = @"ProductBriefInfoCell";
     }
     
     // Buttons
-//    [self setNormalBackgroundColor:backgroundColor
-//            disableBackgroundColor:[UIColor gray005Color]];
-//    self.moveToFavoriteButton
-//    self.removeButton
+    [self.payButton setNormalBackgroundColor:[UIColor themeCyanColor]
+                      disableBackgroundColor:[UIColor gray005Color]];
+    [self.moveToFavoriteButton setNormalBackgroundColor:[UIColor themeBlueColor]
+                                 disableBackgroundColor:[UIColor gray005Color]];
+    [self.removeButton setNormalBackgroundColor:[UIColor themeCyanColor]
+                         disableBackgroundColor:[UIColor gray005Color]];
 }
 
 - (void)setupRefresh {
