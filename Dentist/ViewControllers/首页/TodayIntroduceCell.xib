@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="167" id="KGk-i7-Jjw" customClass="TodayIntroduceCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="167"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="166.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yK7-JB-HWb">
+                        <rect key="frame" x="0.0" y="0.0" width="140" height="166.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="橡胶结合剂研磨器" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lmJ-IK-m1L">
+                                <rect key="frame" x="8" y="144" width="96" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WyP-d4-9n6">
+                                <rect key="frame" x="8" y="117" width="48" height="27"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="销量第一">
+                                    <color key="titleColor" red="1" green="0.12861775349999999" blue="0.2204865916" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZOA-Af-tyA">
+                                <rect key="frame" x="0.0" y="0.0" width="140" height="105"/>
+                                <color key="backgroundColor" red="0.20000000000000001" green="0.65490196079999996" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="lmJ-IK-m1L" firstAttribute="leading" secondItem="yK7-JB-HWb" secondAttribute="leading" constant="8" id="3UV-9I-pCQ"/>
+                            <constraint firstAttribute="trailing" secondItem="ZOA-Af-tyA" secondAttribute="trailing" id="Edk-WU-R6Y"/>
+                            <constraint firstItem="WyP-d4-9n6" firstAttribute="top" secondItem="ZOA-Af-tyA" secondAttribute="bottom" constant="12" id="Qbf-TK-3Uv"/>
+                            <constraint firstItem="ZOA-Af-tyA" firstAttribute="leading" secondItem="yK7-JB-HWb" secondAttribute="leading" id="UQN-ob-WIL"/>
+                            <constraint firstItem="lmJ-IK-m1L" firstAttribute="top" secondItem="WyP-d4-9n6" secondAttribute="bottom" id="d3f-re-efG"/>
+                            <constraint firstItem="ZOA-Af-tyA" firstAttribute="top" secondItem="yK7-JB-HWb" secondAttribute="top" id="hKn-6i-Orh"/>
+                            <constraint firstAttribute="width" constant="140" id="iKC-cW-ru6"/>
+                            <constraint firstItem="WyP-d4-9n6" firstAttribute="leading" secondItem="yK7-JB-HWb" secondAttribute="leading" constant="8" id="tdP-YW-OK0"/>
+                            <constraint firstAttribute="bottom" secondItem="lmJ-IK-m1L" secondAttribute="bottom" constant="8" id="wEU-e7-cua"/>
+                        </constraints>
+                    </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QlL-pF-Ay9">
+                        <rect key="frame" x="141" y="0.0" width="89" height="83"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <state key="normal" title="研磨器哪家强？"/>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ao-lx-nko">
+                        <rect key="frame" x="141" y="83.5" width="89" height="83"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <state key="normal" title="我我我我我我我"/>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W6S-3R-geJ">
+                        <rect key="frame" x="231" y="83.5" width="89" height="83"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <state key="normal" title="哈哈哈"/>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fDM-wv-MBs">
+                        <rect key="frame" x="231" y="0.0" width="89" height="83"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <state key="normal" title="工艺先进用料讲"/>
+                    </button>
+                </subviews>
+                <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                <constraints>
+                    <constraint firstItem="5ao-lx-nko" firstAttribute="leading" secondItem="yK7-JB-HWb" secondAttribute="trailing" constant="1" id="03c-D4-pVU"/>
+                    <constraint firstItem="fDM-wv-MBs" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="1Cd-6b-nNI"/>
+                    <constraint firstAttribute="bottom" secondItem="yK7-JB-HWb" secondAttribute="bottom" id="46k-Br-y75"/>
+                    <constraint firstItem="fDM-wv-MBs" firstAttribute="width" secondItem="QlL-pF-Ay9" secondAttribute="width" id="7i9-v3-C5z"/>
+                    <constraint firstItem="5ao-lx-nko" firstAttribute="top" secondItem="QlL-pF-Ay9" secondAttribute="bottom" constant="1" id="BSw-HJ-igo"/>
+                    <constraint firstItem="fDM-wv-MBs" firstAttribute="height" secondItem="QlL-pF-Ay9" secondAttribute="height" id="C4c-mm-5ie"/>
+                    <constraint firstItem="yK7-JB-HWb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Dwr-vi-vTj"/>
+                    <constraint firstItem="W6S-3R-geJ" firstAttribute="width" secondItem="QlL-pF-Ay9" secondAttribute="width" id="KBp-cx-dzM"/>
+                    <constraint firstItem="QlL-pF-Ay9" firstAttribute="leading" secondItem="yK7-JB-HWb" secondAttribute="trailing" constant="1" id="PC4-EO-FUE"/>
+                    <constraint firstItem="5ao-lx-nko" firstAttribute="width" secondItem="QlL-pF-Ay9" secondAttribute="width" id="PWO-d4-H0m"/>
+                    <constraint firstItem="fDM-wv-MBs" firstAttribute="leading" secondItem="QlL-pF-Ay9" secondAttribute="trailing" constant="1" id="Q1n-OC-5iW"/>
+                    <constraint firstAttribute="bottom" secondItem="W6S-3R-geJ" secondAttribute="bottom" id="UKO-bA-3fa"/>
+                    <constraint firstItem="QlL-pF-Ay9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="aXV-O3-6J5"/>
+                    <constraint firstItem="5ao-lx-nko" firstAttribute="height" secondItem="QlL-pF-Ay9" secondAttribute="height" id="c13-AO-kmA"/>
+                    <constraint firstAttribute="trailing" secondItem="fDM-wv-MBs" secondAttribute="trailing" id="cjx-xu-yQ4"/>
+                    <constraint firstAttribute="trailing" secondItem="W6S-3R-geJ" secondAttribute="trailing" id="jOe-7c-2R3"/>
+                    <constraint firstItem="W6S-3R-geJ" firstAttribute="height" secondItem="QlL-pF-Ay9" secondAttribute="height" id="mhc-iG-gic"/>
+                    <constraint firstItem="W6S-3R-geJ" firstAttribute="top" secondItem="fDM-wv-MBs" secondAttribute="bottom" constant="1" id="pgE-to-haR"/>
+                    <constraint firstItem="yK7-JB-HWb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="q7m-vw-pLN"/>
+                    <constraint firstItem="W6S-3R-geJ" firstAttribute="leading" secondItem="5ao-lx-nko" secondAttribute="trailing" constant="1" id="vkN-s7-1Kj"/>
+                    <constraint firstAttribute="bottom" secondItem="5ao-lx-nko" secondAttribute="bottom" id="xgR-Er-Rfj"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="firstBtn" destination="QlL-pF-Ay9" id="Usa-Pf-T73"/>
+                <outlet property="fourthBtn" destination="W6S-3R-geJ" id="cFa-P6-hL5"/>
+                <outlet property="leftBackgroundView" destination="yK7-JB-HWb" id="4ZQ-54-8xL"/>
+                <outlet property="secondBtn" destination="fDM-wv-MBs" id="dbL-QS-Ec4"/>
+                <outlet property="thirdBtn" destination="5ao-lx-nko" id="Ane-hB-h5E"/>
+            </connections>
+            <point key="canvasLocation" x="301" y="385.5"/>
+        </tableViewCell>
+    </objects>
+</document>

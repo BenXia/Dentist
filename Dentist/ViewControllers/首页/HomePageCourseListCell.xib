@@ -3,57 +3,117 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HomePageCourseListCell" id="KGk-i7-Jjw" customClass="HomePageCourseListCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HomePageCourseListCell" rowHeight="112" id="KGk-i7-Jjw" customClass="HomePageCourseListCell">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="112"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="79.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="111.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kz6-Gk-pa2">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CUz-g5-JBY" userLabel="ScrollContentView">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
-                                <color key="backgroundColor" red="0.93725490196078431" green="0.94117647058823528" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="z12-On-fhm"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" red="0.93725490199999995" green="0.94117647059999998" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o1V-Ct-EI3">
+                        <rect key="frame" x="24" y="12" width="64" height="64"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="CUz-g5-JBY" secondAttribute="bottom" id="8KX-eH-tvu"/>
-                            <constraint firstAttribute="trailing" secondItem="CUz-g5-JBY" secondAttribute="trailing" id="F91-AF-GJx"/>
-                            <constraint firstItem="CUz-g5-JBY" firstAttribute="leading" secondItem="kz6-Gk-pa2" secondAttribute="leading" id="ZqQ-zK-4RN"/>
-                            <constraint firstItem="CUz-g5-JBY" firstAttribute="centerY" secondItem="kz6-Gk-pa2" secondAttribute="centerY" id="bhq-SO-yp3"/>
-                            <constraint firstItem="CUz-g5-JBY" firstAttribute="top" secondItem="kz6-Gk-pa2" secondAttribute="top" id="rFM-ih-PKa"/>
+                            <constraint firstAttribute="width" secondItem="o1V-Ct-EI3" secondAttribute="height" multiplier="1:1" id="GhM-wP-2PY"/>
+                            <constraint firstAttribute="width" secondItem="o1V-Ct-EI3" secondAttribute="height" multiplier="1:1" id="yKc-OE-agv"/>
                         </constraints>
-                        <connections>
-                            <outlet property="delegate" destination="KGk-i7-Jjw" id="oTa-cz-Lmt"/>
-                        </connections>
-                    </scrollView>
+                        <state key="normal" image="btn_clinical_default.png"/>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ya-fZ-XEU">
+                        <rect key="frame" x="112" y="12" width="63.5" height="64"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="3Ya-fZ-XEU" secondAttribute="height" multiplier="1:1" id="Cm8-SR-Q4s"/>
+                        </constraints>
+                        <state key="normal" image="btn_mechanic_default.png"/>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZID-lK-ssN">
+                        <rect key="frame" x="199" y="12" width="64" height="64"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="ZID-lK-ssN" secondAttribute="height" multiplier="1:1" id="6hW-QH-S1b"/>
+                        </constraints>
+                        <state key="normal" image="btn_custommade_default.png"/>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6yH-Xx-DRN">
+                        <rect key="frame" x="287" y="12" width="63.5" height="64"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="6yH-Xx-DRN" secondAttribute="height" multiplier="1:1" id="inc-RB-G05"/>
+                        </constraints>
+                        <state key="normal" image="btn_lesson_default.png"/>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="临床" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GLL-tW-aI7">
+                        <rect key="frame" x="40" y="80" width="32" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="技工" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9zl-CF-MDb">
+                        <rect key="frame" x="127" y="80" width="32" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="定制套装" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C3I-SH-e3D">
+                        <rect key="frame" x="199" y="83" width="64" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="培训课程" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a1y-Mj-OeY">
+                        <rect key="frame" x="287" y="83" width="64" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
-                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 <constraints>
-                    <constraint firstAttribute="trailingMargin" secondItem="kz6-Gk-pa2" secondAttribute="trailing" constant="-8" id="McA-Zt-mPJ"/>
-                    <constraint firstItem="kz6-Gk-pa2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="UbD-9H-qOX"/>
-                    <constraint firstItem="kz6-Gk-pa2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-8" id="aqb-fs-xCC"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="kz6-Gk-pa2" secondAttribute="bottom" constant="-9" id="rG1-Jd-N5k"/>
+                    <constraint firstItem="6yH-Xx-DRN" firstAttribute="leading" secondItem="ZID-lK-ssN" secondAttribute="trailing" constant="24" id="42R-as-t29"/>
+                    <constraint firstItem="GLL-tW-aI7" firstAttribute="centerX" secondItem="o1V-Ct-EI3" secondAttribute="centerX" id="4Er-6D-5kw"/>
+                    <constraint firstItem="6yH-Xx-DRN" firstAttribute="width" secondItem="o1V-Ct-EI3" secondAttribute="width" id="4R0-OR-SHV"/>
+                    <constraint firstItem="ZID-lK-ssN" firstAttribute="top" secondItem="o1V-Ct-EI3" secondAttribute="top" id="5LU-iG-M0w"/>
+                    <constraint firstItem="o1V-Ct-EI3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="60R-PH-dh4"/>
+                    <constraint firstItem="ZID-lK-ssN" firstAttribute="width" secondItem="o1V-Ct-EI3" secondAttribute="width" id="8yh-Ec-nXL"/>
+                    <constraint firstItem="a1y-Mj-OeY" firstAttribute="top" secondItem="6yH-Xx-DRN" secondAttribute="bottom" constant="7" id="Ff8-fx-bbh"/>
+                    <constraint firstItem="ZID-lK-ssN" firstAttribute="height" secondItem="o1V-Ct-EI3" secondAttribute="height" id="GhY-a5-wjj"/>
+                    <constraint firstItem="ZID-lK-ssN" firstAttribute="leading" secondItem="3Ya-fZ-XEU" secondAttribute="trailing" constant="24" id="Ixm-AW-GmJ"/>
+                    <constraint firstItem="a1y-Mj-OeY" firstAttribute="centerX" secondItem="6yH-Xx-DRN" secondAttribute="centerX" id="JBo-e4-Bfa"/>
+                    <constraint firstItem="GLL-tW-aI7" firstAttribute="top" secondItem="o1V-Ct-EI3" secondAttribute="bottom" constant="4" id="Nue-du-Vae"/>
+                    <constraint firstAttribute="trailing" secondItem="6yH-Xx-DRN" secondAttribute="trailing" constant="24" id="QvU-6v-G2L"/>
+                    <constraint firstItem="C3I-SH-e3D" firstAttribute="top" secondItem="ZID-lK-ssN" secondAttribute="bottom" constant="7" id="Wda-8h-FPm"/>
+                    <constraint firstItem="o1V-Ct-EI3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="YfR-7M-N4t"/>
+                    <constraint firstItem="6yH-Xx-DRN" firstAttribute="height" secondItem="o1V-Ct-EI3" secondAttribute="height" id="d6t-ss-HHj"/>
+                    <constraint firstItem="3Ya-fZ-XEU" firstAttribute="height" secondItem="o1V-Ct-EI3" secondAttribute="height" id="e6m-q6-lss"/>
+                    <constraint firstItem="9zl-CF-MDb" firstAttribute="centerX" secondItem="3Ya-fZ-XEU" secondAttribute="centerX" id="eTW-Y9-Xtk"/>
+                    <constraint firstItem="3Ya-fZ-XEU" firstAttribute="width" secondItem="o1V-Ct-EI3" secondAttribute="width" id="fc8-9z-xC6"/>
+                    <constraint firstItem="3Ya-fZ-XEU" firstAttribute="leading" secondItem="o1V-Ct-EI3" secondAttribute="trailing" constant="24" id="lo3-79-QbY"/>
+                    <constraint firstItem="3Ya-fZ-XEU" firstAttribute="top" secondItem="o1V-Ct-EI3" secondAttribute="top" id="nia-DG-8Wx"/>
+                    <constraint firstItem="6yH-Xx-DRN" firstAttribute="top" secondItem="o1V-Ct-EI3" secondAttribute="top" id="oVi-Jx-AIu"/>
+                    <constraint firstItem="9zl-CF-MDb" firstAttribute="top" secondItem="3Ya-fZ-XEU" secondAttribute="bottom" constant="4" id="pVD-U7-QUn"/>
+                    <constraint firstItem="C3I-SH-e3D" firstAttribute="centerX" secondItem="ZID-lK-ssN" secondAttribute="centerX" id="qqH-di-hKa"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
-                <outlet property="scrollContentView" destination="CUz-g5-JBY" id="WFd-nT-2H3"/>
-                <outlet property="scrollContentViewWidthConstaint" destination="z12-On-fhm" id="fag-dT-X74"/>
-                <outlet property="scrollView" destination="kz6-Gk-pa2" id="dCF-E5-Bvh"/>
+                <outlet property="clinicalBtn" destination="o1V-Ct-EI3" id="Jjc-cY-4hf"/>
+                <outlet property="clinicalLabel" destination="GLL-tW-aI7" id="bq2-ex-xl7"/>
+                <outlet property="custommadeBtn" destination="ZID-lK-ssN" id="kK2-Pa-NMk"/>
+                <outlet property="custommadeLabel" destination="C3I-SH-e3D" id="ArZ-9U-tBI"/>
+                <outlet property="lessonBtn" destination="6yH-Xx-DRN" id="Fl2-Jd-hVa"/>
+                <outlet property="lessonLabel" destination="a1y-Mj-OeY" id="abP-6z-l8y"/>
+                <outlet property="mechanicBtn" destination="3Ya-fZ-XEU" id="w2b-iC-Wmu"/>
+                <outlet property="mechanicLabel" destination="9zl-CF-MDb" id="uie-mM-jsR"/>
             </connections>
-            <point key="canvasLocation" x="512" y="250"/>
+            <point key="canvasLocation" x="444.5" y="269"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="btn_clinical_default.png" width="96" height="96"/>
+        <image name="btn_custommade_default.png" width="96" height="96"/>
+        <image name="btn_lesson_default.png" width="96" height="96"/>
+        <image name="btn_mechanic_default.png" width="96" height="96"/>
+    </resources>
 </document>

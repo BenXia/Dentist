@@ -15,8 +15,14 @@ static NSArray* kHomePageCourseListSortArray;
 NSString* const kHomePageCourseListCellIdentifier = @"HomePageCourseListCell";
 
 @interface HomePageCourseListCell () <UIScrollViewDelegate>
-
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollContentViewWidthConstaint;
+@property (weak, nonatomic) IBOutlet UIButton *clinicalBtn;
+@property (weak, nonatomic) IBOutlet UILabel *clinicalLabel;
+@property (weak, nonatomic) IBOutlet UIButton *mechanicBtn;
+@property (weak, nonatomic) IBOutlet UILabel *mechanicLabel;
+@property (weak, nonatomic) IBOutlet UIButton *custommadeBtn;
+@property (weak, nonatomic) IBOutlet UILabel *custommadeLabel;
+@property (weak, nonatomic) IBOutlet UIButton *lessonBtn;
+@property (weak, nonatomic) IBOutlet UILabel *lessonLabel;
 
 @end
 
@@ -28,33 +34,22 @@ NSString* const kHomePageCourseListCellIdentifier = @"HomePageCourseListCell";
     kHomePageCourseListSortArray = @[@"临床", @"技工", @"定制套装", @"培训课程"];
 }
 
+- (void)awakeFromNib {
+    [self.clinicalBtn setImage:[UIImage imageNamed:@"btn_clinical_pressed"] forState:UIControlStateSelected];
+    [self.mechanicBtn setImage:[UIImage imageNamed:@"btn_mechanic_pressed"] forState:UIControlStateSelected];
+    [self.custommadeBtn setImage:[UIImage imageNamed:@"btn_custommade_pressed"] forState:UIControlStateSelected];
+    [self.lessonBtn setImage:[UIImage imageNamed:@"btn_lesson_pressed"] forState:UIControlStateSelected];
+    self.clinicalLabel.textColor = [UIColor gray007Color];
+    self.mechanicLabel.textColor = [UIColor gray007Color];
+    self.custommadeLabel.textColor = [UIColor gray007Color];
+    self.lessonLabel.textColor = [UIColor gray007Color];
+    
+}
+
 - (void)prepareForReuse {
     [super prepareForReuse];
-    
-    [self.scrollContentView removeAllSubviews];
 }
 
-- (void)reloadData {
-    [self.scrollContentView removeAllSubviews];
-    NSArray *courseArray = @[@"临床", @"技工", @"定制套装", @"培训课程"];
-    self.scrollContentViewWidthConstaint.constant = kScreenWidth;
-    
-    for (int i = 0; i < courseArray.count; i++) {
-        NSString *courseModel = [courseArray objectAtIndexIfIndexInBounds:i];
-        float step = kScreenWidth/courseArray.count*1.0;
-        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(i * step, 10, step, kCourseItemHeight)];
-        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [button setImage:[UIImage imageNamed:courseModel] forState:UIControlStateNormal];
-        [button setTitle:courseModel forState:UIControlStateNormal];
-        button.titleLabel.font = [UIFont systemFontOfSize:18.f];
-        button.tag = 1000+i;
-        [button addTarget:self action:@selector(didClickOnCourseButton:) forControlEvents:UIControlEventTouchUpInside];
-        //[button centerImageAndTitle];
-        
-        [self.scrollContentView addSubview:button];
-    }
-
-}
 
 #pragma mark - IBActions
 

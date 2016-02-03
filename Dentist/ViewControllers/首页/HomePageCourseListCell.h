@@ -14,11 +14,7 @@ extern NSString* const kHomePageCourseListCellIdentifier;
 
 @interface HomePageCourseListCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (weak, nonatomic) IBOutlet UIView *scrollContentView;
 @property (nonatomic, weak) id<HomePageCourseListCellDelegate> delegate;
-
-- (void)reloadData;
 
 @end
 

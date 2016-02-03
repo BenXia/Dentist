@@ -12,6 +12,9 @@
 #import "AppDeinitializer.h"
 #import "ADBannerDC.h"
 #import "BannerModel.h"
+#import "TodayIntroduceCell.h"
+#import "TuanGouCell.h"
+#import "SaleActivityCell.h"
 
 static const CGFloat kTopImageViewRatio = 16.f/9;
 static CGFloat kHomePageTopBarHeight = 64;
@@ -29,9 +32,6 @@ PPDataControllerDelegate>
 @property (weak,   nonatomic) IBOutlet SDCycleScrollView *cycleScrollView;
 @property (weak,   nonatomic) IBOutlet UIView *topBar;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topBarHeightConstraint;
-@property (weak, nonatomic) IBOutlet UILabel *cityNameLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *arrowImageView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *arrowImageViewWidthConstraint;
 @property (weak, nonatomic) IBOutlet UIView *searchContentView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topBarButtonTrailingConstaint;
 @property (nonatomic, assign) UIStatusBarStyle statusBarStyle;
@@ -79,8 +79,8 @@ PPDataControllerDelegate>
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES  animated:self.needHideNavBarWithAnimation];
-    
-    self.headerCourseListView.frame = CGRectMake(0, kHomePageTopBarHeight, kScreenWidth, 80);
+    float cellHeight = (kScreenWidth - 5*24)/4 + 48;
+    self.headerCourseListView.frame = CGRectMake(0, kHomePageTopBarHeight, kScreenWidth, cellHeight);
     self.tableViewCourseListCell.width = kScreenWidth;
 }
 
@@ -169,9 +169,6 @@ PPDataControllerDelegate>
     self.headerCourseListView = (HomePageCourseListCell *)[[[NSBundle mainBundle] loadNibNamed:@"HomePageCourseListCell" owner:nil options:nil] objectAtIndex:0];
     self.headerCourseListView.hidden = YES;
     self.headerCourseListView.delegate = self;
-    [self.headerCourseListView reloadData];
-    self.headerCourseListView.scrollView.backgroundColor = [UIColor whiteColor];
-    self.headerCourseListView.scrollContentView.backgroundColor = [UIColor whiteColor];
 
     self.headerCourseListView.layer.shadowOffset = CGSizeMake(0, 4);
     self.headerCourseListView.layer.shadowOpacity = 0.2;
@@ -185,7 +182,9 @@ PPDataControllerDelegate>
     self.tableView.tableHeaderView = self.tableHeaderView;
     self.tableViewCourseListCell = (HomePageCourseListCell *)[[[NSBundle mainBundle] loadNibNamed:@"HomePageCourseListCell" owner:nil options:nil] objectAtIndex:0];
     self.tableViewCourseListCell.delegate = self;
-    [self.tableViewCourseListCell reloadData];
+    [self.tableView registerNib:[UINib nibWithNibName:@"TodayIntroduceCell" bundle:nil] forCellReuseIdentifier:[TodayIntroduceCell identifier]];
+    [self.tableView registerNib:[UINib nibWithNibName:@"TuanGouCell" bundle:nil] forCellReuseIdentifier:[TuanGouCell identifier]];
+    [self.tableView registerNib:[UINib nibWithNibName:@"SaleActivityCell" bundle:nil] forCellReuseIdentifier:[SaleActivityCell identifier]];
 }
 
 
@@ -213,7 +212,7 @@ PPDataControllerDelegate>
     CGPoint point = self.tableView.contentOffset;
     CGFloat originHeaderHeight = self.tableHeaderView.height;
     
-    if (point.y >= (originHeaderHeight - kHomePageTopBarHeight)) {
+    if (point.y >= originHeaderHeight) {
         self.headerCourseListView.hidden = NO;
     } else {
         self.headerCourseListView.hidden = YES;
@@ -231,32 +230,6 @@ PPDataControllerDelegate>
 
 #pragma mark - IBActions
 
-- (IBAction)didTouchDownSelectCityButton:(id)sender {
-    self.cityNameLabel.alpha = 0.5;
-    self.arrowImageView.alpha = 0.5;
-}
-
-- (IBAction)didTouchUpInsideSelectCityButton:(id)sender {
-    self.cityNameLabel.alpha = 1.0;
-    self.arrowImageView.alpha = 1.0;
-    //测试退出功能
-    [[AppDeinitializer sharedInstance] cleanUpWhenLogout];
-}
-
-- (IBAction)didTouchUpOutsideSelectCityButton:(id)sender {
-    self.cityNameLabel.alpha = 1.0;
-    self.arrowImageView.alpha = 1.0;
-}
-
-- (IBAction)didTouchDragInsideSelectCityButton:(id)sender {
-    self.cityNameLabel.alpha = 0.5;
-    self.arrowImageView.alpha = 0.5;
-}
-
-- (IBAction)didTouchDragOutsideSelectCityButton:(id)sender {
-    self.cityNameLabel.alpha = 1.0;
-    self.arrowImageView.alpha = 1.0;
-}
 
 - (IBAction)didTapPhoneNumberSearchTeacherAction:(id)sender {
       
@@ -288,12 +261,8 @@ PPDataControllerDelegate>
     } else {
         
         if (point.y > (originHeaderHeight - kHomePageTopBarHeight - 30)) {
-            //self.cityNameLabel.textColor = kWhiteHighlightedColor;
-            self.arrowImageView.image = [UIImage imageNamed:@"pic_place01_white_highlighted"];
             self.statusBarStyle = UIStatusBarStyleDefault;
         } else {
-            self.cityNameLabel.textColor = [UIColor whiteColor];
-            self.arrowImageView.image = [UIImage imageNamed:@"pic_place01_white"];
             self.statusBarStyle = UIStatusBarStyleLightContent;
         }
         
@@ -308,18 +277,34 @@ PPDataControllerDelegate>
 
 #pragma mark - UITableViewDataSource & UITableViewDelegate
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 4;
 }
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 1;
+}
+
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 0) {
+    if (indexPath.section == 0) {
         return self.tableViewCourseListCell;
+    } else if (indexPath.section == 1) {
+        TodayIntroduceCell *cell = [tableView dequeueReusableCellWithIdentifier:[TodayIntroduceCell identifier] forIndexPath:indexPath];
+        //cell.cellModel = nil;
+        return cell;
+    } else if (indexPath.section == 2) {
+        TuanGouCell *cell = [tableView dequeueReusableCellWithIdentifier:[TuanGouCell identifier] forIndexPath:indexPath];
+        cell.cellModel = nil;
+        return cell;
+    }  else if (indexPath.section == 3) {
+        SaleActivityCell *cell = [tableView dequeueReusableCellWithIdentifier:[SaleActivityCell identifier] forIndexPath:indexPath];
+        return cell;
     } else {
         static NSString *cellIdentifier = @"cell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if (!cell) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+            cell.backgroundColor = [UIColor themeBlueColor];
         }
         //[cell refreshUIWithTeacherList:self.homePageVM.promotedTeacherArray];
         
@@ -328,7 +313,27 @@ PPDataControllerDelegate>
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 70;
+    if (indexPath.section == 0) {
+        float cellHeight = (kScreenWidth - 5*24)/4 + 48;
+        return cellHeight;
+    } else if (indexPath.section == 1) {
+        return 167;
+    } else if (indexPath.section == 2) {
+        return 250;
+    } else if (indexPath.section == 3) {
+        return 293;
+    } else {
+        return 300;
+    }
+    
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 12;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 1;
 }
 
 #pragma mark - HomePageCourseListCellDelegate
@@ -336,18 +341,6 @@ PPDataControllerDelegate>
 - (void)didSelectCourseWithId:(int)courseId {
     // （重要）设置下订单方式：首页老师列表（包括科目横向列表）
     
-}
-
-- (void)didCourseListCell:(HomePageCourseListCell *)cell scrollToOffset:(CGPoint)offset {
-    if (!self.headerCourseListView.hidden) {
-        if (cell == self.headerCourseListView) {
-            self.tableViewCourseListCell.scrollView.contentOffset = offset;
-        }
-    } else {
-        if (cell == self.tableViewCourseListCell) {
-            self.headerCourseListView.scrollView.contentOffset = offset;
-        }
-    }
 }
 
 #pragma mark - PPDataControllerDelegate
