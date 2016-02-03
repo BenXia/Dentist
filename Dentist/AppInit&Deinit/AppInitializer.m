@@ -3,7 +3,7 @@
 //  Dentist
 //
 //  Created by Ben on 15/8/3.
-//
+//  Copyright © 2016年 iOSStudio. All rights reserved.
 //
 
 #import "AppInitializer.h"

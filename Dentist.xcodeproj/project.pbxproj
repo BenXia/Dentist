@@ -12,6 +12,11 @@
 		33D00F3B1C62375B00499EE9 /* btn_numberminus72_pressed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33D00F371C62375B00499EE9 /* btn_numberminus72_pressed@3x.png */; };
 		33D00F3C1C62375B00499EE9 /* btn_numberplus72_default@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33D00F381C62375B00499EE9 /* btn_numberplus72_default@3x.png */; };
 		33D00F3D1C62375B00499EE9 /* btn_numberplus72_pressed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33D00F391C62375B00499EE9 /* btn_numberplus72_pressed@3x.png */; };
+		33D0102F1C62483700499EE9 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33D0102E1C62483700499EE9 /* AlipaySDK.framework */; };
+		33D010301C62492E00499EE9 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F071D41C42D9BE00DAC58F /* libsqlite3.0.tbd */; };
+		33D010331C6249E200499EE9 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33D010321C6249E200499EE9 /* CoreTelephony.framework */; };
+		33D010341C624A9500499EE9 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F071CC1C42D97100DAC58F /* libz.tbd */; };
+		33D010351C624AE900499EE9 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F071D01C42D99A00DAC58F /* libxml2.tbd */; };
 		33DD6B391C60ED2800CE6B31 /* ProductBriefInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DD6B371C60ED2800CE6B31 /* ProductBriefInfoCell.m */; };
 		33DD6B3A1C60ED2800CE6B31 /* ProductBriefInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33DD6B381C60ED2800CE6B31 /* ProductBriefInfoCell.xib */; };
 		33DD6B461C60ED6D00CE6B31 /* LoginVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DD6B401C60ED6D00CE6B31 /* LoginVM.m */; };
@@ -282,6 +287,8 @@
 		33D00F371C62375B00499EE9 /* btn_numberminus72_pressed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_numberminus72_pressed@3x.png"; sourceTree = "<group>"; };
 		33D00F381C62375B00499EE9 /* btn_numberplus72_default@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_numberplus72_default@3x.png"; sourceTree = "<group>"; };
 		33D00F391C62375B00499EE9 /* btn_numberplus72_pressed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_numberplus72_pressed@3x.png"; sourceTree = "<group>"; };
+		33D0102E1C62483700499EE9 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlipaySDK.framework; path = StudioCommon/StudioCommon/Vendors/SDK/alipay/AlipaySDK.framework; sourceTree = "<group>"; };
+		33D010321C6249E200499EE9 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		33DD6B361C60ED2800CE6B31 /* ProductBriefInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductBriefInfoCell.h; sourceTree = "<group>"; };
 		33DD6B371C60ED2800CE6B31 /* ProductBriefInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductBriefInfoCell.m; sourceTree = "<group>"; };
 		33DD6B381C60ED2800CE6B31 /* ProductBriefInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductBriefInfoCell.xib; sourceTree = "<group>"; };
@@ -581,6 +588,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33D010351C624AE900499EE9 /* libxml2.tbd in Frameworks */,
+				33D010341C624A9500499EE9 /* libz.tbd in Frameworks */,
+				33D010301C62492E00499EE9 /* libsqlite3.0.tbd in Frameworks */,
+				33D010331C6249E200499EE9 /* CoreTelephony.framework in Frameworks */,
+				33D0102F1C62483700499EE9 /* AlipaySDK.framework in Frameworks */,
 				B5F386061C45ED3A00E666F7 /* CoreFoundation.framework in Frameworks */,
 				33F071A81C42CF1900DAC58F /* Security.framework in Frameworks */,
 				33F071A61C42CF1200DAC58F /* CFNetwork.framework in Frameworks */,
@@ -602,6 +614,8 @@
 		118494DD823B252C0394B5A7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				33D010321C6249E200499EE9 /* CoreTelephony.framework */,
+				33D0102E1C62483700499EE9 /* AlipaySDK.framework */,
 				33F071DF1C42DEE500DAC58F /* libsqlite3.dylib */,
 				33F071DC1C42DE5400DAC58F /* libz.1.dylib */,
 				33F071DA1C42DAAB00DAC58F /* libstdc++.6.0.9.dylib */,
@@ -1709,10 +1723,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 390308D4EA1697DF926D8B12 /* Pods.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/StudioCommon/StudioCommon/Vendors/SDK/alipay",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Dentist/Supporting Files/Dentist-Prefix.pch";
 				INFOPLIST_FILE = "Dentist/Supporting Files/Info.plist";
@@ -1743,9 +1762,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 430052BE562558A3994A1C1C /* Pods.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/StudioCommon/StudioCommon/Vendors/SDK/alipay",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Dentist/Supporting Files/Dentist-Prefix.pch";
 				INFOPLIST_FILE = "Dentist/Supporting Files/Info.plist";
@@ -1813,9 +1837,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A11DE1C2BA504D2B28E4F469 /* Pods.distribute.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/StudioCommon/StudioCommon/Vendors/SDK/alipay",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Dentist/Supporting Files/Dentist-Prefix.pch";
 				INFOPLIST_FILE = "Dentist/Supporting Files/Info.plist";

@@ -3,7 +3,8 @@
 //  Dentist
 //
 //  Created by Ben on 1/10/16.
-//  Copyright (c) 2016 Dentist. All rights reserved.
+//  Copyright © 2016年 iOSStudio. All rights reserved.
+//
 
 #import "PPDataController.h"
 #import "PPDataCache.h"

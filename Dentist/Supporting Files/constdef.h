@@ -3,7 +3,7 @@
 //  Dentist
 //
 //  Created by Ben on 1/28/15.
-//
+//  Copyright © 2016年 iOSStudio. All rights reserved.
 //
 
 #ifndef Dentist_constdef_h

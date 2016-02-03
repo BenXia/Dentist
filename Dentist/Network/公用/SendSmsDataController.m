@@ -3,7 +3,7 @@
 //  Dentist
 //
 //  Created by Ben on 5/25/15.
-//  Copyright (c) 2015 Ben. All rights reserved.
+//  Copyright © 2016年 iOSStudio. All rights reserved.
 //
 
 #import "SendSmsDataController.h"

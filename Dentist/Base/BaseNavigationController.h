@@ -3,7 +3,7 @@
 //  Dentist
 //
 //  Created by Ben on 10/15/15.
-//  Copyright (c) 2015 Dentist. All rights reserved.
+//  Copyright © 2016年 iOSStudio. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
