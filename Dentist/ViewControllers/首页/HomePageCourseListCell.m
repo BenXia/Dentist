@@ -8,8 +8,6 @@
 
 #import "HomePageCourseListCell.h"
 
-static const CGFloat kCourseItemHeight = 60;
-
 static NSArray* kHomePageCourseListSortArray;
 
 NSString* const kHomePageCourseListCellIdentifier = @"HomePageCourseListCell";
