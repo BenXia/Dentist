@@ -290,7 +290,7 @@ PPDataControllerDelegate>
         return self.tableViewCourseListCell;
     } else if (indexPath.section == 1) {
         TodayIntroduceCell *cell = [tableView dequeueReusableCellWithIdentifier:[TodayIntroduceCell identifier] forIndexPath:indexPath];
-        //cell.cellModel = nil;
+        cell.cellModel = nil;
         return cell;
     } else if (indexPath.section == 2) {
         TuanGouCell *cell = [tableView dequeueReusableCellWithIdentifier:[TuanGouCell identifier] forIndexPath:indexPath];
@@ -317,11 +317,11 @@ PPDataControllerDelegate>
         float cellHeight = (kScreenWidth - 5*24)/4 + 48;
         return cellHeight;
     } else if (indexPath.section == 1) {
-        return 167;
+        return 300;
     } else if (indexPath.section == 2) {
-        return 250;
+        return 300;
     } else if (indexPath.section == 3) {
-        return 293;
+        return 330;
     } else {
         return 300;
     }
@@ -329,7 +329,11 @@ PPDataControllerDelegate>
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 12;
+    if (section == 0) {
+        return 0;
+    } else {
+        return 12;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {

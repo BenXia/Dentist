@@ -32,14 +32,14 @@
 
 - (void)setCellModel:(id)cellModel {
     _cellModel = cellModel;
-    [self.firstBtn setImage:[UIImage imageNamed:@"btn_clinical_pressed"] forState:UIControlStateNormal];
-    [self.secondBtn setImage:[UIImage imageNamed:@"btn_clinical_pressed"] forState:UIControlStateNormal];
-    [self.thirdBtn setImage:[UIImage imageNamed:@"btn_clinical_pressed"] forState:UIControlStateNormal];
-    [self.fourthBtn setImage:[UIImage imageNamed:@"btn_clinical_pressed"] forState:UIControlStateNormal];
-//    [self.firstBtn centerImageAndTitle];
-//    [self.secondBtn centerImageAndTitle];
-//    [self.thirdBtn centerImageAndTitle];
-//    [self.fourthBtn centerImageAndTitle];
+    [self.firstBtn setImage:[UIImage imageNamed:@"btn_clinical_default"] forState:UIControlStateNormal];
+    [self.secondBtn setImage:[UIImage imageNamed:@"btn_clinical_default"] forState:UIControlStateNormal];
+    [self.thirdBtn setImage:[UIImage imageNamed:@"btn_clinical_default"] forState:UIControlStateNormal];
+    [self.fourthBtn setImage:[UIImage imageNamed:@"btn_clinical_default"] forState:UIControlStateNormal];
+    [self.firstBtn centerImageAndTitle];
+    [self.secondBtn centerImageAndTitle];
+    [self.thirdBtn centerImageAndTitle];
+    [self.fourthBtn centerImageAndTitle];
 }
 
 @end
