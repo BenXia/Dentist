@@ -166,8 +166,8 @@ static NSString* const kCellReuseIdentifier = @"ProductBriefInfoCell";
 #pragma mark - IBActions
 
 - (void)didClickOnEditNavButtonAction:(id)sender {
-    //ProductDetailVC *vc = [[ProductDetailVC alloc] init];
-    OrderVC *vc = [[OrderVC alloc] init];
+    ProductDetailVC *vc = [[ProductDetailVC alloc] init];
+    //OrderVC *vc = [[OrderVC alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
