@@ -11,6 +11,7 @@
 #import "HomePageCourseListCell.h"
 #import "AppDeinitializer.h"
 #import "ADBannerDC.h"
+#import "ADTodayIntroduceDC.h"
 #import "BannerModel.h"
 #import "TodayIntroduceCell.h"
 #import "TuanGouCell.h"
@@ -39,6 +40,7 @@ PPDataControllerDelegate>
 @property (nonatomic, strong) HomePageCourseListCell *headerCourseListView;      // 当滑动到上面后需要常
 //网络请求
 @property (nonatomic, strong) ADBannerDC *adBannerRequest;
+@property (nonatomic, strong) ADTodayIntroduceDC *adTodayIntroduceRequest;
 
 
 @end
@@ -189,12 +191,12 @@ PPDataControllerDelegate>
 
 
 - (void)refreshBanner {
-//    CGFloat topViewWidth = kScreenWidth;
-//    CGFloat topViewHeight = topViewWidth / kTopImageViewRatio;
     NSMutableArray *imagesURLStrings = [NSMutableArray array];
     for (BannerModel* banner in self.adBannerRequest.bannerArr) {
         NSString* imageUrl = banner.imaUrl;
-        [imagesURLStrings addObject:imageUrl];
+        if (imagesURLStrings.count<10) {
+            [imagesURLStrings addObject:imageUrl];
+        }
     }
     
     if (imagesURLStrings.count > 1) {
@@ -204,7 +206,7 @@ PPDataControllerDelegate>
         
     }
     _cycleScrollView.imageURLStringsGroup = imagesURLStrings;
-    _cycleScrollView.placeholderImage = [UIImage imageNamed:@"pic_index_qq01"];
+    _cycleScrollView.placeholderImage = [UIImage imageNamed:@"tempShop"];
     _cycleScrollView.hidden=NO;
 }
 
@@ -226,6 +228,11 @@ PPDataControllerDelegate>
     self.adBannerRequest = [[ADBannerDC alloc] init];
     self.adBannerRequest.delegate = self;
     [self.adBannerRequest requestWithArgs:nil];
+    
+    self.adTodayIntroduceRequest = [[ADTodayIntroduceDC alloc] init];
+    self.adTodayIntroduceRequest.delegate = self;
+    [self.adTodayIntroduceRequest requestWithArgs:nil];
+    
 }
 
 #pragma mark - IBActions
@@ -353,17 +360,19 @@ PPDataControllerDelegate>
     [[GCDQueue mainQueue] queueBlock:^{
         if (controller == self.adBannerRequest) {
             [Utilities showToastWithText:[NSString stringWithFormat:@"获取Banner位失败:%@", error]];
-        } else {
+        } else if (controller == self.adTodayIntroduceRequest){
             [Utilities showToastWithText:[NSString stringWithFormat:@"验证码获取失败:%@", error]];
-        }    }];
+        }
+    
+    }];
 }
 
 - (void)loadingDataFinished:(PPDataController *)controller {
     if (controller == self.adBannerRequest) {
         [self refreshBanner];
         
-    } else {
-        
+    } else if (controller == self.adTodayIntroduceRequest) {
+        [self.tableView reloadData];
     }
 }
 
