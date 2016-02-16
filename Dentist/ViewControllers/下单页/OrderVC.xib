@@ -8,6 +8,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OrderVC">
             <connections>
+                <outlet property="bottomContentView" destination="W2n-V5-R8h" id="2RB-E3-mtZ"/>
+                <outlet property="tableView" destination="PmZ-ka-35H" id="Qkb-eF-z8s"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -16,11 +18,11 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PmZ-ka-35H">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PmZ-ka-35H">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W2n-V5-R8h" userLabel="SubContentView1">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W2n-V5-R8h" userLabel="BottomContentView">
                     <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="合计:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6oD-6T-dae">
@@ -53,11 +55,11 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IiU-gC-vSR">
                             <rect key="frame" x="160" y="0.0" width="160" height="44"/>
                             <color key="backgroundColor" red="0.23921568630000001" green="0.71764705880000002" blue="0.92156862750000001" alpha="1" colorSpace="calibratedRGB"/>
-                            <state key="normal" title="立即支付" image="btn_paying_default"/>
+                            <state key="normal" title="  立即支付" image="btn_paying_default"/>
                             <state key="highlighted" image="btn_paying_pressed"/>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="2nM-bd-Y5x"/>
                         <constraint firstItem="IiU-gC-vSR" firstAttribute="leading" secondItem="dzf-bF-C2u" secondAttribute="trailing" constant="13" id="6Jg-Qe-wGO"/>
@@ -88,7 +90,7 @@
         </view>
     </objects>
     <resources>
-        <image name="btn_paying_default" width="22" height="22"/>
+        <image name="btn_paying_default" width="313" height="366"/>
         <image name="btn_paying_pressed" width="22" height="22"/>
     </resources>
 </document>

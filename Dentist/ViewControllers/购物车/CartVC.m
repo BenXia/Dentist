@@ -8,6 +8,8 @@
 
 #import "CartVC.h"
 #import "ProductBriefInfoCell.h"
+#import "ProductDetailVC.h"
+#import "OrderVC.h"
 
 static NSString* const kCellReuseIdentifier = @"ProductBriefInfoCell";
 
@@ -164,7 +166,10 @@ static NSString* const kCellReuseIdentifier = @"ProductBriefInfoCell";
 #pragma mark - IBActions
 
 - (void)didClickOnEditNavButtonAction:(id)sender {
-    
+    //ProductDetailVC *vc = [[ProductDetailVC alloc] init];
+    OrderVC *vc = [[OrderVC alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (IBAction)didClickSelectAllButtonAction:(id)sender {

@@ -7,6 +7,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProductDetailVC">
             <connections>
+                <outlet property="cycleScrollView" destination="xsf-5l-zOm" id="VKl-LT-fAb"/>
+                <outlet property="popupCustomiseView" destination="wpu-Jc-HRw" id="xbh-me-Nf0"/>
+                <outlet property="popupCustomiseViewHeightConstraint" destination="zm6-33-AMW" id="94T-yA-M2Y"/>
+                <outlet property="tableHeaderView" destination="bN6-QK-xIf" id="TFk-vE-3S4"/>
+                <outlet property="tableView" destination="5wE-h5-KCu" id="GAS-Mu-gIz"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -15,30 +20,48 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5wE-h5-KCu">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5wE-h5-KCu">
+                    <rect key="frame" x="0.0" y="20" width="320" height="504"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="W4u-kQ-Ruy"/>
+                        <outlet property="delegate" destination="-1" id="Nwr-6Y-Ycb"/>
+                    </connections>
                 </tableView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VVf-F1-d7o">
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wpu-Jc-HRw" userLabel="PopupCustomiseView">
+                    <rect key="frame" x="0.0" y="174" width="320" height="350"/>
+                    <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="350" id="zm6-33-AMW"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D7q-pj-h0C" userLabel="StatusBarBgView">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
+                    <color key="backgroundColor" red="0.21960784310000001" green="0.45098039220000002" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="SQ7-8f-fbs"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VVf-F1-d7o" userLabel="BottomContentView">
                     <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DYe-ph-CYC">
                             <rect key="frame" x="0.0" y="0.0" width="106.5" height="44"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <state key="normal" title="收藏" image="收藏">
+                            <state key="normal" title=" 收藏" image="收藏">
                                 <color key="titleColor" red="0.21960784310000001" green="0.45098039220000002" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EFR-q1-ZkM">
-                            <rect key="frame" x="106.5" y="0.0" width="107" height="44"/>
+                            <rect key="frame" x="106" y="0.0" width="107" height="44"/>
                             <color key="backgroundColor" red="0.21960784310000001" green="0.45098039220000002" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
-                            <state key="normal" title="购物车" image="购物车.png"/>
+                            <state key="normal" title=" 购物车" image="购物车.png"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SfS-XM-Xno">
-                            <rect key="frame" x="213.5" y="0.0" width="106.5" height="44"/>
+                            <rect key="frame" x="213" y="0.0" width="106.5" height="44"/>
                             <color key="backgroundColor" red="0.23921568630000001" green="0.71764705880000002" blue="0.92156862750000001" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                            <state key="normal" title="立即购买" image="立即购买.png"/>
+                            <state key="normal" title=" 立即购买" image="立即购买.png"/>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -60,13 +83,38 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
+                <constraint firstItem="5wE-h5-KCu" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="04z-qe-dcS"/>
                 <constraint firstAttribute="trailing" secondItem="VVf-F1-d7o" secondAttribute="trailing" id="7rV-db-17q"/>
+                <constraint firstItem="VVf-F1-d7o" firstAttribute="top" secondItem="5wE-h5-KCu" secondAttribute="bottom" id="9q2-vf-Msg"/>
                 <constraint firstAttribute="bottom" secondItem="VVf-F1-d7o" secondAttribute="bottom" id="CkZ-Wg-aMN"/>
+                <constraint firstItem="5wE-h5-KCu" firstAttribute="top" secondItem="D7q-pj-h0C" secondAttribute="bottom" id="HHV-rn-M5Z"/>
+                <constraint firstAttribute="trailing" secondItem="5wE-h5-KCu" secondAttribute="trailing" id="Orf-w4-dh9"/>
+                <constraint firstItem="D7q-pj-h0C" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="QPc-ua-rqJ"/>
+                <constraint firstItem="wpu-Jc-HRw" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="kPj-V6-TBX"/>
+                <constraint firstAttribute="trailing" secondItem="D7q-pj-h0C" secondAttribute="trailing" id="kbY-UB-KYS"/>
+                <constraint firstItem="VVf-F1-d7o" firstAttribute="top" secondItem="wpu-Jc-HRw" secondAttribute="bottom" id="w2k-Iv-Lr2"/>
+                <constraint firstAttribute="trailing" secondItem="wpu-Jc-HRw" secondAttribute="trailing" id="yQR-AF-9Vu"/>
+                <constraint firstItem="D7q-pj-h0C" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="zew-85-aLr"/>
                 <constraint firstItem="VVf-F1-d7o" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="zsV-sE-mSw"/>
             </constraints>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <point key="canvasLocation" x="280" y="254"/>
+        </view>
+        <view contentMode="scaleToFill" id="bN6-QK-xIf">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xsf-5l-zOm" customClass="SDCycleScrollView">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="675" y="60"/>
         </view>
     </objects>
     <resources>
