@@ -2048,7 +2048,7 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: zhao bin (5LS76MADQ8)";
+				CODE_SIGN_IDENTITY = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2076,7 +2076,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.toboom.yayiabc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a7c8687c-7e6d-400c-b8c3-5c86a20d8a46";
+				PROVISIONING_PROFILE = "eed6a725-01bc-47a4-81ed-92a84aef709e";
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 			};
 			name = Debug;
@@ -2116,7 +2116,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.toboom.yayiabc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8bbf9e90-9418-4426-92de-ad1d1f9bb3c9";
+				PROVISIONING_PROFILE = "b4f2a00a-62eb-4530-a7d9-9a23b34bd704";
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 			};
 			name = Release;
@@ -2165,7 +2165,7 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Shanghai Toboom Dental Co., Ltd. (5D6XSFC9PN)";
+				CODE_SIGN_IDENTITY = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
