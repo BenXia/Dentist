@@ -33,8 +33,10 @@ SDCycleScrollViewDelegate>
 
 @property (nonatomic, strong) ProductDetailVM *vm;
 
+@property (weak, nonatomic) IBOutlet UIControl *popupCustomiseViewBackgroundView;
 @property (weak, nonatomic) IBOutlet UIView *popupCustomiseView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *popupCustomiseViewHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *popupCustomiseViewBottomConstraint;
 
 @end
 
@@ -258,6 +260,42 @@ SDCycleScrollViewDelegate>
     _cycleScrollView.hidden=NO;
 }
 
+- (void)showCustomiseBackgroundView:(BOOL)animated {
+    if (!animated) {
+        self.popupCustomiseViewBottomConstraint.constant = 44;
+        self.popupCustomiseViewBackgroundView.hidden = NO;
+        self.popupCustomiseViewBackgroundView.alpha = 1;
+    } else {
+        self.popupCustomiseViewBackgroundView.hidden = NO;
+        
+        self.popupCustomiseViewBottomConstraint.constant = -self.popupCustomiseViewHeightConstraint.constant;
+        [self.popupCustomiseViewBackgroundView layoutIfNeeded];
+        
+        self.popupCustomiseViewBackgroundView.alpha = 0;
+        self.popupCustomiseViewBottomConstraint.constant = 44;
+        [UIView animateWithDuration:0.3 animations:^{
+            self.popupCustomiseViewBackgroundView.alpha = 1;
+            [self.popupCustomiseViewBackgroundView layoutIfNeeded];
+        }];
+    }
+}
+
+- (void)hideCustomiseBackgroundView:(BOOL)animated {
+    if (!animated) {
+        self.popupCustomiseViewBackgroundView.hidden = YES;
+    }
+    
+    self.popupCustomiseViewBottomConstraint.constant = -self.popupCustomiseViewHeightConstraint.constant;
+    [UIView animateWithDuration:0.3 animations:^{
+        self.popupCustomiseViewBackgroundView.alpha = 0;
+        [self.popupCustomiseViewBackgroundView layoutIfNeeded];
+    } completion:^(BOOL finished) {
+        self.popupCustomiseViewBackgroundView.hidden = YES;
+        self.popupCustomiseViewBottomConstraint.constant = 44;
+        self.popupCustomiseViewBackgroundView.alpha = 1;
+    }];
+}
+
 #pragma mark - 上下拉刷新
 
 - (void)headerRereshing {
@@ -326,6 +364,28 @@ SDCycleScrollViewDelegate>
 //    BaseWebViewController *baseWebVC = [[BaseWebViewController alloc] initWithUrl:banner.pagePath];
 //    baseWebVC.hidesBottomBarWhenPushed = YES;
 //    [self.navigationController pushViewController:baseWebVC animated:YES];
+}
+
+#pragma mark - IBActions
+
+- (IBAction)didClickFavoriteButtonAction:(id)sender {
+
+}
+
+- (IBAction)didClickCartButtonAction:(id)sender {
+    
+}
+
+- (IBAction)didClickBuyNowButtonAction:(id)sender {
+    
+}
+
+- (IBAction)didClickCustomiseBackgroundViewAction:(id)sender {
+    [self hideCustomiseBackgroundView:YES];
+}
+
+- (IBAction)didClickCustomiseCloseButtonAction:(id)sender {
+    [self hideCustomiseBackgroundView:YES];
 }
 
 @end
