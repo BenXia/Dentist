@@ -269,6 +269,9 @@
 		9379D3C51C6338BB00390702 /* 我的-浏览记录@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9379D3BB1C6338BB00390702 /* 我的-浏览记录@3x.png */; };
 		9379D3C61C6338BB00390702 /* 我的-设置按钮@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9379D3BC1C6338BB00390702 /* 我的-设置按钮@2x.png */; };
 		9379D3C71C6338BB00390702 /* 我的-设置按钮@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9379D3BD1C6338BB00390702 /* 我的-设置按钮@3x.png */; };
+		93899B521C74C2160065B819 /* UserInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 93899B501C74C2160065B819 /* UserInfoVC.m */; };
+		93899B531C74C2160065B819 /* UserInfoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93899B511C74C2160065B819 /* UserInfoVC.xib */; };
+		93899B571C74C7470065B819 /* UserInfoDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 93899B561C74C7470065B819 /* UserInfoDC.m */; };
 		93A1F5D01C6281B800CFEEC4 /* good_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 93A1F5CF1C6281B800CFEEC4 /* good_logo.png */; };
 		93A1F5DA1C6281D900CFEEC4 /* SaleActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A1F5D21C6281D900CFEEC4 /* SaleActivityCell.m */; };
 		93A1F5DB1C6281D900CFEEC4 /* SaleActivityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93A1F5D31C6281D900CFEEC4 /* SaleActivityCell.xib */; };
@@ -664,6 +667,11 @@
 		9379D3BB1C6338BB00390702 /* 我的-浏览记录@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "我的-浏览记录@3x.png"; sourceTree = "<group>"; };
 		9379D3BC1C6338BB00390702 /* 我的-设置按钮@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "我的-设置按钮@2x.png"; sourceTree = "<group>"; };
 		9379D3BD1C6338BB00390702 /* 我的-设置按钮@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "我的-设置按钮@3x.png"; sourceTree = "<group>"; };
+		93899B4F1C74C2160065B819 /* UserInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoVC.h; sourceTree = "<group>"; };
+		93899B501C74C2160065B819 /* UserInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoVC.m; sourceTree = "<group>"; };
+		93899B511C74C2160065B819 /* UserInfoVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfoVC.xib; sourceTree = "<group>"; };
+		93899B551C74C7470065B819 /* UserInfoDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoDC.h; sourceTree = "<group>"; };
+		93899B561C74C7470065B819 /* UserInfoDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoDC.m; sourceTree = "<group>"; };
 		93A1F5CF1C6281B800CFEEC4 /* good_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = good_logo.png; sourceTree = "<group>"; };
 		93A1F5D11C6281D900CFEEC4 /* SaleActivityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaleActivityCell.h; sourceTree = "<group>"; };
 		93A1F5D21C6281D900CFEEC4 /* SaleActivityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaleActivityCell.m; sourceTree = "<group>"; };
@@ -1178,6 +1186,7 @@
 				33F070911C42B58E00DAC58F /* PPDataController.h */,
 				33F070921C42B58E00DAC58F /* PPDataController.m */,
 				33F070931C42B58E00DAC58F /* PPDataControllerError.h */,
+				93899B541C74C71E0065B819 /* 个人 */,
 				9377AC621C53781E003B24B1 /* 首页 */,
 				93F2A0131C49E8EE0034486B /* 注册登录 */,
 				33F070C81C42BE1E00DAC58F /* 公用 */,
@@ -1212,6 +1221,12 @@
 		33F0703A1C4295F200DAC58F /* 个人 */ = {
 			isa = PBXGroup;
 			children = (
+				93899B491C74C1F60065B819 /* 地址管理 */,
+				93899B4A1C74C1F60065B819 /* 个人信息 */,
+				93899B4B1C74C1F60065B819 /* 浏览记录 */,
+				93899B4C1C74C1F60065B819 /* 设置 */,
+				93899B4D1C74C1F60065B819 /* 收藏 */,
+				93899B4E1C74C1F60065B819 /* 我的订单 */,
 				33F0706B1C42A43100DAC58F /* ProfileVC.h */,
 				33F0706C1C42A43100DAC58F /* ProfileVC.m */,
 				33F0706D1C42A43100DAC58F /* ProfileVC.xib */,
@@ -1451,6 +1466,60 @@
 				9379D3BD1C6338BB00390702 /* 我的-设置按钮@3x.png */,
 			);
 			path = "我的";
+			sourceTree = "<group>";
+		};
+		93899B491C74C1F60065B819 /* 地址管理 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "地址管理";
+			sourceTree = "<group>";
+		};
+		93899B4A1C74C1F60065B819 /* 个人信息 */ = {
+			isa = PBXGroup;
+			children = (
+				93899B4F1C74C2160065B819 /* UserInfoVC.h */,
+				93899B501C74C2160065B819 /* UserInfoVC.m */,
+				93899B511C74C2160065B819 /* UserInfoVC.xib */,
+			);
+			path = "个人信息";
+			sourceTree = "<group>";
+		};
+		93899B4B1C74C1F60065B819 /* 浏览记录 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "浏览记录";
+			sourceTree = "<group>";
+		};
+		93899B4C1C74C1F60065B819 /* 设置 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "设置";
+			sourceTree = "<group>";
+		};
+		93899B4D1C74C1F60065B819 /* 收藏 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "收藏";
+			sourceTree = "<group>";
+		};
+		93899B4E1C74C1F60065B819 /* 我的订单 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "我的订单";
+			sourceTree = "<group>";
+		};
+		93899B541C74C71E0065B819 /* 个人 */ = {
+			isa = PBXGroup;
+			children = (
+				93899B551C74C7470065B819 /* UserInfoDC.h */,
+				93899B561C74C7470065B819 /* UserInfoDC.m */,
+			);
+			path = "个人";
 			sourceTree = "<group>";
 		};
 		93DEA85F1C4B9991008211F7 /* 登录注册 */ = {
@@ -1783,6 +1852,7 @@
 				33DD6CE51C611A5500CE6B31 /* tv_msg_number_w.png in Resources */,
 				33DD6CAA1C611A5500CE6B31 /* Btn_Photo_pressed@2X.png in Resources */,
 				33DD6CF11C611A5500CE6B31 /* 培训课程@3x.png in Resources */,
+				93899B531C74C2160065B819 /* UserInfoVC.xib in Resources */,
 				33DD6CC11C611A5500CE6B31 /* goods_tag_FreeShipping@2X.png in Resources */,
 				33CAE4471C7373360038748F /* OrderItemCell.xib in Resources */,
 				33DD6BF91C6119A600CE6B31 /* btn_classification_t@2x.png in Resources */,
@@ -1880,6 +1950,7 @@
 				33DD6B391C60ED2800CE6B31 /* ProductBriefInfoCell.m in Sources */,
 				93F2A0161C49E93C0034486B /* LoginDC.m in Sources */,
 				93A1F5DA1C6281D900CFEEC4 /* SaleActivityCell.m in Sources */,
+				93899B571C74C7470065B819 /* UserInfoDC.m in Sources */,
 				93A1F5DE1C6281D900CFEEC4 /* TuanGouCell.m in Sources */,
 				33F06F981C42477300DAC58F /* main.m in Sources */,
 				33DD6BB51C6103CA00CE6B31 /* IQKeyboardReturnKeyHandler.m in Sources */,
@@ -1890,6 +1961,7 @@
 				9379D3AF1C63239100390702 /* MultilevelMenu.m in Sources */,
 				33F070501C429AD300DAC58F /* AppInitializer.m in Sources */,
 				9377AC651C537837003B24B1 /* ADBannerDC.m in Sources */,
+				93899B521C74C2160065B819 /* UserInfoVC.m in Sources */,
 				33C9885D1C42401D00262141 /* AppDelegate.m in Sources */,
 				33CAE4221C735FDA0038748F /* ProductFeedbackTitleCell.m in Sources */,
 				33CAE4311C7360D40038748F /* ProductSeeMoreCell.m in Sources */,

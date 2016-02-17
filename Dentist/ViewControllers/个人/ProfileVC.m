@@ -8,6 +8,7 @@
 
 #import "ProfileVC.h"
 #import "MyOrderCell.h"
+#import "UserInfoVC.h"
 
 @interface ProfileVC ()<UITableViewDataSource,UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UIView *headerView;
@@ -52,6 +53,9 @@
 - (void)initUI {
     self.headImageView.layer.cornerRadius = self.headImageView.width/2;
     self.headImageView.layer.masksToBounds = YES;
+    self.headImageView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didClickOnHeadImageView:)];
+    [self.headImageView addGestureRecognizer:tap];
 }
 
 - (void)initTableView {
@@ -72,6 +76,12 @@
 
 - (void)onSettingBtn {
     NSLog(@"设置");
+}
+
+- (void)didClickOnHeadImageView:(UITapGestureRecognizer *)tap {
+    UserInfoVC *userInfoVC = [[UserInfoVC alloc] initWithNibName:@"UserInfoVC" bundle:nil];
+    userInfoVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:userInfoVC animated:YES];
 }
 
 #pragma mark - Navigation Style
