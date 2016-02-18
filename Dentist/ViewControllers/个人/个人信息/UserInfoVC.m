@@ -6,17 +6,25 @@
 //  Copyright © 2016年 iOSStudio. All rights reserved.
 //
 
+#import<AssetsLibrary/ALAssetsLibrary.h>
 #import "UserInfoVC.h"
 #import "UserInfoDC.h"
 #import "UIImageView+WebCache.h"
+#import "ChangeUserHeadImageDC.h"
 
 @interface UserInfoVC () <UITableViewDataSource,
 UITableViewDelegate,
-PPDataControllerDelegate>
+PPDataControllerDelegate,
+UIActionSheetDelegate,
+UIImagePickerControllerDelegate,
+UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (nonatomic, strong) UserInfoDC *userInfoRequest;
+@property (strong, nonatomic) ChangeUserHeadImageDC *changeUserHeadRequest;
 @property (strong, nonatomic) NSMutableArray *modelArray;
+@property (strong, nonatomic) UIImageView *headImageView;
+
 @end
 
 @implementation UserInfoVC
@@ -54,14 +62,12 @@ PPDataControllerDelegate>
         cell.detailTextLabel.textColor = [UIColor gray006Color];
         cell.textLabel.font = [UIFont systemFontOfSize:14];
         cell.detailTextLabel.font = [UIFont systemFontOfSize:15];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     if (indexPath.row == 0) {
         cell.textLabel.text = @"头像";
-        UIImageView *headImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kScreenWidth - 24 - 60 - 30, 12, 60, 60)];
-        headImageView.layer.cornerRadius = 30;
-        headImageView.layer.masksToBounds = YES;
-        [headImageView sd_setImageWithURL:[NSURL URLWithString:self.userInfoRequest.userInfoModel.headImagePath] placeholderImage:[UIImage imageNamed:@"imageDownloadFail.png"]];
-        [cell.contentView addSubview:headImageView];
+        [self.headImageView sd_setImageWithURL:[NSURL URLWithString:self.userInfoRequest.userInfoModel.headImagePath] placeholderImage:[UIImage imageNamed:@"imageDownloadFail.png"]];
+        [cell.contentView addSubview:self.headImageView];
     } else if (indexPath.row == 1) {
         cell.textLabel.text = @"昵称";
         cell.detailTextLabel.text = self.userInfoRequest.userInfoModel.nick;
@@ -73,6 +79,12 @@ PPDataControllerDelegate>
     }
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == 0) {
+        [self changeUserHead];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -87,12 +99,81 @@ PPDataControllerDelegate>
     return 12;
 }
 
+#pragma mark - Private method
+
+- (void)changeUserHead {
+    UIActionSheet *userSheet=[[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"从相册选择", nil ];
+    [userSheet showInView:self.view];
+}
+
+#pragma mark ----------ActionSheet 按钮点击-------------
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    switch (buttonIndex) {
+        case 0: {
+            // 照一张
+            NSString *mediaType = AVMediaTypeVideo;
+            AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:mediaType];
+            if (authStatus == AVAuthorizationStatusNotDetermined) {
+                [AVCaptureDevice requestAccessForMediaType:mediaType completionHandler:^(BOOL granted) {}];
+                return;
+            } else if(authStatus != AVAuthorizationStatusAuthorized) {
+                [UIUtils showAlertView:nil :@"请在iPhone的“设置－隐私－相机”选项中，允许轻轻访问您的手机相机。" :@"我知道了"];
+                return;
+            }
+            
+            UIImagePickerController *imgPicker=[[UIImagePickerController alloc]init];
+            [imgPicker setSourceType:UIImagePickerControllerSourceTypeCamera];
+            [imgPicker setDelegate:self];
+            [imgPicker setAllowsEditing:YES];
+            [self.navigationController presentViewController:imgPicker animated:YES completion:nil];
+        }
+            break;
+            
+        case 1: {
+            // 相册搞一张
+            ALAuthorizationStatus author = [ALAssetsLibrary authorizationStatus];
+            if (author != ALAuthorizationStatusAuthorized && author != ALAuthorizationStatusNotDetermined) {
+                // 用户不允许应用访问相册
+                [UIUtils showAlertView:nil :@"请在iPhone的“设置－隐私－照片”选项中，允许轻轻访问您的手机相册。" :@"我知道了"];
+                return;
+            }
+            
+            UIImagePickerController *imgPicker=[[UIImagePickerController alloc] init];
+            [imgPicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+            [imgPicker setDelegate:self];
+            [imgPicker setAllowsEditing:YES];
+            [self.navigationController presentViewController:imgPicker animated:YES completion:nil];
+        }
+            break;
+            
+        default:
+            break;
+    }
+}
+
+#pragma mark - UIImagePickerControllerDelegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    UIImage* image =[info objectForKey:UIImagePickerControllerEditedImage];
+    // 回到当前页面
+    @weakify(self);
+    [self.navigationController dismissViewControllerAnimated:YES completion:^{
+        @strongify(self);
+        //上传头像接口
+        self.changeUserHeadRequest = [[ChangeUserHeadImageDC alloc] initWithDelegate:self];
+        self.changeUserHeadRequest.headImage = image;
+        [self.changeUserHeadRequest requestWithArgs:nil];
+    }];
+}
+
 #pragma mark - PPDataControllerDelegate
 
 - (void)loadingData:(PPDataController *)controller failedWithError:(NSError *)error {
     if (controller == self.userInfoRequest) {
         [Utilities showToastWithText:[NSString stringWithFormat:@"获取个人信息失败:%@", error]];
-        
+    } else if (controller == self.changeUserHeadRequest) {
+        [Utilities showToastWithText:[NSString stringWithFormat:@"设置头像失败:%@", error]];
     }
 }
 
@@ -101,7 +182,22 @@ PPDataControllerDelegate>
         [[GCDQueue mainQueue] queueBlock:^{
             [self.tableView reloadData];
         }];
+    }else if (controller == self.changeUserHeadRequest) {
+        if (self.changeUserHeadRequest.responseCode == 200) {
+            [Utilities showToastWithText:[NSString stringWithFormat:@"头像设置成功"]];
+        }
     }
+}
+
+#pragma mark - setters and getters
+
+- (UIImageView *)headImageView {
+    if (!_headImageView) {
+        _headImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kScreenWidth - 24 - 60 - 30, 12, 60, 60)];
+        _headImageView.layer.cornerRadius = 30;
+        _headImageView.layer.masksToBounds = YES;
+    }
+    return _headImageView;
 }
 
 

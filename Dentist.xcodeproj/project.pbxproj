@@ -290,6 +290,7 @@
 		93899B521C74C2160065B819 /* UserInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 93899B501C74C2160065B819 /* UserInfoVC.m */; };
 		93899B531C74C2160065B819 /* UserInfoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93899B511C74C2160065B819 /* UserInfoVC.xib */; };
 		93899B571C74C7470065B819 /* UserInfoDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 93899B561C74C7470065B819 /* UserInfoDC.m */; };
+		939715441C761BE4007582C4 /* ChangeUserHeadImageDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 939715431C761BE4007582C4 /* ChangeUserHeadImageDC.m */; };
 		93A1F5D01C6281B800CFEEC4 /* good_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 93A1F5CF1C6281B800CFEEC4 /* good_logo.png */; };
 		93A1F5DA1C6281D900CFEEC4 /* SaleActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A1F5D21C6281D900CFEEC4 /* SaleActivityCell.m */; };
 		93A1F5DB1C6281D900CFEEC4 /* SaleActivityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93A1F5D31C6281D900CFEEC4 /* SaleActivityCell.xib */; };
@@ -714,6 +715,8 @@
 		93899B511C74C2160065B819 /* UserInfoVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfoVC.xib; sourceTree = "<group>"; };
 		93899B551C74C7470065B819 /* UserInfoDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoDC.h; sourceTree = "<group>"; };
 		93899B561C74C7470065B819 /* UserInfoDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoDC.m; sourceTree = "<group>"; };
+		939715421C761BE4007582C4 /* ChangeUserHeadImageDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeUserHeadImageDC.h; sourceTree = "<group>"; };
+		939715431C761BE4007582C4 /* ChangeUserHeadImageDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeUserHeadImageDC.m; sourceTree = "<group>"; };
 		93A1F5CF1C6281B800CFEEC4 /* good_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = good_logo.png; sourceTree = "<group>"; };
 		93A1F5D11C6281D900CFEEC4 /* SaleActivityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaleActivityCell.h; sourceTree = "<group>"; };
 		93A1F5D21C6281D900CFEEC4 /* SaleActivityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaleActivityCell.m; sourceTree = "<group>"; };
@@ -1600,6 +1603,8 @@
 			children = (
 				93899B551C74C7470065B819 /* UserInfoDC.h */,
 				93899B561C74C7470065B819 /* UserInfoDC.m */,
+				939715421C761BE4007582C4 /* ChangeUserHeadImageDC.h */,
+				939715431C761BE4007582C4 /* ChangeUserHeadImageDC.m */,
 			);
 			path = "个人";
 			sourceTree = "<group>";
@@ -2050,6 +2055,7 @@
 				93899B571C74C7470065B819 /* UserInfoDC.m in Sources */,
 				93A1F5DE1C6281D900CFEEC4 /* TuanGouCell.m in Sources */,
 				33F06F981C42477300DAC58F /* main.m in Sources */,
+				939715441C761BE4007582C4 /* ChangeUserHeadImageDC.m in Sources */,
 				33DD6BB51C6103CA00CE6B31 /* IQKeyboardReturnKeyHandler.m in Sources */,
 				33DD6BB81C6103CA00CE6B31 /* IQBarButtonItem.m in Sources */,
 				33CAE4361C7360F30038748F /* ProductImageTextCell.m in Sources */,
