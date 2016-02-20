@@ -27,6 +27,12 @@
 // Managers.
 #import "MainViewManager.h"
 
+// ViewModel
+#import "UserInfoModel.h"
+
+// Vendor
+#import "UIImageView+WebCache.h"
+
 #endif
 
 #endif

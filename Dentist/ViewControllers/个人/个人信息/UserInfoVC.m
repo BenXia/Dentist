@@ -24,6 +24,7 @@ UINavigationControllerDelegate>
 @property (strong, nonatomic) ChangeUserHeadImageDC *changeUserHeadRequest;
 @property (strong, nonatomic) NSMutableArray *modelArray;
 @property (strong, nonatomic) UIImageView *headImageView;
+@property (strong, nonatomic) UIImage *uploadImage;
 
 @end
 
@@ -32,8 +33,8 @@ UINavigationControllerDelegate>
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"个人信息";
-    self.userInfoRequest = [[UserInfoDC alloc] initWithDelegate:self];
-    [self.userInfoRequest requestWithArgs:nil];
+//    self.userInfoRequest = [[UserInfoDC alloc] initWithDelegate:self];
+//    [self.userInfoRequest requestWithArgs:nil];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -66,14 +67,14 @@ UINavigationControllerDelegate>
     }
     if (indexPath.row == 0) {
         cell.textLabel.text = @"头像";
-        [self.headImageView sd_setImageWithURL:[NSURL URLWithString:self.userInfoRequest.userInfoModel.headImagePath] placeholderImage:[UIImage imageNamed:@"imageDownloadFail.png"]];
+        [self.headImageView sd_setImageWithURL:[NSURL URLWithString:[UserInfoModel sharedUserInfoModel].headPath] placeholderImage:[UIImage imageNamed:@"user_pic_boy"]];
         [cell.contentView addSubview:self.headImageView];
     } else if (indexPath.row == 1) {
         cell.textLabel.text = @"昵称";
-        cell.detailTextLabel.text = self.userInfoRequest.userInfoModel.nick;
+        cell.detailTextLabel.text = [UserInfoModel sharedUserInfoModel].nickName;
     } else if (indexPath.row == 2) {
         cell.textLabel.text = @"绑定手机号";
-        cell.detailTextLabel.text = self.userInfoRequest.userInfoModel.phoneNum;
+        cell.detailTextLabel.text = [UserInfoModel sharedUserInfoModel].mobile;
     } else if (indexPath.row == 3) {
         cell.textLabel.text = @"我的地址";
     }
@@ -156,14 +157,25 @@ UINavigationControllerDelegate>
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     UIImage* image =[info objectForKey:UIImagePickerControllerEditedImage];
+    self.uploadImage = image;
     // 回到当前页面
-    @weakify(self);
     [self.navigationController dismissViewControllerAnimated:YES completion:^{
-        @strongify(self);
         //上传头像接口
-        self.changeUserHeadRequest = [[ChangeUserHeadImageDC alloc] initWithDelegate:self];
-        self.changeUserHeadRequest.headImage = image;
-        [self.changeUserHeadRequest requestWithArgs:nil];
+        [[[PictureUploader alloc] init] uploadHeadPicture:image imageUploadType:kImageUploadType_HeadimgUploadType success:^(id obj) {
+            [[GCDQueue mainQueue] queueBlock:^{
+                //更新缓存
+                [Utilities showToastWithText:@"头像上传成功"];
+                [UserInfoModel sharedUserInfoModel].headPath = obj;
+                [self.headImageView sd_setImageWithURL:[NSURL URLWithString:obj] placeholderImage:[UIImage imageNamed:@"user_pic_boy"]];
+            }];
+        } fail:^(NSError *error) {
+            [[GCDQueue mainQueue] queueBlock:^{
+                [Utilities showToastWithText:@"头像上传失败"];
+            }];
+            
+        } progress:^(CGFloat afloat) {
+            
+        }];
     }];
 }
 
@@ -188,6 +200,11 @@ UINavigationControllerDelegate>
         }
     }
 }
+
+#pragma mark - public method
+
+
+
 
 #pragma mark - setters and getters
 
