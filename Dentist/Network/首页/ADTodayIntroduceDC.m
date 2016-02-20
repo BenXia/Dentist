@@ -29,7 +29,9 @@
                                                                  options:0
                                                                    error:&error];
     if (!error || [resultArray isKindOfClass:[NSArray class]]) {
-        
+        for (NSDictionary *dict in resultArray) {
+            
+        }
         result = YES;
     }
     
