@@ -30,7 +30,7 @@
 #ifdef SD_WEBP
     else if ([imageContentType isEqualToString:@"image/webp"])
     {
-        image = [UIImage sd_imageWithWebPData:data];
+        image = [UIImage imageWithWebPData:data];
     }
 #endif
     else {

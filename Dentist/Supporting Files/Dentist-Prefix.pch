@@ -20,10 +20,6 @@
 // Def.
 #import "constdef.h"
 
-// ViewControllers.
-#import "BaseNavigationController.h"
-#import "BaseViewController.h"
-
 // Managers.
 #import "MainViewManager.h"
 
