@@ -7,6 +7,7 @@
 //
 
 #import "ProductDetailVC.h"
+#import "ProductDetailDC.h"
 #import "ProductDetailVM.h"
 #import "SDCycleScrollView.h"
 #import "ProductBaseInfoCell.h"
@@ -32,6 +33,7 @@ SDCycleScrollViewDelegate>
 @property (weak,   nonatomic) IBOutlet SDCycleScrollView *cycleScrollView;
 
 @property (nonatomic, strong) ProductDetailVM *vm;
+@property (nonatomic, strong) ProductDetailDC *dc;
 
 @property (weak, nonatomic) IBOutlet UIControl *popupCustomiseViewBackgroundView;
 @property (weak, nonatomic) IBOutlet UIView *popupCustomiseView;
