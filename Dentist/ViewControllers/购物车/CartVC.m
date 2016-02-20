@@ -10,6 +10,7 @@
 #import "ProductBriefInfoCell.h"
 #import "ProductDetailVC.h"
 #import "OrderVC.h"
+#import "WebBrowserVC.h"
 
 static NSString* const kCellReuseIdentifier = @"ProductBriefInfoCell";
 
@@ -166,8 +167,10 @@ static NSString* const kCellReuseIdentifier = @"ProductBriefInfoCell";
 #pragma mark - IBActions
 
 - (void)didClickOnEditNavButtonAction:(id)sender {
-    ProductDetailVC *vc = [[ProductDetailVC alloc] init];
-    //OrderVC *vc = [[OrderVC alloc] init];
+    //ProductDetailVC *vc = [[ProductDetailVC alloc] init];
+    OrderVC *vc = [[OrderVC alloc] init];
+    //WebBrowserVC *vc = [[WebBrowserVC alloc] initWithLinkTitle:nil
+    //                                                   linkURL:[NSURL URLWithString:@"http://www.sohu.com"]];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }

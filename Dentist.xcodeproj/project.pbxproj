@@ -44,6 +44,22 @@
 		33CAF1091C720C7000348763 /* btn_paying_default@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33CAF1051C720C7000348763 /* btn_paying_default@3x.png */; };
 		33CAF10A1C720C7000348763 /* btn_paying_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33CAF1061C720C7000348763 /* btn_paying_pressed@2x.png */; };
 		33CAF10B1C720C7000348763 /* btn_paying_pressed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33CAF1071C720C7000348763 /* btn_paying_pressed@3x.png */; };
+		33CAF8781C7809690015B4BC /* WebBrowserVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CAF8751C7809690015B4BC /* WebBrowserVC.m */; };
+		33CAF87A1C7809690015B4BC /* WebBrowserVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33CAF8771C7809690015B4BC /* WebBrowserVC.xib */; };
+		33CAF8881C780C030015B4BC /* easyjs-inject.js in Resources */ = {isa = PBXBuildFile; fileRef = 33CAF87D1C780C030015B4BC /* easyjs-inject.js */; };
+		33CAF8891C780C030015B4BC /* EasyJSDataFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CAF87F1C780C030015B4BC /* EasyJSDataFunction.m */; };
+		33CAF88A1C780C030015B4BC /* EasyJSWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CAF8811C780C030015B4BC /* EasyJSWebView.m */; };
+		33CAF88B1C780C030015B4BC /* EasyJSWebViewProxyDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CAF8831C780C030015B4BC /* EasyJSWebViewProxyDelegate.m */; };
+		33CAF88C1C780C030015B4BC /* PPEasyWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CAF8851C780C030015B4BC /* PPEasyWebViewController.m */; };
+		33CAF88D1C780C030015B4BC /* PPJSExternal.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CAF8871C780C030015B4BC /* PPJSExternal.m */; };
+		33CAF8961C7810D20015B4BC /* web_left_highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 33CAF88E1C7810D20015B4BC /* web_left_highlighted.png */; };
+		33CAF8971C7810D20015B4BC /* web_left_highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33CAF88F1C7810D20015B4BC /* web_left_highlighted@2x.png */; };
+		33CAF8981C7810D20015B4BC /* web_left.png in Resources */ = {isa = PBXBuildFile; fileRef = 33CAF8901C7810D20015B4BC /* web_left.png */; };
+		33CAF8991C7810D20015B4BC /* web_left@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33CAF8911C7810D20015B4BC /* web_left@2x.png */; };
+		33CAF89A1C7810D20015B4BC /* web_right_highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 33CAF8921C7810D20015B4BC /* web_right_highlighted.png */; };
+		33CAF89B1C7810D20015B4BC /* web_right_highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33CAF8931C7810D20015B4BC /* web_right_highlighted@2x.png */; };
+		33CAF89C1C7810D20015B4BC /* web_right.png in Resources */ = {isa = PBXBuildFile; fileRef = 33CAF8941C7810D20015B4BC /* web_right.png */; };
+		33CAF89D1C7810D20015B4BC /* web_right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33CAF8951C7810D20015B4BC /* web_right@2x.png */; };
 		33D00F3A1C62375B00499EE9 /* btn_numberminus72_default@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33D00F361C62375B00499EE9 /* btn_numberminus72_default@3x.png */; };
 		33D00F3B1C62375B00499EE9 /* btn_numberminus72_pressed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33D00F371C62375B00499EE9 /* btn_numberminus72_pressed@3x.png */; };
 		33D00F3C1C62375B00499EE9 /* btn_numberplus72_default@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33D00F381C62375B00499EE9 /* btn_numberplus72_default@3x.png */; };
@@ -407,6 +423,28 @@
 		33CAF1051C720C7000348763 /* btn_paying_default@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_paying_default@3x.png"; sourceTree = "<group>"; };
 		33CAF1061C720C7000348763 /* btn_paying_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_paying_pressed@2x.png"; sourceTree = "<group>"; };
 		33CAF1071C720C7000348763 /* btn_paying_pressed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_paying_pressed@3x.png"; sourceTree = "<group>"; };
+		33CAF8741C7809690015B4BC /* WebBrowserVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebBrowserVC.h; sourceTree = "<group>"; };
+		33CAF8751C7809690015B4BC /* WebBrowserVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebBrowserVC.m; sourceTree = "<group>"; };
+		33CAF8771C7809690015B4BC /* WebBrowserVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebBrowserVC.xib; sourceTree = "<group>"; };
+		33CAF87D1C780C030015B4BC /* easyjs-inject.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "easyjs-inject.js"; sourceTree = "<group>"; };
+		33CAF87E1C780C030015B4BC /* EasyJSDataFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyJSDataFunction.h; sourceTree = "<group>"; };
+		33CAF87F1C780C030015B4BC /* EasyJSDataFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyJSDataFunction.m; sourceTree = "<group>"; };
+		33CAF8801C780C030015B4BC /* EasyJSWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyJSWebView.h; sourceTree = "<group>"; };
+		33CAF8811C780C030015B4BC /* EasyJSWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyJSWebView.m; sourceTree = "<group>"; };
+		33CAF8821C780C030015B4BC /* EasyJSWebViewProxyDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyJSWebViewProxyDelegate.h; sourceTree = "<group>"; };
+		33CAF8831C780C030015B4BC /* EasyJSWebViewProxyDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyJSWebViewProxyDelegate.m; sourceTree = "<group>"; };
+		33CAF8841C780C030015B4BC /* PPEasyWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPEasyWebViewController.h; sourceTree = "<group>"; };
+		33CAF8851C780C030015B4BC /* PPEasyWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPEasyWebViewController.m; sourceTree = "<group>"; };
+		33CAF8861C780C030015B4BC /* PPJSExternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPJSExternal.h; sourceTree = "<group>"; };
+		33CAF8871C780C030015B4BC /* PPJSExternal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPJSExternal.m; sourceTree = "<group>"; };
+		33CAF88E1C7810D20015B4BC /* web_left_highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = web_left_highlighted.png; sourceTree = "<group>"; };
+		33CAF88F1C7810D20015B4BC /* web_left_highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "web_left_highlighted@2x.png"; sourceTree = "<group>"; };
+		33CAF8901C7810D20015B4BC /* web_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = web_left.png; sourceTree = "<group>"; };
+		33CAF8911C7810D20015B4BC /* web_left@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "web_left@2x.png"; sourceTree = "<group>"; };
+		33CAF8921C7810D20015B4BC /* web_right_highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = web_right_highlighted.png; sourceTree = "<group>"; };
+		33CAF8931C7810D20015B4BC /* web_right_highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "web_right_highlighted@2x.png"; sourceTree = "<group>"; };
+		33CAF8941C7810D20015B4BC /* web_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = web_right.png; sourceTree = "<group>"; };
+		33CAF8951C7810D20015B4BC /* web_right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "web_right@2x.png"; sourceTree = "<group>"; };
 		33D00F361C62375B00499EE9 /* btn_numberminus72_default@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_numberminus72_default@3x.png"; sourceTree = "<group>"; };
 		33D00F371C62375B00499EE9 /* btn_numberminus72_pressed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_numberminus72_pressed@3x.png"; sourceTree = "<group>"; };
 		33D00F381C62375B00499EE9 /* btn_numberplus72_default@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_numberplus72_default@3x.png"; sourceTree = "<group>"; };
@@ -958,6 +996,42 @@
 			path = "下单页";
 			sourceTree = "<group>";
 		};
+		33CAF8731C7809690015B4BC /* H5页面 */ = {
+			isa = PBXGroup;
+			children = (
+				33CAF8741C7809690015B4BC /* WebBrowserVC.h */,
+				33CAF8751C7809690015B4BC /* WebBrowserVC.m */,
+				33CAF8771C7809690015B4BC /* WebBrowserVC.xib */,
+			);
+			path = "H5页面";
+			sourceTree = "<group>";
+		};
+		33CAF87B1C780C030015B4BC /* 公用 */ = {
+			isa = PBXGroup;
+			children = (
+				33CAF87C1C780C030015B4BC /* JSWebView */,
+			);
+			path = "公用";
+			sourceTree = "<group>";
+		};
+		33CAF87C1C780C030015B4BC /* JSWebView */ = {
+			isa = PBXGroup;
+			children = (
+				33CAF87D1C780C030015B4BC /* easyjs-inject.js */,
+				33CAF87E1C780C030015B4BC /* EasyJSDataFunction.h */,
+				33CAF87F1C780C030015B4BC /* EasyJSDataFunction.m */,
+				33CAF8801C780C030015B4BC /* EasyJSWebView.h */,
+				33CAF8811C780C030015B4BC /* EasyJSWebView.m */,
+				33CAF8821C780C030015B4BC /* EasyJSWebViewProxyDelegate.h */,
+				33CAF8831C780C030015B4BC /* EasyJSWebViewProxyDelegate.m */,
+				33CAF8841C780C030015B4BC /* PPEasyWebViewController.h */,
+				33CAF8851C780C030015B4BC /* PPEasyWebViewController.m */,
+				33CAF8861C780C030015B4BC /* PPJSExternal.h */,
+				33CAF8871C780C030015B4BC /* PPJSExternal.m */,
+			);
+			path = JSWebView;
+			sourceTree = "<group>";
+		};
 		33D0284F1C74BABC00277C3C /* 地址 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1281,6 +1355,8 @@
 		33F070391C4295F200DAC58F /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				33CAF87B1C780C030015B4BC /* 公用 */,
+				33CAF8731C7809690015B4BC /* H5页面 */,
 				33F070401C42964A00DAC58F /* 启动页 */,
 				33F070421C42964A00DAC58F /* 注册 */,
 				33F0703F1C42964A00DAC58F /* 登录 */,
@@ -1460,6 +1536,14 @@
 				33DD6BE21C61195600CE6B31 /* btn_choice_t@3x.png */,
 				33DD6BE31C61195600CE6B31 /* ic_top_search@2x.png */,
 				33DD6BE41C61195600CE6B31 /* ic_top_search@3x.png */,
+				33CAF88E1C7810D20015B4BC /* web_left_highlighted.png */,
+				33CAF88F1C7810D20015B4BC /* web_left_highlighted@2x.png */,
+				33CAF8901C7810D20015B4BC /* web_left.png */,
+				33CAF8911C7810D20015B4BC /* web_left@2x.png */,
+				33CAF8921C7810D20015B4BC /* web_right_highlighted.png */,
+				33CAF8931C7810D20015B4BC /* web_right_highlighted@2x.png */,
+				33CAF8941C7810D20015B4BC /* web_right.png */,
+				33CAF8951C7810D20015B4BC /* web_right@2x.png */,
 			);
 			path = "公共";
 			sourceTree = "<group>";
@@ -1782,6 +1866,7 @@
 				33CAE4321C7360D40038748F /* ProductSeeMoreCell.xib in Resources */,
 				932839C71C637EFF004C21CD /* 待处理@3x.png in Resources */,
 				93A1F5D01C6281B800CFEEC4 /* good_logo.png in Resources */,
+				33CAF89C1C7810D20015B4BC /* web_right.png in Resources */,
 				33CAF10B1C720C7000348763 /* btn_paying_pressed@3x.png in Resources */,
 				33D187451C70CE3800658F3D /* 立即购买@3x.png in Resources */,
 				93624C201C44170100262B65 /* btn_clinical_default.png in Resources */,
@@ -1798,6 +1883,8 @@
 				33CAF10A1C720C7000348763 /* btn_paying_pressed@2x.png in Resources */,
 				33D028861C74C4CD00277C3C /* btn_backround_default@3x.png in Resources */,
 				9377AC611C5375DB003B24B1 /* HomePageCourseListCell.xib in Resources */,
+				33CAF89B1C7810D20015B4BC /* web_right_highlighted@2x.png in Resources */,
+				33CAF8991C7810D20015B4BC /* web_left@2x.png in Resources */,
 				33CAE43D1C7372DB0038748F /* OrderReceiverCell.xib in Resources */,
 				9379D3C51C6338BB00390702 /* 我的-浏览记录@3x.png in Resources */,
 				33DD6CAF1C611A5500CE6B31 /* Btn_SearchDelete_default@2X.png in Resources */,
@@ -1834,6 +1921,7 @@
 				33DD6CDA1C611A5500CE6B31 /* img_avatar.png in Resources */,
 				33DD6CF21C611A5500CE6B31 /* 定制套装@2x.png in Resources */,
 				33D0285E1C74BC3D00277C3C /* MyAddressListVC.xib in Resources */,
+				33CAF8971C7810D20015B4BC /* web_left_highlighted@2x.png in Resources */,
 				9379D3AE1C63239100390702 /* MultilevelTableViewCell.xib in Resources */,
 				33DD6CDC1C611A5500CE6B31 /* like_fs.png in Resources */,
 				33DD6D0C1C611A5500CE6B31 /* 支付方式-微信支付@2x.png in Resources */,
@@ -1862,15 +1950,18 @@
 				93624C211C44170100262B65 /* btn_clinical_pressed.png in Resources */,
 				33F070651C42A40F00DAC58F /* CategoryVC.xib in Resources */,
 				33D028781C74BD2900277C3C /* FeedbackVC.xib in Resources */,
+				33CAF89A1C7810D20015B4BC /* web_right_highlighted.png in Resources */,
 				33CAE4371C7360F30038748F /* ProductImageTextCell.xib in Resources */,
 				932839C91C637EFF004C21CD /* 待评价@3x.png in Resources */,
 				33D00F3A1C62375B00499EE9 /* btn_numberminus72_default@3x.png in Resources */,
 				33D00F3B1C62375B00499EE9 /* btn_numberminus72_pressed@3x.png in Resources */,
+				33CAF8881C780C030015B4BC /* easyjs-inject.js in Resources */,
 				33DD6CCE1C611A5500CE6B31 /* Ico_bySelf@2X.png in Resources */,
 				932839C81C637EFF004C21CD /* 待评价@2x.png in Resources */,
 				33CAF1091C720C7000348763 /* btn_paying_default@3x.png in Resources */,
 				33DD6CB01C611A5500CE6B31 /* Btn_SearchDelete_pressed@2X.png in Resources */,
 				33F06F961C42477300DAC58F /* Images.xcassets in Resources */,
+				33CAF8981C7810D20015B4BC /* web_left.png in Resources */,
 				33CAF1081C720C7000348763 /* btn_paying_default@2x.png in Resources */,
 				33D0287F1C74C4BE00277C3C /* icon_close@2x.png in Resources */,
 				93624C281C44170100262B65 /* btn_mechanic_default.png in Resources */,
@@ -1897,6 +1988,7 @@
 				33DD6C971C611A5500CE6B31 /* Btn_Back_pressed@2X.png in Resources */,
 				33DD6CDD1C611A5500CE6B31 /* like_t.png in Resources */,
 				33DD6CE01C611A5500CE6B31 /* nav_SearchBg@2x.png in Resources */,
+				33CAF8961C7810D20015B4BC /* web_left_highlighted.png in Resources */,
 				33DD6CE41C611A5500CE6B31 /* tv_msg_number_r.png in Resources */,
 				33DD6BE61C61195600CE6B31 /* btn_back_white@3x.png in Resources */,
 				33D00F3C1C62375B00499EE9 /* btn_numberplus72_default@3x.png in Resources */,
@@ -1914,6 +2006,7 @@
 				33DD6D1F1C611A5500CE6B31 /* 评价晒单-相机@3x.png in Resources */,
 				33D187441C70CE3800658F3D /* 立即购买@2x.png in Resources */,
 				33DD6CD31C611A5500CE6B31 /* ico_idvip.png in Resources */,
+				33CAF87A1C7809690015B4BC /* WebBrowserVC.xib in Resources */,
 				33DD6BEA1C61195600CE6B31 /* btn_choice_t@3x.png in Resources */,
 				33DD6CDF1C611A5500CE6B31 /* msg_null.png in Resources */,
 				33DD6CAD1C611A5500CE6B31 /* Btn_Search_default@2X.png in Resources */,
@@ -1929,6 +2022,7 @@
 				9379D3C31C6338BB00390702 /* 我的-普通用户@3x.png in Resources */,
 				33DD6CD71C611A5500CE6B31 /* ico_ordering.png in Resources */,
 				33DD6CEF1C611A5500CE6B31 /* 图层-0@3x.png in Resources */,
+				33CAF89D1C7810D20015B4BC /* web_right@2x.png in Resources */,
 				33F06FBF1C424D2600DAC58F /* StudioCommonBundle.bundle in Resources */,
 				33DD6D221C611A5500CE6B31 /* 赠@2x.png in Resources */,
 				33DD6BBC1C6103CA00CE6B31 /* IQKeyboardManager.bundle in Resources */,
@@ -2047,6 +2141,7 @@
 				33D0285D1C74BC3D00277C3C /* MyAddressListVC.m in Sources */,
 				33CAE4091C735B2C0038748F /* OrderVM.m in Sources */,
 				33DD6BBA1C6103CA00CE6B31 /* IQToolbar.m in Sources */,
+				33CAF88D1C780C030015B4BC /* PPJSExternal.m in Sources */,
 				932839BE1C6378A9004C21CD /* MyOrderCell.m in Sources */,
 				93B405CA1C4A8304005499C4 /* LoginVC.m in Sources */,
 				33DD6B391C60ED2800CE6B31 /* ProductBriefInfoCell.m in Sources */,
@@ -2080,10 +2175,12 @@
 				33DD6BB21C6103CA00CE6B31 /* IQUIView+Hierarchy.m in Sources */,
 				93F2A01A1C49F0330034486B /* UserInfoModel.m in Sources */,
 				33DD6B4F1C60EDCC00CE6B31 /* AgreementVC.m in Sources */,
+				33CAF88B1C780C030015B4BC /* EasyJSWebViewProxyDelegate.m in Sources */,
 				33DD6BB41C6103CA00CE6B31 /* IQKeyboardManager.m in Sources */,
 				33D187391C70C9D100658F3D /* ProductDetailVC.m in Sources */,
 				9377AC681C53793A003B24B1 /* BannerModel.m in Sources */,
 				33D028711C74BCDF00277C3C /* PayFailedVC.m in Sources */,
+				33CAF8781C7809690015B4BC /* WebBrowserVC.m in Sources */,
 				33F0705B1C42A3D400DAC58F /* MainPageTabBarVC.m in Sources */,
 				33CAF1011C72098200348763 /* OrderVC.m in Sources */,
 				9379D3AD1C63239100390702 /* MultilevelTableViewCell.m in Sources */,
@@ -2099,8 +2196,11 @@
 				33DD6BB11C6103CA00CE6B31 /* IQNSArray+Sort.m in Sources */,
 				93DEA8D11C4BCBAA008211F7 /* TADotView.m in Sources */,
 				33F070691C42A42100DAC58F /* CartVC.m in Sources */,
+				33CAF8891C780C030015B4BC /* EasyJSDataFunction.m in Sources */,
 				93DEA8D21C4BCBAA008211F7 /* TAPageControl.m in Sources */,
+				33CAF88C1C780C030015B4BC /* PPEasyWebViewController.m in Sources */,
 				33CAE4501C7373AE0038748F /* OrderBottomInfoCell.m in Sources */,
+				33CAF88A1C780C030015B4BC /* EasyJSWebView.m in Sources */,
 				33F070511C429AD300DAC58F /* MainViewManager.m in Sources */,
 				93DEA8D01C4BCBAA008211F7 /* TAAnimatedDotView.m in Sources */,
 				93DEA8D31C4BCBAA008211F7 /* SDCollectionViewCell.m in Sources */,
