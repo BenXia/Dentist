@@ -1,16 +1,16 @@
 //
-//  ADTodayIntroduceDC.m
+//  SalesPromotionDC.m
 //  Dentist
 //
-//  Created by 王涛 on 16/2/5.
+//  Created by 王涛 on 16/2/20.
 //  Copyright © 2016年 iOSStudio. All rights reserved.
 //
 
-#import "ADTodayIntroduceDC.h"
+#import "SalesPromotionDC.h"
 
-@implementation ADTodayIntroduceDC
+@implementation SalesPromotionDC
 - (NSDictionary *)requestURLArgs {
-    return @{@"method":@"ad.tuijian",@"v":@"0.0.1"};
+    return @{@"method":@"ad.cuxiao",@"v":@"0.0.1"};
 }
 
 - (RequestMethod)requestMethod {
@@ -26,8 +26,8 @@
     BOOL result = NO;
     NSError *error = nil;
     NSArray *resultArray = [NSJSONSerialization JSONObjectWithString:content
-                                                                 options:0
-                                                                   error:&error];
+                                                             options:0
+                                                               error:&error];
     if (!error || [resultArray isKindOfClass:[NSArray class]]) {
         for (NSDictionary *dict in resultArray) {
             ProductIntroduceModel *model = [[ProductIntroduceModel alloc] init];
@@ -41,7 +41,6 @@
         }
         result = YES;
     }
-    
     return result;
 }
 @end

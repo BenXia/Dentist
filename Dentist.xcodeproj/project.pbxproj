@@ -271,6 +271,9 @@
 		88C3BACE1C781F5B001F4D85 /* ProductDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C3BACC1C781F5B001F4D85 /* ProductDetailModel.m */; };
 		930C342A1C7819D0008823F9 /* user_pic_boy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 930C34281C7819D0008823F9 /* user_pic_boy@2x.png */; };
 		930C342B1C7819D0008823F9 /* user_pic_boy@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 930C34291C7819D0008823F9 /* user_pic_boy@3x.png */; };
+		930C34361C782073008823F9 /* ProductIntroduceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 930C34351C782073008823F9 /* ProductIntroduceModel.m */; };
+		930C34391C783ADF008823F9 /* GroupBuyingDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 930C34381C783ADF008823F9 /* GroupBuyingDC.m */; };
+		930C343C1C783E5C008823F9 /* SalesPromotionDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 930C343B1C783E5C008823F9 /* SalesPromotionDC.m */; };
 		932839BE1C6378A9004C21CD /* MyOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 932839BC1C6378A9004C21CD /* MyOrderCell.m */; };
 		932839BF1C6378A9004C21CD /* MyOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 932839BD1C6378A9004C21CD /* MyOrderCell.xib */; };
 		932839C61C637EFF004C21CD /* 待处理@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 932839C01C637EFF004C21CD /* 待处理@2x.png */; };
@@ -717,6 +720,12 @@
 		88C3BACC1C781F5B001F4D85 /* ProductDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductDetailModel.m; sourceTree = "<group>"; };
 		930C34281C7819D0008823F9 /* user_pic_boy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_pic_boy@2x.png"; sourceTree = "<group>"; };
 		930C34291C7819D0008823F9 /* user_pic_boy@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_pic_boy@3x.png"; sourceTree = "<group>"; };
+		930C34341C782073008823F9 /* ProductIntroduceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductIntroduceModel.h; sourceTree = "<group>"; };
+		930C34351C782073008823F9 /* ProductIntroduceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductIntroduceModel.m; sourceTree = "<group>"; };
+		930C34371C783ADF008823F9 /* GroupBuyingDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupBuyingDC.h; sourceTree = "<group>"; };
+		930C34381C783ADF008823F9 /* GroupBuyingDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupBuyingDC.m; sourceTree = "<group>"; };
+		930C343A1C783E5C008823F9 /* SalesPromotionDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SalesPromotionDC.h; sourceTree = "<group>"; };
+		930C343B1C783E5C008823F9 /* SalesPromotionDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SalesPromotionDC.m; sourceTree = "<group>"; };
 		932839BB1C6378A9004C21CD /* MyOrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOrderCell.h; sourceTree = "<group>"; };
 		932839BC1C6378A9004C21CD /* MyOrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOrderCell.m; sourceTree = "<group>"; };
 		932839BD1C6378A9004C21CD /* MyOrderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyOrderCell.xib; sourceTree = "<group>"; };
@@ -1617,6 +1626,12 @@
 				9377AC671C53793A003B24B1 /* BannerModel.m */,
 				93B497DA1C646B7D00275D88 /* ADTodayIntroduceDC.h */,
 				93B497DB1C646B7D00275D88 /* ADTodayIntroduceDC.m */,
+				930C34341C782073008823F9 /* ProductIntroduceModel.h */,
+				930C34351C782073008823F9 /* ProductIntroduceModel.m */,
+				930C34371C783ADF008823F9 /* GroupBuyingDC.h */,
+				930C34381C783ADF008823F9 /* GroupBuyingDC.m */,
+				930C343A1C783E5C008823F9 /* SalesPromotionDC.h */,
+				930C343B1C783E5C008823F9 /* SalesPromotionDC.m */,
 			);
 			path = "首页";
 			sourceTree = "<group>";
@@ -2177,10 +2192,12 @@
 				93F2A0161C49E93C0034486B /* LoginDC.m in Sources */,
 				93A1F5DA1C6281D900CFEEC4 /* SaleActivityCell.m in Sources */,
 				93899B571C74C7470065B819 /* UserInfoDC.m in Sources */,
+				930C34361C782073008823F9 /* ProductIntroduceModel.m in Sources */,
 				93A1F5DE1C6281D900CFEEC4 /* TuanGouCell.m in Sources */,
 				33F06F981C42477300DAC58F /* main.m in Sources */,
 				939715441C761BE4007582C4 /* ChangeUserHeadImageDC.m in Sources */,
 				33DD6BB51C6103CA00CE6B31 /* IQKeyboardReturnKeyHandler.m in Sources */,
+				930C34391C783ADF008823F9 /* GroupBuyingDC.m in Sources */,
 				33DD6BB81C6103CA00CE6B31 /* IQBarButtonItem.m in Sources */,
 				33CAE4361C7360F30038748F /* ProductImageTextCell.m in Sources */,
 				93DEA8CF1C4BCBAA008211F7 /* TAAbstractDotView.m in Sources */,
@@ -2201,6 +2218,7 @@
 				33DD6BB91C6103CA00CE6B31 /* IQTitleBarButtonItem.m in Sources */,
 				93B497DC1C646B7D00275D88 /* ADTodayIntroduceDC.m in Sources */,
 				33DD6BB31C6103CA00CE6B31 /* IQUIWindow+Hierarchy.m in Sources */,
+				930C343C1C783E5C008823F9 /* SalesPromotionDC.m in Sources */,
 				33DD6BB21C6103CA00CE6B31 /* IQUIView+Hierarchy.m in Sources */,
 				33DD6B4F1C60EDCC00CE6B31 /* AgreementVC.m in Sources */,
 				33CAF88B1C780C030015B4BC /* EasyJSWebViewProxyDelegate.m in Sources */,

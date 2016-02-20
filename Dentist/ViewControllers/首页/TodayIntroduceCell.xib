@@ -55,6 +55,9 @@
                         <state key="normal" title="研磨器哪家强？">
                             <color key="titleColor" red="0.14901960780000001" green="0.31372549020000001" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
+                        <connections>
+                            <action selector="onFirstBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="w4A-eR-7lM"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ao-lx-nko">
                         <rect key="frame" x="141" y="152" width="89" height="151.5"/>
@@ -63,6 +66,9 @@
                         <state key="normal" title="我我我我我我我">
                             <color key="titleColor" red="0.14901960780000001" green="0.31372549020000001" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
+                        <connections>
+                            <action selector="onThirdBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="R31-uv-6Ps"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W6S-3R-geJ">
                         <rect key="frame" x="231" y="152" width="89" height="151.5"/>
@@ -71,6 +77,9 @@
                         <state key="normal" title="哈哈哈">
                             <color key="titleColor" red="0.14901960780000001" green="0.31372549020000001" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
+                        <connections>
+                            <action selector="onFourthBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="eCj-3b-44R"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fDM-wv-MBs">
                         <rect key="frame" x="231" y="0.0" width="89" height="151.5"/>
@@ -79,6 +88,9 @@
                         <state key="normal" title="工艺先进用料讲">
                             <color key="titleColor" red="0.14901960780000001" green="0.31372549020000001" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
+                        <connections>
+                            <action selector="onSecondBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="7AW-JH-D7K"/>
+                        </connections>
                     </button>
                 </subviews>
                 <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>

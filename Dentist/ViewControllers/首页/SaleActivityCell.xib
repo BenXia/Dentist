@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -200,6 +200,20 @@
                     </mask>
                 </variation>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="firstItemImageView" destination="E10-Qq-Lzz" id="eK7-qu-3eX"/>
+                <outlet property="firstItemNameLabel" destination="XuC-oq-gBr" id="ZRI-jE-zer"/>
+                <outlet property="firstSalePriceBtn" destination="zvo-Lx-YdL" id="CUY-c9-kfh"/>
+                <outlet property="headImageView" destination="MSC-dL-kHg" id="85h-hi-hpb"/>
+                <outlet property="secondItemImageView" destination="U4L-wb-ESZ" id="kw6-aU-tm6"/>
+                <outlet property="secondItemNameLabel" destination="OuI-ZD-hcn" id="bhS-RA-rC3"/>
+                <outlet property="secondItemPriceLabel" destination="Nae-72-pmh" id="d2J-rL-SGs"/>
+                <outlet property="secondtSalePriceBtn" destination="fYk-Kl-plR" id="9lJ-Zb-wVz"/>
+                <outlet property="thirdItemImageView" destination="vPH-do-GtU" id="R0D-nq-vGv"/>
+                <outlet property="thirdItemNameLabel" destination="gRJ-oe-51v" id="vIx-xK-U2Y"/>
+                <outlet property="thirdItemPriceLabel" destination="qfZ-OE-hM7" id="BAg-C6-S6D"/>
+                <outlet property="thirdSalePriceBtn" destination="Zx8-Hu-QS5" id="Yot-Eu-kfR"/>
+            </connections>
             <point key="canvasLocation" x="243.5" y="285.5"/>
         </tableViewCell>
     </objects>

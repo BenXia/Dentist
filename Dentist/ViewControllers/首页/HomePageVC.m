@@ -12,6 +12,8 @@
 #import "AppDeinitializer.h"
 #import "ADBannerDC.h"
 #import "ADTodayIntroduceDC.h"
+#import "GroupBuyingDC.h"
+#import "SalesPromotionDC.h"
 #import "BannerModel.h"
 #import "TodayIntroduceCell.h"
 #import "TuanGouCell.h"
@@ -41,7 +43,8 @@ PPDataControllerDelegate>
 //网络请求
 @property (nonatomic, strong) ADBannerDC *adBannerRequest;
 @property (nonatomic, strong) ADTodayIntroduceDC *adTodayIntroduceRequest;
-
+@property (nonatomic, strong) GroupBuyingDC *groupBuyingRequest;
+@property (nonatomic, strong) SalesPromotionDC *salesPromotionRequest;
 
 @end
 
@@ -225,14 +228,17 @@ PPDataControllerDelegate>
 #pragma mark - NetWork
 
 - (void)downLoadfromNet {
-    self.adBannerRequest = [[ADBannerDC alloc] init];
-    self.adBannerRequest.delegate = self;
+    self.adBannerRequest = [[ADBannerDC alloc] initWithDelegate:self];
     [self.adBannerRequest requestWithArgs:nil];
     
-    self.adTodayIntroduceRequest = [[ADTodayIntroduceDC alloc] init];
-    self.adTodayIntroduceRequest.delegate = self;
+    self.adTodayIntroduceRequest = [[ADTodayIntroduceDC alloc] initWithDelegate:self];
     [self.adTodayIntroduceRequest requestWithArgs:nil];
     
+    self.groupBuyingRequest = [[GroupBuyingDC alloc] initWithDelegate:self];
+    [self.groupBuyingRequest requestWithArgs:nil];
+    
+    self.salesPromotionRequest = [[SalesPromotionDC alloc] initWithDelegate:self];
+    [self.groupBuyingRequest requestWithArgs:nil];
 }
 
 #pragma mark - IBActions
@@ -297,11 +303,11 @@ PPDataControllerDelegate>
         return self.tableViewCourseListCell;
     } else if (indexPath.section == 1) {
         TodayIntroduceCell *cell = [tableView dequeueReusableCellWithIdentifier:[TodayIntroduceCell identifier] forIndexPath:indexPath];
-        cell.cellModel = nil;
+        cell.cellModel = self.adTodayIntroduceRequest.productArray;
         return cell;
     } else if (indexPath.section == 2) {
         TuanGouCell *cell = [tableView dequeueReusableCellWithIdentifier:[TuanGouCell identifier] forIndexPath:indexPath];
-        cell.cellModel = nil;
+        cell.cellModelArray = self.groupBuyingRequest.productArray;
         return cell;
     }  else if (indexPath.section == 3) {
         SaleActivityCell *cell = [tableView dequeueReusableCellWithIdentifier:[SaleActivityCell identifier] forIndexPath:indexPath];
@@ -361,7 +367,11 @@ PPDataControllerDelegate>
         if (controller == self.adBannerRequest) {
             [Utilities showToastWithText:[NSString stringWithFormat:@"获取Banner位失败:%@", error]];
         } else if (controller == self.adTodayIntroduceRequest){
-            [Utilities showToastWithText:[NSString stringWithFormat:@"验证码获取失败:%@", error]];
+            [Utilities showToastWithText:[NSString stringWithFormat:@"获取每日推荐失败:%@", error]];
+        } else if (controller == self.groupBuyingRequest){
+            [Utilities showToastWithText:[NSString stringWithFormat:@"获取团购失败:%@", error]];
+        } else if (controller == self.salesPromotionRequest){
+            [Utilities showToastWithText:[NSString stringWithFormat:@"获取促销失败:%@", error]];
         }
     
     }];
@@ -372,6 +382,12 @@ PPDataControllerDelegate>
         [self refreshBanner];
         
     } else if (controller == self.adTodayIntroduceRequest) {
+        [self.tableView reloadData];
+    } else if (controller == self.groupBuyingRequest){
+        [self.tableView reloadData];
+        
+    } else if (controller == self.salesPromotionRequest){
+        
         [self.tableView reloadData];
     }
 }

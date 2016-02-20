@@ -38,8 +38,8 @@
     // Configure the view for the selected state
 }
 
-- (void)setCellModel:(id)cellModel {
-    _cellModel = cellModel;
+- (void)setCellModelArray:(NSArray *)cellModelArray {
+    _cellModelArray = cellModelArray;
     NSMutableAttributedString *firstAttributeString = [[NSMutableAttributedString alloc] initWithString:@"橡胶结合剂研磨器XXX"
                                                                                           attributes:@{NSForegroundColorAttributeName:[UIColor gray007Color],
                                                                                                        NSFontAttributeName:[UIFont systemFontOfSize:14.0f]}];
@@ -49,6 +49,20 @@
     [firstAttributeString appendAttributedString:[[NSMutableAttributedString alloc] initWithString:@"\n￥99.00"
                                                                                         attributes:@{NSForegroundColorAttributeName:[UIColor redColor],
                                                                                                      NSFontAttributeName:[UIFont systemFontOfSize:16.0f]}]];
+    
+    for (int i = 0 ; i< cellModelArray.count; i++) {
+        ProductIntroduceModel *model = cellModelArray[i];
+        if (i == 0) {
+            [self.firstImageView sd_setImageWithURL:[NSURL URLWithString:model.img_url] placeholderImage:nil];
+        } else if (i == 1) {
+            [self.secondImageView sd_setImageWithURL:[NSURL URLWithString:model.img_url] placeholderImage:nil];
+        } else if (i == 2) {
+            [self.thirdItemImage sd_setImageWithURL:[NSURL URLWithString:model.img_url] placeholderImage:nil];
+        } else if (i == 3) {
+            [self.fourthImageView sd_setImageWithURL:[NSURL URLWithString:model.img_url] placeholderImage:nil];
+        }
+        
+    }
     self.firstItemNameLabel.attributedText = firstAttributeString;
     self.secondItemNameLabel.attributedText = firstAttributeString;
     self.thirdItemLabel.attributedText = firstAttributeString;
