@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *firstItemNameLabel;
 @property (weak, nonatomic) IBOutlet UIButton *firstSalePriceBtn;
 @property (weak, nonatomic) IBOutlet UIImageView *firstItemImageView;
+
 @property (weak, nonatomic) IBOutlet UIImageView *secondItemImageView;
 @property (weak, nonatomic) IBOutlet UILabel *secondItemNameLabel;
 @property (weak, nonatomic) IBOutlet UIButton *secondtSalePriceBtn;

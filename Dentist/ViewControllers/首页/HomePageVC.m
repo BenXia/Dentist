@@ -18,6 +18,7 @@
 #import "TodayIntroduceCell.h"
 #import "TuanGouCell.h"
 #import "SaleActivityCell.h"
+#import "ProductDetailVC.h"
 
 static const CGFloat kTopImageViewRatio = 16.f/9;
 static CGFloat kHomePageTopBarHeight = 64;
@@ -27,7 +28,10 @@ SDCycleScrollViewDelegate,
 UITableViewDataSource,
 UITableViewDelegate,
 HomePageCourseListCellDelegate,
-PPDataControllerDelegate>
+PPDataControllerDelegate,
+TodayIntroduceCellDelegate,
+TuanGouCellDelegate,
+saleActivityCellDelegate>
 
 @property (weak,   nonatomic) IBOutlet UITableView* tableView;
 
@@ -131,6 +135,14 @@ PPDataControllerDelegate>
 
 - (UIColor*)preferNavBarHighlightedTitleColor {
     return kWhiteHighlightedColor;
+}
+
+#pragma cellDelegate
+
+- (void)todayIntroduceCell:(TodayIntroduceCell *)cell toProductDetailWith:(NSString *)iid {
+    ProductDetailVC *detailVC = [[ProductDetailVC alloc] initWithProductId:iid];
+    detailVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:detailVC animated:YES];
 }
 
 #pragma mark - Private methods
@@ -306,6 +318,7 @@ PPDataControllerDelegate>
     } else if (indexPath.section == 1) {
         TodayIntroduceCell *cell = [tableView dequeueReusableCellWithIdentifier:[TodayIntroduceCell identifier] forIndexPath:indexPath];
         cell.cellModel = self.adTodayIntroduceRequest.productArray;
+        cell.delegate = self;
         return cell;
     } else if (indexPath.section == 2) {
         TuanGouCell *cell = [tableView dequeueReusableCellWithIdentifier:[TuanGouCell identifier] forIndexPath:indexPath];

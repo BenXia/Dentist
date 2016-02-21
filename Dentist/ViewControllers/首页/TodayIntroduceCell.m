@@ -57,16 +57,24 @@
 #pragma mark - UI Action
 
 - (IBAction)onFirstBtn:(UIButton *)sender {
-    
+    if (self.delegate) {
+        [self.delegate todayIntroduceCell:self toProductDetailWith:@"10"];
+    }
 }
 - (IBAction)onSecondBtn:(UIButton *)sender {
-    
+    if (self.delegate) {
+        [self.delegate todayIntroduceCell:self toProductDetailWith:@"10"];
+    }
 }
 - (IBAction)onThirdBtn:(UIButton *)sender {
-    
+    if (self.delegate) {
+        [self.delegate todayIntroduceCell:self toProductDetailWith:@"10"];
+    }
 }
 - (IBAction)onFourthBtn:(UIButton *)sender {
-    
+    if (self.delegate) {
+        [self.delegate todayIntroduceCell:self toProductDetailWith:@"10"];
+    }
 }
 
 

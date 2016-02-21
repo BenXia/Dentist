@@ -13,6 +13,7 @@
 //TODO-GUO:测试
 #import "ProductDetailVC.h"
 #import "AllOrderListVC.h"
+#import "AppDeinitializer.h"
 
 
 @interface ProfileVC ()<UITableViewDataSource,UITableViewDelegate,MyOrderCellDelegate>
@@ -100,9 +101,8 @@
 
 - (void)onSettingBtn {
     NSLog(@"设置");
-    
-    //TODO-GUO:测试
-    [self.navigationController pushViewController:[[ProductDetailVC alloc]initWithProductId:@"10"] animated:YES];
+    [[AppDeinitializer sharedInstance] cleanUpWhenLogout];
+    [[MainViewManager sharedInstance] loadLoginVC];
 }
 
 - (void)didClickOnHeadImageView:(UITapGestureRecognizer *)tap {
