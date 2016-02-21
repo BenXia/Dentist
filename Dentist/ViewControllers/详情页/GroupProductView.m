@@ -65,14 +65,16 @@
                                                            , frame.size.width, frame.size.height - frame.size.width)];
     _titleLabel.textAlignment = NSTextAlignmentCenter;
     _titleLabel.textColor = [UIColor fontGray005Color];
-    _titleLabel.font = [UIFont systemFontOfSize:14];
+    _titleLabel.font = [UIFont systemFontOfSize:10];
+    _titleLabel.numberOfLines = 0;
     
     _priceLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, frame.size.width - kHeightOfPriceLabel , frame.size.width, kHeightOfPriceLabel)];
     _priceLabel.backgroundColor = [UIColor darkGrayColor];
     _priceLabel.alpha = 0.6;
     _priceLabel.textColor = [UIColor whiteColor];
     _priceLabel.textAlignment = NSTextAlignmentCenter;
-    _priceLabel.font = [UIFont systemFontOfSize:14];
+    _priceLabel.lineBreakMode = NSLineBreakByClipping;
+    _priceLabel.font = [UIFont systemFontOfSize:10];
     
     [self addSubview:_imageView];
     [self addSubview:_titleLabel];
