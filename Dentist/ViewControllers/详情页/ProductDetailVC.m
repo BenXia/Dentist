@@ -14,10 +14,10 @@
 
 static const CGFloat kProductDetailVCTopImageRatio = 16.f/9;
 static const CGFloat kHeightOfSectionHeader = 12;
-static const CGFloat kGapXOfPopScrollView = 12;
-static const CGFloat kGapYOfPopScrollView = 12;
-static const CGFloat kFontOfPopScrollViewTitle = 12;
-static const CGFloat kFontOfPopScrollViewOption = 12;
+static const CGFloat kGapXOfPopScrollView = 12;//选择分类弹出视图中选项间的横向间距
+static const CGFloat kGapYOfPopScrollView = 12; //选择分类弹出视图中选项间的纵向间距
+static const CGFloat kFontOfPopScrollViewTitle = 14;//分类标题字体
+static const CGFloat kFontOfPopScrollViewOption = 15;//分类选项字体
 static const NSString* kYuanSymbolStr = @"￥";
 
 @interface ProductDetailVC () <
@@ -196,6 +196,9 @@ UIScrollViewDelegate>
     self.popupCustomiseView.layer.shadowRadius = 1;
     self.popupCustomiseView.layer.shadowColor = [UIColor blackColor].CGColor;
     
+    [self.popInfoImageView setBorderColor:[UIColor lineGray001Color]];
+    [self.popInfoImageView setBorderWidth:1];
+    
     [self.popupCustomiseViewBackgroundView addSubview:self.popupCustomiseView];
 }
 
@@ -255,7 +258,12 @@ UIScrollViewDelegate>
     //调整高度
     CGFloat limitWidth = kScreenWidth - 2*self.baseTitleLabelLeadingConstraint.constant;
     [self.baseTitleLabel ajustHeightWithLimitWidth:limitWidth];
-    [self.baseSubtitleLabel ajustHeightWithLimitWidth:limitWidth];
+    if (productDetail.title_fu.length == 0) {
+        self.baseSubtitleLabel.height = 0;
+        self.baseTitleLabelTopConstraint.constant = 0;
+    }else{
+        [self.baseSubtitleLabel ajustHeightWithLimitWidth:limitWidth];
+    }
     self.baseInfoView.height = self.baseTitleLabelTopConstraint.constant + self.baseTitleLabel.height + self.baseSubtitleLabelTopConstraint.constant + self.baseSubtitleLabel.height + self.basePriceViewHeightConstraint.constant + self.baseDeliverViewHeightConstraint.constant * 3 + self.baseTitleLabelTopConstraint.constant;
 }
 
@@ -278,6 +286,10 @@ UIScrollViewDelegate>
     
     //默认选中主商品
     self.groupFirstProductView.selected = YES;
+    [self.groupFirstProductView.imageView sd_setImageWithURL:[NSURL URLWithString:[self.dc.productDetail.img_url firstObject]]];
+    self.groupFirstProductView.titleLabel.text = self.dc.productDetail.title;
+    self.groupFirstProductView.priceLabel.text = [NSString stringWithFormat:@"%@%.2f",kYuanSymbolStr,self.dc.productDetail.price];
+
 }
 
 -(void)refreshPopupCustomiseView{
@@ -289,19 +301,21 @@ UIScrollViewDelegate>
     [self themePriceLabel:self.popInfoPriceLabel withPrice:productDetail.price bigFont:18 smallFont:14];
 
     //分类
-    self.popScrollContentHeight = PIXEL_8;
-    CGFloat kGapXInButton = 4;
-    CGFloat kGapYInButton = 3;
+    self.popScrollContentHeight = 0;
+    CGFloat kGapXInButton = 6;
+    CGFloat kGapYInButton = 4;
 
     self.dicFromSepcDataToTitle = [NSMutableDictionary new];
     self.dicFromSepcTitleToButtons = [NSMutableDictionary new];
 
     for (SpecItem* specItem in specArray) {
         //标题
-        UILabel* titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(kGapXOfPopScrollView, self.popScrollContentHeight, 100, 30)];
+        self.popScrollContentHeight += PIXEL_8;
+        UILabel* titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(kGapXOfPopScrollView, self.popScrollContentHeight, kScreenWidth - 2*kGapXOfPopScrollView, 30)];
         titleLabel.text = specItem.name;
         titleLabel.textColor = [UIColor gray005Color];
         titleLabel.font = [UIFont systemFontOfSize:kFontOfPopScrollViewTitle];
+        [titleLabel ajustHeightWithLimitWidth:kScreenWidth - 2*kGapXOfPopScrollView];
         [self.popScrollView addSubview:titleLabel];
         self.popScrollContentHeight += titleLabel.height;
         
@@ -407,7 +421,7 @@ UIScrollViewDelegate>
         for (UIButton* button in buttons) {
             if (button.selected) {
                 isSelected = YES;
-                NSString* linkSymbol = selectedTipStr.length > 0 ? @"":@"";
+                NSString* linkSymbol = selectedTipStr.length > 0 ? @"；":@"";
                 [selectedTipStr appendString:[NSString stringWithFormat:@"%@\"%@\"",linkSymbol,[button titleForState:UIControlStateNormal]]];
                 break;
             }
@@ -417,10 +431,15 @@ UIScrollViewDelegate>
         }
     }
     if (noSelectedTipStr.length > 0) {
-        self.popInfoSelectTipLabel.text = [NSString stringWithFormat:@"请选择%@",noSelectedTipStr];
-    }else{
-        self.popInfoSelectTipLabel.text = [NSString stringWithFormat:@"已选择:%@",selectedTipStr];
         
+        self.popInfoSelectTipLabel.text = [NSString stringWithFormat:@"请选择%@",noSelectedTipStr];
+        self.popInfoSelectTipLabel.textColor = [UIColor fontGray006Color];
+        self.popInfoSelectTipLabel.font = [UIFont systemFontOfSize:15];
+
+    }else{
+        self.popInfoSelectTipLabel.text = selectedTipStr;
+        self.popInfoSelectTipLabel.textColor = [UIColor fontGray007Color];
+        self.popInfoSelectTipLabel.font = [UIFont boldSystemFontOfSize:15];
         //TODO-GUO:刷新价格和库存
     }
 }
