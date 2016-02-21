@@ -10,6 +10,8 @@
 #import "MyOrderCell.h"
 #import "UserInfoVC.h"
 #import "AddressLIstVC.h"
+//TODO-GUO:测试
+#import "ProductDetailVC.h"
 
 @interface ProfileVC ()<UITableViewDataSource,UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UIView *headerView;
@@ -37,6 +39,9 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+
     [self refreshUI];
 }
 
@@ -91,6 +96,9 @@
 
 - (void)onSettingBtn {
     NSLog(@"设置");
+    
+    //TODO-GUO:测试
+    [self.navigationController pushViewController:[[ProductDetailVC alloc]initWithProductId:@"10"] animated:YES];
 }
 
 - (void)didClickOnHeadImageView:(UITapGestureRecognizer *)tap {

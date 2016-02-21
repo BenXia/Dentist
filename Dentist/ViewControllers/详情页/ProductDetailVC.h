@@ -10,4 +10,6 @@
 
 @interface ProductDetailVC : UIViewController
 
+-(instancetype)initWithProductId:(NSString*)productId;
+
 @end
