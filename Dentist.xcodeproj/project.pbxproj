@@ -273,6 +273,8 @@
 		88C3BAE31C78A2B0001F4D85 /* EditNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C3BAE21C78A2AF001F4D85 /* EditNumberView.m */; };
 		88EBEE7E1C79B83000F20C90 /* AddCartDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EBEE7A1C79B83000F20C90 /* AddCartDC.m */; };
 		88EBEE7F1C79B83000F20C90 /* AddFavoriteDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EBEE7D1C79B83000F20C90 /* AddFavoriteDC.m */; };
+		88EBEE821C79F27200F20C90 /* Btn_Go_default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88EBEE801C79F27200F20C90 /* Btn_Go_default@2x.png */; };
+		88EBEE831C79F27200F20C90 /* btn_Go_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 88EBEE811C79F27200F20C90 /* btn_Go_pressed.png */; };
 		930C342A1C7819D0008823F9 /* user_pic_boy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 930C34281C7819D0008823F9 /* user_pic_boy@2x.png */; };
 		930C342B1C7819D0008823F9 /* user_pic_boy@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 930C34291C7819D0008823F9 /* user_pic_boy@3x.png */; };
 		930C34361C782073008823F9 /* ProductIntroduceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 930C34351C782073008823F9 /* ProductIntroduceModel.m */; };
@@ -750,6 +752,8 @@
 		88EBEE7A1C79B83000F20C90 /* AddCartDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCartDC.m; sourceTree = "<group>"; };
 		88EBEE7C1C79B83000F20C90 /* AddFavoriteDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFavoriteDC.h; sourceTree = "<group>"; };
 		88EBEE7D1C79B83000F20C90 /* AddFavoriteDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFavoriteDC.m; sourceTree = "<group>"; };
+		88EBEE801C79F27200F20C90 /* Btn_Go_default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Btn_Go_default@2x.png"; sourceTree = "<group>"; };
+		88EBEE811C79F27200F20C90 /* btn_Go_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_Go_pressed.png; sourceTree = "<group>"; };
 		930C34281C7819D0008823F9 /* user_pic_boy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_pic_boy@2x.png"; sourceTree = "<group>"; };
 		930C34291C7819D0008823F9 /* user_pic_boy@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_pic_boy@3x.png"; sourceTree = "<group>"; };
 		930C34341C782073008823F9 /* ProductIntroduceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductIntroduceModel.h; sourceTree = "<group>"; };
@@ -1201,6 +1205,8 @@
 		33D1873B1C70CE3800658F3D /* 详情页 */ = {
 			isa = PBXGroup;
 			children = (
+				88EBEE801C79F27200F20C90 /* Btn_Go_default@2x.png */,
+				88EBEE811C79F27200F20C90 /* btn_Go_pressed.png */,
 				88C3BADD1C78824A001F4D85 /* goods_tagL_FreeShipping@2x.png */,
 				88C3BADE1C78824A001F4D85 /* goods_tagL_Present@2x.png */,
 				88C3BAD91C787833001F4D85 /* Ico_bySelf@2x.png */,
@@ -2165,6 +2171,7 @@
 				33DD6BEB1C61195600CE6B31 /* ic_top_search@2x.png in Resources */,
 				33DD6CAC1C611A5500CE6B31 /* Btn_PhotoPlus_pressed@2X.png in Resources */,
 				33DD6CF31C611A5500CE6B31 /* 定制套装@3x.png in Resources */,
+				88EBEE831C79F27200F20C90 /* btn_Go_pressed.png in Resources */,
 				33DD6D151C611A5500CE6B31 /* 确认订单-购买资质-已认证@3x.png in Resources */,
 				9379D3C61C6338BB00390702 /* 我的-设置按钮@2x.png in Resources */,
 				33D028871C74C4CD00277C3C /* btn_backround_pressed@2x.png in Resources */,
@@ -2278,6 +2285,7 @@
 				33DD6CA51C611A5500CE6B31 /* btn_numberplus90_default.png in Resources */,
 				9379D3C11C6338BB00390702 /* 我的-收藏的商品@3x.png in Resources */,
 				88C3BADF1C78824A001F4D85 /* goods_tagL_FreeShipping@2x.png in Resources */,
+				88EBEE821C79F27200F20C90 /* Btn_Go_default@2x.png in Resources */,
 				33DD6CC21C611A5500CE6B31 /* goods_tag_Present@2X.png in Resources */,
 				93A1F5DB1C6281D900CFEEC4 /* SaleActivityCell.xib in Resources */,
 				33DD6CEE1C611A5500CE6B31 /* 图层-0@2x.png in Resources */,

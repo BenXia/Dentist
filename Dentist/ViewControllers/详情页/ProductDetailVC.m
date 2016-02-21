@@ -14,6 +14,9 @@
 #import "ProductDescriptionVC.h"
 #import "AddCartDC.h"
 #import "AddFavoriteDC.h"
+#import "ProductEvaluateTableViewCell.h"
+#import "ProductEvaluateModel.h"
+#import "ProductEvaluateVC.h"
 
 static const CGFloat kProductDetailVCTopImageRatio = 16.f/9;
 static const CGFloat kHeightOfSectionHeader = 12;
@@ -84,6 +87,33 @@ UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *popInfoSelectTipLabel;
 @property (weak, nonatomic) EditNumberView* editNumerView;
 
+//赠品
+@property (strong, nonatomic) IBOutlet UIView *giftView;
+@property (weak, nonatomic) IBOutlet UILabel *giftContentLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *giftContentLabelTrailingConstraint;
+
+//选择分类提示视图
+@property (strong, nonatomic) IBOutlet UIView *selectTipView;
+@property (weak, nonatomic) IBOutlet UILabel *selectTipLabel;
+
+//评价
+@property (strong, nonatomic) IBOutlet UIView *appraiseView;
+@property (weak, nonatomic) IBOutlet UIView *appraiseContentView;
+@property (weak, nonatomic) IBOutlet UILabel *appraiseTotalLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *appraiseHeaderViewHeightConstraint;
+@property (weak, nonatomic) IBOutlet UIView *appraiseHeaderView;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *appraiseContentViewHeightConstraint;
+//猜你喜欢
+@property (strong, nonatomic) IBOutlet UIView *guessYouLikeView;
+@property (weak, nonatomic) IBOutlet UILabel *guessYouLikeLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *guessYouLikeHeaderViewHeightConstraint;
+@property (weak, nonatomic) IBOutlet UIView *guessYouLikeContentView;
+
+//拖拽进入图文详情提示
+@property (strong, nonatomic) IBOutlet UIView *dragTipView;
+
+
 @end
 
 @implementation ProductDetailVC
@@ -112,6 +142,12 @@ UIScrollViewDelegate>
     [self.dc requestWithArgs:nil];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -132,7 +168,6 @@ UIScrollViewDelegate>
     [self initNavBar];
     [self initMainScrollView];
     [self initHeaderImageView];
-    [self initBaseInfoView];
     [self initGroupDiscountView];
     [self initPopupCustomiseView];
 }
@@ -179,10 +214,6 @@ UIScrollViewDelegate>
     self.scrollView.footerRefreshingText = @"正在加载中";
 }
 
--(void)initBaseInfoView{
-    
-}
-
 -(void)initGroupDiscountView{
     self.groupFirstProductView.selected = YES;
     self.groupSecondProductView.delegate = self;
@@ -199,7 +230,6 @@ UIScrollViewDelegate>
     }else{
         self.groupAddSymbolLabelWidthConstraint.constant = (remainWidth - 3*self.groupProductViewWidthConstraint.constant)/3;
     }
-    
 }
 
 - (void)initPopupCustomiseView {
@@ -226,18 +256,45 @@ UIScrollViewDelegate>
     [self refreshBaseInfoView];
     [self addScrollSubview:self.baseInfoView];
     self.scrollContentHeight += kHeightOfSectionHeader;
-    //套餐优惠
+    
     //TODO-GUO:测试
-    //    if (self.dc.productDetail.groups.count > 0) {
-    [self refreshGroupDiscountView];
-    [self addScrollSubview:self.groupDiscountView];
-    self.scrollContentHeight += kHeightOfSectionHeader;
-    //    }
+    BOOL isTest = YES;
+    
+    //套餐优惠
+    if (isTest || self.dc.productDetail.groups.count > 0) {
+        [self refreshGroupDiscountView];
+        [self addScrollSubview:self.groupDiscountView];
+        self.scrollContentHeight += kHeightOfSectionHeader;
+    }
     
     //赠品
+    if (isTest || self.dc.productDetail.gifts.count > 0) {
+        [self refreshGiftView];
+        [self addScrollSubview:self.giftView];
+        self.scrollContentHeight += kHeightOfSectionHeader;
+    }
     //分类
+    if (isTest || self.dc.productDetail.p_sids.count > 0) {
+        [self refreshSelectTipView];
+        [self addScrollSubview:self.selectTipView];
+        self.scrollContentHeight += kHeightOfSectionHeader;
+    }
     //评价
+    if (isTest || self.dc.productDetail.scores.count > 0) {
+        [self refreshAppraiseView];
+        [self addScrollSubview:self.appraiseView];
+        self.scrollContentHeight += kHeightOfSectionHeader;
+    }
+    
+    //猜你喜欢
+    {
+        [self refreshGuessYouLikeView];
+        [self addScrollSubview:self.guessYouLikeView];
+        self.scrollContentHeight += kHeightOfSectionHeader;
+    }
+    
     //上拉提示
+    [self addScrollSubview:self.dragTipView];
     
     self.scrollView.contentSize = CGSizeMake(kScreenWidth, self.scrollContentHeight);
     
@@ -279,6 +336,73 @@ UIScrollViewDelegate>
     }
     self.baseInfoView.height = self.baseTitleLabelTopConstraint.constant + self.baseTitleLabel.height + self.baseSubtitleLabelTopConstraint.constant + self.baseSubtitleLabel.height + self.basePriceViewHeightConstraint.constant + self.baseDeliverViewHeightConstraint.constant * 3 + self.baseTitleLabelTopConstraint.constant;
 }
+
+- (void)refreshGiftView{
+    NSArray* giftItemArray = self.dc.productDetail.gifts;
+    NSMutableString* giftStr = [NSMutableString new];
+    for (GiftItem* item in giftItemArray) {
+        NSString* linkSymbol = giftStr.length == 0 ? @"" : @";";
+        [giftStr appendFormat:@"%@%@",linkSymbol,item.title];
+    }
+    self.giftContentLabel.text = giftStr;
+    CGFloat limitWidth = kScreenWidth - self.giftContentLabel.x - self.giftContentLabelTrailingConstraint.constant;
+    [self.giftContentLabel ajustHeightWithLimitWidth:limitWidth];
+    self.giftView.height = 2*self.giftContentLabel.y + self.giftContentLabel.height;
+}
+
+- (void)refreshSelectTipView{
+    [self.selectTipLabel ajustHeightWithLimitWidth:kScreenWidth];
+    self.selectTipView.height = 2*self.selectTipLabel.y + self.selectTipLabel.height;
+    
+    self.selectTipView.gestureRecognizers = nil;
+    UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didClickSelectTipView)];
+    [self.selectTipView addGestureRecognizer:tap];
+}
+
+- (void)refreshAppraiseView{
+    //点击跳转评价列表w
+    self.appraiseHeaderView.gestureRecognizers = nil;
+    UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didClickAppraiseHeaderVie)];
+    [self.appraiseHeaderView addGestureRecognizer:tap];
+    self.appraiseHeaderViewHeightConstraint.constant = 2*self.appraiseTotalLabel.y + self.appraiseTotalLabel.height;
+
+    //添加Cell
+    NSArray* scoreArray = self.dc.productDetail.scores;
+    CGFloat currentY = 0;
+    UINib* cellNib = [UINib nibWithNibName:@"ProductEvaluateTableViewCell" bundle:nil];
+    for (ScoreItem* item in scoreArray) {
+        ProductEvaluateModel* model = [ProductEvaluateModel new];
+        model.evaluateContent = item.content;
+        model.evaluateImageArray = item.imgs;
+        model.evaluateScore = [NSString stringWithFormat:@"%d",item.score];
+        NSDate* createDate = [NSDate dateWithTimeIntervalSince1970:item.addtime];
+        NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        model.evaluateTime = [dateFormatter stringFromDate:createDate];
+        model.evaluateUserName = item.nickname;
+        
+        CGFloat cellHeight = [ProductEvaluateTableViewCell getCellHeightWithContent:model];
+        ProductEvaluateTableViewCell* cell = [[cellNib instantiateWithOwner:nil options:nil]firstObject];
+        cell.frame = CGRectMake(0, currentY, kScreenWidth, cellHeight);
+        [cell setCellWithProductEvaluateModel:model];
+        [cell setTopLineViewHidden:NO];
+        [self.appraiseContentView addSubview:cell];
+        currentY += cellHeight;
+    }
+    self.appraiseContentViewHeightConstraint.constant = currentY;
+    
+    self.appraiseView.height = self.appraiseHeaderViewHeightConstraint.constant + self.appraiseContentViewHeightConstraint.constant;
+}
+
+- (void)refreshGuessYouLikeView{
+    [self.guessYouLikeLabel ajustHeightWithLimitWidth:kScreenWidth];
+    self.guessYouLikeHeaderViewHeightConstraint.constant = 2*self.guessYouLikeLabel.y + self.guessYouLikeLabel.height;
+    
+    //添加Cell
+    
+    self.guessYouLikeView.height = self.guessYouLikeHeaderViewHeightConstraint.constant + self.guessYouLikeContentView.height;
+}
+
 
 -(void)refreshGroupDiscountView{
     GroupItem* firstGroup = [self.dc.productDetail.groups firstObject];
@@ -485,11 +609,15 @@ UIScrollViewDelegate>
             self.popInfoSelectTipLabel.textColor = [UIColor fontGray006Color];
             self.popInfoSelectTipLabel.font = [UIFont systemFontOfSize:15];
             self.isSelectSpecCompleted = NO;
+            
+            self.selectTipLabel.text = [NSString stringWithFormat:@"请选择%@",noSelectedTipStr];
         }else{
             self.popInfoSelectTipLabel.text = selectedTipStr;
             self.popInfoSelectTipLabel.textColor = [UIColor fontGray007Color];
             self.popInfoSelectTipLabel.font = [UIFont boldSystemFontOfSize:15];
             self.isSelectSpecCompleted = YES;
+            
+            self.selectTipLabel.text = [NSString stringWithFormat:@"已选:%@",selectedTipStr];
             
             //刷新库存
             NSArray* specProductArray = self.dc.productDetail.p_iids;
@@ -563,6 +691,14 @@ UIScrollViewDelegate>
 
 - (IBAction)didClickBuyNowButtonAction:(id)sender {
     [self showPopupCustomiseView];
+}
+
+- (void)didClickSelectTipView{
+    [self showPopupCustomiseView];
+}
+
+- (void)didClickAppraiseHeaderVie{
+    [self.navigationController pushViewController:[ProductEvaluateVC new] animated:YES];
 }
 
 - (IBAction)didClickCustomiseBackgroundViewAction:(id)sender {

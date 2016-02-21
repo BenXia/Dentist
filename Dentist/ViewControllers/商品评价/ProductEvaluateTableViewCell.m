@@ -16,6 +16,7 @@
 
 @interface ProductEvaluateTableViewCell()
 
+@property (weak, nonatomic) IBOutlet UIView *topLineView;
 @property (weak, nonatomic) IBOutlet UIImageView *scoreImageView1;
 @property (weak, nonatomic) IBOutlet UIImageView *scoreImageView2;
 @property (weak, nonatomic) IBOutlet UIImageView *scoreImageView3;
@@ -32,7 +33,11 @@
 @implementation ProductEvaluateTableViewCell
 
 - (void)awakeFromNib {
+    self.topLineView.hidden = YES;
+}
 
+- (void)setTopLineViewHidden:(BOOL)hidden{
+    self.topLineView.hidden = hidden;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

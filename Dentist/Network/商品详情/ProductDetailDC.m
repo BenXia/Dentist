@@ -54,20 +54,33 @@
         
         
         //TODO-GUO:测试数据
-        NSMutableArray* itemArray = [NSMutableArray new];
-        SpecItem* item = [SpecItem new];
-        item.name = @"颜色";
-        item.data = @[@"红色",@"紫罗兰色",@"红色",@"紫罗兰色",@"红色",@"紫罗兰色",@"红色",@"紫罗兰色",@"红色",@"紫罗兰色",@"红色",@"紫罗兰色",@"红色",@"紫罗兰色"];
-        [itemArray addObject:item];
-        
-        SpecItem* item2 = [SpecItem new];
-        item2.name = @"尺寸";
-        item2.data = @[@"大号",@"XXXXXXXL号",@"大号",@"XXXXXXXL号",@"大号",@"XXXXXXXL号",@"大号",@"XXXXXXXL号",@"大号",@"XXXXXXXL号"];
-        [itemArray addObject:item2];
-        model.p_sids = itemArray;
-        model.sids = @"颜色:红色,尺寸:XXXXXXXL号";
-
-        
+        {
+            NSMutableArray* itemArray = [NSMutableArray new];
+            SpecItem* item = [SpecItem new];
+            item.name = @"颜色";
+            item.data = @[@"红色",@"紫罗兰色",@"红色",@"紫罗兰色",@"红色",@"紫罗兰色",@"红色",@"紫罗兰色",@"红色",@"紫罗兰色",@"红色",@"紫罗兰色",@"红色",@"紫罗兰色"];
+            [itemArray addObject:item];
+            
+            SpecItem* item2 = [SpecItem new];
+            item2.name = @"尺寸";
+            item2.data = @[@"大号",@"XXXXXXXL号",@"大号",@"XXXXXXXL号",@"大号",@"XXXXXXXL号",@"大号",@"XXXXXXXL号",@"大号",@"XXXXXXXL号"];
+            [itemArray addObject:item2];
+            model.p_sids = itemArray;
+            model.sids = @"颜色:红色,尺寸:XXXXXXXL号";
+        }
+        {
+            NSMutableArray* scores = [NSMutableArray new];
+            for (int i=1; i<=5; ++i) {
+                ScoreItem* item = [ScoreItem new];
+                item.score = i;
+                item.addtime = [[NSDate date] timeIntervalSince1970];
+                item.nickname = @"哈哈哈";
+                item.imgs = @[@"sss",@"sss"];
+                item.content = @"快拉萨的费拉拉富士康精品阿斯兰的首付款可拉伸疯掉了看见都烦死了看见的说服力卡戴珊弗兰克的说服力的分水岭快递费失联客机";
+                [scores addObject:item];
+            }
+            model.scores = scores;
+        }
         
         
         self.productDetail = model;
