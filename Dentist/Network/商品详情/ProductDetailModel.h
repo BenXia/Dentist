@@ -85,4 +85,13 @@
 @property (strong,nonatomic) NSArray* p_iids;   //规格各参数商品ID，SpecProductItem数组
 @property (strong,nonatomic) NSArray* scores;   //5条评论，ScoreItem数组
 
+
+//==============未知字段===============
+
+@property (assign,nonatomic) int pick_up;      //自取
+@property (assign,nonatomic) int express;      //快递
+@property (assign,nonatomic) int is_del;       //
+@property (assign,nonatomic) int item_is_del;  //
+
+
 @end

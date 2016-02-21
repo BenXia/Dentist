@@ -621,7 +621,7 @@
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <state key="normal" title="加入购物车" image="购物车.png"/>
                             <connections>
-                                <action selector="didClickCartButtonAction:" destination="-1" eventType="touchUpInside" id="nSS-No-x8p"/>
+                                <action selector="didClickAddCartButtonOnPopView:" destination="-1" eventType="touchUpInside" id="Ghs-mm-8vx"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wPd-L8-6SM">
@@ -630,7 +630,7 @@
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <state key="normal" title=" 立即购买" image="立即购买.png"/>
                             <connections>
-                                <action selector="didClickBuyNowButtonAction:" destination="-1" eventType="touchUpInside" id="JWT-1Z-XRi"/>
+                                <action selector="didClickBuyButtonOnPopView:" destination="-1" eventType="touchUpInside" id="gIM-VQ-PNk"/>
                             </connections>
                         </button>
                     </subviews>

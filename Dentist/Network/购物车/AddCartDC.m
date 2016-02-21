@@ -11,7 +11,8 @@
 @implementation AddCartDC
 
 - (NSDictionary *)requestURLArgs {
-    return @{@"method":@"order.cart_add",@"auth":[UserCache sharedUserCache].token};
+    NSString* token = [UserCache sharedUserCache].token ? [UserCache sharedUserCache].token : @"";
+    return @{@"method":@"order.cart_add",@"auth":token};
 }
 
 - (RequestMethod)requestMethod {

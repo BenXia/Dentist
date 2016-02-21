@@ -11,7 +11,7 @@
 @interface AddCartDC : PPDataController
 
 @property (nonatomic,strong) NSArray* productIds;   //商品ID
-@property (nonatomic,assign) NSArray* cartNums;
+@property (nonatomic,strong) NSArray* cartNums;
 
 //101	需要登录
 //403	有IID不存在或已下架！

@@ -11,7 +11,8 @@
 @implementation AddFavoriteDC
 
 - (NSDictionary *)requestURLArgs {
-    return @{@"method":@"item.favorite_add",@"auth":[UserCache sharedUserCache].token};
+    NSString* token = [UserCache sharedUserCache].token ? [UserCache sharedUserCache].token : @"";
+    return @{@"method":@"item.favorite_add",@"auth":token};
 }
 
 - (RequestMethod)requestMethod {

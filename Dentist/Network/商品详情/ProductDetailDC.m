@@ -52,8 +52,25 @@
         model.p_iids = [self parseSpecProductItemArray:[resultDict objectForKey:@"p_iids"]];
         model.scores = [self parseScoreItemArray:[resultDict objectForKey:@"scores"]];
         
-        self.productDetail = model;
         
+        //TODO-GUO:测试数据
+        NSMutableArray* itemArray = [NSMutableArray new];
+        SpecItem* item = [SpecItem new];
+        item.name = @"颜色";
+        item.data = @[@"红色",@"紫罗兰色",@"红色",@"紫罗兰色",@"红色",@"紫罗兰色",@"红色",@"紫罗兰色",@"红色",@"紫罗兰色",@"红色",@"紫罗兰色",@"红色",@"紫罗兰色"];
+        [itemArray addObject:item];
+        
+        SpecItem* item2 = [SpecItem new];
+        item2.name = @"尺寸";
+        item2.data = @[@"大号",@"XXXXXXXL号",@"大号",@"XXXXXXXL号",@"大号",@"XXXXXXXL号",@"大号",@"XXXXXXXL号",@"大号",@"XXXXXXXL号"];
+        [itemArray addObject:item2];
+        model.p_sids = itemArray;
+        model.sids = @"颜色:红色,尺寸:XXXXXXXL号";
+
+        
+        
+        
+        self.productDetail = model;
         result = YES;
     }
     
@@ -61,27 +78,13 @@
 }
 
 -(NSArray*)parseSpecItemArray:(NSArray*)dicArray{
-    //    NSMutableArray* itemArray = [NSMutableArray new];
-    //    for (NSDictionary* dic in dicArray) {
-    //        SpecItem* item = [SpecItem new];
-    //        item.name = [dic objectForKey:@"name"];
-    //        item.data = [dic objectForKey:@"data"];
-    //        [itemArray addObject:item];
-    //    }
-    //    return itemArray;
-    
-    //TODO-GUO:假数据
     NSMutableArray* itemArray = [NSMutableArray new];
-    SpecItem* item = [SpecItem new];
-    item.name = @"颜色";
-    item.data = @[@"红色",@"紫罗兰色",@"红色",@"紫罗兰色",@"红色",@"紫罗兰色",@"红色",@"紫罗兰色",@"红色",@"紫罗兰色",@"红色",@"紫罗兰色",@"红色",@"紫罗兰色"];
-    [itemArray addObject:item];
-    
-    SpecItem* item2 = [SpecItem new];
-    item2.name = @"尺寸";
-    item2.data = @[@"大号",@"XXXXXXXL号",@"大号",@"XXXXXXXL号",@"大号",@"XXXXXXXL号",@"大号",@"XXXXXXXL号",@"大号",@"XXXXXXXL号"];
-    [itemArray addObject:item2];
-    
+    for (NSDictionary* dic in dicArray) {
+        SpecItem* item = [SpecItem new];
+        item.name = [dic objectForKey:@"name"];
+        item.data = [dic objectForKey:@"data"];
+        [itemArray addObject:item];
+    }
     return itemArray;
 }
 

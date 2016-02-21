@@ -12,6 +12,8 @@
 #import "GroupProductView.h"
 #import "EditNumberView.h"
 #import "ProductDescriptionVC.h"
+#import "AddCartDC.h"
+#import "AddFavoriteDC.h"
 
 static const CGFloat kProductDetailVCTopImageRatio = 16.f/9;
 static const CGFloat kHeightOfSectionHeader = 12;
@@ -29,7 +31,15 @@ EditNumberViewDelegate,
 UIScrollViewDelegate>
 
 @property (nonatomic, strong) ProductDetailDC *dc;
+@property (nonatomic, strong) AddCartDC* addCartDC;
+@property (nonatomic, strong) AddFavoriteDC* addFavoriteDC;
 
+@property (strong,nonatomic) NSMutableDictionary* dicFromSepcTitleToButtons;
+@property (strong,nonatomic) NSMutableDictionary* dicFromSepcDataToTitle;
+
+@property (assign,nonatomic) int buyNum;                    //当前购买数
+@property (assign,nonatomic) BOOL isSelectSpecCompleted;    //选择分类完成
+@property (strong,nonatomic) SpecProductItem* specProduct;  //选择分类后的商品
 
 @property (weak, nonatomic) IBOutlet UIView *topBarBackgroundView;
 
@@ -72,9 +82,7 @@ UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *popInfoPriceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *popInfoRemainNumLabel;
 @property (weak, nonatomic) IBOutlet UILabel *popInfoSelectTipLabel;
-
-@property (strong,nonatomic) NSMutableDictionary* dicFromSepcTitleToButtons;
-@property (strong,nonatomic) NSMutableDictionary* dicFromSepcDataToTitle;
+@property (weak, nonatomic) EditNumberView* editNumerView;
 
 @end
 
@@ -86,7 +94,10 @@ UIScrollViewDelegate>
     self = [super init];
     if (self) {
         self.dc = [[ProductDetailDC alloc]initWithDelegate:self];
+        self.addCartDC = [[AddCartDC alloc] initWithDelegate:self];
+        self.addFavoriteDC = [[AddFavoriteDC alloc] initWithDelegate:self];
         self.dc.productId = productId;
+        self.buyNum = 1;
         self.hidesBottomBarWhenPushed = YES;
     }
     return self;
@@ -169,7 +180,7 @@ UIScrollViewDelegate>
 }
 
 -(void)initBaseInfoView{
-
+    
 }
 
 -(void)initGroupDiscountView{
@@ -216,11 +227,12 @@ UIScrollViewDelegate>
     [self addScrollSubview:self.baseInfoView];
     self.scrollContentHeight += kHeightOfSectionHeader;
     //套餐优惠
-    if (self.dc.productDetail.groups > 0) {
-        [self refreshGroupDiscountView];
-        [self addScrollSubview:self.groupDiscountView];
-        self.scrollContentHeight += kHeightOfSectionHeader;
-    }
+    //TODO-GUO:测试
+    //    if (self.dc.productDetail.groups.count > 0) {
+    [self refreshGroupDiscountView];
+    [self addScrollSubview:self.groupDiscountView];
+    self.scrollContentHeight += kHeightOfSectionHeader;
+    //    }
     
     //赠品
     //分类
@@ -253,7 +265,7 @@ UIScrollViewDelegate>
     self.baseSubtitleLabel.text = productDetail.title_fu;
     
     [self themePriceLabel:self.basePriceLabel withPrice:productDetail.price bigFont:18 smallFont:14];
-
+    
     self.baseOldPriceLabel.text = [NSString stringWithFormat: @"%.2f",productDetail.old_price];
     
     //调整高度
@@ -290,7 +302,7 @@ UIScrollViewDelegate>
     [self.groupFirstProductView.imageView sd_setImageWithURL:[NSURL URLWithString:[self.dc.productDetail.img_url firstObject]]];
     self.groupFirstProductView.titleLabel.text = self.dc.productDetail.title;
     self.groupFirstProductView.priceLabel.text = [NSString stringWithFormat:@"%@%.2f",kYuanSymbolStr,self.dc.productDetail.price];
-
+    
 }
 
 -(void)refreshPopupCustomiseView{
@@ -300,15 +312,32 @@ UIScrollViewDelegate>
     //商品信息
     [self.popInfoImageView sd_setImageWithURL:[NSURL URLWithString:[productDetail.img_url firstObject]]];
     [self themePriceLabel:self.popInfoPriceLabel withPrice:productDetail.price bigFont:18 smallFont:14];
-
-    //分类
+    self.popInfoRemainNumLabel.text = [NSString stringWithFormat:@"库存 %d件",productDetail.num];
+    
+    //默认选中分类的索引
+    NSString* curSpecStr = self.dc.productDetail.sids;
+    NSMutableDictionary* curSpecDic = nil;
+    if (curSpecStr.length > 0) {
+        curSpecDic = [NSMutableDictionary new];
+        NSArray* keyValueArray = [curSpecStr componentsSeparatedByString:@","];
+        for (NSString* keyValue in keyValueArray) {
+            NSArray* tmpArray = [keyValue componentsSeparatedByString:@":"];
+            NSString* key = [tmpArray objectAtIndexIfIndexInBounds:0];
+            NSString* value = [tmpArray objectAtIndexIfIndexInBounds:1];
+            if (key && value) {
+                [curSpecDic setValue:value forKey:key];
+            }
+        }
+    }
+    
+    //创建分类视图
     self.popScrollContentHeight = 0;
     CGFloat kGapXInButton = 6;
     CGFloat kGapYInButton = 4;
-
+    
     self.dicFromSepcDataToTitle = [NSMutableDictionary new];
     self.dicFromSepcTitleToButtons = [NSMutableDictionary new];
-
+    
     for (SpecItem* specItem in specArray) {
         //标题
         self.popScrollContentHeight += PIXEL_8;
@@ -321,6 +350,7 @@ UIScrollViewDelegate>
         self.popScrollContentHeight += titleLabel.height;
         
         //选项
+        NSString* curSpecValue = [curSpecDic objectForKey:specItem.name];
         CGFloat currentX = kGapXOfPopScrollView;
         CGFloat currentY = self.popScrollContentHeight + kGapXOfPopScrollView;
         NSMutableArray* optionButtonArray = [NSMutableArray new];
@@ -352,6 +382,12 @@ UIScrollViewDelegate>
                 }
             }];
             
+            //默认选中
+            if (curSpecDic && [str isEqualToString:curSpecValue]) {
+                button.selected = YES;
+                curSpecValue = nil;
+            }
+            
             [self.popScrollView addSubview:button];
             [optionButtonArray addObject:button];
             
@@ -376,8 +412,10 @@ UIScrollViewDelegate>
     //数量
     self.popScrollContentHeight += kGapYOfPopScrollView;
     EditNumberView* editNumerView = [[EditNumberView alloc] initWithFrame:CGRectMake(kScreenWidth - kGapXOfPopScrollView - 100, self.popScrollContentHeight, 100, 30)];
-    [editNumerView resetWithMin:@(1) max:nil default:@(1)];
+    editNumerView.min = @(0);
+    editNumerView.num = self.buyNum;
     editNumerView.delegate = self;
+    self.editNumerView = editNumerView;
     [self.popScrollView addSubview:editNumerView];
     UILabel* numLabel = [[UILabel alloc] initWithFrame:CGRectMake(kGapXOfPopScrollView, self.popScrollContentHeight, 100, 30)];
     numLabel.text = @"购买数量";
@@ -413,35 +451,57 @@ UIScrollViewDelegate>
 }
 
 -(void)refreshPopSelectTipView{
-    NSMutableString* noSelectedTipStr = [NSMutableString new];
-    NSMutableString* selectedTipStr = [NSMutableString new];
-
-    for (SpecItem* specItem in self.dc.productDetail.p_sids) {
-        NSArray* buttons = [self.dicFromSepcTitleToButtons objectForKey:specItem.name];
-        BOOL isSelected = NO;
-        for (UIButton* button in buttons) {
-            if (button.selected) {
-                isSelected = YES;
-                NSString* linkSymbol = selectedTipStr.length > 0 ? @"；":@"";
-                [selectedTipStr appendString:[NSString stringWithFormat:@"%@\"%@\"",linkSymbol,[button titleForState:UIControlStateNormal]]];
-                break;
+    if (self.dc.productDetail.p_sids.count == 0) {
+        self.popInfoSelectTipLabel.text = @"";
+        self.isSelectSpecCompleted = YES;
+    }else{
+        
+        NSMutableString* noSelectedTipStr = [NSMutableString new];
+        NSMutableString* selectedTipStr = [NSMutableString new];
+        NSMutableString* selectedSearchStr = [NSMutableString new];
+        
+        for (SpecItem* specItem in self.dc.productDetail.p_sids) {
+            NSArray* buttons = [self.dicFromSepcTitleToButtons objectForKey:specItem.name];
+            BOOL isSelected = NO;
+            for (UIButton* button in buttons) {
+                if (button.selected) {
+                    isSelected = YES;
+                    NSString* specValue = [button titleForState:UIControlStateNormal];
+                    NSString* linkSymbol = selectedTipStr.length > 0 ? @"；":@"";
+                    [selectedTipStr appendString:[NSString stringWithFormat:@"%@\"%@\"",linkSymbol,specValue]];
+                    
+                    NSString* linkSymbolForSearch = selectedSearchStr.length > 0 ? @",":@"";
+                    [selectedSearchStr appendString:[NSString stringWithFormat:@"%@%@:%@",linkSymbolForSearch,specItem.name,specValue]];
+                    
+                    break;
+                }
+            }
+            if (!isSelected) {
+                [noSelectedTipStr appendString:[NSString stringWithFormat:@" %@",specItem.name]];
             }
         }
-        if (!isSelected) {
-            [noSelectedTipStr appendString:[NSString stringWithFormat:@" %@",specItem.name]];
+        if (noSelectedTipStr.length > 0) {
+            self.popInfoSelectTipLabel.text = [NSString stringWithFormat:@"请选择%@",noSelectedTipStr];
+            self.popInfoSelectTipLabel.textColor = [UIColor fontGray006Color];
+            self.popInfoSelectTipLabel.font = [UIFont systemFontOfSize:15];
+            self.isSelectSpecCompleted = NO;
+        }else{
+            self.popInfoSelectTipLabel.text = selectedTipStr;
+            self.popInfoSelectTipLabel.textColor = [UIColor fontGray007Color];
+            self.popInfoSelectTipLabel.font = [UIFont boldSystemFontOfSize:15];
+            self.isSelectSpecCompleted = YES;
+            
+            //刷新库存
+            NSArray* specProductArray = self.dc.productDetail.p_iids;
+            for (SpecProductItem* specProduct in specProductArray) {
+                if ([specProduct.sids isEqualToString:selectedSearchStr]) {
+                    self.specProduct = specProduct;
+                    self.popInfoRemainNumLabel.text = [NSString stringWithFormat:@"库存 %d件",specProduct.num];
+                    self.editNumerView.max = @(specProduct.num);
+                    break;
+                }
+            }
         }
-    }
-    if (noSelectedTipStr.length > 0) {
-        
-        self.popInfoSelectTipLabel.text = [NSString stringWithFormat:@"请选择%@",noSelectedTipStr];
-        self.popInfoSelectTipLabel.textColor = [UIColor fontGray006Color];
-        self.popInfoSelectTipLabel.font = [UIFont systemFontOfSize:15];
-
-    }else{
-        self.popInfoSelectTipLabel.text = selectedTipStr;
-        self.popInfoSelectTipLabel.textColor = [UIColor fontGray007Color];
-        self.popInfoSelectTipLabel.font = [UIFont boldSystemFontOfSize:15];
-        //TODO-GUO:刷新价格和库存
     }
 }
 
@@ -493,7 +553,8 @@ UIScrollViewDelegate>
 }
 
 - (IBAction)didClickFavoriteButtonAction:(id)sender {
-    [self footerRereshing];
+    self.addFavoriteDC.productIds = @[self.dc.productDetail.iid];
+    [self.addFavoriteDC requestWithArgs:nil];
 }
 
 - (IBAction)didClickCartButtonAction:(id)sender {
@@ -511,6 +572,23 @@ UIScrollViewDelegate>
 - (IBAction)didClickCustomiseCloseButtonAction:(id)sender {
     [self hidePopupCustomiseView:nil];
 }
+
+- (IBAction)didClickAddCartButtonOnPopView:(id)sender {
+    if (self.isSelectSpecCompleted && self.buyNum > 0) {
+        NSString* productId = self.specProduct.iid ? self.specProduct.iid : self.dc.productDetail.iid;
+        self.addCartDC.productIds = @[productId];
+        self.addCartDC.cartNums = @[@(self.buyNum)];
+        [self.addCartDC requestWithArgs:nil];
+    }
+}
+
+- (IBAction)didClickBuyButtonOnPopView:(id)sender {
+    if (self.isSelectSpecCompleted && self.buyNum > 0) {
+        //TODO-GUO:进入下单页
+        
+    }
+}
+
 
 - (void)didSelectOptionInPopupCustomiseView:(UIButton*)sender{
     NSString* specData = [sender titleForState:UIControlStateNormal];
@@ -565,23 +643,43 @@ UIScrollViewDelegate>
 
 #pragma mark - EditNumberViewDelegate
 
--(void)editNumberView:(EditNumberView *)view didMinusNum:(int)num{
-    
-}
-
--(void)editNumberView:(EditNumberView *)view didAddNum:(int)num{
-    
+-(void)editNumberView:(EditNumberView *)view didChangeNum:(int)num{
+    self.buyNum = num;
 }
 
 #pragma mark - PPDataControllerDelegate
 
 //数据请求成功回调
 - (void)loadingDataFinished:(PPDataController *)controller{
-    [self refreshUI];
+    if (controller == self.dc) {
+        [self refreshUI];
+    }else if(controller == self.addFavoriteDC){
+        [Utilities showToastWithText:@"添加收藏成功"];
+    }else if(controller == self.addCartDC){
+        switch (self.addCartDC.code) {
+            case 200:
+                [Utilities showToastWithText:@"添加购物车成功"];
+                break;
+            case 403:
+                [Utilities showToastWithText:@"商品不存在或已下架"];
+                break;
+            case 101:
+                [Utilities showToastWithText:@"需要登录"];
+                break;
+            default:
+                break;
+        }
+    }
 }
 //数据请求失败回调
 - (void)loadingData:(PPDataController *)controller failedWithError:(NSError *)error{
-    [Utilities showToastWithText:@"获取商品详情失败"];
+    if (controller == self.dc) {
+        [Utilities showToastWithText:@"获取商品详情失败"];
+    }else if(controller == self.addFavoriteDC){
+        [Utilities showToastWithText:@"添加收藏失败"];
+    }else if(controller == self.addCartDC){
+        [Utilities showToastWithText:@"添加购物车失败"];
+    }
 }
 
 #pragma mark - Private Method
