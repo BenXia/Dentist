@@ -9,6 +9,8 @@
 #import "ProfileVC.h"
 #import "MyOrderCell.h"
 #import "UserInfoVC.h"
+//TODO-GUO:测试
+#import "ProductDetailVC.h"
 
 @interface ProfileVC ()<UITableViewDataSource,UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UIView *headerView;
@@ -41,6 +43,12 @@
     [self setNavRightItemWithImage:@"我的-设置按钮" target:self action:@selector(onSettingBtn)];
     [self initUI];
     [self initTableView];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -77,6 +85,9 @@
 
 - (void)onSettingBtn {
     NSLog(@"设置");
+    
+    //TODO-GUO:测试
+    [self.navigationController pushViewController:[[ProductDetailVC alloc]initWithProductId:@"10"] animated:YES];
 }
 
 - (void)didClickOnHeadImageView:(UITapGestureRecognizer *)tap {

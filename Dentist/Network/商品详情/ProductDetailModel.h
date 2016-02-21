@@ -74,6 +74,8 @@
 @property (strong,nonatomic) NSString* s_cid;   //子分类ID
 @property (strong,nonatomic) NSString* bid;     //品牌ID
 @property (strong,nonatomic) NSString* title;   //标题
+@property (strong,nonatomic) NSString* title_fu;//副标题
+@property (strong,nonatomic) NSArray* img_url;  //商品图片URL，NSString数组
 @property (strong,nonatomic) NSString* code;    //内部编码
 @property (assign,nonatomic) int buy_cert;      //购买资质(1需要)
 @property (strong,nonatomic) NSString* description_p;//商品详情

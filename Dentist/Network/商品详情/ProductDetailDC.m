@@ -21,6 +21,8 @@
 - (BOOL)parseContent:(NSString *)content {
     BOOL result = NO;
     
+    NSLog(@"商品详情响应数据：%@",content);
+    
     NSError *error = nil;
     NSDictionary *resultDict = [NSJSONSerialization JSONObjectWithString:content
                                                                  options:0
@@ -39,6 +41,8 @@
         model.s_cid = [resultDict objectForKey:@"s_cid"];
         model.bid = [resultDict objectForKey:@"bid"];
         model.title = [resultDict objectForKey:@"title"];
+        model.title_fu = [resultDict objectForKey:@"title_fu"];
+        model.img_url = [resultDict objectForKey:@"img_url"];
         model.code = [resultDict objectForKey:@"code"];
         model.buy_cert = ((NSNumber*)[resultDict objectForKey:@"buy_cert"]).intValue;
         model.description_p = [resultDict objectForKey:@"description"];
@@ -48,6 +52,8 @@
         model.p_iids = [self parseSpecProductItemArray:[resultDict objectForKey:@"p_iids"]];
         model.scores = [self parseScoreItemArray:[resultDict objectForKey:@"scores"]];
         
+        self.productDetail = model;
+        
         result = YES;
     }
     
@@ -55,13 +61,27 @@
 }
 
 -(NSArray*)parseSpecItemArray:(NSArray*)dicArray{
+    //    NSMutableArray* itemArray = [NSMutableArray new];
+    //    for (NSDictionary* dic in dicArray) {
+    //        SpecItem* item = [SpecItem new];
+    //        item.name = [dic objectForKey:@"name"];
+    //        item.data = [dic objectForKey:@"data"];
+    //        [itemArray addObject:item];
+    //    }
+    //    return itemArray;
+    
+    //TODO-GUO:假数据
     NSMutableArray* itemArray = [NSMutableArray new];
-    for (NSDictionary* dic in dicArray) {
-        SpecItem* item = [SpecItem new];
-        item.name = [dic objectForKey:@"name"];
-        item.data = [dic objectForKey:@"data"];
-        [itemArray addObject:item];
-    }
+    SpecItem* item = [SpecItem new];
+    item.name = @"颜色";
+    item.data = @[@"红色",@"紫罗兰色",@"红色",@"紫罗兰色",@"红色",@"紫罗兰色",@"红色",@"紫罗兰色",@"红色",@"紫罗兰色",@"红色",@"紫罗兰色",@"红色",@"紫罗兰色"];
+    [itemArray addObject:item];
+    
+    SpecItem* item2 = [SpecItem new];
+    item2.name = @"尺寸";
+    item2.data = @[@"大号",@"XXXXXXXL号",@"大号",@"XXXXXXXL号",@"大号",@"XXXXXXXL号",@"大号",@"XXXXXXXL号",@"大号",@"XXXXXXXL号"];
+    [itemArray addObject:item2];
+    
     return itemArray;
 }
 
