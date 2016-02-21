@@ -25,5 +25,6 @@ typedef NS_ENUM(NSUInteger, MainTabIndexType) {
 // 颜色相关
 #define kWhiteHighlightedColor          RGBA(150, 150, 150, 1.0f)
 #define kBlackHighlightedColor          [UIColor lightGrayColor]
+#define kBlankOldY 120
 
 #endif

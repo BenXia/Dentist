@@ -1,0 +1,164 @@
+//
+//  AddressListVC.m
+//  Dentist
+//
+//  Created by 王涛 on 16/2/21.
+//  Copyright © 2016年 iOSStudio. All rights reserved.
+//
+
+#import "AddressListVC.h"
+#import "AddressListDC.h"
+#import "CreateOrEditAddressVC.h"
+
+@interface AddressListVC ()<PPDataControllerDelegate,
+UITableViewDataSource,
+UITableViewDelegate,
+WTLabelDelegate>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) AddressListDC *addressListRequest;
+@property (nonatomic, strong) WTLabel *blankLabel;
+@end
+
+@implementation AddressListVC
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.title = @"我的地址";
+    self.addressListRequest = [[AddressListDC alloc] initWithDelegate:self];
+    [self.addressListRequest requestWithArgs:nil];
+    self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 1)];
+    [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"新建" style:UIBarButtonItemStylePlain target:self action:@selector(didClickOnRightBtn)]];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - UITableViewDataSource & UITableViewDelegate
+
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.addressListRequest.addressArr.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    Address *address = self.addressListRequest.addressArr[indexPath.row];
+    static NSString *cellIdentifier = @"cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.textLabel.font = [UIFont systemFontOfSize:15];
+        cell.detailTextLabel.font = [UIFont systemFontOfSize:15];
+    }
+    if (self.isSelectAddress) {
+        cell.imageView.image = [UIImage imageNamed:@"btn_choice_f"];
+        if (address.isDefault) {
+            cell.imageView.image = [UIImage imageNamed:@"btn_choice_t"];
+        }
+    }
+    cell.textLabel.text = [NSString stringWithFormat:@"%@     %@",address.recipientName,address.recipientPhoneNum];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@%@%@%@",address.province,address.city,address.area,address.detailAddress];
+    cell.detailTextLabel.numberOfLines = 0;
+    
+    return cell;
+    
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 60;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 12;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    Address *address = self.addressListRequest.addressArr[indexPath.row];
+    if (self.isSelectAddress) {
+        self.selectedCompleteBlock(address);
+        [self.navigationController popViewControllerAnimated:YES];
+    } else {
+        //地址编辑页
+        CreateOrEditAddressVC *creatAddressVC = [[CreateOrEditAddressVC alloc] initWithNibName:@"CreateOrEditAddressVC" bundle:nil];
+        creatAddressVC.type = kAddressToChange;
+        creatAddressVC.addressModel = address;
+        [self.navigationController pushViewController:creatAddressVC animated:YES];
+    }
+}
+
+#pragma mark - Action
+
+- (void)didClickOnRightBtn {
+    //跳新建地址页
+    CreateOrEditAddressVC *creatAddressVC = [[CreateOrEditAddressVC alloc] initWithNibName:@"CreateOrEditAddressVC" bundle:nil];
+    creatAddressVC.type = kAddressToAdd;
+    [self.navigationController pushViewController:creatAddressVC animated:YES];
+}
+
+#pragma mark - PPDataControllerDelegate
+
+- (void)loadingData:(PPDataController *)controller failedWithError:(NSError *)error {
+    if (controller == self.addressListRequest) {
+        [Utilities showToastWithText:[NSString stringWithFormat:@"获取地址列表失败:%@", error]];
+    }
+}
+
+- (void)loadingDataFinished:(PPDataController *)controller {
+    if (controller == self.addressListRequest) {
+        [[GCDQueue mainQueue] queueBlock:^{
+            [self refreshTableView];
+        }];
+    }
+}
+
+#pragma mark - Private Method
+
+- (void)refreshTableView {
+    if (self.addressListRequest.addressArr.count>0) {
+        self.blankLabel.hidden = YES;
+        [self.tableView reloadData];
+    } else {
+        self.blankLabel.hidden = NO;
+    }
+}
+
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    CGFloat scrollViewOffY = scrollView.contentOffset.y;
+    self.blankLabel.y = kBlankOldY - scrollViewOffY;
+}
+
+#pragma mark - Setters and Getters
+
+- (WTLabel *)blankLabel {
+    if (!_blankLabel) {
+        _blankLabel = [[WTLabel alloc] initWithFrame:CGRectMake(0, 0, 320, 200) withTitle:@"还没有地址" andSubTitle:@"新添加一个地址吧" andButtonTitle:nil andIcon:@"user_pic_boy"];
+        _blankLabel.y = kBlankOldY;
+        _blankLabel.centerX = [UIUtils screenWidth]/2;
+        [_blankLabel setButtonTitle:@"新建"];
+        _blankLabel.delegate = self;
+        _blankLabel.hidden = YES;
+        [self.view addSubview:_blankLabel];
+    }
+    return _blankLabel;
+}
+
+- (void)didClickOnBtn {
+    [self didClickOnRightBtn];
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+@end
