@@ -16,4 +16,6 @@
 
 - (void)setCellWithProductEvaluateModel:(ProductEvaluateModel *)model;
 
+- (void)setTopLineViewHidden:(BOOL)hidden;
+
 @end

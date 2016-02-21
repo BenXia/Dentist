@@ -49,6 +49,12 @@
 
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+}
+
 - (void)initUI {
     self.title = @"评价";
     self.view.backgroundColor = [UIColor backGroundGrayColor];

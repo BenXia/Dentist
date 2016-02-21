@@ -14,6 +14,9 @@
 #import "ProductDescriptionVC.h"
 #import "AddCartDC.h"
 #import "AddFavoriteDC.h"
+#import "ProductEvaluateTableViewCell.h"
+#import "ProductEvaluateModel.h"
+#import "ProductEvaluateVC.h"
 
 static const CGFloat kProductDetailVCTopImageRatio = 16.f/9;
 static const CGFloat kHeightOfSectionHeader = 12;
@@ -98,6 +101,7 @@ UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *appraiseContentView;
 @property (weak, nonatomic) IBOutlet UILabel *appraiseTotalLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *appraiseHeaderViewHeightConstraint;
+@property (weak, nonatomic) IBOutlet UIView *appraiseHeaderView;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *appraiseContentViewHeightConstraint;
 //猜你喜欢
@@ -136,6 +140,12 @@ UIScrollViewDelegate>
     [self initUIReleated];
     
     [self.dc requestWithArgs:nil];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -275,6 +285,14 @@ UIScrollViewDelegate>
         [self addScrollSubview:self.appraiseView];
         self.scrollContentHeight += kHeightOfSectionHeader;
     }
+    
+    //猜你喜欢
+    {
+        [self refreshGuessYouLikeView];
+        [self addScrollSubview:self.guessYouLikeView];
+        self.scrollContentHeight += kHeightOfSectionHeader;
+    }
+    
     //上拉提示
     [self addScrollSubview:self.dragTipView];
     
@@ -335,12 +353,43 @@ UIScrollViewDelegate>
 - (void)refreshSelectTipView{
     [self.selectTipLabel ajustHeightWithLimitWidth:kScreenWidth];
     self.selectTipView.height = 2*self.selectTipLabel.y + self.selectTipLabel.height;
+    
+    self.selectTipView.gestureRecognizers = nil;
+    UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didClickSelectTipView)];
+    [self.selectTipView addGestureRecognizer:tap];
 }
 
 - (void)refreshAppraiseView{
-    self.appraiseContentViewHeightConstraint.constant = 2*self.appraiseTotalLabel.y + self.appraiseTotalLabel.height;
-    
+    //点击跳转评价列表w
+    self.appraiseHeaderView.gestureRecognizers = nil;
+    UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didClickAppraiseHeaderVie)];
+    [self.appraiseHeaderView addGestureRecognizer:tap];
+    self.appraiseHeaderViewHeightConstraint.constant = 2*self.appraiseTotalLabel.y + self.appraiseTotalLabel.height;
+
     //添加Cell
+    NSArray* scoreArray = self.dc.productDetail.scores;
+    CGFloat currentY = 0;
+    UINib* cellNib = [UINib nibWithNibName:@"ProductEvaluateTableViewCell" bundle:nil];
+    for (ScoreItem* item in scoreArray) {
+        ProductEvaluateModel* model = [ProductEvaluateModel new];
+        model.evaluateContent = item.content;
+        model.evaluateImageArray = item.imgs;
+        model.evaluateScore = [NSString stringWithFormat:@"%d",item.score];
+        NSDate* createDate = [NSDate dateWithTimeIntervalSince1970:item.addtime];
+        NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        model.evaluateTime = [dateFormatter stringFromDate:createDate];
+        model.evaluateUserName = item.nickname;
+        
+        CGFloat cellHeight = [ProductEvaluateTableViewCell getCellHeightWithContent:model];
+        ProductEvaluateTableViewCell* cell = [[cellNib instantiateWithOwner:nil options:nil]firstObject];
+        cell.frame = CGRectMake(0, currentY, kScreenWidth, cellHeight);
+        [cell setCellWithProductEvaluateModel:model];
+        [cell setTopLineViewHidden:NO];
+        [self.appraiseContentView addSubview:cell];
+        currentY += cellHeight;
+    }
+    self.appraiseContentViewHeightConstraint.constant = currentY;
     
     self.appraiseView.height = self.appraiseHeaderViewHeightConstraint.constant + self.appraiseContentViewHeightConstraint.constant;
 }
@@ -642,6 +691,14 @@ UIScrollViewDelegate>
 
 - (IBAction)didClickBuyNowButtonAction:(id)sender {
     [self showPopupCustomiseView];
+}
+
+- (void)didClickSelectTipView{
+    [self showPopupCustomiseView];
+}
+
+- (void)didClickAppraiseHeaderVie{
+    [self.navigationController pushViewController:[ProductEvaluateVC new] animated:YES];
 }
 
 - (IBAction)didClickCustomiseBackgroundViewAction:(id)sender {
