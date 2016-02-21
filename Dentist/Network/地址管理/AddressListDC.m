@@ -11,7 +11,8 @@
 
 @implementation AddressListDC
 - (NSDictionary *)requestURLArgs {
-    return @{@"method":@"address.mylist",@"v":@"0.0.1",@"auth":[UserCache sharedUserCache].token};
+    NSString* token = [UserCache sharedUserCache].token ? [UserCache sharedUserCache].token : @"";
+    return @{@"method":@"address.mylist",@"v":@"0.0.1",@"auth":token};
 }
 
 - (RequestMethod)requestMethod {
