@@ -11,6 +11,7 @@
 #import "SDCycleScrollView.h"
 #import "GroupProductView.h"
 #import "EditNumberView.h"
+#import "ProductDescriptionVC.h"
 
 static const CGFloat kProductDetailVCTopImageRatio = 16.f/9;
 static const CGFloat kHeightOfSectionHeader = 12;
@@ -481,14 +482,18 @@ UIScrollViewDelegate>
 }
 
 - (void)footerRereshing {
-    
+    ProductDescriptionVC* descriptionVC = [[ProductDescriptionVC alloc] initWithHtmlString:self.dc.productDetail.description_p];
+    UINavigationController* navVC = [[UINavigationController alloc] initWithRootViewController:descriptionVC];
+    navVC.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    [self presentViewController:navVC animated:YES completion:nil];
 }
+
 - (IBAction)didClickReturnButton:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)didClickFavoriteButtonAction:(id)sender {
-    
+    [self footerRereshing];
 }
 
 - (IBAction)didClickCartButtonAction:(id)sender {
