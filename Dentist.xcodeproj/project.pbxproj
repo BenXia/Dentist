@@ -290,6 +290,9 @@
 		930C34361C782073008823F9 /* ProductIntroduceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 930C34351C782073008823F9 /* ProductIntroduceModel.m */; };
 		930C34391C783ADF008823F9 /* GroupBuyingDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 930C34381C783ADF008823F9 /* GroupBuyingDC.m */; };
 		930C343C1C783E5C008823F9 /* SalesPromotionDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 930C343B1C783E5C008823F9 /* SalesPromotionDC.m */; };
+		930C34461C795CEB008823F9 /* SetNickVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 930C34441C795CEB008823F9 /* SetNickVC.m */; };
+		930C34471C795CEB008823F9 /* SetNickVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 930C34451C795CEB008823F9 /* SetNickVC.xib */; };
+		930C344A1C795FBA008823F9 /* SetNickDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 930C34491C795FBA008823F9 /* SetNickDC.m */; };
 		932839BE1C6378A9004C21CD /* MyOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 932839BC1C6378A9004C21CD /* MyOrderCell.m */; };
 		932839BF1C6378A9004C21CD /* MyOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 932839BD1C6378A9004C21CD /* MyOrderCell.xib */; };
 		932839C61C637EFF004C21CD /* 待处理@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 932839C01C637EFF004C21CD /* 待处理@2x.png */; };
@@ -756,6 +759,11 @@
 		930C34381C783ADF008823F9 /* GroupBuyingDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupBuyingDC.m; sourceTree = "<group>"; };
 		930C343A1C783E5C008823F9 /* SalesPromotionDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SalesPromotionDC.h; sourceTree = "<group>"; };
 		930C343B1C783E5C008823F9 /* SalesPromotionDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SalesPromotionDC.m; sourceTree = "<group>"; };
+		930C34431C795CEB008823F9 /* SetNickVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetNickVC.h; sourceTree = "<group>"; };
+		930C34441C795CEB008823F9 /* SetNickVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetNickVC.m; sourceTree = "<group>"; };
+		930C34451C795CEB008823F9 /* SetNickVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetNickVC.xib; sourceTree = "<group>"; };
+		930C34481C795FBA008823F9 /* SetNickDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetNickDC.h; sourceTree = "<group>"; };
+		930C34491C795FBA008823F9 /* SetNickDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetNickDC.m; sourceTree = "<group>"; };
 		932839BB1C6378A9004C21CD /* MyOrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOrderCell.h; sourceTree = "<group>"; };
 		932839BC1C6378A9004C21CD /* MyOrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOrderCell.m; sourceTree = "<group>"; };
 		932839BD1C6378A9004C21CD /* MyOrderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyOrderCell.xib; sourceTree = "<group>"; };
@@ -1773,6 +1781,9 @@
 				93899B4F1C74C2160065B819 /* UserInfoVC.h */,
 				93899B501C74C2160065B819 /* UserInfoVC.m */,
 				93899B511C74C2160065B819 /* UserInfoVC.xib */,
+				930C34431C795CEB008823F9 /* SetNickVC.h */,
+				930C34441C795CEB008823F9 /* SetNickVC.m */,
+				930C34451C795CEB008823F9 /* SetNickVC.xib */,
 			);
 			path = "个人信息";
 			sourceTree = "<group>";
@@ -1812,6 +1823,8 @@
 				93899B561C74C7470065B819 /* UserInfoDC.m */,
 				939715421C761BE4007582C4 /* ChangeUserHeadImageDC.h */,
 				939715431C761BE4007582C4 /* ChangeUserHeadImageDC.m */,
+				930C34481C795FBA008823F9 /* SetNickDC.h */,
+				930C34491C795FBA008823F9 /* SetNickDC.m */,
 			);
 			path = "个人";
 			sourceTree = "<group>";
@@ -1978,6 +1991,7 @@
 				33DD6D161C611A5500CE6B31 /* 积@2x.png in Resources */,
 				33DD6CBD1C611A5500CE6B31 /* dot_blur.png in Resources */,
 				33DD6CD91C611A5500CE6B31 /* ico_search.png in Resources */,
+				930C34471C795CEB008823F9 /* SetNickVC.xib in Resources */,
 				9379D3C01C6338BB00390702 /* 我的-收藏的商品@2x.png in Resources */,
 				93624C221C44170100262B65 /* btn_custommade_default.png in Resources */,
 				33440D0B1C783B7D00A441E3 /* topnav_icon08@3x.png in Resources */,
@@ -2282,6 +2296,7 @@
 				33CAF88D1C780C030015B4BC /* PPJSExternal.m in Sources */,
 				88C3BACD1C781F5B001F4D85 /* ProductDetailDC.m in Sources */,
 				932839BE1C6378A9004C21CD /* MyOrderCell.m in Sources */,
+				930C344A1C795FBA008823F9 /* SetNickDC.m in Sources */,
 				33DD6B391C60ED2800CE6B31 /* ProductBriefInfoCell.m in Sources */,
 				93F2A0161C49E93C0034486B /* LoginDC.m in Sources */,
 				93A1F5DA1C6281D900CFEEC4 /* SaleActivityCell.m in Sources */,
@@ -2311,6 +2326,7 @@
 				33F070941C42B58E00DAC58F /* PPDataCache.m in Sources */,
 				33DD6BB91C6103CA00CE6B31 /* IQTitleBarButtonItem.m in Sources */,
 				93B497DC1C646B7D00275D88 /* ADTodayIntroduceDC.m in Sources */,
+				930C34461C795CEB008823F9 /* SetNickVC.m in Sources */,
 				33DD6BB31C6103CA00CE6B31 /* IQUIWindow+Hierarchy.m in Sources */,
 				930C343C1C783E5C008823F9 /* SalesPromotionDC.m in Sources */,
 				33DD6BB21C6103CA00CE6B31 /* IQUIView+Hierarchy.m in Sources */,

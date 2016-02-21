@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *secondBtn;
 @property (weak, nonatomic) IBOutlet UIButton *thirdBtn;
 @property (weak, nonatomic) IBOutlet UIButton *fourthBtn;
+@property (weak, nonatomic) IBOutlet UIButton *leftImageShowBtn;
 
 @end
 

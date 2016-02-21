@@ -34,6 +34,11 @@
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self refreshUI];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -50,13 +55,18 @@
 
 #pragma mark - Private Method
 
+- (void)refreshUI {
+    [self.headImageView sd_setImageWithURL:[NSURL URLWithString:[UserInfoModel sharedUserInfoModel].headPath] placeholderImage:[UIImage imageNamed:@"user_pic_boy"]];
+    self.nickLabel.text = [UserInfoModel sharedUserInfoModel].nickName;
+}
+
 - (void)initUI {
     self.headImageView.layer.cornerRadius = self.headImageView.width/2;
     self.headImageView.layer.masksToBounds = YES;
     self.headImageView.userInteractionEnabled = YES;
-    [self.headImageView sd_setImageWithURL:[NSURL URLWithString:[UserInfoModel sharedUserInfoModel].headPath] placeholderImage:[UIImage imageNamed:@"user_pic_boy"]];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didClickOnHeadImageView:)];
     [self.headImageView addGestureRecognizer:tap];
+    [self refreshUI];
 }
 
 - (void)initTableView {
@@ -73,6 +83,8 @@
 }
 
 - (IBAction)onAddressBtn:(UIButton *)sender {
+    
+    
 }
 
 - (void)onSettingBtn {

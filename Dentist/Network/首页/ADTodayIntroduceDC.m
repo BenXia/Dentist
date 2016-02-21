@@ -14,7 +14,7 @@
 }
 
 - (RequestMethod)requestMethod {
-    return RequestMethodPOST;
+    return RequestMethodGET;
 }
 
 - (NSDictionary *)requestHTTPBody {

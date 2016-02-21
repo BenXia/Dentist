@@ -76,10 +76,12 @@ typedef enum : NSUInteger {
 
 - (IBAction)onAgreementBtn:(UIButton *)sender {
     AgreementVC *agreementVC = [[AgreementVC alloc] initWithNibName:@"AgreementVC" bundle:nil];
+    agreementVC.type = kAgreementA;
     [self.navigationController pushViewController:agreementVC animated:YES];
 }
 - (IBAction)onAgreementBtn2:(UIButton *)sender {
     AgreementVC *agreementVC = [[AgreementVC alloc] initWithNibName:@"AgreementVC" bundle:nil];
+    agreementVC.type = kAgreementB;
     [self.navigationController pushViewController:agreementVC animated:YES];
 }
 

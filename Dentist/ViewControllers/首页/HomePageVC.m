@@ -153,8 +153,8 @@ PPDataControllerDelegate>
 - (void)initBanner {
     // 保证幻灯的宽高比
     CGFloat topViewHeight = kScreenWidth / kTopImageViewRatio;
-    _tableHeaderView.translatesAutoresizingMaskIntoConstraints = YES;
-    _cycleScrollView.translatesAutoresizingMaskIntoConstraints = YES;
+    //_tableHeaderView.translatesAutoresizingMaskIntoConstraints = YES;
+    //_cycleScrollView.translatesAutoresizingMaskIntoConstraints = YES;
     _tableHeaderView.frame = CGRectMake(0, 0, kScreenWidth, topViewHeight);
     _cycleScrollView.frame = CGRectMake(0, 0, kScreenWidth, topViewHeight);
     
@@ -234,11 +234,13 @@ PPDataControllerDelegate>
     self.adTodayIntroduceRequest = [[ADTodayIntroduceDC alloc] initWithDelegate:self];
     [self.adTodayIntroduceRequest requestWithArgs:nil];
     
+    self.salesPromotionRequest = [[SalesPromotionDC alloc] initWithDelegate:self];
+    [self.salesPromotionRequest requestWithArgs:nil];
+    
     self.groupBuyingRequest = [[GroupBuyingDC alloc] initWithDelegate:self];
     [self.groupBuyingRequest requestWithArgs:nil];
     
-    self.salesPromotionRequest = [[SalesPromotionDC alloc] initWithDelegate:self];
-    [self.groupBuyingRequest requestWithArgs:nil];
+    
 }
 
 #pragma mark - IBActions

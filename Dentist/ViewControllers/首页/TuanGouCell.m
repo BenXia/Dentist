@@ -11,13 +11,17 @@
 @interface TuanGouCell ()
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *firstItemNameLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *firstImageView;
+@property (weak, nonatomic) IBOutlet UIButton *firstImageBtn;
+
 @property (weak, nonatomic) IBOutlet UILabel *secondItemNameLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *secondImageView;
+@property (weak, nonatomic) IBOutlet UIButton *secondImageBtn;
+
 @property (weak, nonatomic) IBOutlet UILabel *thirdItemLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *thirdItemImage;
+@property (weak, nonatomic) IBOutlet UIButton *thirdImageBtn;
+
 @property (weak, nonatomic) IBOutlet UILabel *fourthItemNameLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *fourthImageView;
+@property (weak, nonatomic) IBOutlet UIButton *fourthImageBtn;
+
 
 @end
 
@@ -53,13 +57,13 @@
     for (int i = 0 ; i< cellModelArray.count; i++) {
         ProductIntroduceModel *model = cellModelArray[i];
         if (i == 0) {
-            [self.firstImageView sd_setImageWithURL:[NSURL URLWithString:model.img_url] placeholderImage:nil];
+            [self.firstImageBtn sd_setImageWithURL:[NSURL URLWithString:model.img_url] forState:UIControlStateNormal placeholderImage:nil];
         } else if (i == 1) {
-            [self.secondImageView sd_setImageWithURL:[NSURL URLWithString:model.img_url] placeholderImage:nil];
+            [self.secondImageBtn sd_setImageWithURL:[NSURL URLWithString:model.img_url] forState:UIControlStateNormal placeholderImage:nil];
         } else if (i == 2) {
-            [self.thirdItemImage sd_setImageWithURL:[NSURL URLWithString:model.img_url] placeholderImage:nil];
+            [self.thirdImageBtn sd_setImageWithURL:[NSURL URLWithString:model.img_url] forState:UIControlStateNormal placeholderImage:nil];
         } else if (i == 3) {
-            [self.fourthImageView sd_setImageWithURL:[NSURL URLWithString:model.img_url] placeholderImage:nil];
+            [self.fourthImageBtn sd_setImageWithURL:[NSURL URLWithString:model.img_url] forState:UIControlStateNormal placeholderImage:nil];
         }
         
     }
