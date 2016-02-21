@@ -9,6 +9,7 @@
 #import "ProfileVC.h"
 #import "MyOrderCell.h"
 #import "UserInfoVC.h"
+#import "AddressLIstVC.h"
 
 @interface ProfileVC ()<UITableViewDataSource,UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UIView *headerView;
@@ -83,8 +84,9 @@
 }
 
 - (IBAction)onAddressBtn:(UIButton *)sender {
-    
-    
+    AddressLIstVC *addressListVC = [[AddressLIstVC alloc] initWithNibName:@"AddressLIstVC" bundle:nil];
+    addressListVC.isSelectAddress = NO;
+    [self.navigationController pushViewController:addressListVC animated:YES];
 }
 
 - (void)onSettingBtn {

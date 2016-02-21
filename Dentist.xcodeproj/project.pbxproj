@@ -297,6 +297,11 @@
 		930C34461C795CEB008823F9 /* SetNickVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 930C34441C795CEB008823F9 /* SetNickVC.m */; };
 		930C34471C795CEB008823F9 /* SetNickVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 930C34451C795CEB008823F9 /* SetNickVC.xib */; };
 		930C344A1C795FBA008823F9 /* SetNickDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 930C34491C795FBA008823F9 /* SetNickDC.m */; };
+		930C34551C7976A0008823F9 /* AddressLIstVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 930C34531C7976A0008823F9 /* AddressLIstVC.m */; };
+		930C34561C7976A0008823F9 /* AddressLIstVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 930C34541C7976A0008823F9 /* AddressLIstVC.xib */; };
+		930C345A1C798FAF008823F9 /* AddressListDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 930C34591C798FAF008823F9 /* AddressListDC.m */; };
+		930C345D1C79910E008823F9 /* Address.m in Sources */ = {isa = PBXBuildFile; fileRef = 930C345C1C79910E008823F9 /* Address.m */; };
+		930C34611C799F8C008823F9 /* WTLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 930C34601C799F8C008823F9 /* WTLabel.m */; };
 		932839BE1C6378A9004C21CD /* MyOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 932839BC1C6378A9004C21CD /* MyOrderCell.m */; };
 		932839BF1C6378A9004C21CD /* MyOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 932839BD1C6378A9004C21CD /* MyOrderCell.xib */; };
 		932839C61C637EFF004C21CD /* 待处理@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 932839C01C637EFF004C21CD /* 待处理@2x.png */; };
@@ -772,6 +777,15 @@
 		930C34451C795CEB008823F9 /* SetNickVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetNickVC.xib; sourceTree = "<group>"; };
 		930C34481C795FBA008823F9 /* SetNickDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetNickDC.h; sourceTree = "<group>"; };
 		930C34491C795FBA008823F9 /* SetNickDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetNickDC.m; sourceTree = "<group>"; };
+		930C34521C7976A0008823F9 /* AddressLIstVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressLIstVC.h; sourceTree = "<group>"; };
+		930C34531C7976A0008823F9 /* AddressLIstVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressLIstVC.m; sourceTree = "<group>"; };
+		930C34541C7976A0008823F9 /* AddressLIstVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressLIstVC.xib; sourceTree = "<group>"; };
+		930C34581C798FAF008823F9 /* AddressListDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressListDC.h; sourceTree = "<group>"; };
+		930C34591C798FAF008823F9 /* AddressListDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressListDC.m; sourceTree = "<group>"; };
+		930C345B1C79910E008823F9 /* Address.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Address.h; sourceTree = "<group>"; };
+		930C345C1C79910E008823F9 /* Address.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Address.m; sourceTree = "<group>"; };
+		930C345F1C799F8C008823F9 /* WTLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WTLabel.h; sourceTree = "<group>"; };
+		930C34601C799F8C008823F9 /* WTLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WTLabel.m; sourceTree = "<group>"; };
 		932839BB1C6378A9004C21CD /* MyOrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOrderCell.h; sourceTree = "<group>"; };
 		932839BC1C6378A9004C21CD /* MyOrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOrderCell.m; sourceTree = "<group>"; };
 		932839BD1C6378A9004C21CD /* MyOrderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyOrderCell.xib; sourceTree = "<group>"; };
@@ -1459,6 +1473,7 @@
 				33F070911C42B58E00DAC58F /* PPDataController.h */,
 				33F070921C42B58E00DAC58F /* PPDataController.m */,
 				33F070931C42B58E00DAC58F /* PPDataControllerError.h */,
+				930C34571C797A4B008823F9 /* 地址管理 */,
 				93899B541C74C71E0065B819 /* 个人 */,
 				88C3BAC81C781F5B001F4D85 /* 商品详情 */,
 				9377AC621C53781E003B24B1 /* 首页 */,
@@ -1694,6 +1709,26 @@
 			path = "商品详情";
 			sourceTree = "<group>";
 		};
+		930C34571C797A4B008823F9 /* 地址管理 */ = {
+			isa = PBXGroup;
+			children = (
+				930C34581C798FAF008823F9 /* AddressListDC.h */,
+				930C34591C798FAF008823F9 /* AddressListDC.m */,
+				930C345B1C79910E008823F9 /* Address.h */,
+				930C345C1C79910E008823F9 /* Address.m */,
+			);
+			path = "地址管理";
+			sourceTree = "<group>";
+		};
+		930C345E1C799F8C008823F9 /* WTLabel */ = {
+			isa = PBXGroup;
+			children = (
+				930C345F1C799F8C008823F9 /* WTLabel.h */,
+				930C34601C799F8C008823F9 /* WTLabel.m */,
+			);
+			path = WTLabel;
+			sourceTree = "<group>";
+		};
 		93624C121C44170100262B65 /* 首页 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1783,6 +1818,9 @@
 		93899B491C74C1F60065B819 /* 地址管理 */ = {
 			isa = PBXGroup;
 			children = (
+				930C34521C7976A0008823F9 /* AddressLIstVC.h */,
+				930C34531C7976A0008823F9 /* AddressLIstVC.m */,
+				930C34541C7976A0008823F9 /* AddressLIstVC.xib */,
 			);
 			path = "地址管理";
 			sourceTree = "<group>";
@@ -1852,6 +1890,7 @@
 		93DEA8BE1C4BCBAA008211F7 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				930C345E1C799F8C008823F9 /* WTLabel */,
 				33440D0C1C783C1B00A441E3 /* EGOPhotoViewer */,
 				33440D121C783C1B00A441E3 /* ELCImagePicker */,
 				33DD6B901C6103CA00CE6B31 /* IQKeyBoardManager */,
@@ -2160,6 +2199,7 @@
 				93A1F5DB1C6281D900CFEEC4 /* SaleActivityCell.xib in Resources */,
 				33DD6CEE1C611A5500CE6B31 /* 图层-0@2x.png in Resources */,
 				33DD6D1F1C611A5500CE6B31 /* 评价晒单-相机@3x.png in Resources */,
+				930C34561C7976A0008823F9 /* AddressLIstVC.xib in Resources */,
 				33D187441C70CE3800658F3D /* 立即购买@2x.png in Resources */,
 				33DD6CD31C611A5500CE6B31 /* ico_idvip.png in Resources */,
 				33CAF87A1C7809690015B4BC /* WebBrowserVC.xib in Resources */,
@@ -2325,9 +2365,11 @@
 				930C34391C783ADF008823F9 /* GroupBuyingDC.m in Sources */,
 				33DD6BB81C6103CA00CE6B31 /* IQBarButtonItem.m in Sources */,
 				33CAE4361C7360F30038748F /* ProductImageTextCell.m in Sources */,
+				930C34611C799F8C008823F9 /* WTLabel.m in Sources */,
 				93DEA8CF1C4BCBAA008211F7 /* TAAbstractDotView.m in Sources */,
 				93DEA88E1C4BC6FB008211F7 /* HomePageCourseListCell.m in Sources */,
 				9379D3AF1C63239100390702 /* MultilevelMenu.m in Sources */,
+				930C345A1C798FAF008823F9 /* AddressListDC.m in Sources */,
 				33F070501C429AD300DAC58F /* AppInitializer.m in Sources */,
 				9377AC651C537837003B24B1 /* ADBannerDC.m in Sources */,
 				93899B521C74C2160065B819 /* UserInfoVC.m in Sources */,
@@ -2338,6 +2380,7 @@
 				33F070951C42B58E00DAC58F /* PPDataController.m in Sources */,
 				33DD6BBB1C6103CA00CE6B31 /* IQUIView+IQKeyboardToolbar.m in Sources */,
 				33F0706E1C42A43200DAC58F /* ProfileVC.m in Sources */,
+				930C345D1C79910E008823F9 /* Address.m in Sources */,
 				33F070641C42A40F00DAC58F /* CategoryVC.m in Sources */,
 				33F070941C42B58E00DAC58F /* PPDataCache.m in Sources */,
 				33DD6BB91C6103CA00CE6B31 /* IQTitleBarButtonItem.m in Sources */,
@@ -2364,6 +2407,7 @@
 				9379D3A91C63239100390702 /* CollectionHeader.m in Sources */,
 				33CAE4411C7373200038748F /* OrderItemHeaderCell.m in Sources */,
 				33CAE4181C735F270038748F /* ProductGiftCell.m in Sources */,
+				930C34551C7976A0008823F9 /* AddressLIstVC.m in Sources */,
 				93DEA8D41C4BCBAA008211F7 /* SDCycleScrollView.m in Sources */,
 				33DD6BB11C6103CA00CE6B31 /* IQNSArray+Sort.m in Sources */,
 				93DEA8D11C4BCBAA008211F7 /* TADotView.m in Sources */,
