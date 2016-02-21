@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface TuanGouCell : UITableViewCell
-@property (nonatomic, strong) id cellModel;
+@property (nonatomic, strong) NSArray *cellModelArray;
 @end

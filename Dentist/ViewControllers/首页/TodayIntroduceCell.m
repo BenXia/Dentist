@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *secondBtn;
 @property (weak, nonatomic) IBOutlet UIButton *thirdBtn;
 @property (weak, nonatomic) IBOutlet UIButton *fourthBtn;
+@property (weak, nonatomic) IBOutlet UIButton *leftImageShowBtn;
 
 @end
 
@@ -32,14 +33,41 @@
 
 - (void)setCellModel:(id)cellModel {
     _cellModel = cellModel;
-    [self.firstBtn setImage:[UIImage imageNamed:@"btn_clinical_default.png"] forState:UIControlStateNormal];
-    [self.secondBtn setImage:[UIImage imageNamed:@"btn_clinical_default.png"] forState:UIControlStateNormal];
-    [self.thirdBtn setImage:[UIImage imageNamed:@"btn_clinical_default.png"] forState:UIControlStateNormal];
-    [self.fourthBtn setImage:[UIImage imageNamed:@"btn_clinical_default.png"] forState:UIControlStateNormal];
+    for (ProductIntroduceModel *model in cellModel) {
+        if ([model.location isEqualToString:@"右1"]) {
+            [self.firstBtn sd_setImageWithURL:[NSURL URLWithString:model.img_url] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"btn_clinical_default.png"]];
+            [self.firstBtn setTitle:model.event_id forState:UIControlStateNormal];
+        } else if ([model.location isEqualToString:@"右2"]) {
+            [self.secondBtn sd_setImageWithURL:[NSURL URLWithString:model.img_url] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"btn_clinical_default.png"]];
+            [self.secondBtn setTitle:model.event_id forState:UIControlStateNormal];
+        } else if ([model.location isEqualToString:@"左1"]) {
+            [self.thirdBtn sd_setImageWithURL:[NSURL URLWithString:model.img_url] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"btn_clinical_default.png"]];
+            [self.thirdBtn setTitle:model.event_id forState:UIControlStateNormal];
+        } else if ([model.location isEqualToString:@"banner"]) {
+            [self.fourthBtn sd_setImageWithURL:[NSURL URLWithString:model.img_url] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"btn_clinical_default.png"]];
+            [self.fourthBtn setTitle:model.event_id forState:UIControlStateNormal];
+        }
+    }
     [self.firstBtn centerImageAndTitle];
     [self.secondBtn centerImageAndTitle];
     [self.thirdBtn centerImageAndTitle];
     [self.fourthBtn centerImageAndTitle];
 }
+
+#pragma mark - UI Action
+
+- (IBAction)onFirstBtn:(UIButton *)sender {
+    
+}
+- (IBAction)onSecondBtn:(UIButton *)sender {
+    
+}
+- (IBAction)onThirdBtn:(UIButton *)sender {
+    
+}
+- (IBAction)onFourthBtn:(UIButton *)sender {
+    
+}
+
 
 @end

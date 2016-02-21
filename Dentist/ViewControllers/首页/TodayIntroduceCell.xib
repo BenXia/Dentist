@@ -30,23 +30,30 @@
                                     <color key="titleColor" red="1" green="0.12861775349999999" blue="0.2204865916" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZOA-Af-tyA">
-                                <rect key="frame" x="0.0" y="0.0" width="140" height="242"/>
-                                <color key="backgroundColor" red="0.20000000000000001" green="0.65490196079999996" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
-                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Fa-aN-7uw">
+                                <rect key="frame" x="0.0" y="0.0" width="140" height="30"/>
+                                <state key="normal" title="图片展示"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="WyP-d4-9n6" firstAttribute="top" secondItem="4Fa-aN-7uw" secondAttribute="bottom" constant="224" id="1jP-Zo-mhc"/>
                             <constraint firstItem="lmJ-IK-m1L" firstAttribute="leading" secondItem="yK7-JB-HWb" secondAttribute="leading" constant="8" id="3UV-9I-pCQ"/>
-                            <constraint firstAttribute="trailing" secondItem="ZOA-Af-tyA" secondAttribute="trailing" id="Edk-WU-R6Y"/>
-                            <constraint firstItem="WyP-d4-9n6" firstAttribute="top" secondItem="ZOA-Af-tyA" secondAttribute="bottom" constant="12" id="Qbf-TK-3Uv"/>
-                            <constraint firstItem="ZOA-Af-tyA" firstAttribute="leading" secondItem="yK7-JB-HWb" secondAttribute="leading" id="UQN-ob-WIL"/>
+                            <constraint firstItem="WyP-d4-9n6" firstAttribute="top" secondItem="4Fa-aN-7uw" secondAttribute="bottom" constant="8" id="HUE-Ye-gYn"/>
+                            <constraint firstAttribute="trailing" secondItem="4Fa-aN-7uw" secondAttribute="trailing" id="Jwv-EP-zrd"/>
+                            <constraint firstItem="4Fa-aN-7uw" firstAttribute="top" secondItem="yK7-JB-HWb" secondAttribute="top" id="XOV-JT-26O"/>
                             <constraint firstItem="lmJ-IK-m1L" firstAttribute="top" secondItem="WyP-d4-9n6" secondAttribute="bottom" id="d3f-re-efG"/>
-                            <constraint firstItem="ZOA-Af-tyA" firstAttribute="top" secondItem="yK7-JB-HWb" secondAttribute="top" id="hKn-6i-Orh"/>
                             <constraint firstAttribute="width" constant="140" id="iKC-cW-ru6"/>
+                            <constraint firstItem="4Fa-aN-7uw" firstAttribute="leading" secondItem="yK7-JB-HWb" secondAttribute="leading" id="pXI-vO-P9L"/>
                             <constraint firstItem="WyP-d4-9n6" firstAttribute="leading" secondItem="yK7-JB-HWb" secondAttribute="leading" constant="8" id="tdP-YW-OK0"/>
                             <constraint firstAttribute="bottom" secondItem="lmJ-IK-m1L" secondAttribute="bottom" constant="8" id="wEU-e7-cua"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="1jP-Zo-mhc"/>
+                                <exclude reference="HUE-Ye-gYn"/>
+                            </mask>
+                        </variation>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QlL-pF-Ay9">
                         <rect key="frame" x="141" y="0.0" width="89" height="151.5"/>
@@ -55,6 +62,9 @@
                         <state key="normal" title="研磨器哪家强？">
                             <color key="titleColor" red="0.14901960780000001" green="0.31372549020000001" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
+                        <connections>
+                            <action selector="onFirstBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="w4A-eR-7lM"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ao-lx-nko">
                         <rect key="frame" x="141" y="152" width="89" height="151.5"/>
@@ -63,6 +73,9 @@
                         <state key="normal" title="我我我我我我我">
                             <color key="titleColor" red="0.14901960780000001" green="0.31372549020000001" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
+                        <connections>
+                            <action selector="onThirdBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="R31-uv-6Ps"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W6S-3R-geJ">
                         <rect key="frame" x="231" y="152" width="89" height="151.5"/>
@@ -71,6 +84,9 @@
                         <state key="normal" title="哈哈哈">
                             <color key="titleColor" red="0.14901960780000001" green="0.31372549020000001" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
+                        <connections>
+                            <action selector="onFourthBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="eCj-3b-44R"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fDM-wv-MBs">
                         <rect key="frame" x="231" y="0.0" width="89" height="151.5"/>
@@ -79,6 +95,9 @@
                         <state key="normal" title="工艺先进用料讲">
                             <color key="titleColor" red="0.14901960780000001" green="0.31372549020000001" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
+                        <connections>
+                            <action selector="onSecondBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="7AW-JH-D7K"/>
+                        </connections>
                     </button>
                 </subviews>
                 <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
@@ -110,6 +129,7 @@
                 <outlet property="firstBtn" destination="QlL-pF-Ay9" id="Usa-Pf-T73"/>
                 <outlet property="fourthBtn" destination="W6S-3R-geJ" id="cFa-P6-hL5"/>
                 <outlet property="leftBackgroundView" destination="yK7-JB-HWb" id="4ZQ-54-8xL"/>
+                <outlet property="leftImageShowBtn" destination="4Fa-aN-7uw" id="X7B-VL-k8c"/>
                 <outlet property="secondBtn" destination="fDM-wv-MBs" id="dbL-QS-Ec4"/>
                 <outlet property="thirdBtn" destination="5ao-lx-nko" id="Ane-hB-h5E"/>
             </connections>

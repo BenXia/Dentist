@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AgreementVC : UIViewController
+typedef enum : NSUInteger {
+    kAgreementA,
+    kAgreementB,
+} AgreemenrType;
 
+@interface AgreementVC : UIViewController
+@property (nonatomic, assign) AgreemenrType type;
 @end

@@ -11,6 +11,7 @@
 #import "UserInfoDC.h"
 #import "UIImageView+WebCache.h"
 #import "ChangeUserHeadImageDC.h"
+#import "SetNickVC.h"
 
 @interface UserInfoVC () <UITableViewDataSource,
 UITableViewDelegate,
@@ -29,6 +30,11 @@ UINavigationControllerDelegate>
 @end
 
 @implementation UserInfoVC
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -85,6 +91,10 @@ UINavigationControllerDelegate>
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
         [self changeUserHead];
+    } else if (indexPath.row == 1) {
+        SetNickVC *setNickVC = [[SetNickVC alloc] initWithNibName:@"SetNickVC" bundle:nil];
+        setNickVC.nick = [UserInfoModel sharedUserInfoModel].nickName;
+        [self.navigationController pushViewController:setNickVC animated:YES];
     }
 }
 

@@ -14,7 +14,7 @@
 }
 
 - (RequestMethod)requestMethod {
-    return RequestMethodPOST;
+    return RequestMethodGET;
 }
 
 - (NSDictionary *)requestHTTPBody {
@@ -29,7 +29,16 @@
                                                                  options:0
                                                                    error:&error];
     if (!error || [resultArray isKindOfClass:[NSArray class]]) {
-        
+        for (NSDictionary *dict in resultArray) {
+            ProductIntroduceModel *model = [[ProductIntroduceModel alloc] init];
+            model.location = [dict objectForKey:@"location"];
+            model.end_time = [dict objectForKey:@"end_time"];
+            model.start_time = [dict objectForKey:@"start_time"];
+            model.img_url = [dict objectForKey:@"img_url"];
+            model.event_id = [dict objectForKey:@"event_id"];
+            model.iid = [dict objectForKey:@"iid"];
+            [self.productArray addObject:model];
+        }
         result = YES;
     }
     

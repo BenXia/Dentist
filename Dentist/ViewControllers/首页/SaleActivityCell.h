@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface SaleActivityCell : UITableViewCell
-
+@property (nonatomic, strong) NSArray *cellModelArray;
 @end

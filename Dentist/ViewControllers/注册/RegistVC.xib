@@ -112,6 +112,10 @@
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Ico_Successed.png" translatesAutoresizingMaskIntoConstraints="NO" id="ejJ-cg-HE5">
                     <rect key="frame" x="12" y="290" width="16" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="16" id="UN0-N3-HyL"/>
+                        <constraint firstAttribute="height" constant="16" id="UeQ-HS-TP9"/>
+                    </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cOW-JM-4oj">
                     <rect key="frame" x="32" y="310" width="128" height="32"/>
@@ -125,6 +129,10 @@
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Ico_Successed.png" translatesAutoresizingMaskIntoConstraints="NO" id="c9Q-us-RNC">
                     <rect key="frame" x="12" y="318" width="16" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="16" id="ESl-qL-WoT"/>
+                        <constraint firstAttribute="width" constant="16" id="Q2m-8M-Mt1"/>
+                    </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nPH-Au-aZ2">
                     <rect key="frame" x="40" y="382" width="295" height="50"/>
@@ -202,6 +210,6 @@
         </view>
     </objects>
     <resources>
-        <image name="Ico_Successed.png" width="16" height="16"/>
+        <image name="Ico_Successed.png" width="72" height="72"/>
     </resources>
 </document>

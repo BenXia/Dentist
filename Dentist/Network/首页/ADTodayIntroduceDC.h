@@ -10,5 +10,5 @@
 
 @interface ADTodayIntroduceDC : PPDataController
 //output
-@property (nonatomic, strong) NSMutableDictionary *dictionary;
+@property (nonatomic, strong) NSMutableArray *productArray;
 @end

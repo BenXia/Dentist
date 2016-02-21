@@ -10,13 +10,31 @@
 
 @interface PaySuccessVC ()
 
+@property (weak, nonatomic) IBOutlet UIView *topView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topViewHeightConstraint;
+@property (weak, nonatomic) IBOutlet UILabel *receiverLabel;
+@property (weak, nonatomic) IBOutlet UILabel *receiverPhoneNumberLabel;
+@property (weak, nonatomic) IBOutlet UILabel *receiverAddressLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *receiverAddressLabelHeightConstraint;
+
+@property (weak, nonatomic) IBOutlet UIView *bottomView;
+@property (weak, nonatomic) IBOutlet UILabel *orderNumberLabel;
+@property (weak, nonatomic) IBOutlet UILabel *payDateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *createOrderDateLabel;
+
+@property (weak, nonatomic) IBOutlet UIButton *continueBuyButton;
+
 @end
 
 @implementation PaySuccessVC
 
+#pragma mark - View life cycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    [self initUIRelated];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -24,14 +42,22 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
+#pragma mark - Private methods
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)initUIRelated {
+    if ([self respondsToSelector:@selector(edgesForExtendedLayout)]) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
+    
+    [self setNavTitleString:@"付款结果"];
+    
+    [self.continueBuyButton thematizedWithBackgroundColor:[UIColor themeCyanColor]];
+    [self.continueBuyButton circular:self.continueBuyButton.height / 2];
 }
-*/
+
+#pragma mark - IBActions
+
+- (IBAction)didClickContinueBuyButtonAction:(id)sender {
+}
 
 @end
