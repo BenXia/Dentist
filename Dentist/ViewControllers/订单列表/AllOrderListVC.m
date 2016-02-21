@@ -11,6 +11,7 @@
 #import "ProductListModel.h"
 #import "ProductListGoodsModel.h"
 #import "OrderListTableViewCell.h"
+#import "OrderDetailVC.h"
 
 #define kTableViewCellHeight        95
 #define kSectionHeaderViewHeight    40
@@ -21,7 +22,6 @@
 #define kPayButtonWidth             100
 #define kPayButtonHeight            30
 #define kInsert                     10
-
 
 @interface AllOrderListVC ()
 
@@ -66,7 +66,7 @@
     [model.productListGoodsArray addObject:goodmodel];
     [model.productListGoodsArray addObject:goodmodel1];
 
-    self.allOrderListVM.orderListArray = [NSMutableArray arrayWithObjects:model,model,nil];
+    self.allOrderListVM.orderListArray = [NSMutableArray arrayWithObjects:model,nil];
     
     
     [self.tableView reloadData];
@@ -97,7 +97,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return kSectionFooterViewHeight + 20;
+    return kSectionFooterViewHeight;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -121,6 +121,11 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    OrderDetailVC *orderDetailVC = [OrderDetailVC new];
+    [self.navigationController pushViewController:orderDetailVC animated:YES];
+}
 #pragma mark - Button Action
 
 - (void)deleteOrder:(id)sender {
