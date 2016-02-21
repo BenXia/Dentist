@@ -28,5 +28,21 @@
 
     // Configure the view for the selected state
 }
+- (IBAction)orderWaitingButtonClicked:(id)sender {
+    if ([self.delegate respondsToSelector:@selector(orderButtonClickedWithType:)]) {
+        [self.delegate orderButtonClickedWithType:OrderHandle_WaitingPay];
+    }
+}
 
+- (IBAction)orderWaitingPraiseButtonClicked:(id)sender {
+    if ([self.delegate respondsToSelector:@selector(orderButtonClickedWithType:)]) {
+        [self.delegate orderButtonClickedWithType:OrderHandle_WaitingPraise];
+    }
+}
+
+- (IBAction)orderHaveDoneButtonClicked:(id)sender {
+    if ([self.delegate respondsToSelector:@selector(orderButtonClickedWithType:)]) {
+        [self.delegate orderButtonClickedWithType:OrderHandle_Done];
+    }
+}
 @end

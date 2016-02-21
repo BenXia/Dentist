@@ -11,8 +11,10 @@
 #import "UserInfoVC.h"
 //TODO-GUO:测试
 #import "ProductDetailVC.h"
+#import "AllOrderListVC.h"
 
-@interface ProfileVC ()<UITableViewDataSource,UITableViewDelegate>
+
+@interface ProfileVC ()<UITableViewDataSource,UITableViewDelegate,MyOrderCellDelegate>
 @property (strong, nonatomic) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet UIImageView *headImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nickLabel;
@@ -82,6 +84,7 @@
 #pragma mark - IBOut Action
 
 - (IBAction)onShouCangBtn:(UIButton *)sender {
+    
 }
 
 - (IBAction)onScanHistoryBtn:(UIButton *)sender {
@@ -137,6 +140,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0 && indexPath.row == 1) {
         MyOrderCell *cell = [tableView dequeueReusableCellWithIdentifier:[MyOrderCell identifier] forIndexPath:indexPath];
+        cell.delegate = self;
         return cell;
         
     } else {
@@ -176,5 +180,13 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 1;
+}
+
+#pragma mark - UITableViewCellDelegate
+
+- (void)orderButtonClickedWithType:(OrderHandleType)orderHandleType {
+    AllOrderListVC * allOrderListVC = [AllOrderListVC new];
+    allOrderListVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:allOrderListVC animated:YES];
 }
 @end
