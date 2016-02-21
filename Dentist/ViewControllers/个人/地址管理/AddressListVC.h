@@ -1,5 +1,5 @@
 //
-//  AddressLIstVC.h
+//  AddressListVC.h
 //  Dentist
 //
 //  Created by 王涛 on 16/2/21.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AddressLIstVC : UIViewController
+@interface AddressListVC : UIViewController
 @property (nonatomic) BOOL isSelectAddress;
 @property (nonatomic, strong) ObjectBlock selectedCompleteBlock;
 @end

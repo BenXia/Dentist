@@ -59,7 +59,7 @@
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="我的-普通用户.png" translatesAutoresizingMaskIntoConstraints="NO" id="SC6-Fh-gGO">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="我的-普通用户.png" translatesAutoresizingMaskIntoConstraints="NO" id="SC6-Fh-gGO">
                             <rect key="frame" x="103" y="51" width="82" height="24"/>
                         </imageView>
                     </subviews>

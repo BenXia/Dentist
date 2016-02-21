@@ -7,6 +7,7 @@
 //
 
 #import "AddressListDC.h"
+#import "Address.h"
 
 @implementation AddressListDC
 - (NSDictionary *)requestURLArgs {
@@ -29,12 +30,31 @@
                                                                  options:0
                                                                    error:&error];
     if (!error || [resultdict isKindOfClass:[NSDictionary class]]) {
-        
+        for (int i = 0; i<10;i++) {
+            Address *addressModel = [[Address alloc] init];
+            addressModel.province = @"上海";
+            addressModel.city = @"上海";
+            addressModel.area = @"张江";
+            addressModel.detailAddress = @"亮秀路112号浦东软件园";
+            addressModel.recipientName = @"王涛";
+            addressModel.recipientPhoneNum = @"15221323805";
+            addressModel.postCode = @"123456";
+            if (i == 0) {
+                addressModel.isDefault = YES;
+            }
+            [self.addressArr addObject:addressModel];
+        }
         result = YES;
     }
     
     return result;
 }
 
+- (NSMutableArray *)addressArr {
+    if (!_addressArr) {
+        _addressArr = [NSMutableArray array];
+    }
+    return _addressArr;
+}
 
 @end

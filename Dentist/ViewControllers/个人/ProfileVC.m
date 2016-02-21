@@ -9,7 +9,7 @@
 #import "ProfileVC.h"
 #import "MyOrderCell.h"
 #import "UserInfoVC.h"
-#import "AddressLIstVC.h"
+#import "AddressListVC.h"
 //TODO-GUO:测试
 #import "ProductDetailVC.h"
 
@@ -89,8 +89,9 @@
 }
 
 - (IBAction)onAddressBtn:(UIButton *)sender {
-    AddressLIstVC *addressListVC = [[AddressLIstVC alloc] initWithNibName:@"AddressLIstVC" bundle:nil];
+    AddressListVC *addressListVC = [[AddressListVC alloc] initWithNibName:@"AddressListVC" bundle:nil];
     addressListVC.isSelectAddress = NO;
+    addressListVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:addressListVC animated:YES];
 }
 

@@ -9,9 +9,13 @@
 #import <Foundation/Foundation.h>
 
 @interface Address : NSObject
-@property (nonatomic, strong) NSString *ID;
+@property (nonatomic, assign) float ID;
 @property (nonatomic, strong) NSString *recipientName;
 @property (nonatomic, strong) NSString *detailAddress;
 @property (nonatomic, strong) NSString *recipientPhoneNum;
-
+@property (nonatomic, strong) NSString *province;
+@property (nonatomic, strong) NSString *city;
+@property (nonatomic, strong) NSString *area;
+@property (nonatomic, strong) NSString *postCode;
+@property (nonatomic) BOOL isDefault;
 @end

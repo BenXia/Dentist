@@ -12,7 +12,7 @@
 #import "UIImageView+WebCache.h"
 #import "ChangeUserHeadImageDC.h"
 #import "SetNickVC.h"
-#import "AddressLIstVC.m"
+#import "AddressListVC.h"
 
 @interface UserInfoVC () <UITableViewDataSource,
 UITableViewDelegate,
@@ -97,8 +97,9 @@ UINavigationControllerDelegate>
         setNickVC.nick = [UserInfoModel sharedUserInfoModel].nickName;
         [self.navigationController pushViewController:setNickVC animated:YES];
     } else if (indexPath.row == 3) {
-        AddressLIstVC *addressListVC = [[AddressLIstVC alloc] initWithNibName:@"AddressLIstVC" bundle:nil];
+        AddressListVC *addressListVC = [[AddressListVC alloc] initWithNibName:@"AddressListVC" bundle:nil];
         addressListVC.isSelectAddress = NO;
+        addressListVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:addressListVC animated:YES];
         
     }
