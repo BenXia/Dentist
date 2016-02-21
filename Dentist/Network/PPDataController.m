@@ -183,14 +183,29 @@ NSString* const kDataControllerErrorDomain = @"NetworkErrorDomain";
     NSMutableString *formatString = nil;
     
     for (NSString *key in args) {
-        if (formatString == nil) {
-            formatString = [NSMutableString stringWithFormat:@"%@=%@", key, [[args valueForKey:key] URLEncodedString]];
-        } else {
-            [formatString appendFormat:@"&%@=%@", key, [[args valueForKey:key] URLEncodedString]];
-        }
+        id value = [args valueForKey:key];
+        
+        [PPDataController appendString:formatString withParamKey:key value:value];
     }
     
-    return [NSString stringWithString:formatString];
+    return formatString;
+}
+
++ (void)appendString:(NSMutableString*)formatString withParamKey:(NSString*)key value:(id)value{
+    NSString* stringValue = nil;
+    if ([value isKindOfClass:[NSString class]]) {
+        stringValue = value;
+    }else if([value isKindOfClass:[NSNumber class]]){
+        stringValue = ((NSNumber*)value).stringValue;
+    }else if([value isKindOfClass:[NSArray class]]){
+        for (id subValue in value) {
+            [PPDataController appendString:formatString withParamKey:key value:subValue];
+        }
+    }
+    if (stringValue) {
+        NSString* linkSymbol = formatString ? @"&" : @"";
+        formatString = [NSMutableString stringWithFormat:@"%@%@=%@", linkSymbol, key, [stringValue URLEncodedString]];
+    }
 }
 
 // 对string做URL编码

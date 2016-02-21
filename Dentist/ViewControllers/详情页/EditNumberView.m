@@ -14,9 +14,6 @@
 @property (strong,nonatomic) UIButton* addButton;
 @property (strong,nonatomic) UITextField* textFiled;
 
-@property (assign,nonatomic) NSNumber* max;
-@property (assign,nonatomic) NSNumber* min;
-
 @end
 
 @implementation EditNumberView
@@ -86,34 +83,44 @@
     }];
 }
 
--(void)resetWithMin:(NSNumber*)min max:(NSNumber*)max default:(NSNumber*)def{
-    self.min = min;
-    self.max = max;
-    if (def) {
-        self.textFiled.text = [NSString stringWithFormat:@"%d",def.intValue];
+- (void)setMax:(NSNumber *)max{
+    _max = max;
+    if (max && max.intValue < self.num) {
+        self.num = max.intValue;
+    }
+}
+
+- (void)setMin:(NSNumber *)min{
+    _min = min;
+    if (min && min.intValue > self.num) {
+        self.num = min.intValue;
+    }
+}
+
+- (int)num{
+    return self.textFiled.text.intValue;
+}
+
+- (void)setNum:(int)num{
+    if(self.max && num > self.max.intValue){
+        num = self.max.intValue;
+    }
+    if (self.min && num < self.min.intValue) {
+        num = self.min.intValue;
+    }
+    self.textFiled.text = [NSString stringWithFormat:@"%d",num];
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(editNumberView:didChangeNum:)]) {
+        [self.delegate editNumberView:self didChangeNum:num];
     }
 }
 
 -(void)didClickMinusButton{
-    int num = self.textFiled.text.intValue;
-    if (!self.min || num > self.min.intValue) {
-        num --;
-        self.textFiled.text = [NSString stringWithFormat:@"%d",num];
-        if (self.delegate && [self.delegate respondsToSelector:@selector(editNumberView:didMinusNum:)]) {
-            [self.delegate editNumberView:self didMinusNum:num];
-        }
-    }
+    self.num = self.num - 1;
 }
 
 -(void)didClickAddButton{
-    int num = self.textFiled.text.intValue;
-    if (!self.max || num < self.max.intValue) {
-        num ++;
-        self.textFiled.text = [NSString stringWithFormat:@"%d",num];
-        if (self.delegate && [self.delegate respondsToSelector:@selector(editNumberView:didAddNum:)]) {
-            [self.delegate editNumberView:self didAddNum:num];
-        }
-    }
+    self.num = self.num + 1;
 }
 
 

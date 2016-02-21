@@ -11,15 +11,16 @@
 @protocol EditNumberViewDelegate;
 @interface EditNumberView : UIView
 
-@property (weak,nonatomic) id<EditNumberViewDelegate> delegate;
+@property (strong,nonatomic) NSNumber* max; //上限，不设表示无上限
+@property (strong,nonatomic) NSNumber* min; //下限，不设表示无下限
+@property (assign,nonatomic) int num;       //当前值
 
--(void)resetWithMin:(NSNumber*)min max:(NSNumber*)max default:(NSNumber*)def;
+@property (weak,nonatomic) id<EditNumberViewDelegate> delegate;
 
 @end
 
 @protocol EditNumberViewDelegate <NSObject>
 
--(void)editNumberView:(EditNumberView*)view didMinusNum:(int)num;
--(void)editNumberView:(EditNumberView*)view didAddNum:(int)num;
+-(void)editNumberView:(EditNumberView*)view didChangeNum:(int)num;
 
 @end
