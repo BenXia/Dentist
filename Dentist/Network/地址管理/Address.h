@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface Address : NSObject
-@property (nonatomic, assign) float ID;
+@property (nonatomic, assign) int ID;
 @property (nonatomic, strong) NSString *recipientName;
 @property (nonatomic, strong) NSString *detailAddress;
 @property (nonatomic, strong) NSString *recipientPhoneNum;

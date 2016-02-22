@@ -174,7 +174,7 @@ saleActivityCellDelegate>
     _cycleScrollView.imageURLStringsGroup = nil;
     _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
     _cycleScrollView.pageControlStyle=SDCycleScrollViewPageContolStyleClassic;
-    _cycleScrollView.dotColor = [UIColor whiteColor]; // 自定义分页控件小圆标颜色
+    _cycleScrollView.dotColor = [UIColor themeBlueColor]; // 自定义分页控件小圆标颜色
     _cycleScrollView.delegate = self;
     _cycleScrollView.autoScroll = NO;
     _cycleScrollView.autoScrollTimeInterval = 10;

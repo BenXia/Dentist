@@ -12,6 +12,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    self.imageView.contentMode = UIViewContentModeScaleAspectFit;
 }
 
 @end

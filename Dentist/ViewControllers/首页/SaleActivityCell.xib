@@ -17,7 +17,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vlc-ps-qGy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MSC-dL-kHg">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="example.png" translatesAutoresizingMaskIntoConstraints="NO" id="MSC-dL-kHg">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                                 <color key="backgroundColor" red="0.20000000000000001" green="0.65490196079999996" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
@@ -217,4 +217,7 @@
             <point key="canvasLocation" x="243.5" y="285.5"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="example.png" width="750" height="269"/>
+    </resources>
 </document>

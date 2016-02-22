@@ -18,7 +18,7 @@
 @property (nonatomic, strong) NSString *mobile;
 @property (nonatomic, strong) NSString *zipcode;
 @property (nonatomic)         BOOL is_default; //非必填
-@property (nonatomic, assign) float aid; //修改地址时候传
+@property (nonatomic, assign) int aid; //修改地址时候传
 
 //output
 @property (nonatomic, assign) int responseCode;
