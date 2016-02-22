@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -15,9 +16,15 @@
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_clinical_default.png" translatesAutoresizingMaskIntoConstraints="NO" id="UQU-yh-jjZ">
                         <rect key="frame" x="8.5" y="7" width="96" height="96"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="UQU-yh-jjZ" secondAttribute="height" multiplier="1:1" id="1nx-u3-stm"/>
+                        </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="23u-hU-07T">
                         <rect key="frame" x="0.0" y="109" width="114" height="14.5"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="14.5" id="lib-Im-ofl"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -29,6 +36,7 @@
                 <constraint firstItem="23u-hU-07T" firstAttribute="top" secondItem="UQU-yh-jjZ" secondAttribute="bottom" constant="6" id="Efy-Iy-diW"/>
                 <constraint firstItem="UQU-yh-jjZ" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="PoD-zB-8Vr"/>
                 <constraint firstItem="UQU-yh-jjZ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="7" id="ixq-ox-sEL"/>
+                <constraint firstAttribute="bottom" secondItem="23u-hU-07T" secondAttribute="bottom" constant="13" id="pXK-CC-xdD"/>
                 <constraint firstItem="23u-hU-07T" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="pcq-bY-gbP"/>
                 <constraint firstAttribute="trailing" secondItem="23u-hU-07T" secondAttribute="trailing" id="y6J-jF-TRZ"/>
             </constraints>

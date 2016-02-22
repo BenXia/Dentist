@@ -8,10 +8,12 @@
 
 #import "CategoryVC.h"
 #import "MultilevelMenu.h"
+#import "ProductCategoryDC.h"
+#import "ProductCategoryModel.h"
 
-@interface CategoryVC ()
+@interface CategoryVC ()<PPDataControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIView *searchContentView;
-
+@property (nonatomic, strong) ProductCategoryDC *productCategoryRequest;
 @end
 
 @implementation CategoryVC
@@ -53,18 +55,28 @@
 #pragma mark - Private Method
 
 - (void)initData {
-    
+    self.productCategoryRequest = [[ProductCategoryDC alloc] initWithDelegate:self];
+    self.productCategoryRequest.md5 = [[UserCache sharedUserCache] md5];
+    [self.productCategoryRequest requestWithArgs:nil];
+}
+
+- (void)initNavigationBar {
+    self.searchContentView.backgroundColor = RGBA(239, 240, 241, 0.8);
+    self.searchContentView.layer.cornerRadius = (kScreenWidth > 320) ? 8 : 6;
+    self.searchContentView.layer.masksToBounds = YES;
+}
+
+- (void)refreshView {
     NSMutableArray * lis=[NSMutableArray arrayWithCapacity:0];
-    
     
     /**
      *  构建需要数据 2层或者3层数据 (ps 2层也当作3层来处理)
      */
-    NSInteger countMax=6;
-    for (int i=0; i<countMax; i++) {
-        
+    for (int i=0; i<self.productCategoryRequest.productCategoryArray.count; i++) {
+        ProductCategoryModel *model = self.productCategoryRequest.productCategoryArray[i];
         rightMeun * meun=[[rightMeun alloc] init];
-        meun.meunName=[NSString stringWithFormat:@"菜单%d",i];
+        meun.meunName = model.name;
+        meun.ID = model.cid;
         NSMutableArray * sub=[NSMutableArray arrayWithCapacity:0];
         for ( int j=0; j < 1; j++) {
             
@@ -76,13 +88,13 @@
             //meun.meunNumber=2;
             
             NSMutableArray *zList=[NSMutableArray arrayWithCapacity:0];
-            for ( int z=0; z <countMax+2; z++) {
-                
+            for ( int z=0; z <model.subCategoryArray.count; z++) {
+                ProductCategoryModel *subModel = model.subCategoryArray[z];
                 rightMeun * meun2=[[rightMeun alloc] init];
-                meun2.meunName=[NSString stringWithFormat:@"%d层菜单%d",i,z];
-                
+                meun2.meunName = subModel.name;
+                meun2.urlName = subModel.image_url;
+                meun2.ID = subModel.cid;
                 [zList addObject:meun2];
-                
             }
             
             meun1.nextArray=zList;
@@ -97,14 +109,9 @@
      *  适配 ios 7 和ios 8 的 坐标系问题
      */
     self.automaticallyAdjustsScrollViewInsets=NO;
-    
-    /**
-     默认是 选中第一行
-     
-     :returns: <#return value description#>
-     */
-    MultilevelMenu * view=[[MultilevelMenu alloc] initWithFrame:CGRectMake(0, 64, kScreenWidth, kScreenHeight-64) WithData:lis withSelectIndex:^(NSInteger left, NSInteger right,rightMeun* info) {
-        
+
+    MultilevelMenu * view=[[MultilevelMenu alloc] initWithFrame:CGRectMake(0, 64, kScreenWidth, kScreenHeight-64 - kTabBarHeight) WithData:lis withSelectIndex:^(NSInteger left, NSInteger right,rightMeun* info) {
+        //跳转到子分类
         NSLog(@"点击的 菜单%@",info.meunName);
     }];
     
@@ -113,12 +120,28 @@
     
     view.isRecordLastScroll=YES;
     [self.view addSubview:view];
+
 }
 
-- (void)initNavigationBar {
-    self.searchContentView.backgroundColor = RGBA(239, 240, 241, 0.8);
-    self.searchContentView.layer.cornerRadius = (kScreenWidth > 320) ? 8 : 6;
-    self.searchContentView.layer.masksToBounds = YES;
+#pragma mark - PPDataControllerDelegate
+
+- (void)loadingData:(PPDataController *)controller failedWithError:(NSError *)error {
+    if (controller == self.productCategoryRequest) {
+        [Utilities showToastWithText:[NSString stringWithFormat:@"获取分类信息失败:%@", error]];
+    }
+}
+
+- (void)loadingDataFinished:(PPDataController *)controller {
+    if (controller == self.productCategoryRequest) {
+        [[GCDQueue mainQueue] queueBlock:^{
+            if (self.productCategoryRequest.responseCode == 200) {
+                [self refreshView];
+            } else {
+                [Utilities showToastWithText:[NSString stringWithFormat:@"获取分类信息失败"]];
+            }
+            
+        }];
+    }
 }
 
 #pragma mark - Navigation Style

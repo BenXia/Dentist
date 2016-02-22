@@ -16,6 +16,7 @@
 
 #import "AllOrderListVC.h"
 #import "AppDeinitializer.h"
+#import "SettingVCViewController.h"
 
 
 @interface ProfileVC ()<UITableViewDataSource,UITableViewDelegate,MyOrderCellDelegate>
@@ -104,9 +105,9 @@
 }
 
 - (void)onSettingBtn {
-    NSLog(@"设置");
-    [[AppDeinitializer sharedInstance] cleanUpWhenLogout];
-    [[MainViewManager sharedInstance] loadLoginVC];
+    SettingVCViewController *settingVC = [[SettingVCViewController alloc] initWithNibName:@"SettingVCViewController" bundle:nil];
+    settingVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:settingVC animated:YES];
 }
 
 - (void)didClickOnHeadImageView:(UITapGestureRecognizer *)tap {

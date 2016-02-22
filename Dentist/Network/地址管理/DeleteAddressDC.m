@@ -1,16 +1,16 @@
 //
-//  UPdataAddressDC.m
+//  DeleteAddressDC.m
 //  Dentist
 //
-//  Created by 王涛 on 16/2/21.
+//  Created by 王涛 on 16/2/22.
 //  Copyright © 2016年 iOSStudio. All rights reserved.
 //
 
-#import "UPdataAddressDC.h"
+#import "DeleteAddressDC.h"
 
-@implementation UPdataAddressDC
+@implementation DeleteAddressDC
 - (NSDictionary *)requestURLArgs {
-    return @{@"method":@"address.modified",@"v":@"0.0.1",@"auth":[UserCache sharedUserCache].token};
+    return @{@"method":@"address.del",@"v":@"0.0.1",@"auth":[UserCache sharedUserCache].token};
 }
 
 - (RequestMethod)requestMethod {
@@ -18,14 +18,10 @@
 }
 
 - (NSDictionary *)requestHTTPBody {
-    if (!self.province&&!self.city&&!self.area&&!self.addressString&&!self.mobile&&!self.zipcode) {
+    if (!self.aid) {
         return nil;
     }
-    if (self.aid) {
-        return @{@"name":self.recipientName, @"p":self.province,@"n":self.city,@"c":self.area,@"address":self.addressString,@"mobile":self.mobile,@"zipcode":self.zipcode,@"is_delault":self.is_default ? @"1" : @"0" ,@"aid":[NSNumber numberWithInt:self.aid]};
-    } else {
-        return @{@"name":self.recipientName,@"p":self.province,@"n":self.city,@"c":self.area,@"address":self.addressString,@"mobile":self.mobile,@"zipcode":self.zipcode,@"is_delault":self.is_default ? @"1" : @"0" };
-    }
+    return @{@"aid":[NSNumber numberWithInt:self.aid]};
 }
 
 - (BOOL)parseContent:(NSString *)content {

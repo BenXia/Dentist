@@ -34,6 +34,7 @@
     NSDictionary *resultDict = [NSJSONSerialization JSONObjectWithString:content
                                                                  options:0
                                                                    error:&error];
+    NSLog(@"%@",[resultDict objectForKey:@"msg"]);
     if (!error || [resultDict isKindOfClass:[NSDictionary class]]) {
         if ([[resultDict objectForKey:@"code"] intValue] == 200) {
             [self saveUserInfo:resultDict];

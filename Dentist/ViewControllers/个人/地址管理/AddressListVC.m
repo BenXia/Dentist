@@ -9,6 +9,7 @@
 #import "AddressListVC.h"
 #import "AddressListDC.h"
 #import "CreateOrEditAddressVC.h"
+#import "DeleteAddressDC.h"
 
 @interface AddressListVC ()<PPDataControllerDelegate,
 UITableViewDataSource,
@@ -16,7 +17,9 @@ UITableViewDelegate,
 WTLabelDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) AddressListDC *addressListRequest;
+@property (nonatomic, strong) DeleteAddressDC *deleteAddressRequest;
 @property (nonatomic, strong) WTLabel *blankLabel;
+@property (nonatomic, strong) NSIndexPath *willDeleteIndexPath;
 @end
 
 @implementation AddressListVC
@@ -89,6 +92,31 @@ WTLabelDelegate>
     }
 }
 
+-(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.isSelectAddress) {
+        return UITableViewCellEditingStyleNone;
+    }
+    return UITableViewCellEditingStyleDelete;
+}
+
+-(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return @"删除";
+    
+}
+
+/*删除用到的函数*/
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    Address *address = self.addressListRequest.addressArr[indexPath.row];
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        self.deleteAddressRequest = [[DeleteAddressDC alloc] initWithDelegate:self];
+        self.deleteAddressRequest.aid = address.ID;
+        [self.deleteAddressRequest requestWithArgs:nil];
+        self.willDeleteIndexPath = indexPath;
+    }
+}
+
 #pragma mark - Action
 
 - (void)didClickOnRightBtn {
@@ -103,6 +131,8 @@ WTLabelDelegate>
 - (void)loadingData:(PPDataController *)controller failedWithError:(NSError *)error {
     if (controller == self.addressListRequest) {
         [Utilities showToastWithText:[NSString stringWithFormat:@"获取地址列表失败:%@", error]];
+    } else if (controller == self.deleteAddressRequest) {
+        [Utilities showToastWithText:[NSString stringWithFormat:@"删除地址失败:%@", error]];
     }
 }
 
@@ -111,6 +141,9 @@ WTLabelDelegate>
         [[GCDQueue mainQueue] queueBlock:^{
             [self refreshTableView];
         }];
+    } else if (controller == self.deleteAddressRequest) {
+        [self.addressListRequest.addressArr removeObjectAtIndex:self.willDeleteIndexPath.row];  //删除数组里的数据
+        [self.tableView deleteRowsAtIndexPaths:[NSMutableArray arrayWithObject:self.willDeleteIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];  //删除对应数据的cell
     }
 }
 
