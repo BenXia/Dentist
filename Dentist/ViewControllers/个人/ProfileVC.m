@@ -12,6 +12,8 @@
 #import "AddressListVC.h"
 //TODO-GUO:测试
 #import "ProductDetailVC.h"
+#import "MyFavoriteVC.h"
+
 #import "AllOrderListVC.h"
 #import "AppDeinitializer.h"
 
@@ -86,7 +88,9 @@
 #pragma mark - IBOut Action
 
 - (IBAction)onShouCangBtn:(UIButton *)sender {
-    
+    MyFavoriteVC* favoriteVC = [MyFavoriteVC new];
+    favoriteVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:favoriteVC animated:YES];
 }
 
 - (IBAction)onScanHistoryBtn:(UIButton *)sender {

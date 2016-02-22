@@ -1,13 +1,13 @@
 //
-//  LookHistoryDC.h
+//  FavoriteProductModel.m
 //  Dentist
 //
 //  Created by 郭晓倩 on 16/2/22.
 //  Copyright © 2016年 iOSStudio. All rights reserved.
 //
 
-#import "PPDataController.h"
+#import "FavoriteProductModel.h"
 
-@interface LookHistoryDC : PPDataController
+@implementation FavoriteProductModel
 
 @end

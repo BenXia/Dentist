@@ -27,7 +27,6 @@ static const CGFloat kFontOfPopScrollViewTitle = 14;//分类标题字体
 static const CGFloat kFontOfPopScrollViewOption = 15;//分类选项字体
 static const CGFloat kGapXInSpecOptionButton = 6;
 static const CGFloat kGapYInSpecOptionButton = 6;
-static const NSString* kYuanSymbolStr = @"￥";
 
 @interface ProductDetailVC () <
 SDCycleScrollViewDelegate,
@@ -328,7 +327,7 @@ UIScrollViewDelegate>
     self.baseTitleLabel.text = productDetail.title;
     self.baseSubtitleLabel.text = productDetail.title_fu;
     
-    [self themePriceLabel:self.basePriceLabel withPrice:productDetail.price bigFont:18 smallFont:14];
+    [self.basePriceLabel themeWithPrice:productDetail.price bigFont:18 smallFont:14];
     
     self.baseOldPriceLabel.text = [NSString stringWithFormat: @"%.2f",productDetail.old_price];
     
@@ -454,7 +453,7 @@ UIScrollViewDelegate>
     
     //商品信息
     [self.popInfoImageView sd_setImageWithURL:[NSURL URLWithString:[productDetail.img_url firstObject]]];
-    [self themePriceLabel:self.popInfoPriceLabel withPrice:productDetail.price bigFont:18 smallFont:14];
+    [self.popInfoPriceLabel themeWithPrice:productDetail.price bigFont:18 smallFont:14];
     self.popInfoRemainNumLabel.text = [NSString stringWithFormat:@"库存 %d件",productDetail.num];
     
     //默认选中分类的索引
@@ -857,16 +856,6 @@ UIScrollViewDelegate>
     view.width = kScreenWidth;
     [self.scrollView addSubview:view];
     self.scrollContentHeight += view.height;
-}
-
--(void)themePriceLabel:(UILabel*)label withPrice:(double)price bigFont:(CGFloat)bigFont smallFont:(CGFloat)smallFont{
-    label.font = [UIFont systemFontOfSize:smallFont];
-    NSString* bigStr = [NSString stringWithFormat:@"%.0f",price];
-    NSString* allStr = [NSString stringWithFormat:@"%@%.2f",kYuanSymbolStr,price];
-    NSRange bigRange = [allStr rangeOfString:bigStr];
-    NSMutableAttributedString* attStr = [[NSMutableAttributedString alloc] initWithString:allStr];
-    [attStr addAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:bigFont]} range:bigRange];
-    label.attributedText = attStr;
 }
 
 @end

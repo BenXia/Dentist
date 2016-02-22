@@ -313,12 +313,19 @@ NSString* const kDataControllerErrorDomain = @"NetworkErrorDomain";
     [newCommonArgument addEntriesFromDictionary:argsvar];  // args里面的Key会覆盖默认的key
     newArgument = newCommonArgument;
     
+    
+//    for (NSString *key in newArgument) {
+//        if (formatString == nil) {
+//            formatString = [NSMutableString stringWithFormat:@"%@=%@", key, [self encodeURIComponent:[newArgument valueForKey:key]]];
+//        } else {
+//            [formatString appendFormat:@"&%@=%@", key, [self encodeURIComponent:[newArgument valueForKey:key]]];
+//        }
+//    }
+    
     for (NSString *key in newArgument) {
-        if (formatString == nil) {
-            formatString = [NSMutableString stringWithFormat:@"%@=%@", key, [self encodeURIComponent:[newArgument valueForKey:key]]];
-        } else {
-            [formatString appendFormat:@"&%@=%@", key, [self encodeURIComponent:[newArgument valueForKey:key]]];
-        }
+        id value = [newArgument valueForKey:key];
+        
+        [PPDataController appendString:formatString withParamKey:key value:value];
     }
     
     return formatString;

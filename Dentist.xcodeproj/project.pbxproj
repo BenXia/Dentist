@@ -261,7 +261,17 @@
 		33F071DB1C42DAAB00DAC58F /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F071DA1C42DAAB00DAC58F /* libstdc++.6.0.9.dylib */; };
 		49A440E851BCC056B96B1CCC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 51B5961869359BC6C0460396 /* libPods.a */; };
 		888811AC1C7B4DEC00F6672C /* GuessYouLikeProductView.m in Sources */ = {isa = PBXBuildFile; fileRef = 888811AB1C7B4DEC00F6672C /* GuessYouLikeProductView.m */; };
-		888811B01C7B50EE00F6672C /* LookHistoryDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 888811AF1C7B50EE00F6672C /* LookHistoryDC.m */; };
+		888811B61C7B592600F6672C /* MyFavoriteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 888811B41C7B592600F6672C /* MyFavoriteVC.m */; };
+		888811B71C7B592600F6672C /* MyFavoriteVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 888811B51C7B592600F6672C /* MyFavoriteVC.xib */; };
+		888811BB1C7B5ACB00F6672C /* MyFavoriteDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 888811BA1C7B5ACB00F6672C /* MyFavoriteDC.m */; };
+		888811BE1C7B5AF000F6672C /* RemoveFavoriteDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 888811BD1C7B5AF000F6672C /* RemoveFavoriteDC.m */; };
+		888811C11C7B5B3400F6672C /* MyLookHistoryDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 888811C01C7B5B3400F6672C /* MyLookHistoryDC.m */; };
+		888811C41C7B5B5A00F6672C /* RemoveLookHistoryDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 888811C31C7B5B5A00F6672C /* RemoveLookHistoryDC.m */; };
+		888811C71C7B5D8400F6672C /* FavoriteProductModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 888811C61C7B5D8400F6672C /* FavoriteProductModel.m */; };
+		888811CB1C7B60B000F6672C /* FavoriteProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 888811C91C7B60B000F6672C /* FavoriteProductCell.m */; };
+		888811CC1C7B60B000F6672C /* FavoriteProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 888811CA1C7B60B000F6672C /* FavoriteProductCell.xib */; };
+		888811CE1C7B65A600F6672C /* goods_tag_Present@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 888811CD1C7B65A600F6672C /* goods_tag_Present@2x.png */; };
+		888811D21C7B674700F6672C /* UILabel+Price.m in Sources */ = {isa = PBXBuildFile; fileRef = 888811D11C7B674700F6672C /* UILabel+Price.m */; };
 		888C7A591C79901000CA2ED9 /* ProductDescriptionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 888C7A571C79901000CA2ED9 /* ProductDescriptionVC.m */; };
 		888C7A5A1C79901000CA2ED9 /* ProductDescriptionVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 888C7A581C79901000CA2ED9 /* ProductDescriptionVC.xib */; };
 		88C3BACD1C781F5B001F4D85 /* ProductDetailDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C3BACA1C781F5B001F4D85 /* ProductDetailDC.m */; };
@@ -736,8 +746,25 @@
 		51B5961869359BC6C0460396 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		888811AA1C7B4DEC00F6672C /* GuessYouLikeProductView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuessYouLikeProductView.h; sourceTree = "<group>"; };
 		888811AB1C7B4DEC00F6672C /* GuessYouLikeProductView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuessYouLikeProductView.m; sourceTree = "<group>"; };
-		888811AE1C7B50EE00F6672C /* LookHistoryDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LookHistoryDC.h; sourceTree = "<group>"; };
-		888811AF1C7B50EE00F6672C /* LookHistoryDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LookHistoryDC.m; sourceTree = "<group>"; };
+		888811B31C7B592600F6672C /* MyFavoriteVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFavoriteVC.h; sourceTree = "<group>"; };
+		888811B41C7B592600F6672C /* MyFavoriteVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFavoriteVC.m; sourceTree = "<group>"; };
+		888811B51C7B592600F6672C /* MyFavoriteVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyFavoriteVC.xib; sourceTree = "<group>"; };
+		888811B91C7B5ACB00F6672C /* MyFavoriteDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFavoriteDC.h; sourceTree = "<group>"; };
+		888811BA1C7B5ACB00F6672C /* MyFavoriteDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFavoriteDC.m; sourceTree = "<group>"; };
+		888811BC1C7B5AF000F6672C /* RemoveFavoriteDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoveFavoriteDC.h; sourceTree = "<group>"; };
+		888811BD1C7B5AF000F6672C /* RemoveFavoriteDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoveFavoriteDC.m; sourceTree = "<group>"; };
+		888811BF1C7B5B3400F6672C /* MyLookHistoryDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyLookHistoryDC.h; sourceTree = "<group>"; };
+		888811C01C7B5B3400F6672C /* MyLookHistoryDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyLookHistoryDC.m; sourceTree = "<group>"; };
+		888811C21C7B5B5A00F6672C /* RemoveLookHistoryDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoveLookHistoryDC.h; sourceTree = "<group>"; };
+		888811C31C7B5B5A00F6672C /* RemoveLookHistoryDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoveLookHistoryDC.m; sourceTree = "<group>"; };
+		888811C51C7B5D8400F6672C /* FavoriteProductModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoriteProductModel.h; sourceTree = "<group>"; };
+		888811C61C7B5D8400F6672C /* FavoriteProductModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoriteProductModel.m; sourceTree = "<group>"; };
+		888811C81C7B60B000F6672C /* FavoriteProductCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoriteProductCell.h; sourceTree = "<group>"; };
+		888811C91C7B60B000F6672C /* FavoriteProductCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoriteProductCell.m; sourceTree = "<group>"; };
+		888811CA1C7B60B000F6672C /* FavoriteProductCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavoriteProductCell.xib; sourceTree = "<group>"; };
+		888811CD1C7B65A600F6672C /* goods_tag_Present@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "goods_tag_Present@2x.png"; sourceTree = "<group>"; };
+		888811D01C7B674700F6672C /* UILabel+Price.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Price.h"; sourceTree = "<group>"; };
+		888811D11C7B674700F6672C /* UILabel+Price.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Price.m"; sourceTree = "<group>"; };
 		888C7A561C79901000CA2ED9 /* ProductDescriptionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductDescriptionVC.h; sourceTree = "<group>"; };
 		888C7A571C79901000CA2ED9 /* ProductDescriptionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductDescriptionVC.m; sourceTree = "<group>"; };
 		888C7A581C79901000CA2ED9 /* ProductDescriptionVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductDescriptionVC.xib; sourceTree = "<group>"; };
@@ -1052,6 +1079,7 @@
 		33C988571C42401C00262141 /* Dentist */ = {
 			isa = PBXGroup;
 			children = (
+				888811CF1C7B670C00F6672C /* Category */,
 				33DD6B3B1C60ED6D00CE6B31 /* ViewModel */,
 				93DEA8BE1C4BCBAA008211F7 /* Vendor */,
 				33CAF8A91C781BCD0015B4BC /* GlobalData */,
@@ -1213,6 +1241,7 @@
 		33D1873B1C70CE3800658F3D /* 详情页 */ = {
 			isa = PBXGroup;
 			children = (
+				888811CD1C7B65A600F6672C /* goods_tag_Present@2x.png */,
 				88EBEE801C79F27200F20C90 /* Btn_Go_default@2x.png */,
 				88EBEE811C79F27200F20C90 /* btn_Go_pressed.png */,
 				88C3BADD1C78824A001F4D85 /* goods_tagL_FreeShipping@2x.png */,
@@ -1466,13 +1495,13 @@
 		33F070361C4295F200DAC58F /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				888811AD1C7B509000F6672C /* 浏览记录 */,
 				33F0708F1C42B58E00DAC58F /* PPDataCache.h */,
 				33F070901C42B58E00DAC58F /* PPDataCache.m */,
 				33F070911C42B58E00DAC58F /* PPDataController.h */,
 				33F070921C42B58E00DAC58F /* PPDataController.m */,
 				33F070931C42B58E00DAC58F /* PPDataControllerError.h */,
 				930C34941C7A0BC1008823F9 /* 地址管理 */,
+				888811AD1C7B509000F6672C /* 浏览记录 */,
 				88EBEE781C79B83000F20C90 /* 购物车 */,
 				88EBEE7B1C79B83000F20C90 /* 收藏夹 */,
 				93899B541C74C71E0065B819 /* 个人 */,
@@ -1494,6 +1523,8 @@
 		33F070391C4295F200DAC58F /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				888811B11C7B58AF00F6672C /* 浏览历史 */,
+				888811B21C7B58AF00F6672C /* 收藏 */,
 				B58339531C79972900F9EBE2 /* 商品评价 */,
 				B583394D1C79970300F9EBE2 /* 订单详情 */,
 				B597106B1C785F0E006BC9FE /* 订单列表 */,
@@ -1706,10 +1737,41 @@
 		888811AD1C7B509000F6672C /* 浏览记录 */ = {
 			isa = PBXGroup;
 			children = (
-				888811AE1C7B50EE00F6672C /* LookHistoryDC.h */,
-				888811AF1C7B50EE00F6672C /* LookHistoryDC.m */,
+				888811BF1C7B5B3400F6672C /* MyLookHistoryDC.h */,
+				888811C01C7B5B3400F6672C /* MyLookHistoryDC.m */,
+				888811C21C7B5B5A00F6672C /* RemoveLookHistoryDC.h */,
+				888811C31C7B5B5A00F6672C /* RemoveLookHistoryDC.m */,
 			);
 			path = "浏览记录";
+			sourceTree = "<group>";
+		};
+		888811B11C7B58AF00F6672C /* 浏览历史 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "浏览历史";
+			sourceTree = "<group>";
+		};
+		888811B21C7B58AF00F6672C /* 收藏 */ = {
+			isa = PBXGroup;
+			children = (
+				888811B31C7B592600F6672C /* MyFavoriteVC.h */,
+				888811B41C7B592600F6672C /* MyFavoriteVC.m */,
+				888811B51C7B592600F6672C /* MyFavoriteVC.xib */,
+				888811C81C7B60B000F6672C /* FavoriteProductCell.h */,
+				888811C91C7B60B000F6672C /* FavoriteProductCell.m */,
+				888811CA1C7B60B000F6672C /* FavoriteProductCell.xib */,
+			);
+			path = "收藏";
+			sourceTree = "<group>";
+		};
+		888811CF1C7B670C00F6672C /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				888811D01C7B674700F6672C /* UILabel+Price.h */,
+				888811D11C7B674700F6672C /* UILabel+Price.m */,
+			);
+			path = Category;
 			sourceTree = "<group>";
 		};
 		88C3BAC81C781F5B001F4D85 /* 商品详情 */ = {
@@ -1737,6 +1799,12 @@
 			children = (
 				88EBEE7C1C79B83000F20C90 /* AddFavoriteDC.h */,
 				88EBEE7D1C79B83000F20C90 /* AddFavoriteDC.m */,
+				888811B91C7B5ACB00F6672C /* MyFavoriteDC.h */,
+				888811BA1C7B5ACB00F6672C /* MyFavoriteDC.m */,
+				888811BC1C7B5AF000F6672C /* RemoveFavoriteDC.h */,
+				888811BD1C7B5AF000F6672C /* RemoveFavoriteDC.m */,
+				888811C51C7B5D8400F6672C /* FavoriteProductModel.h */,
+				888811C61C7B5D8400F6672C /* FavoriteProductModel.m */,
 			);
 			path = "收藏夹";
 			sourceTree = "<group>";
@@ -2160,6 +2228,7 @@
 				93A1F5D01C6281B800CFEEC4 /* good_logo.png in Resources */,
 				33CAF89C1C7810D20015B4BC /* web_right.png in Resources */,
 				33CAF10B1C720C7000348763 /* btn_paying_pressed@3x.png in Resources */,
+				888811CE1C7B65A600F6672C /* goods_tag_Present@2x.png in Resources */,
 				33D187451C70CE3800658F3D /* 立即购买@3x.png in Resources */,
 				930C342A1C7819D0008823F9 /* user_pic_boy@2x.png in Resources */,
 				93624C201C44170100262B65 /* btn_clinical_default.png in Resources */,
@@ -2234,6 +2303,7 @@
 				B583394C1C796FB000F9EBE2 /* Btn_delete_selected@2X.png in Resources */,
 				93DEA8611C4B9999008211F7 /* Ico_Successed@2x.png in Resources */,
 				932839CB1C637EFF004C21CD /* 已完成@3x.png in Resources */,
+				888811CC1C7B60B000F6672C /* FavoriteProductCell.xib in Resources */,
 				33DD6D1B1C611A5500CE6B31 /* 评价晒单-五星@3x.png in Resources */,
 				9379D3B11C632A2200390702 /* tempShop.png in Resources */,
 				33DD6CBF1C611A5500CE6B31 /* example.png in Resources */,
@@ -2276,6 +2346,7 @@
 				9379D3BF1C6338BB00390702 /* 我的-地址管理@3x.png in Resources */,
 				33DD6C061C6119BA00CE6B31 /* btn_numberplus72_pressed@2x.png in Resources */,
 				33DD6CFA1C611A5500CE6B31 /* 微信@2x.png in Resources */,
+				888811B71C7B592600F6672C /* MyFavoriteVC.xib in Resources */,
 				33DD6CFC1C611A5500CE6B31 /* 微信朋友圈@2x.png in Resources */,
 				33DD6CCD1C611A5500CE6B31 /* ico_browserecord.png in Resources */,
 				93624C261C44170100262B65 /* btn_lesson_default.png in Resources */,
@@ -2447,9 +2518,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				888811D21C7B674700F6672C /* UILabel+Price.m in Sources */,
 				93DEA8711C4BC552008211F7 /* HomePageVC.m in Sources */,
 				33F070CE1C42BE1E00DAC58F /* SendSmsDataController.m in Sources */,
-				888811B01C7B50EE00F6672C /* LookHistoryDC.m in Sources */,
 				33F0704F1C429AD300DAC58F /* AppDeinitializer.m in Sources */,
 				33D028671C74BCA100277C3C /* InvoiceVC.m in Sources */,
 				33CAF8AC1C781BCD0015B4BC /* UserInfoModel.m in Sources */,
@@ -2467,6 +2538,7 @@
 				930C344A1C795FBA008823F9 /* SetNickDC.m in Sources */,
 				33DD6B391C60ED2800CE6B31 /* ProductBriefInfoCell.m in Sources */,
 				93F2A0161C49E93C0034486B /* LoginDC.m in Sources */,
+				888811C11C7B5B3400F6672C /* MyLookHistoryDC.m in Sources */,
 				B58339511C79970300F9EBE2 /* OrderDetailVC.m in Sources */,
 				93A1F5DA1C6281D900CFEEC4 /* SaleActivityCell.m in Sources */,
 				93899B571C74C7470065B819 /* UserInfoDC.m in Sources */,
@@ -2479,6 +2551,7 @@
 				33DD6BB51C6103CA00CE6B31 /* IQKeyboardReturnKeyHandler.m in Sources */,
 				930C34391C783ADF008823F9 /* GroupBuyingDC.m in Sources */,
 				B583395C1C79982600F9EBE2 /* ProductEvaluateTableViewCell.m in Sources */,
+				888811B61C7B592600F6672C /* MyFavoriteVC.m in Sources */,
 				33DD6BB81C6103CA00CE6B31 /* IQBarButtonItem.m in Sources */,
 				93DEA8CF1C4BCBAA008211F7 /* TAAbstractDotView.m in Sources */,
 				930C34A81C7A0BEA008823F9 /* CreateOrEditAddressVC.m in Sources */,
@@ -2488,6 +2561,7 @@
 				33F070501C429AD300DAC58F /* AppInitializer.m in Sources */,
 				9377AC651C537837003B24B1 /* ADBannerDC.m in Sources */,
 				930C34AE1C7A0CA5008823F9 /* WTLabel.m in Sources */,
+				888811BB1C7B5ACB00F6672C /* MyFavoriteDC.m in Sources */,
 				93899B521C74C2160065B819 /* UserInfoVC.m in Sources */,
 				33C9885D1C42401D00262141 /* AppDelegate.m in Sources */,
 				33D0286C1C74BCC900277C3C /* PaySuccessVC.m in Sources */,
@@ -2513,6 +2587,7 @@
 				33CAF88B1C780C030015B4BC /* EasyJSWebViewProxyDelegate.m in Sources */,
 				33DD6BB41C6103CA00CE6B31 /* IQKeyboardManager.m in Sources */,
 				33D187391C70C9D100658F3D /* ProductDetailVC.m in Sources */,
+				888811CB1C7B60B000F6672C /* FavoriteProductCell.m in Sources */,
 				9377AC681C53793A003B24B1 /* BannerModel.m in Sources */,
 				33D028711C74BCDF00277C3C /* PayFailedVC.m in Sources */,
 				33CAF8781C7809690015B4BC /* WebBrowserVC.m in Sources */,
@@ -2522,6 +2597,7 @@
 				9379D3AD1C63239100390702 /* MultilevelTableViewCell.m in Sources */,
 				88C3BAD21C78508C001F4D85 /* GroupProductView.m in Sources */,
 				93DEA8691C4BA2D2008211F7 /* RegistDC.m in Sources */,
+				888811C41C7B5B5A00F6672C /* RemoveLookHistoryDC.m in Sources */,
 				33F0707A1C42AB8300DAC58F /* AppAppearance.m in Sources */,
 				33DD6B461C60ED6D00CE6B31 /* LoginVM.m in Sources */,
 				33DD6BB71C6103CA00CE6B31 /* IQTextView.m in Sources */,
@@ -2539,9 +2615,11 @@
 				33CAE4501C7373AE0038748F /* OrderBottomInfoCell.m in Sources */,
 				33CAF88A1C780C030015B4BC /* EasyJSWebView.m in Sources */,
 				33F070511C429AD300DAC58F /* MainViewManager.m in Sources */,
+				888811BE1C7B5AF000F6672C /* RemoveFavoriteDC.m in Sources */,
 				93DEA8D01C4BCBAA008211F7 /* TAAnimatedDotView.m in Sources */,
 				B583396B1C79BE4F00F9EBE2 /* OrderDetailVM.m in Sources */,
 				93DEA8D31C4BCBAA008211F7 /* SDCollectionViewCell.m in Sources */,
+				888811C71C7B5D8400F6672C /* FavoriteProductModel.m in Sources */,
 				33CAE44B1C7373520038748F /* OrderItemFooterCell.m in Sources */,
 				33DD6B511C60EDCC00CE6B31 /* RegistVC.m in Sources */,
 				33D028771C74BD2900277C3C /* FeedbackVC.m in Sources */,

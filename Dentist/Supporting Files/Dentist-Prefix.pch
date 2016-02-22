@@ -33,6 +33,9 @@
 #import "UIButton+WebCache.h"
 #import "WTLabel.h"
 
+// Category
+#import "UILabel+Price.h"
+
 #endif
 
 #endif
