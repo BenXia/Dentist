@@ -28,16 +28,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //导航栏
-    UIButton* backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
-    [backButton setTitle:@"商品详情" forState:UIControlStateNormal];
-    backButton.titleLabel.font = [UIFont systemFontOfSize:15];
-    [backButton setTitleColor:[UIColor whiteColor]];
-    [backButton setImage:[UIImage imageNamed:@"btn_back_white"] forState:UIControlStateNormal];
-    [backButton addTarget:self action:@selector(didClickOnReturn) forControlEvents:UIControlEventTouchUpInside];
-    [self.navigationItem setLeftBarButtonItem:nil animated:NO];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-    
     NSLog(@"图文详情HTML：%@",self.htmlString);
     
     [self.webView loadHTMLString:self.htmlString baseURL:nil];
@@ -54,17 +44,11 @@
     // Dispose of any resources that can be recreated.
 }
 
--(UIColor*)preferNavBarBackgroundColor{
-    return [UIColor themeBlueColor];
+- (NSString*)preferNavBackButtonTitle{
+    return @"商品详情";
 }
 
-- (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
-}
-
-#pragma mark - UI Action
-
--(void)didClickOnReturn{
+- (void)didClickOnBackButton{
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

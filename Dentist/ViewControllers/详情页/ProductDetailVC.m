@@ -17,6 +17,7 @@
 #import "ProductEvaluateTableViewCell.h"
 #import "ProductEvaluateModel.h"
 #import "ProductEvaluateVC.h"
+#import "GuessYouLikeProductView.h"
 
 static const CGFloat kProductDetailVCTopImageRatio = 16.f/9;
 static const CGFloat kHeightOfSectionHeader = 12;
@@ -24,6 +25,8 @@ static const CGFloat kGapXOfPopScrollView = 12;//选择分类弹出视图中选�
 static const CGFloat kGapYOfPopScrollView = 12; //选择分类弹出视图中选项间的纵向间距
 static const CGFloat kFontOfPopScrollViewTitle = 14;//分类标题字体
 static const CGFloat kFontOfPopScrollViewOption = 15;//分类选项字体
+static const CGFloat kGapXInSpecOptionButton = 6;
+static const CGFloat kGapYInSpecOptionButton = 6;
 static const NSString* kYuanSymbolStr = @"￥";
 
 @interface ProductDetailVC () <
@@ -31,6 +34,7 @@ SDCycleScrollViewDelegate,
 PPDataControllerDelegate,
 GroupProductViewDelegate,
 EditNumberViewDelegate,
+GuessYouLikeProductViewDelegate,
 UIScrollViewDelegate>
 
 @property (nonatomic, strong) ProductDetailDC *dc;
@@ -108,6 +112,7 @@ UIScrollViewDelegate>
 @property (strong, nonatomic) IBOutlet UIView *guessYouLikeView;
 @property (weak, nonatomic) IBOutlet UILabel *guessYouLikeLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *guessYouLikeHeaderViewHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *guessYouLikeContentViewHeightConstraint;
 @property (weak, nonatomic) IBOutlet UIView *guessYouLikeContentView;
 
 //拖拽进入图文详情提示
@@ -128,6 +133,7 @@ UIScrollViewDelegate>
         self.addFavoriteDC = [[AddFavoriteDC alloc] initWithDelegate:self];
         self.dc.productId = productId;
         self.buyNum = 1;
+        self.title = @"商品详情";
         self.hidesBottomBarWhenPushed = YES;
     }
     return self;
@@ -295,6 +301,7 @@ UIScrollViewDelegate>
     
     //上拉提示
     [self addScrollSubview:self.dragTipView];
+    self.scrollContentHeight += kHeightOfSectionHeader;
     
     self.scrollView.contentSize = CGSizeMake(kScreenWidth, self.scrollContentHeight);
     
@@ -365,7 +372,7 @@ UIScrollViewDelegate>
     UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didClickAppraiseHeaderVie)];
     [self.appraiseHeaderView addGestureRecognizer:tap];
     self.appraiseHeaderViewHeightConstraint.constant = 2*self.appraiseTotalLabel.y + self.appraiseTotalLabel.height;
-
+    
     //添加Cell
     NSArray* scoreArray = self.dc.productDetail.scores;
     CGFloat currentY = 0;
@@ -398,9 +405,21 @@ UIScrollViewDelegate>
     [self.guessYouLikeLabel ajustHeightWithLimitWidth:kScreenWidth];
     self.guessYouLikeHeaderViewHeightConstraint.constant = 2*self.guessYouLikeLabel.y + self.guessYouLikeLabel.height;
     
-    //添加Cell
+    //TODO-GUO:测试数据
+    int kMaxNumOfGuessYouLike = 4;
+    CGFloat itemWidth = (kScreenWidth -(kMaxNumOfGuessYouLike+1)*PIXEL_12) / kMaxNumOfGuessYouLike;
+    CGFloat itemHeight = itemWidth + 45;
+    for(int i = 0 ; i < kMaxNumOfGuessYouLike ; ++ i){
+        GuessYouLikeProductView* itemView = [[GuessYouLikeProductView alloc] initWithFrame:CGRectMake(PIXEL_12*(i+1)+itemWidth*i, PIXEL_12, itemWidth, itemHeight)];
+        itemView.titleLabel.text = @"我还好急急急急急急急急急";
+        itemView.priceLabel.text = [NSString stringWithFormat:@"%@%.2f",kYuanSymbolStr,1999.5];
+        itemView.delegate = self;
+        
+        [self.guessYouLikeContentView addSubview:itemView];
+    }
     
-    self.guessYouLikeView.height = self.guessYouLikeHeaderViewHeightConstraint.constant + self.guessYouLikeContentView.height;
+    self.guessYouLikeContentViewHeightConstraint.constant = itemHeight + 2*PIXEL_12;
+    self.guessYouLikeView.height = self.guessYouLikeHeaderViewHeightConstraint.constant + self.guessYouLikeContentViewHeightConstraint.constant;
 }
 
 
@@ -456,8 +475,6 @@ UIScrollViewDelegate>
     
     //创建分类视图
     self.popScrollContentHeight = 0;
-    CGFloat kGapXInButton = 6;
-    CGFloat kGapYInButton = 4;
     
     self.dicFromSepcDataToTitle = [NSMutableDictionary new];
     self.dicFromSepcTitleToButtons = [NSMutableDictionary new];
@@ -480,8 +497,8 @@ UIScrollViewDelegate>
         NSMutableArray* optionButtonArray = [NSMutableArray new];
         for (NSString* str in specItem.data) {
             CGSize strSize = [str textSizeForOneLineWithFont:[UIFont systemFontOfSize:kFontOfPopScrollViewOption]];
-            CGFloat buttonWidth = strSize.width + 2*kGapXInButton;
-            CGFloat buttonHeight = strSize.height + 2*kGapYInButton;
+            CGFloat buttonWidth = strSize.width + 2*kGapXInSpecOptionButton;
+            CGFloat buttonHeight = strSize.height + 2*kGapYInSpecOptionButton;
             if (currentX + buttonWidth + kGapXOfPopScrollView > kScreenWidth) {
                 currentX = kGapXOfPopScrollView;
                 currentY += (buttonHeight + kGapYOfPopScrollView);
@@ -492,7 +509,7 @@ UIScrollViewDelegate>
             [button setTitle:str forState:UIControlStateNormal];
             button.titleLabel.font = [UIFont systemFontOfSize:kFontOfPopScrollViewOption];
             [button setTitleColor:[UIColor fontGray006Color]];
-            [button circular:3];
+            [button.layer setCornerRadius:3];
             [button setBorderWidth:1];
             [RACObserve(button, selected) subscribeNext:^(NSNumber* x) {
                 if (x.boolValue) {
@@ -535,7 +552,8 @@ UIScrollViewDelegate>
     
     //数量
     self.popScrollContentHeight += kGapYOfPopScrollView;
-    EditNumberView* editNumerView = [[EditNumberView alloc] initWithFrame:CGRectMake(kScreenWidth - kGapXOfPopScrollView - 100, self.popScrollContentHeight, 100, 30)];
+    CGFloat kWidthOfEditNumberView = 150;
+    EditNumberView* editNumerView = [[EditNumberView alloc] initWithFrame:CGRectMake(kScreenWidth - kGapXOfPopScrollView - kWidthOfEditNumberView, self.popScrollContentHeight, kWidthOfEditNumberView, 35)];
     editNumerView.min = @(0);
     editNumerView.num = self.buyNum;
     editNumerView.delegate = self;
@@ -666,10 +684,11 @@ UIScrollViewDelegate>
 #pragma mark - UI Action
 
 - (void)headerRereshing {
-    
+    NSLog(@"下拉刷新");
 }
 
 - (void)footerRereshing {
+    NSLog(@"上拉刷新");
     ProductDescriptionVC* descriptionVC = [[ProductDescriptionVC alloc] initWithHtmlString:self.dc.productDetail.description_p];
     UINavigationController* navVC = [[UINavigationController alloc] initWithRootViewController:descriptionVC];
     navVC.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
@@ -753,6 +772,12 @@ UIScrollViewDelegate>
         self.topBarBackgroundView.alpha = ((point.y > (originHeaderHeight - 60)) ? 1 : (point.y / (originHeaderHeight - 60)));
         self.topBarBackgroundView.layer.shadowOpacity = ((point.y > (originHeaderHeight - 60)) ? 0.2 : (point.y / (originHeaderHeight - 60) * 0.2));
     }
+    
+    //TODO-GUO:MJRefresh不好用，只能这样了
+    CGFloat limit = self.scrollContentHeight > self.scrollView.height ? self.scrollContentHeight - self.scrollView.height + 50 : 50;
+    if (point.y >=  limit) {
+        [self footerRereshing];
+    }
 }
 
 #pragma mark - SDCycleScrollViewDelegate
@@ -775,6 +800,12 @@ UIScrollViewDelegate>
     //        totalPrice += item.price;
     //    }
     //    self.groupReducePriceLabel.text = [NSString stringWithFormat:@"%@%.2f",kYuanSymbolStr,totalPrice];
+}
+
+#pragma mark - GuessYouLikeProductViewDelegate
+
+-(void)guessYouLikeProductView:(GuessYouLikeProductView *)view didClickProduct:(id)model{
+
 }
 
 #pragma mark - EditNumberViewDelegate

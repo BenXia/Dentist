@@ -68,6 +68,7 @@
             model.p_sids = itemArray;
             model.sids = @"颜色:红色,尺寸:XXXXXXXL号";
         }
+        
         {
             NSMutableArray* scores = [NSMutableArray new];
             for (int i=1; i<=5; ++i) {
@@ -82,6 +83,15 @@
             model.scores = scores;
         }
         
+        {
+            NSMutableArray* gifts = [NSMutableArray new];
+            for (int i=1; i<=5; ++i) {
+                GiftItem* item = [GiftItem new];
+                item.title = [NSString stringWithFormat:@"我是赠品%d",i];
+                [gifts addObject:item];
+            }
+            model.gifts = gifts;
+        }
         
         self.productDetail = model;
         result = YES;

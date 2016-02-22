@@ -260,6 +260,8 @@
 		33F071A81C42CF1900DAC58F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F071A71C42CF1900DAC58F /* Security.framework */; };
 		33F071DB1C42DAAB00DAC58F /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F071DA1C42DAAB00DAC58F /* libstdc++.6.0.9.dylib */; };
 		49A440E851BCC056B96B1CCC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 51B5961869359BC6C0460396 /* libPods.a */; };
+		888811AC1C7B4DEC00F6672C /* GuessYouLikeProductView.m in Sources */ = {isa = PBXBuildFile; fileRef = 888811AB1C7B4DEC00F6672C /* GuessYouLikeProductView.m */; };
+		888811B01C7B50EE00F6672C /* LookHistoryDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 888811AF1C7B50EE00F6672C /* LookHistoryDC.m */; };
 		888C7A591C79901000CA2ED9 /* ProductDescriptionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 888C7A571C79901000CA2ED9 /* ProductDescriptionVC.m */; };
 		888C7A5A1C79901000CA2ED9 /* ProductDescriptionVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 888C7A581C79901000CA2ED9 /* ProductDescriptionVC.xib */; };
 		88C3BACD1C781F5B001F4D85 /* ProductDetailDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C3BACA1C781F5B001F4D85 /* ProductDetailDC.m */; };
@@ -732,6 +734,10 @@
 		390308D4EA1697DF926D8B12 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		430052BE562558A3994A1C1C /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		51B5961869359BC6C0460396 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		888811AA1C7B4DEC00F6672C /* GuessYouLikeProductView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuessYouLikeProductView.h; sourceTree = "<group>"; };
+		888811AB1C7B4DEC00F6672C /* GuessYouLikeProductView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuessYouLikeProductView.m; sourceTree = "<group>"; };
+		888811AE1C7B50EE00F6672C /* LookHistoryDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LookHistoryDC.h; sourceTree = "<group>"; };
+		888811AF1C7B50EE00F6672C /* LookHistoryDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LookHistoryDC.m; sourceTree = "<group>"; };
 		888C7A561C79901000CA2ED9 /* ProductDescriptionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductDescriptionVC.h; sourceTree = "<group>"; };
 		888C7A571C79901000CA2ED9 /* ProductDescriptionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductDescriptionVC.m; sourceTree = "<group>"; };
 		888C7A581C79901000CA2ED9 /* ProductDescriptionVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductDescriptionVC.xib; sourceTree = "<group>"; };
@@ -1193,6 +1199,8 @@
 				33D187381C70C9D100658F3D /* ProductDetailVC.xib */,
 				88C3BAD01C78508C001F4D85 /* GroupProductView.h */,
 				88C3BAD11C78508C001F4D85 /* GroupProductView.m */,
+				888811AA1C7B4DEC00F6672C /* GuessYouLikeProductView.h */,
+				888811AB1C7B4DEC00F6672C /* GuessYouLikeProductView.m */,
 				88C3BAE11C78A2AF001F4D85 /* EditNumberView.h */,
 				88C3BAE21C78A2AF001F4D85 /* EditNumberView.m */,
 				888C7A561C79901000CA2ED9 /* ProductDescriptionVC.h */,
@@ -1458,6 +1466,7 @@
 		33F070361C4295F200DAC58F /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				888811AD1C7B509000F6672C /* 浏览记录 */,
 				33F0708F1C42B58E00DAC58F /* PPDataCache.h */,
 				33F070901C42B58E00DAC58F /* PPDataCache.m */,
 				33F070911C42B58E00DAC58F /* PPDataController.h */,
@@ -1692,6 +1701,15 @@
 				33F070CA1C42BE1E00DAC58F /* SendSmsDataController.m */,
 			);
 			path = "公用";
+			sourceTree = "<group>";
+		};
+		888811AD1C7B509000F6672C /* 浏览记录 */ = {
+			isa = PBXGroup;
+			children = (
+				888811AE1C7B50EE00F6672C /* LookHistoryDC.h */,
+				888811AF1C7B50EE00F6672C /* LookHistoryDC.m */,
+			);
+			path = "浏览记录";
 			sourceTree = "<group>";
 		};
 		88C3BAC81C781F5B001F4D85 /* 商品详情 */ = {
@@ -2431,6 +2449,7 @@
 			files = (
 				93DEA8711C4BC552008211F7 /* HomePageVC.m in Sources */,
 				33F070CE1C42BE1E00DAC58F /* SendSmsDataController.m in Sources */,
+				888811B01C7B50EE00F6672C /* LookHistoryDC.m in Sources */,
 				33F0704F1C429AD300DAC58F /* AppDeinitializer.m in Sources */,
 				33D028671C74BCA100277C3C /* InvoiceVC.m in Sources */,
 				33CAF8AC1C781BCD0015B4BC /* UserInfoModel.m in Sources */,
@@ -2482,6 +2501,7 @@
 				930C349C1C7A0BC1008823F9 /* AddressListDC.m in Sources */,
 				33DD6BB91C6103CA00CE6B31 /* IQTitleBarButtonItem.m in Sources */,
 				93B497DC1C646B7D00275D88 /* ADTodayIntroduceDC.m in Sources */,
+				888811AC1C7B4DEC00F6672C /* GuessYouLikeProductView.m in Sources */,
 				930C34461C795CEB008823F9 /* SetNickVC.m in Sources */,
 				33DD6BB31C6103CA00CE6B31 /* IQUIWindow+Hierarchy.m in Sources */,
 				88EBEE7E1C79B83000F20C90 /* AddCartDC.m in Sources */,
