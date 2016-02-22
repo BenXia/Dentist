@@ -15,6 +15,7 @@
     for (ProductListGoodsModel *model in productListModel.productListGoodsArray) {
         totalPrice += [model.productPrice intValue]*[model.productNumber intValue];
     }
+    totalPrice += [productListModel.productExpressPrice intValue];
     return totalPrice;
 }
 

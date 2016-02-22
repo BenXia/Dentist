@@ -7,6 +7,7 @@
 //
 
 #import "ProductBriefInfoCell.h"
+#import "ShoppingCartModel.h"
 
 @interface ProductBriefInfoCell ()
 
@@ -27,6 +28,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 @property (weak, nonatomic) IBOutlet UIButton *finishButton;
 
+@property (strong, nonatomic) ShoppingCartModel *shoppingCartModel;
+
 @end
 
 @implementation ProductBriefInfoCell
@@ -45,19 +48,47 @@
     self.productImageView.supportProgressIndicator = NO;
     self.productImageView.supportFailRetry = NO;
     self.productImageView.defaultImageName = @"微信";
-    [self.productImageView setImageURL:[NSURL URLWithString:@"http://g.hiphotos.baidu.com/image/pic/item/d788d43f8794a4c2b3e5d2140df41bd5ac6e39ce.jpg"]];
+    
+    self.editContentView.hidden = YES;
+    self.productTitleLabel.hidden = NO;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
+}
 
-    // Configure the view for the selected state
+- (void)setCellWithShoppingCartModel:(ShoppingCartModel *)shoppingCartModel {
+    self.shoppingCartModel = shoppingCartModel;
+    self.productTitleLabel.text = shoppingCartModel.shoppingCartProductTitle;
+    [self.productImageView setImageURL:[NSURL URLWithString:shoppingCartModel.shoppingCartProductImage]];
+    self.briefInfoLabel.text = shoppingCartModel.shoppingCartProductSids;
+    self.priceLabel.text =  [NSString stringWithFormat:@"¥%d",[shoppingCartModel.shoppingCartProductPrice intValue]];
+    self.countInfoLabel.text = [NSString stringWithFormat:@"x %d", [shoppingCartModel.shoppingCartProductNumber intValue]];
+}
+
+- (void)setCellToEditType {
+    [self didClickEditButtonAction:nil];
+}
+
+- (void)setCellToNormalType {
+    [self didClickFinishButtonAction:nil];
+}
+
+- (void)setCellToSelectType {
+    self.selectButton.selected = YES;
+}
+
+- (void)setCellToUnSelectType {
+    self.selectButton.selected = NO;
 }
 
 #pragma mark - IBActions
 
 - (IBAction)didClickSelectButtonAction:(id)sender {
     self.selectButton.selected = !self.selectButton.selected;
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didClickedOnSelectButtonWithShoppingCartModel:)]) {
+        [self.delegate didClickedOnSelectButtonWithShoppingCartModel:self.shoppingCartModel];
+    }
 }
 
 - (IBAction)didClickEditMinusButtonAction:(id)sender {
@@ -70,6 +101,12 @@
     }
     
     self.editCountTextField.text = [NSString stringWithFormat:@"%d", currentCount];
+    self.countInfoLabel.text = [NSString stringWithFormat:@"x %d", currentCount];
+    self.shoppingCartModel.shoppingCartProductNumber = [NSString stringWithFormat:@"%d", currentCount];
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didClickedOnReduceButtonWithShoppingCartModel:)]) {
+        [self.delegate didClickedOnReduceButtonWithShoppingCartModel:self.shoppingCartModel];
+    }
 }
 
 - (IBAction)didClickEditPlusButtonAction:(id)sender {
@@ -78,18 +115,40 @@
     self.editMinusButton.enabled = YES;
     
     self.editCountTextField.text = [NSString stringWithFormat:@"%d", currentCount];
+    self.countInfoLabel.text = [NSString stringWithFormat:@"x %d", currentCount];
+    self.shoppingCartModel.shoppingCartProductNumber = [NSString stringWithFormat:@"%d", currentCount];
+
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didClickedOnPlusButtonWithShoppingCartModel:)]) {
+        [self.delegate didClickedOnPlusButtonWithShoppingCartModel:self.shoppingCartModel];
+    }
 }
 
 - (IBAction)didClickEditButtonAction:(id)sender {
-    
+    self.subContentView1.hidden = YES;
+    self.subContentView2.hidden = NO;
+    self.editContentView.hidden = NO;
+    self.productTitleLabel.hidden = YES;
+    self.editCountTextField.text = [NSString stringWithFormat:@"%d", [self.shoppingCartModel.shoppingCartProductNumber intValue]];
+
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didClickedOnEditButtonWithShoppingCartModel:)]) {
+        [self.delegate didClickedOnEditButtonWithShoppingCartModel:self.shoppingCartModel];
+    }
 }
 
 - (IBAction)didClickDeleteButtonAction:(id)sender {
-    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didClickedOnDeleteButtonWithShoppingCartModel:)]) {
+        [self.delegate didClickedOnDeleteButtonWithShoppingCartModel:self.shoppingCartModel];
+    }
 }
 
 - (IBAction)didClickFinishButtonAction:(id)sender {
-    
+    self.subContentView1.hidden = NO;
+    self.subContentView2.hidden = YES;
+    self.editContentView.hidden = YES;
+    self.productTitleLabel.hidden = NO;
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didClickedOnDoneButtonWithShoppingCartModel:)]) {
+        [self.delegate didClickedOnDoneButtonWithShoppingCartModel:self.shoppingCartModel];
+    }
 }
 
 @end

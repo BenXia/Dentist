@@ -377,6 +377,7 @@
 		B58339681C79BB3400F9EBE2 /* like_ts@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B58339661C79BB3400F9EBE2 /* like_ts@2x.png */; };
 		B583396B1C79BE4F00F9EBE2 /* OrderDetailVM.m in Sources */ = {isa = PBXBuildFile; fileRef = B583396A1C79BE4F00F9EBE2 /* OrderDetailVM.m */; };
 		B583396E1C79BE8E00F9EBE2 /* OrderDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B583396D1C79BE8E00F9EBE2 /* OrderDetailModel.m */; };
+		B58339751C79FFAC00F9EBE2 /* OrderListDC.m in Sources */ = {isa = PBXBuildFile; fileRef = B58339741C79FFAC00F9EBE2 /* OrderListDC.m */; };
 		B597106E1C785F98006BC9FE /* ProductListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B597106D1C785F98006BC9FE /* ProductListModel.m */; };
 		B59710711C7861F8006BC9FE /* ProductListGoodsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B59710701C7861F8006BC9FE /* ProductListGoodsModel.m */; };
 		B59710751C78674E006BC9FE /* AllOrderListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B59710731C78674E006BC9FE /* AllOrderListVC.m */; };
@@ -384,6 +385,8 @@
 		B59710791C78683C006BC9FE /* AllOrderListVM.m in Sources */ = {isa = PBXBuildFile; fileRef = B59710781C78683C006BC9FE /* AllOrderListVM.m */; };
 		B597107D1C788D1E006BC9FE /* OrderListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B597107B1C788D1E006BC9FE /* OrderListTableViewCell.m */; };
 		B597107E1C788D1E006BC9FE /* OrderListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B597107C1C788D1E006BC9FE /* OrderListTableViewCell.xib */; };
+		B5DA4D0C1C7B41F4003677DD /* ShoppingCartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DA4D0B1C7B41F4003677DD /* ShoppingCartModel.m */; };
+		B5DA4D0F1C7B4402003677DD /* ShoppingCardVM.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DA4D0E1C7B4402003677DD /* ShoppingCardVM.m */; };
 		B5F386061C45ED3A00E666F7 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F071C51C42D12900DAC58F /* CoreFoundation.framework */; };
 /* End PBXBuildFile section */
 
@@ -913,6 +916,8 @@
 		B583396A1C79BE4F00F9EBE2 /* OrderDetailVM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailVM.m; sourceTree = "<group>"; };
 		B583396C1C79BE8E00F9EBE2 /* OrderDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailModel.h; sourceTree = "<group>"; };
 		B583396D1C79BE8E00F9EBE2 /* OrderDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailModel.m; sourceTree = "<group>"; };
+		B58339731C79FFAC00F9EBE2 /* OrderListDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderListDC.h; sourceTree = "<group>"; };
+		B58339741C79FFAC00F9EBE2 /* OrderListDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderListDC.m; sourceTree = "<group>"; };
 		B597106C1C785F98006BC9FE /* ProductListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductListModel.h; sourceTree = "<group>"; };
 		B597106D1C785F98006BC9FE /* ProductListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductListModel.m; sourceTree = "<group>"; };
 		B597106F1C7861F8006BC9FE /* ProductListGoodsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductListGoodsModel.h; sourceTree = "<group>"; };
@@ -925,6 +930,10 @@
 		B597107A1C788D1E006BC9FE /* OrderListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderListTableViewCell.h; sourceTree = "<group>"; };
 		B597107B1C788D1E006BC9FE /* OrderListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderListTableViewCell.m; sourceTree = "<group>"; };
 		B597107C1C788D1E006BC9FE /* OrderListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderListTableViewCell.xib; sourceTree = "<group>"; };
+		B5DA4D0A1C7B41F4003677DD /* ShoppingCartModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingCartModel.h; sourceTree = "<group>"; };
+		B5DA4D0B1C7B41F4003677DD /* ShoppingCartModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingCartModel.m; sourceTree = "<group>"; };
+		B5DA4D0D1C7B4402003677DD /* ShoppingCardVM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingCardVM.h; sourceTree = "<group>"; };
+		B5DA4D0E1C7B4402003677DD /* ShoppingCardVM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingCardVM.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1477,6 +1486,7 @@
 		33F070361C4295F200DAC58F /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				B58339721C79FF7F00F9EBE2 /* 订单列表 */,
 				33F0708F1C42B58E00DAC58F /* PPDataCache.h */,
 				33F070901C42B58E00DAC58F /* PPDataCache.m */,
 				33F070911C42B58E00DAC58F /* PPDataController.h */,
@@ -1564,6 +1574,10 @@
 				33DD6B361C60ED2800CE6B31 /* ProductBriefInfoCell.h */,
 				33DD6B371C60ED2800CE6B31 /* ProductBriefInfoCell.m */,
 				33DD6B381C60ED2800CE6B31 /* ProductBriefInfoCell.xib */,
+				B5DA4D0A1C7B41F4003677DD /* ShoppingCartModel.h */,
+				B5DA4D0B1C7B41F4003677DD /* ShoppingCartModel.m */,
+				B5DA4D0D1C7B4402003677DD /* ShoppingCardVM.h */,
+				B5DA4D0E1C7B4402003677DD /* ShoppingCardVM.m */,
 			);
 			path = "购物车";
 			sourceTree = "<group>";
@@ -2058,6 +2072,15 @@
 			path = "商品评价";
 			sourceTree = "<group>";
 		};
+		B58339721C79FF7F00F9EBE2 /* 订单列表 */ = {
+			isa = PBXGroup;
+			children = (
+				B58339731C79FFAC00F9EBE2 /* OrderListDC.h */,
+				B58339741C79FFAC00F9EBE2 /* OrderListDC.m */,
+			);
+			path = "订单列表";
+			sourceTree = "<group>";
+		};
 		B597106B1C785F0E006BC9FE /* 订单列表 */ = {
 			isa = PBXGroup;
 			children = (
@@ -2483,6 +2506,7 @@
 				33DD6BBA1C6103CA00CE6B31 /* IQToolbar.m in Sources */,
 				33CAF88D1C780C030015B4BC /* PPJSExternal.m in Sources */,
 				930C349D1C7A0BC1008823F9 /* UPdataAddressDC.m in Sources */,
+				B58339751C79FFAC00F9EBE2 /* OrderListDC.m in Sources */,
 				B58339571C79976A00F9EBE2 /* ProductEvaluateVC.m in Sources */,
 				88C3BACD1C781F5B001F4D85 /* ProductDetailDC.m in Sources */,
 				932839BE1C6378A9004C21CD /* MyOrderCell.m in Sources */,
@@ -2558,6 +2582,7 @@
 				930C349B1C7A0BC1008823F9 /* Address.m in Sources */,
 				33F070691C42A42100DAC58F /* CartVC.m in Sources */,
 				33CAF8891C780C030015B4BC /* EasyJSDataFunction.m in Sources */,
+				B5DA4D0F1C7B4402003677DD /* ShoppingCardVM.m in Sources */,
 				93DEA8D21C4BCBAA008211F7 /* TAPageControl.m in Sources */,
 				33CAF88C1C780C030015B4BC /* PPEasyWebViewController.m in Sources */,
 				33CAE4501C7373AE0038748F /* OrderBottomInfoCell.m in Sources */,
@@ -2568,6 +2593,7 @@
 				93DEA8D31C4BCBAA008211F7 /* SDCollectionViewCell.m in Sources */,
 				33CAE44B1C7373520038748F /* OrderItemFooterCell.m in Sources */,
 				33DD6B511C60EDCC00CE6B31 /* RegistVC.m in Sources */,
+				B5DA4D0C1C7B41F4003677DD /* ShoppingCartModel.m in Sources */,
 				33D028771C74BD2900277C3C /* FeedbackVC.m in Sources */,
 				33CAE43C1C7372DB0038748F /* OrderReceiverCell.m in Sources */,
 				B58339601C79985200F9EBE2 /* ProductEvaluateModel.m in Sources */,

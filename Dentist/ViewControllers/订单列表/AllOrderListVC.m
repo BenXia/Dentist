@@ -12,6 +12,8 @@
 #import "ProductListGoodsModel.h"
 #import "OrderListTableViewCell.h"
 #import "OrderDetailVC.h"
+#import "OrderListDC.h"
+
 
 #define kTableViewCellHeight        95
 #define kSectionHeaderViewHeight    40
@@ -23,10 +25,10 @@
 #define kPayButtonHeight            30
 #define kInsert                     10
 
-@interface AllOrderListVC ()
-
-@property (strong, nonatomic)          AllOrderListVM *allOrderListVM;
+@interface AllOrderListVC ()<PPDataControllerDelegate>
 @property (weak,   nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic)          AllOrderListVM *allOrderListVM;
+@property (strong, nonatomic)          OrderListDC    *orderListDC;
 
 @end
 
@@ -36,6 +38,7 @@
     [super viewDidLoad];
 
     [self initUI];
+    [self initData];
     
     ProductListModel *model = [ProductListModel new];
     model.orderID = @"1111";
@@ -76,6 +79,12 @@
     self.view.backgroundColor = [UIColor backGroundGrayColor];
     self.title = @"全部订单";
 }
+
+- (void)initData {
+    self.orderListDC = [[OrderListDC alloc] initWithDelegate:self];
+    [self.orderListDC requestWithArgs:nil];
+}
+
 
 #pragma mark - UITableViewDataSource & UITableViewDelegate
 
@@ -122,9 +131,22 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    OrderDetailVC *orderDetailVC = [OrderDetailVC new];
-    [self.navigationController pushViewController:orderDetailVC animated:YES];
+    
+    
+//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+//    OrderDetailVC *orderDetailVC = [OrderDetailVC new];
+//    [self.navigationController pushViewController:orderDetailVC animated:YES];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    CGFloat sectionHeaderHeight = kSectionFooterViewHeight;
+    if (scrollView.contentOffset.y >= sectionHeaderHeight) {
+        scrollView.contentInset = UIEdgeInsetsMake(0, 0, -sectionHeaderHeight, 0);
+        NSLog(@"111111111111");
+    } else if (scrollView.contentOffset.y >= sectionHeaderHeight&&(scrollView.contentOffset.y >= scrollView.contentSize.height)) {
+        scrollView.contentInset = UIEdgeInsetsMake(0, 0, -scrollView.contentOffset.y, 0);
+        NSLog(@"222222222222");
+    }
 }
 #pragma mark - Button Action
 
@@ -145,10 +167,22 @@
 }
 
 - (void)praiseOrder:(id)sender {
-    UIButton *btn = (UIButton *)sender;
+//    UIButton *btn = (UIButton *)sender;
     //跳转评价晒单
 }
 
+
+#pragma mark - PPDataControllerDelegate
+
+//数据请求成功回调
+- (void)loadingDataFinished:(PPDataController *)controller{
+
+}
+
+//数据请求失败回调
+- (void)loadingData:(PPDataController *)controller failedWithError:(NSError *)error{
+
+}
 
 #pragma mark - Data Init
 
