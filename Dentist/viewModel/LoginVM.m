@@ -34,7 +34,8 @@
 - (void)loadingData:(PPDataController *)controller failedWithError:(NSError *)error {
     if (controller == self.loginRequest) {
         [Utilities showToastWithText:[NSString stringWithFormat:@"登录失败:%@", error]];
-        
+        [[MainViewManager sharedInstance] loadMainVC];
+        [[MainViewManager sharedInstance] selectTabHomeVC];
     }
 }
 
