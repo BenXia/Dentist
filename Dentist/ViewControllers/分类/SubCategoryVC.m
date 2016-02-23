@@ -1,41 +1,37 @@
 //
-//  MyFavoriteVC.m
+//  SubCategoryVC.m
 //  Dentist
 //
-//  Created by 郭晓倩 on 16/2/22.
+//  Created by 郭晓倩 on 16/2/23.
 //  Copyright © 2016年 iOSStudio. All rights reserved.
 //
 
-#import "MyFavoriteVC.h"
-#import "MyFavoriteDC.h"
-#import "RemoveFavoriteDC.h"
-#import "FavoriteProductCell.h"
+#import "SubCategoryVC.h"
+#import "SearchProductDC.h"
 #import "ProductDetailVC.h"
+#import "FavoriteProductCell.h"
 
 static const CGFloat kItemNumPerLine = 2;
 
-@interface MyFavoriteVC ()<UICollectionViewDataSource,UICollectionViewDelegate,PPDataControllerDelegate>
+@interface SubCategoryVC ()<PPDataControllerDelegate>
 
-@property (strong,nonatomic) MyFavoriteDC* dc;
-@property (strong,nonatomic) RemoveFavoriteDC* removeFavoriteDC;
-@property (assign,nonatomic) BOOL isEditing;
+@property (strong,nonatomic) SearchProductDC* dc;
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (assign,nonatomic) CGFloat itemWidth;
 @property (assign,nonatomic) CGFloat itemHeight;
 
-@property (strong,nonatomic) NSMutableArray* selectedProductIds;
 
 @end
 
-@implementation MyFavoriteVC
+@implementation SubCategoryVC
 
--(instancetype)init{
+-(instancetype)initWithCid:(NSNumber*)cid scid:(NSNumber*)s_cid{
     if (self = [super init]) {
-        self.title = @"我的收藏";
-        self.selectedProductIds = [NSMutableArray new];
-        self.dc = [[MyFavoriteDC alloc]initWithDelegate:self];
-        self.removeFavoriteDC = [[RemoveFavoriteDC alloc]initWithDelegate:self];
+        self.dc = [[SearchProductDC alloc]initWithDelegate:self];
+        self.dc.cid = cid;
+        self.dc.s_cid = s_cid;
+        self.title = @"分类详情";
     }
     return self;
 }
@@ -43,8 +39,9 @@ static const CGFloat kItemNumPerLine = 2;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [self setNavRightItemWithName:@"编辑" target:self action:@selector(didClickEditButton)];
+    
     [self initCollectionView];
+    
     [self.dc requestWithArgs:nil];
 }
 
@@ -98,24 +95,6 @@ static const CGFloat kItemNumPerLine = 2;
     [self.dc requestWithArgs:nil];
 }
 
--(void)didClickEditButton{
-    self.isEditing = YES;
-    [self.collectionView reloadData];
-    [self setNavRightItemWithName:@"删除" target:self action:@selector(didClickDeleteButton)];
-}
-
--(void)didClickDeleteButton{
-    if (self.selectedProductIds.count > 0) {
-        self.removeFavoriteDC.productIds = self.selectedProductIds;
-        [self.removeFavoriteDC requestWithArgs:nil];
-        [Utilities showLoadingView];
-    }else{
-        self.isEditing = NO;
-        [self.collectionView reloadData];
-        [self setNavRightItemWithName:@"编辑" target:self action:@selector(didClickEditButton)];
-    }
-}
-
 #pragma mark - UICollectionViewDelegate
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
@@ -127,7 +106,7 @@ static const CGFloat kItemNumPerLine = 2;
     
     FavoriteProductModel* model = [self.dc.products objectAtIndex:indexPath.row];
     FavoriteProductCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"FavoriteProductCell" forIndexPath:indexPath];
-    [cell setModel:model isEditing:self.isEditing isSelected:[self isSelectedProduct:model.iid]];
+    [cell setModel:model isEditing:NO isSelected:NO];
     
     return cell;
 }
@@ -136,13 +115,8 @@ static const CGFloat kItemNumPerLine = 2;
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     FavoriteProductModel* model = [self.dc.products objectAtIndexIfIndexInBounds:indexPath.row];
-    if (self.isEditing) {
-        [self selectOrDeselectProduct:model.iid];
-        [self.collectionView reloadData];
-    }else{
-        ProductDetailVC* detailVC = [[ProductDetailVC alloc] initWithProductId:model.iid];
-        [self.navigationController pushViewController:detailVC animated:YES];
-    }
+    ProductDetailVC* detailVC = [[ProductDetailVC alloc] initWithProductId:model.iid];
+    [self.navigationController pushViewController:detailVC animated:YES];
 }
 
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
@@ -166,19 +140,7 @@ static const CGFloat kItemNumPerLine = 2;
     [self.collectionView footerEndRefreshing];
     if (controller == self.dc) {
         [self.collectionView reloadData];
-    }else if(controller == self.removeFavoriteDC){
-        [Utilities showToastWithText:@"删除收藏成功"];
-        //本地删除
-       self.dc.products = [self.dc.products arrayByRemoveObjectsIfKeyPath:@"iid" containInArray:self.selectedProductIds withEqualBlock:^BOOL(NSString* dst, NSString* src) {
-            return [dst isEqualToString:src];
-        }];
-        
-        self.isEditing = NO;
-        self.selectedProductIds = [NSMutableArray new];
-        [self.collectionView reloadData];
-        [self setNavRightItemWithName:@"编辑" target:self action:@selector(didClickEditButton)];
     }
-    
 }
 //数据请求失败回调
 - (void)loadingData:(PPDataController *)controller failedWithError:(NSError *)error{
@@ -186,34 +148,8 @@ static const CGFloat kItemNumPerLine = 2;
     [self.collectionView headerEndRefreshing];
     [self.collectionView footerEndRefreshing];
     if (controller == self.dc) {
-        [Utilities showToastWithText:@"获取收藏列表失败"];
-    }else if(controller == self.removeFavoriteDC){
-        [Utilities showToastWithText:@"删除收藏失败"];
-        
-        self.isEditing = NO;
-        [self.collectionView reloadData];
-        [self setNavRightItemWithName:@"编辑" target:self action:@selector(didClickEditButton)];
+        [Utilities showToastWithText:@"获取分类详情失败"];
     }
 }
-
-#pragma mark - Private Method
-
-- (BOOL)isSelectedProduct:(NSString*)productId {
-    for (NSString* tmpId in self.selectedProductIds) {
-        if ([tmpId isEqualToString:productId]) {
-            return YES;
-        }
-    }
-    return NO;
-}
-
--(void)selectOrDeselectProduct:(NSString *)productId{
-    if ([self isSelectedProduct:productId]) {
-        [self.selectedProductIds removeObject:productId];
-    } else {
-        [self.selectedProductIds addObject:productId];
-    }
-}
-
 
 @end

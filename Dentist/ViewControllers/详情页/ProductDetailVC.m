@@ -262,30 +262,27 @@ UIScrollViewDelegate>
     [self addScrollSubview:self.baseInfoView];
     self.scrollContentHeight += kHeightOfSectionHeader;
     
-    //TODO-GUO:测试
-    BOOL isTest = YES;
-    
     //套餐优惠
-    if (isTest || self.dc.productDetail.groups.count > 0) {
+    if (self.dc.productDetail.groups.count > 0) {
         [self refreshGroupDiscountView];
         [self addScrollSubview:self.groupDiscountView];
         self.scrollContentHeight += kHeightOfSectionHeader;
     }
     
     //赠品
-    if (isTest || self.dc.productDetail.gifts.count > 0) {
+    if (self.dc.productDetail.gifts.count > 0) {
         [self refreshGiftView];
         [self addScrollSubview:self.giftView];
         self.scrollContentHeight += kHeightOfSectionHeader;
     }
     //分类
-    if (isTest || self.dc.productDetail.p_sids.count > 0) {
+    if (self.dc.productDetail.p_sids.count > 0) {
         [self refreshSelectTipView];
         [self addScrollSubview:self.selectTipView];
         self.scrollContentHeight += kHeightOfSectionHeader;
     }
     //评价
-    if (isTest || self.dc.productDetail.scores.count > 0) {
+    if (self.dc.productDetail.scores.count > 0) {
         [self refreshAppraiseView];
         [self addScrollSubview:self.appraiseView];
         self.scrollContentHeight += kHeightOfSectionHeader;
@@ -336,11 +333,36 @@ UIScrollViewDelegate>
     [self.baseTitleLabel ajustHeightWithLimitWidth:limitWidth];
     if (productDetail.title_fu.length == 0) {
         self.baseSubtitleLabel.height = 0;
-        self.baseTitleLabelTopConstraint.constant = 0;
+        self.basePriceViewTopConstraint.constant = 0;
     }else{
         [self.baseSubtitleLabel ajustHeightWithLimitWidth:limitWidth];
     }
-    self.baseInfoView.height = self.baseTitleLabelTopConstraint.constant + self.baseTitleLabel.height + self.baseSubtitleLabelTopConstraint.constant + self.baseSubtitleLabel.height + self.basePriceViewHeightConstraint.constant + self.baseDeliverViewHeightConstraint.constant * 3 + self.baseTitleLabelTopConstraint.constant;
+    self.baseInfoView.height = self.baseTitleLabelTopConstraint.constant + self.baseTitleLabel.height + self.baseSubtitleLabelTopConstraint.constant + self.baseSubtitleLabel.height + self.basePriceViewTopConstraint.constant + self.basePriceViewHeightConstraint.constant + self.baseDeliverViewHeightConstraint.constant * 3 + self.baseTitleLabelTopConstraint.constant;
+}
+
+-(void)refreshGroupDiscountView{
+    GroupItem* firstGroup = [self.dc.productDetail.groups firstObject];
+    NSArray* groupProductViewArray = @[self.groupSecondProductView,self.groupThirdProductView];
+    
+    double totalPrice = self.dc.productDetail.price;
+    for (NSInteger i=0; i < firstGroup.items.count; ++i) {
+        GroupContentItem* item  = [firstGroup.items objectAtIndex:i];
+        GroupProductView* view = [groupProductViewArray objectAtIndex:i];
+        [view.imageView sd_setImageWithURL:[NSURL URLWithString:item.img]];
+        view.titleLabel.text = item.title;
+        view.priceLabel.text = [NSString stringWithFormat:@"%@%.2f",kYuanSymbolStr,item.price];
+        totalPrice += item.price;
+    }
+    
+    self.groupReducePriceLabel.text = [NSString stringWithFormat:@"%.2f元",totalPrice - firstGroup.price];
+    self.groupPayPriceLabel.text = [NSString stringWithFormat:@"%@%.2f",kYuanSymbolStr,firstGroup.price];
+    
+    //默认选中主商品
+    self.groupFirstProductView.selected = YES;
+    [self.groupFirstProductView.imageView sd_setImageWithURL:[NSURL URLWithString:[self.dc.productDetail.img_url firstObject]]];
+    self.groupFirstProductView.titleLabel.text = self.dc.productDetail.title;
+    self.groupFirstProductView.priceLabel.text = [NSString stringWithFormat:@"%@%.2f",kYuanSymbolStr,self.dc.productDetail.price];
+    
 }
 
 - (void)refreshGiftView{
@@ -419,32 +441,6 @@ UIScrollViewDelegate>
     
     self.guessYouLikeContentViewHeightConstraint.constant = itemHeight + 2*PIXEL_12;
     self.guessYouLikeView.height = self.guessYouLikeHeaderViewHeightConstraint.constant + self.guessYouLikeContentViewHeightConstraint.constant;
-}
-
-
--(void)refreshGroupDiscountView{
-    GroupItem* firstGroup = [self.dc.productDetail.groups firstObject];
-    NSArray* groupProductViewArray = @[self.groupSecondProductView,self.groupThirdProductView];
-    
-    double totalPrice = self.dc.productDetail.price;
-    for (NSInteger i=0; i < firstGroup.items.count; ++i) {
-        GroupContentItem* item  = [firstGroup.items objectAtIndex:i];
-        GroupProductView* view = [groupProductViewArray objectAtIndex:i];
-        [view.imageView sd_setImageWithURL:[NSURL URLWithString:item.img]];
-        view.titleLabel.text = item.title;
-        view.priceLabel.text = [NSString stringWithFormat:@"%@%.2f",kYuanSymbolStr,item.price];
-        totalPrice += item.price;
-    }
-    
-    self.groupReducePriceLabel.text = [NSString stringWithFormat:@"%.2f",totalPrice - firstGroup.price];
-    self.groupPayPriceLabel.text = [NSString stringWithFormat:@"%@%.2f",kYuanSymbolStr,firstGroup.price];
-    
-    //默认选中主商品
-    self.groupFirstProductView.selected = YES;
-    [self.groupFirstProductView.imageView sd_setImageWithURL:[NSURL URLWithString:[self.dc.productDetail.img_url firstObject]]];
-    self.groupFirstProductView.titleLabel.text = self.dc.productDetail.title;
-    self.groupFirstProductView.priceLabel.text = [NSString stringWithFormat:@"%@%.2f",kYuanSymbolStr,self.dc.productDetail.price];
-    
 }
 
 -(void)refreshPopupCustomiseView{

@@ -10,10 +10,8 @@
 #import "MyOrderCell.h"
 #import "UserInfoVC.h"
 #import "AddressListVC.h"
-//TODO-GUO:测试
-#import "ProductDetailVC.h"
 #import "MyFavoriteVC.h"
-
+#import "LookHistoryVC.h"
 #import "AllOrderListVC.h"
 #import "AppDeinitializer.h"
 #import "SettingVCViewController.h"
@@ -95,6 +93,9 @@
 }
 
 - (IBAction)onScanHistoryBtn:(UIButton *)sender {
+    LookHistoryVC* lookHistoryVC = [LookHistoryVC new];
+    lookHistoryVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:lookHistoryVC animated:YES];
 }
 
 - (IBAction)onAddressBtn:(UIButton *)sender {

@@ -5,9 +5,9 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MyFavoriteVC">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SubCategoryVC">
             <connections>
-                <outlet property="collectionView" destination="tnf-ad-eFS" id="nTB-S5-d1o"/>
+                <outlet property="collectionView" destination="taQ-bY-DMC" id="Bt9-kx-r0g"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -16,26 +16,26 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="tnf-ad-eFS">
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="taQ-bY-DMC">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="PYB-um-FQd">
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Kzf-1C-UpU">
                         <size key="itemSize" width="50" height="50"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                     <connections>
-                        <outlet property="dataSource" destination="-1" id="Pch-kY-Ltb"/>
-                        <outlet property="delegate" destination="-1" id="l02-k1-xGo"/>
+                        <outlet property="dataSource" destination="-1" id="tqr-zN-y7W"/>
+                        <outlet property="delegate" destination="-1" id="khX-ud-LdI"/>
                     </connections>
                 </collectionView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="tnf-ad-eFS" secondAttribute="bottom" id="Hb9-At-sHD"/>
-                <constraint firstItem="tnf-ad-eFS" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Nj1-e5-aIl"/>
-                <constraint firstItem="tnf-ad-eFS" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="oWT-nh-g6e"/>
-                <constraint firstAttribute="trailing" secondItem="tnf-ad-eFS" secondAttribute="trailing" id="uh8-bQ-uun"/>
+                <constraint firstItem="taQ-bY-DMC" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Fyn-LP-JJ8"/>
+                <constraint firstAttribute="bottom" secondItem="taQ-bY-DMC" secondAttribute="bottom" id="KUO-GW-2mw"/>
+                <constraint firstItem="taQ-bY-DMC" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="PPE-AZ-2Dl"/>
+                <constraint firstAttribute="trailing" secondItem="taQ-bY-DMC" secondAttribute="trailing" id="bwC-sF-zrL"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
