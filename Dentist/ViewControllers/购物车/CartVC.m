@@ -13,6 +13,7 @@
 #import "WebBrowserVC.h"
 #import "PaySuccessVC.h"
 #import "PayFailedVC.h"
+#import "FeedbackVC.h"
 #import "ShoppingCardVM.h"
 #import "ShoppingCartModel.h"
 
@@ -299,7 +300,8 @@ static NSString* const kCellReuseIdentifier = @"ProductBriefInfoCell";
     self.isEditType = !self.isEditType;
     [self.tableView reloadData];
     
-//    PayFailedVC *vc = [[PayFailedVC alloc] init];
+//    FeedbackVC *vc = [[FeedbackVC alloc] init];
+////    PayFailedVC *vc = [[PayFailedVC alloc] init];
 //    vc.hidesBottomBarWhenPushed = YES;
 //    [self.navigationController pushViewController:vc animated:YES];
 }
