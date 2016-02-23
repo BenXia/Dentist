@@ -20,7 +20,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="橡胶结合剂研磨器" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lmJ-IK-m1L">
                                 <rect key="frame" x="8" y="281" width="96" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WyP-d4-9n6">
@@ -30,9 +30,9 @@
                                     <color key="titleColor" red="1" green="0.12861775349999999" blue="0.2204865916" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Fa-aN-7uw">
-                                <rect key="frame" x="0.0" y="0.0" width="140" height="30"/>
-                                <state key="normal" title="图片展示"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Fa-aN-7uw">
+                                <rect key="frame" x="0.0" y="0.0" width="140" height="120"/>
+                                <state key="normal" title="图片展示" image="test.jpg"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -100,7 +100,7 @@
                         </connections>
                     </button>
                 </subviews>
-                <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                <color key="backgroundColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstItem="5ao-lx-nko" firstAttribute="leading" secondItem="yK7-JB-HWb" secondAttribute="trailing" constant="1" id="03c-D4-pVU"/>
                     <constraint firstItem="fDM-wv-MBs" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="1Cd-6b-nNI"/>
@@ -136,4 +136,7 @@
             <point key="canvasLocation" x="301" y="454"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="test.jpg" width="120" height="120"/>
+    </resources>
 </document>
