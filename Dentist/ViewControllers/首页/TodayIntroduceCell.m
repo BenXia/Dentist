@@ -10,12 +10,17 @@
 
 @interface TodayIntroduceCell ()
 @property (weak, nonatomic) IBOutlet UIView *leftBackgroundView;
-@property (weak, nonatomic) IBOutlet UIButton *firstBtn;
-@property (weak, nonatomic) IBOutlet UIButton *secondBtn;
-@property (weak, nonatomic) IBOutlet UIButton *thirdBtn;
-@property (weak, nonatomic) IBOutlet UIButton *fourthBtn;
-@property (weak, nonatomic) IBOutlet UIButton *leftImageShowBtn;
+@property (weak, nonatomic) IBOutlet UIImageView *firstImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *secondImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *thirdImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *fourthImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *leftImageShowImageView;
 
+@property (nonatomic, strong) ProductIntroduceModel *firstModel;
+@property (nonatomic, strong) ProductIntroduceModel *secondModel;
+@property (nonatomic, strong) ProductIntroduceModel *thirdModel;
+@property (nonatomic, strong) ProductIntroduceModel *fourthModel;
+@property (nonatomic, strong) ProductIntroduceModel *leftModel;
 @end
 
 @implementation TodayIntroduceCell
@@ -23,6 +28,13 @@
 - (void)awakeFromNib {
     // Initialization code
     self.contentView.backgroundColor = [UIColor backGroundGrayColor];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onProductImage:)];
+    [self.firstImageView addGestureRecognizer:tap];
+    [self.secondImageView addGestureRecognizer:tap];
+    [self.thirdImageView addGestureRecognizer:tap];
+    [self.fourthImageView addGestureRecognizer:tap];
+    [self.leftImageShowImageView addGestureRecognizer:tap];
+    [self.firstImageView addGestureRecognizer:tap];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -34,55 +46,49 @@
 - (void)setCellModel:(id)cellModel {
     _cellModel = cellModel;
     for (ProductIntroduceModel *model in cellModel) {
-        if ([model.location isEqualToString:@"右1"]) {
-            [self.firstBtn sd_setImageWithURL:[NSURL URLWithString:model.img_url] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"test.png"]];
-            [self.firstBtn setTitle:model.event_id forState:UIControlStateNormal];
-            
-            //test
-            [self.secondBtn sd_setImageWithURL:[NSURL URLWithString:model.img_url] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"test.png"]];
-            [self.secondBtn setTitle:model.event_id forState:UIControlStateNormal];
-            [self.thirdBtn sd_setImageWithURL:[NSURL URLWithString:model.img_url] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"test.png"]];
-            [self.fourthBtn sd_setImageWithURL:[NSURL URLWithString:model.img_url] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"test.png"]];
-            [self.fourthBtn setTitle:model.event_id forState:UIControlStateNormal];
-
-            
-        } else if ([model.location isEqualToString:@"右2"]) {
-            [self.secondBtn sd_setImageWithURL:[NSURL URLWithString:model.img_url] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"test.png"]];
-            [self.secondBtn setTitle:model.event_id forState:UIControlStateNormal];
-        } else if ([model.location isEqualToString:@"左1"]) {
-            [self.thirdBtn sd_setImageWithURL:[NSURL URLWithString:model.img_url] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"test.png"]];
-            [self.thirdBtn setTitle:model.event_id forState:UIControlStateNormal];
-        } else if ([model.location isEqualToString:@"banner"]) {
-            [self.fourthBtn sd_setImageWithURL:[NSURL URLWithString:model.img_url] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"test.png"]];
-            [self.fourthBtn setTitle:model.event_id forState:UIControlStateNormal];
+        NSLog(@"图片地址 = %@",model.img_url);
+        if ([model.location isEqualToString:@"中上"]) {
+            self.firstModel = model;
+            [self.firstImageView sd_setImageWithURL:[NSURL URLWithString:model.img_url]placeholderImage:[UIImage imageNamed:@"test.png"]];
+        } else if ([model.location isEqualToString:@"右上"]) {
+            self.secondModel = model;
+            [self.secondImageView sd_setImageWithURL:[NSURL URLWithString:model.img_url] placeholderImage:[UIImage imageNamed:@"test.png"]];
+        } else if ([model.location isEqualToString:@"中下"]) {
+            self.thirdModel = model;
+            [self.thirdImageView sd_setImageWithURL:[NSURL URLWithString:model.img_url] placeholderImage:[UIImage imageNamed:@"test.png"]];
+        } else if ([model.location isEqualToString:@"右下"]) {
+            self.fourthModel = model;
+            [self.fourthImageView sd_setImageWithURL:[NSURL URLWithString:model.img_url] placeholderImage:[UIImage imageNamed:@"test.png"]];
+        } else if ([model.location isEqualToString:@"左"]) {
+            self.leftModel = model;
+            [self.leftImageShowImageView sd_setImageWithURL:[NSURL URLWithString:model.img_url]placeholderImage:[UIImage imageNamed:@"test.png"]];
         }
     }
-    [self.firstBtn centerImageAndTitle];
-    [self.secondBtn centerImageAndTitle];
-    [self.thirdBtn centerImageAndTitle];
-    [self.fourthBtn centerImageAndTitle];
 }
 
 #pragma mark - UI Action
 
-- (IBAction)onFirstBtn:(UIButton *)sender {
-    if (self.delegate) {
-        [self.delegate todayIntroduceCell:self toProductDetailWith:@"10"];
-    }
-}
-- (IBAction)onSecondBtn:(UIButton *)sender {
-    if (self.delegate) {
-        [self.delegate todayIntroduceCell:self toProductDetailWith:@"10"];
-    }
-}
-- (IBAction)onThirdBtn:(UIButton *)sender {
-    if (self.delegate) {
-        [self.delegate todayIntroduceCell:self toProductDetailWith:@"10"];
-    }
-}
-- (IBAction)onFourthBtn:(UIButton *)sender {
-    if (self.delegate) {
-        [self.delegate todayIntroduceCell:self toProductDetailWith:@"10"];
+- (void) onProductImage:(UITapGestureRecognizer *)tap {
+    if (tap.view == self.firstImageView) {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(todayIntroduceCell:toProductDetailWith:)]) {
+            [self.delegate todayIntroduceCell:self toProductDetailWith:self.firstModel.iid];
+        }
+    } else if (tap.view == self.secondImageView) {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(todayIntroduceCell:toProductDetailWith:)]) {
+            [self.delegate todayIntroduceCell:self toProductDetailWith:self.secondModel.iid];
+        }
+    } else if (tap.view == self.thirdImageView) {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(todayIntroduceCell:toProductDetailWith:)]) {
+            [self.delegate todayIntroduceCell:self toProductDetailWith:self.thirdModel.iid];
+        }
+    } else if (tap.view == self.fourthImageView) {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(todayIntroduceCell:toProductDetailWith:)]) {
+            [self.delegate todayIntroduceCell:self toProductDetailWith:self.fourthModel.iid];
+        }
+    } else if (tap.view == self.leftImageShowImageView) {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(todayIntroduceCell:toProductDetailWith:)]) {
+            [self.delegate todayIntroduceCell:self toProductDetailWith:self.leftModel.iid];
+        }
     }
 }
 

@@ -10,17 +10,14 @@
 
 @interface TuanGouCell ()
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *firstItemNameLabel;
-@property (weak, nonatomic) IBOutlet UIButton *firstImageBtn;
 
-@property (weak, nonatomic) IBOutlet UILabel *secondItemNameLabel;
-@property (weak, nonatomic) IBOutlet UIButton *secondImageBtn;
+@property (weak, nonatomic) IBOutlet UIImageView *firstImageView;
 
-@property (weak, nonatomic) IBOutlet UILabel *thirdItemLabel;
-@property (weak, nonatomic) IBOutlet UIButton *thirdImageBtn;
+@property (weak, nonatomic) IBOutlet UIImageView *secondImageView;
 
-@property (weak, nonatomic) IBOutlet UILabel *fourthItemNameLabel;
-@property (weak, nonatomic) IBOutlet UIButton *fourthImageBtn;
+@property (weak, nonatomic) IBOutlet UIImageView *thirdImageView;
+
+@property (weak, nonatomic) IBOutlet UIImageView *fourthImageView;
 
 
 @end
@@ -29,11 +26,11 @@
 
 - (void)awakeFromNib {
     self.timeLabel.text = @"还剩99:59:59";
-    self.firstItemNameLabel.numberOfLines = 0;
-    self.secondItemNameLabel.numberOfLines = 0;
-    self.thirdItemLabel.numberOfLines = 0;
-    self.fourthItemNameLabel.numberOfLines = 0;
-    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onProductImage:)];
+    [self.firstImageView addGestureRecognizer:tap];
+    [self.secondImageView addGestureRecognizer:tap];
+    [self.thirdImageView addGestureRecognizer:tap];
+    [self.fourthImageView addGestureRecognizer:tap];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -44,34 +41,48 @@
 
 - (void)setCellModelArray:(NSArray *)cellModelArray {
     _cellModelArray = cellModelArray;
-    NSMutableAttributedString *firstAttributeString = [[NSMutableAttributedString alloc] initWithString:@"橡胶结合剂研磨器XXX"
-                                                                                          attributes:@{NSForegroundColorAttributeName:[UIColor gray007Color],
-                                                                                                       NSFontAttributeName:[UIFont systemFontOfSize:14.0f]}];
-    [firstAttributeString appendAttributedString:[[NSMutableAttributedString alloc] initWithString:@"\n型号222"
-                                                                                        attributes:@{NSForegroundColorAttributeName:[UIColor gray004Color],
-                                                                                                     NSFontAttributeName:[UIFont systemFontOfSize:12.0f]}]];
-    [firstAttributeString appendAttributedString:[[NSMutableAttributedString alloc] initWithString:@"\n￥99.00"
-                                                                                        attributes:@{NSForegroundColorAttributeName:[UIColor redColor],
-                                                                                                     NSFontAttributeName:[UIFont systemFontOfSize:16.0f]}]];
     
     for (int i = 0 ; i< cellModelArray.count; i++) {
         ProductIntroduceModel *model = cellModelArray[i];
         if (i == 0) {
-            [self.firstImageBtn sd_setImageWithURL:[NSURL URLWithString:model.img_url] forState:UIControlStateNormal placeholderImage:nil];
+            [self.firstImageView sd_setImageWithURL:[NSURL URLWithString:model.img_url] placeholderImage:nil];
         } else if (i == 1) {
-            [self.secondImageBtn sd_setImageWithURL:[NSURL URLWithString:model.img_url] forState:UIControlStateNormal placeholderImage:nil];
+            [self.secondImageView sd_setImageWithURL:[NSURL URLWithString:model.img_url] placeholderImage:nil];
         } else if (i == 2) {
-            [self.thirdImageBtn sd_setImageWithURL:[NSURL URLWithString:model.img_url] forState:UIControlStateNormal placeholderImage:nil];
+            [self.thirdImageView sd_setImageWithURL:[NSURL URLWithString:model.img_url] placeholderImage:nil];
         } else if (i == 3) {
-            [self.fourthImageBtn sd_setImageWithURL:[NSURL URLWithString:model.img_url] forState:UIControlStateNormal placeholderImage:nil];
+            [self.fourthImageView sd_setImageWithURL:[NSURL URLWithString:model.img_url]placeholderImage:nil];
         }
         
     }
-    self.firstItemNameLabel.attributedText = firstAttributeString;
-    self.secondItemNameLabel.attributedText = firstAttributeString;
-    self.thirdItemLabel.attributedText = firstAttributeString;
-    self.fourthItemNameLabel.attributedText = firstAttributeString;
     
 }
+
+#pragma mark - UI Action
+
+- (void) onProductImage:(UITapGestureRecognizer *)tap {
+    if (tap.view == self.firstImageView) {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(tuanGouCell:toProductDetailWith:)]) {
+            ProductIntroduceModel *model = self.cellModelArray[0];
+            [self.delegate tuanGouCell:self toProductDetailWith:model.iid];
+        }
+    } else if (tap.view == self.secondImageView) {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(tuanGouCell:toProductDetailWith:)]) {
+            ProductIntroduceModel *model = self.cellModelArray[1];
+            [self.delegate tuanGouCell:self toProductDetailWith:model.iid];
+        }
+    } else if (tap.view == self.thirdImageView) {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(tuanGouCell:toProductDetailWith:)]) {
+            ProductIntroduceModel *model = self.cellModelArray[2];
+            [self.delegate tuanGouCell:self toProductDetailWith:model.iid];
+        }
+    } else if (tap.view == self.fourthImageView) {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(tuanGouCell:toProductDetailWith:)]) {
+            ProductIntroduceModel *model = self.cellModelArray[3];
+            [self.delegate tuanGouCell:self toProductDetailWith:model.iid];
+        }
+    }
+}
+
 
 @end
