@@ -35,7 +35,7 @@
     if (!error || [resultDict isKindOfClass:[NSDictionary class]]) {
         NSNumber* code = [resultDict objectForKey:@"code"];
         self.code = code.intValue;
-        self.message = [resultDict objectForKey:@"message"];
+        self.message = [resultDict objectForKey:@"msg"];
         result = YES;
     }
     

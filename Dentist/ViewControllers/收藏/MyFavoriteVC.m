@@ -17,6 +17,7 @@ const CGFloat kItemNumPerLine = 2;
 
 @property (strong,nonatomic) MyFavoriteDC* dc;
 @property (strong,nonatomic) RemoveFavoriteDC* removeFavoriteDC;
+@property (assign,nonatomic) BOOL isEditing;
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (assign,nonatomic) CGFloat itemWidth;
@@ -37,6 +38,7 @@ const CGFloat kItemNumPerLine = 2;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [self setNavRightItemWithName:@"编辑" target:self action:@selector(didClickEditButton)];
     [self initCollectionView];
     [self.dc requestWithArgs:nil];
 }
@@ -51,6 +53,7 @@ const CGFloat kItemNumPerLine = 2;
 -(void)initCollectionView{
     self.view.backgroundColor = [UIColor gray002Color];
     self.collectionView.backgroundColor = [UIColor gray002Color];
+    self.collectionView.allowsMultipleSelection = YES;
     
     self.itemWidth = floorf((kScreenWidth - (kItemNumPerLine+1)*PIXEL_12) / kItemNumPerLine);
     self.itemHeight = 100;
@@ -80,6 +83,27 @@ const CGFloat kItemNumPerLine = 2;
 
 -(void)footerRereshing{
     [self.dc requestWithArgs:nil];
+}
+
+-(void)didClickEditButton{
+    self.isEditing = YES;
+    [self setNavRightItemWithName:@"删除" target:self action:@selector(didClickDeleteButton)];
+}
+
+-(void)didClickDeleteButton{
+    NSArray* indexPaths = [self.collectionView indexPathsForSelectedItems];
+    if (indexPaths.count > 0) {
+        NSMutableArray* productIds = [NSMutableArray new];
+        for (NSIndexPath* indexPath in indexPaths) {
+            [productIds addObject:@(indexPath.row)];
+        }
+        self.removeFavoriteDC.productIds = productIds;
+        [self.removeFavoriteDC requestWithArgs:nil];
+        [Utilities showLoadingView];
+    }
+
+    self.isEditing = NO;
+    [self setNavRightItemWithName:@"编辑" target:self action:@selector(didClickEditButton)];
 }
 
 #pragma mark - UICollectionViewDelegate
@@ -118,6 +142,12 @@ const CGFloat kItemNumPerLine = 2;
     if (controller == self.dc) {
         [self.collectionView reloadData];
     }else if(controller == self.removeFavoriteDC){
+        [Utilities hideLoadingView];
+        //本地删除
+        [self.dc.products removeObjectsIfKeyPath:@"iid" containInArray:self.removeFavoriteDC.productIds withEqualBlock:^BOOL(NSNumber* dst, NSNumber* src) {
+            return [dst isEqualToNumber:src];
+        }];
+        [self.collectionView reloadData];
         [Utilities showToastWithText:@"删除收藏成功"];
     }
     
@@ -127,6 +157,7 @@ const CGFloat kItemNumPerLine = 2;
     if (controller == self.dc) {
         [Utilities showToastWithText:@"获取收藏列表失败"];
     }else if(controller == self.removeFavoriteDC){
+        [Utilities hideLoadingView];
         [Utilities showToastWithText:@"删除收藏失败"];
     }
 }
