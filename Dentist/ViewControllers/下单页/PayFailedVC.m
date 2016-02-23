@@ -51,6 +51,7 @@
     
     [self.searchOrderButton thematizedWithBackgroundColor:[UIColor whiteColor]];
     [self.searchOrderButton circular:self.searchOrderButton.height / 2];
+    [self.searchOrderButton setTitleColor:RGB(61, 183, 235)];
     self.searchOrderButton.layer.borderColor = RGB(61, 183, 235).CGColor;
     self.searchOrderButton.layer.borderWidth = 1;
     

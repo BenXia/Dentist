@@ -25,7 +25,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sny-vV-opO" userLabel="TopView">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="170"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_failed.png" translatesAutoresizingMaskIntoConstraints="NO" id="SXN-uK-Rim">
                             <rect key="frame" x="136" y="20" width="48" height="48"/>
@@ -62,12 +62,12 @@
                         <constraint firstItem="J8T-QK-aZc" firstAttribute="top" secondItem="RFy-9Z-afp" secondAttribute="bottom" constant="8" id="3cy-lD-hgs"/>
                         <constraint firstItem="RFy-9Z-afp" firstAttribute="centerX" secondItem="sny-vV-opO" secondAttribute="centerX" id="Gtc-i2-OyB"/>
                         <constraint firstItem="SXN-uK-Rim" firstAttribute="centerX" secondItem="sny-vV-opO" secondAttribute="centerX" id="HJx-fi-1ER"/>
-                        <constraint firstAttribute="height" constant="180" id="HOz-sT-rpC"/>
+                        <constraint firstAttribute="height" constant="170" id="HOz-sT-rpC"/>
                         <constraint firstItem="SXN-uK-Rim" firstAttribute="top" secondItem="sny-vV-opO" secondAttribute="top" constant="20" id="SIk-ra-c5z"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Det-aU-pbq" userLabel="BottomView">
-                    <rect key="frame" x="0.0" y="190" width="320" height="120"/>
+                    <rect key="frame" x="0.0" y="180" width="320" height="120"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="支付方式" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JRb-g1-tXf">
                             <rect key="frame" x="10" y="0.0" width="59" height="40"/>
