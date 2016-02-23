@@ -46,6 +46,7 @@
 		3360B4031C7CA41200C60AC0 /* like_f@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3360B3F81C7CA41200C60AC0 /* like_f@3x.png */; };
 		3360B4041C7CA41200C60AC0 /* like_t@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3360B3F91C7CA41200C60AC0 /* like_t@2x.png */; };
 		3360B4051C7CA41200C60AC0 /* like_t@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3360B3FA1C7CA41200C60AC0 /* like_t@3x.png */; };
+		3360B4111C7CB47D00C60AC0 /* FeedbackModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3360B4101C7CB47D00C60AC0 /* FeedbackModel.m */; };
 		33C9885D1C42401D00262141 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 33C9885C1C42401D00262141 /* AppDelegate.m */; };
 		33CAE4091C735B2C0038748F /* OrderVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CAE4081C735B2C0038748F /* OrderVM.m */; };
 		33CAE43C1C7372DB0038748F /* OrderReceiverCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CAE43A1C7372DB0038748F /* OrderReceiverCell.m */; };
@@ -483,6 +484,8 @@
 		3360B3F81C7CA41200C60AC0 /* like_f@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "like_f@3x.png"; sourceTree = "<group>"; };
 		3360B3F91C7CA41200C60AC0 /* like_t@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "like_t@2x.png"; sourceTree = "<group>"; };
 		3360B3FA1C7CA41200C60AC0 /* like_t@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "like_t@3x.png"; sourceTree = "<group>"; };
+		3360B40F1C7CB47D00C60AC0 /* FeedbackModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackModel.h; sourceTree = "<group>"; };
+		3360B4101C7CB47D00C60AC0 /* FeedbackModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackModel.m; sourceTree = "<group>"; };
 		33C988551C42401C00262141 /* Dentist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dentist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		33C9885B1C42401D00262141 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		33C9885C1C42401D00262141 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -1117,6 +1120,15 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		3360B40E1C7CB46400C60AC0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3360B40F1C7CB47D00C60AC0 /* FeedbackModel.h */,
+				3360B4101C7CB47D00C60AC0 /* FeedbackModel.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		33C9884C1C42401C00262141 = {
 			isa = PBXGroup;
 			children = (
@@ -1279,6 +1291,7 @@
 				33D028741C74BD2900277C3C /* FeedbackVC.h */,
 				33D028751C74BD2900277C3C /* FeedbackVC.m */,
 				33D028761C74BD2900277C3C /* FeedbackVC.xib */,
+				3360B40E1C7CB46400C60AC0 /* Models */,
 				3360B3EA1C7C960500C60AC0 /* Cells */,
 			);
 			path = "评价晒单";
@@ -2648,6 +2661,7 @@
 				930C349D1C7A0BC1008823F9 /* UPdataAddressDC.m in Sources */,
 				B58339751C79FFAC00F9EBE2 /* OrderListDC.m in Sources */,
 				B58339571C79976A00F9EBE2 /* ProductEvaluateVC.m in Sources */,
+				3360B4111C7CB47D00C60AC0 /* FeedbackModel.m in Sources */,
 				88C3BACD1C781F5B001F4D85 /* ProductDetailDC.m in Sources */,
 				932839BE1C6378A9004C21CD /* MyOrderCell.m in Sources */,
 				930C344A1C795FBA008823F9 /* SetNickDC.m in Sources */,

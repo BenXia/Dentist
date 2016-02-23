@@ -17,6 +17,7 @@ UITableViewDelegate
 >
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) NSMutableArray *feedbackModelsArray;
 
 @end
 
@@ -29,6 +30,8 @@ UITableViewDelegate
     // Do any additional setup after loading the view from its nib.
     
     [self initUIRelated];
+    
+    [self initDataSourceArray];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -37,6 +40,22 @@ UITableViewDelegate
 }
 
 #pragma mark - Private methods
+
+- (void)initDataSourceArray {
+    FeedbackModel *model1 = [[FeedbackModel alloc] init];
+    model1.starNumber = 0;
+    model1.feedBackText = @"";
+    model1.imagesArray = [NSMutableArray array];
+    
+    FeedbackModel *model2 = [[FeedbackModel alloc] init];
+    model2.starNumber = 0;
+    model2.feedBackText = @"";
+    model2.imagesArray = [NSMutableArray array];
+    
+    self.feedbackModelsArray = [NSMutableArray arrayWithObjects:model1, model2, nil];
+    
+    [self.tableView reloadData];
+}
 
 - (void)initUIRelated {
     if ([self respondsToSelector:@selector(edgesForExtendedLayout)]) {
@@ -56,8 +75,6 @@ UITableViewDelegate
     if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)]) {
         [self.tableView setLayoutMargins:UIEdgeInsetsZero];
     }
-    
-    [self.tableView reloadData];
 }
 
 #pragma mark - UITableViewDataSource
@@ -67,17 +84,19 @@ UITableViewDelegate
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 2;
+    return self.feedbackModelsArray.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [FeedbackCell cellHeight];
+    return [FeedbackCell cellHeightWithModel:[self.feedbackModelsArray objectAtIndex:indexPath.row]];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     FeedbackCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellReuseIdentifier];
     cell.accessoryType = UITableViewCellAccessoryNone;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    [cell setupWithModel:[self.feedbackModelsArray objectAtIndex:indexPath.row]];
     
     return cell;
 }
@@ -91,7 +110,7 @@ UITableViewDelegate
 #pragma mark - IBActions
 
 - (void)didClickOnLeftNavButtonAction:(id)sender {
-    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didClickOnRightNavButtonAction:(id)sender {
