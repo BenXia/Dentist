@@ -13,6 +13,6 @@
 
 @property (strong,nonatomic) NSNumber* total_num;
 @property (strong,nonatomic) NSNumber* next_iid;
-@property (strong,nonatomic) NSMutableArray* products;
+@property (strong,nonatomic) NSMutableArray* products;  //FavoriteProductModel数组
 
 @end
