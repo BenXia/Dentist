@@ -263,6 +263,9 @@
 		88367A971C7CA6AB00658214 /* LookHistoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88367A951C7CA6AB00658214 /* LookHistoryVC.m */; };
 		88367A981C7CA6AB00658214 /* LookHistoryVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88367A961C7CA6AB00658214 /* LookHistoryVC.xib */; };
 		88367A9B1C7CA73A00658214 /* GetLookHistoryDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88367A9A1C7CA73A00658214 /* GetLookHistoryDC.m */; };
+		88367AA11C7CACF400658214 /* SearchProductDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88367AA01C7CACF400658214 /* SearchProductDC.m */; };
+		88367AA51C7CB11900658214 /* SubCategoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88367AA31C7CB11900658214 /* SubCategoryVC.m */; };
+		88367AA61C7CB11900658214 /* SubCategoryVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88367AA41C7CB11900658214 /* SubCategoryVC.xib */; };
 		888811AC1C7B4DEC00F6672C /* GuessYouLikeProductView.m in Sources */ = {isa = PBXBuildFile; fileRef = 888811AB1C7B4DEC00F6672C /* GuessYouLikeProductView.m */; };
 		888811B61C7B592600F6672C /* MyFavoriteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 888811B41C7B592600F6672C /* MyFavoriteVC.m */; };
 		888811B71C7B592600F6672C /* MyFavoriteVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 888811B51C7B592600F6672C /* MyFavoriteVC.xib */; };
@@ -762,6 +765,11 @@
 		88367A961C7CA6AB00658214 /* LookHistoryVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LookHistoryVC.xib; sourceTree = "<group>"; };
 		88367A991C7CA73A00658214 /* GetLookHistoryDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetLookHistoryDC.h; sourceTree = "<group>"; };
 		88367A9A1C7CA73A00658214 /* GetLookHistoryDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetLookHistoryDC.m; sourceTree = "<group>"; };
+		88367A9F1C7CACF400658214 /* SearchProductDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchProductDC.h; sourceTree = "<group>"; };
+		88367AA01C7CACF400658214 /* SearchProductDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchProductDC.m; sourceTree = "<group>"; };
+		88367AA21C7CB11900658214 /* SubCategoryVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubCategoryVC.h; sourceTree = "<group>"; };
+		88367AA31C7CB11900658214 /* SubCategoryVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubCategoryVC.m; sourceTree = "<group>"; };
+		88367AA41C7CB11900658214 /* SubCategoryVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SubCategoryVC.xib; sourceTree = "<group>"; };
 		888811AA1C7B4DEC00F6672C /* GuessYouLikeProductView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuessYouLikeProductView.h; sourceTree = "<group>"; };
 		888811AB1C7B4DEC00F6672C /* GuessYouLikeProductView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuessYouLikeProductView.m; sourceTree = "<group>"; };
 		888811B31C7B592600F6672C /* MyFavoriteVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFavoriteVC.h; sourceTree = "<group>"; };
@@ -1530,6 +1538,7 @@
 		33F070361C4295F200DAC58F /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				88367A9E1C7CACE200658214 /* 商品搜索 */,
 				B58339721C79FF7F00F9EBE2 /* 订单列表 */,
 				33F0708F1C42B58E00DAC58F /* PPDataCache.h */,
 				33F070901C42B58E00DAC58F /* PPDataCache.m */,
@@ -1608,6 +1617,9 @@
 				33F070611C42A40F00DAC58F /* CategoryVC.h */,
 				33F070621C42A40F00DAC58F /* CategoryVC.m */,
 				33F070631C42A40F00DAC58F /* CategoryVC.xib */,
+				88367AA21C7CB11900658214 /* SubCategoryVC.h */,
+				88367AA31C7CB11900658214 /* SubCategoryVC.m */,
+				88367AA41C7CB11900658214 /* SubCategoryVC.xib */,
 			);
 			path = "分类";
 			sourceTree = "<group>";
@@ -1774,6 +1786,15 @@
 				33F070CA1C42BE1E00DAC58F /* SendSmsDataController.m */,
 			);
 			path = "公用";
+			sourceTree = "<group>";
+		};
+		88367A9E1C7CACE200658214 /* 商品搜索 */ = {
+			isa = PBXGroup;
+			children = (
+				88367A9F1C7CACF400658214 /* SearchProductDC.h */,
+				88367AA01C7CACF400658214 /* SearchProductDC.m */,
+			);
+			path = "商品搜索";
 			sourceTree = "<group>";
 		};
 		888811AD1C7B509000F6672C /* 浏览记录 */ = {
@@ -2413,6 +2434,7 @@
 				33DD6BF81C6119A600CE6B31 /* btn_classification_f@2x.png in Resources */,
 				9379D3AA1C63239100390702 /* CollectionHeader.xib in Resources */,
 				88C3BAD51C787068001F4D85 /* goodsdetails_ico_TopDrug@2x.png in Resources */,
+				88367AA61C7CB11900658214 /* SubCategoryVC.xib in Resources */,
 				33440D201C783C1B00A441E3 /* selected_photo_overlay@2x.png in Resources */,
 				932839BF1C6378A9004C21CD /* MyOrderCell.xib in Resources */,
 				33D028851C74C4CD00277C3C /* btn_backround_default@2x.png in Resources */,
@@ -2633,6 +2655,7 @@
 				33DD6BB81C6103CA00CE6B31 /* IQBarButtonItem.m in Sources */,
 				93DEA8CF1C4BCBAA008211F7 /* TAAbstractDotView.m in Sources */,
 				930C34A81C7A0BEA008823F9 /* CreateOrEditAddressVC.m in Sources */,
+				88367AA11C7CACF400658214 /* SearchProductDC.m in Sources */,
 				88367A9B1C7CA73A00658214 /* GetLookHistoryDC.m in Sources */,
 				B59710791C78683C006BC9FE /* AllOrderListVM.m in Sources */,
 				93DEA88E1C4BC6FB008211F7 /* HomePageCourseListCell.m in Sources */,
@@ -2715,6 +2738,7 @@
 				B597107D1C788D1E006BC9FE /* OrderListTableViewCell.m in Sources */,
 				93A1F5DC1C6281D900CFEEC4 /* TodayIntroduceCell.m in Sources */,
 				939345601C7B42010054E2EC /* ProductCategoryDC.m in Sources */,
+				88367AA51C7CB11900658214 /* SubCategoryVC.m in Sources */,
 				93DEA8D51C4BCBAA008211F7 /* UIView+SDExtension.m in Sources */,
 				9379D3AB1C63239100390702 /* MultilevelCollectionViewCell.m in Sources */,
 				33CAE4461C7373360038748F /* OrderItemCell.m in Sources */,

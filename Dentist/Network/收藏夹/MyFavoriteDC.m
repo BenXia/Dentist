@@ -39,21 +39,30 @@ static const int kPageSize = 10;
                                                                    error:&error];
     if (!error || [resultDict isKindOfClass:[NSDictionary class]]) {
         
-        self.total_num = [resultDict objectForKey:@"total_num"];
-        self.next_iid = [resultDict objectForKey:@"next_iid"];
-        
-        
         NSArray* products = [resultDict objectForKey:@"products"];
-        self.products = [NSMutableArray new];
+        NSMutableArray* tmpArray = [NSMutableArray new];
         for (NSDictionary* itemDic in products) {
             FavoriteProductModel* item = [FavoriteProductModel new];
             item.iid = [itemDic objectForKey:@"iid"];
             item.title = [itemDic objectForKey:@"title"];
             item.img_url = [itemDic objectForKey:@"img_url"];
             item.price = [itemDic objectForKey:@"price"];
-
-            [self.products addObject:item];
+            
+            [tmpArray addObject:item];
         }
+        if (!self.next_iid) {
+            self.products = tmpArray;
+        }else{
+            if (!self.products) {
+                self.products = tmpArray;
+            }else{
+                [self.products addObjectsFromArray:tmpArray];
+            }
+        }
+        
+        self.total_num = [resultDict objectForKey:@"total_num"];
+        self.next_iid = [resultDict objectForKey:@"next_iid"];
+
         
         
         result = YES;
