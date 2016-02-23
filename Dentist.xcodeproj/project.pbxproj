@@ -2891,7 +2891,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.toboom.yayiabc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "eed6a725-01bc-47a4-81ed-92a84aef709e";
+				PROVISIONING_PROFILE = "eb0976a0-bf7b-41a6-8154-6e533d8f88f1";
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 			};
 			name = Debug;
@@ -2932,7 +2932,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.toboom.yayiabc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b4f2a00a-62eb-4530-a7d9-9a23b34bd704";
+				PROVISIONING_PROFILE = "4b2a2fc6-dbd2-4551-b44c-8d152c7c59bb";
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 			};
 			name = Release;
