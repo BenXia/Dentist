@@ -54,7 +54,7 @@
         
         
         //TODO-GUO:测试数据
-        {
+        if(model.p_sids.count == 0){
             NSMutableArray* itemArray = [NSMutableArray new];
             SpecItem* item = [SpecItem new];
             item.name = @"颜色";
@@ -69,7 +69,7 @@
             model.sids = @"颜色:红色,尺寸:XXXXXXXL号";
         }
         
-        {
+        if(model.scores.count == 0){
             NSMutableArray* scores = [NSMutableArray new];
             for (int i=1; i<=5; ++i) {
                 ScoreItem* item = [ScoreItem new];
@@ -83,7 +83,7 @@
             model.scores = scores;
         }
         
-        {
+        if(model.gifts.count == 0){
             NSMutableArray* gifts = [NSMutableArray new];
             for (int i=1; i<=5; ++i) {
                 GiftItem* item = [GiftItem new];
@@ -92,6 +92,8 @@
             }
             model.gifts = gifts;
         }
+        
+        
         
         self.productDetail = model;
         result = YES;
