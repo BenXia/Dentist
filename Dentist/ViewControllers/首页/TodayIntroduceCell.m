@@ -34,7 +34,6 @@
     [self.thirdImageView addGestureRecognizer:tap];
     [self.fourthImageView addGestureRecognizer:tap];
     [self.leftImageShowImageView addGestureRecognizer:tap];
-    [self.firstImageView addGestureRecognizer:tap];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
