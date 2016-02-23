@@ -10,25 +10,24 @@
 
 @interface SaleActivityCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *headImageView;
-@property (weak, nonatomic) IBOutlet UILabel *firstItemNameLabel;
-@property (weak, nonatomic) IBOutlet UIButton *firstSalePriceBtn;
 @property (weak, nonatomic) IBOutlet UIImageView *firstItemImageView;
-
 @property (weak, nonatomic) IBOutlet UIImageView *secondItemImageView;
-@property (weak, nonatomic) IBOutlet UILabel *secondItemNameLabel;
-@property (weak, nonatomic) IBOutlet UIButton *secondtSalePriceBtn;
-@property (weak, nonatomic) IBOutlet UILabel *secondItemPriceLabel;
-
 @property (weak, nonatomic) IBOutlet UIImageView *thirdItemImageView;
-@property (weak, nonatomic) IBOutlet UILabel *thirdItemNameLabel;
-@property (weak, nonatomic) IBOutlet UIButton *thirdSalePriceBtn;
-@property (weak, nonatomic) IBOutlet UILabel *thirdItemPriceLabel;
+
+@property (nonatomic, strong) ProductIntroduceModel *firstModel;
+@property (nonatomic, strong) ProductIntroduceModel *secondModel;
+@property (nonatomic, strong) ProductIntroduceModel *thirdModel;
+@property (nonatomic, strong) ProductIntroduceModel *bannerModel;
 @end
 
 @implementation SaleActivityCell
 
 - (void)awakeFromNib {
     // Initialization code
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onProductImage:)];
+    [self.firstItemImageView addGestureRecognizer:tap];
+    [self.secondItemImageView addGestureRecognizer:tap];
+    [self.thirdItemImageView addGestureRecognizer:tap];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -39,16 +38,42 @@
 
 - (void)setCellModelArray:(NSArray *)cellModelArray {
     _cellModelArray = cellModelArray;
-    for (int i = 0 ; i< cellModelArray.count; i++) {
-        ProductIntroduceModel *model = cellModelArray[i];
-        if (i == 0) {
-            [self.firstItemImageView sd_setImageWithURL:[NSURL URLWithString:model.img_url] placeholderImage:nil];
-        } else if (i == 1) {
-            [self.secondItemImageView sd_setImageWithURL:[NSURL URLWithString:model.img_url] placeholderImage:nil];
-        } else if (i == 2) {
-            [self.thirdItemImageView sd_setImageWithURL:[NSURL URLWithString:model.img_url] placeholderImage:nil];
+    
+    for (ProductIntroduceModel *model in cellModelArray) {
+        if ([model.location isEqualToString:@"左1"]) {
+            self.firstModel = model;
+            [self.firstItemImageView sd_setImageWithURL:[NSURL URLWithString:model.img_url]placeholderImage:[UIImage imageNamed:@"test.png"]];
+        } else if ([model.location isEqualToString:@"右1"]) {
+            self.secondModel = model;
+            [self.secondItemImageView sd_setImageWithURL:[NSURL URLWithString:model.img_url] placeholderImage:[UIImage imageNamed:@"test.png"]];
+        } else if ([model.location isEqualToString:@"右2"]) {
+            self.thirdModel = model;
+            [self.thirdItemImageView sd_setImageWithURL:[NSURL URLWithString:model.img_url] placeholderImage:[UIImage imageNamed:@"test.png"]];
+        } else if ([model.location isEqualToString:@"banner"]) {
+            self.bannerModel = model;
+            [self.headImageView sd_setImageWithURL:[NSURL URLWithString:model.img_url] placeholderImage:[UIImage imageNamed:@"test.png"]];
         }
-        
+    }
+}
+
+#pragma mark - UI Action
+
+- (void) onProductImage:(UITapGestureRecognizer *)tap {
+    if (tap.view == self.firstItemImageView) {
+        ProductIntroduceModel *model = self.cellModelArray[0];
+        if (self.delegate && [self.delegate respondsToSelector:@selector(saleActivityCell:toProductDetailWith:)]) {
+            [self.delegate saleActivityCell:self toProductDetailWith:model.iid];
+        }
+    } else if (tap.view == self.secondItemImageView) {
+        ProductIntroduceModel *model = self.cellModelArray[1];
+        if (self.delegate && [self.delegate respondsToSelector:@selector(saleActivityCell:toProductDetailWith:)]) {
+            [self.delegate saleActivityCell:self toProductDetailWith:model.iid];
+        }
+    } else if (tap.view == self.thirdItemImageView) {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(saleActivityCell:toProductDetailWith:)]) {
+            ProductIntroduceModel *model = self.cellModelArray[2];
+            [self.delegate saleActivityCell:self toProductDetailWith:model.iid];
+        }
     }
 }
 

@@ -10,6 +10,8 @@
 #import "MultilevelMenu.h"
 #import "ProductCategoryDC.h"
 #import "ProductCategoryModel.h"
+#import "SubCategoryVC.h"
+
 
 @interface CategoryVC ()<PPDataControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIView *searchContentView;
@@ -109,10 +111,17 @@
      *  适配 ios 7 和ios 8 的 坐标系问题
      */
     self.automaticallyAdjustsScrollViewInsets=NO;
-
+    @weakify(self);
     MultilevelMenu * view=[[MultilevelMenu alloc] initWithFrame:CGRectMake(0, 64, kScreenWidth, kScreenHeight-64 - kTabBarHeight) WithData:lis withSelectIndex:^(NSInteger left, NSInteger right,rightMeun* info) {
+        @strongify(self);
         //跳转到子分类
         NSLog(@"点击的 菜单%@",info.meunName);
+        ProductCategoryModel *homeMeun = self.productCategoryRequest.productCategoryArray[left];
+        int cid = [homeMeun.cid intValue];
+        int scid = [info.ID intValue];
+        SubCategoryVC* subCategoryVC = [[SubCategoryVC alloc] initWithCid:@(cid) scid:@(scid)];
+        subCategoryVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:subCategoryVC animated:YES];
     }];
     
     

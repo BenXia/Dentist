@@ -1,22 +1,25 @@
 //
-//  GetLookHistoryDC.m
+//  ProductSearchDC.m
 //  Dentist
 //
 //  Created by 郭晓倩 on 16/2/23.
 //  Copyright © 2016年 iOSStudio. All rights reserved.
 //
 
-#import "GetLookHistoryDC.h"
+#import "SearchProductDC.h"
 
-static const int kPageSize = 10;
+static const int pagesize = 10;
 
-@implementation GetLookHistoryDC
+@implementation SearchProductDC
 
 - (NSDictionary *)requestURLArgs {
+    NSDictionary* paramDic = @{@"method":@"item.search",@"v":@"0.0.1",@"pagesize":@(pagesize),@"cid":self.cid,@"s_cid":self.s_cid};
     if (self.next_iid) {
-        return @{@"method":@"item.favorite_list",@"pagesize":@(kPageSize),@"next_iid":self.next_iid};
+        NSMutableDictionary* tmpDic = [NSMutableDictionary dictionaryWithDictionary:paramDic];
+        [tmpDic setValue:self.next_iid forKey:@"next_iid"];
+        return tmpDic;
     }else{
-        return @{@"method":@"item.favorite_list",@"pagesize":@(kPageSize)};
+        return paramDic;
     }
 }
 
@@ -24,25 +27,26 @@ static const int kPageSize = 10;
     return RequestMethodGET;
 }
 
--(NSDictionary*)requestHTTPBody{
+- (NSDictionary *)requestHTTPBody {
     return nil;
 }
 
 - (BOOL)parseContent:(NSString *)content {
+    
+    NSLog(@"搜索商品响应数据：%@",content);
+    
     BOOL result = NO;
-    
-    NSLog(@"浏览记录响应数据：%@",content);
-    
     NSError *error = nil;
     NSDictionary *resultDict = [NSJSONSerialization JSONObjectWithString:content
                                                                  options:0
                                                                    error:&error];
     if (!error || [resultDict isKindOfClass:[NSDictionary class]]) {
         
+        
         NSArray* products = [resultDict objectForKey:@"products"];
         NSMutableArray* tmpArray = [NSMutableArray new];
         for (NSDictionary* itemDic in products) {
-            HistoryProductModel* item = [FavoriteProductModel new];
+            SearchProductModel* item = [FavoriteProductModel new];
             item.iid = [itemDic objectForKey:@"iid"];
             item.title = [itemDic objectForKey:@"title"];
             item.img_url = [itemDic objectForKey:@"img_url"];
@@ -62,14 +66,11 @@ static const int kPageSize = 10;
         
         self.total_num = [resultDict objectForKey:@"total_num"];
         self.next_iid = [resultDict objectForKey:@"next_iid"];
-
-        
         
         result = YES;
     }
     
     return result;
 }
-
 
 @end

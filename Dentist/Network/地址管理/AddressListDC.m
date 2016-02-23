@@ -31,7 +31,8 @@
                                                                  options:0
                                                                    error:&error];
     if (!error || [resultdict isKindOfClass:[NSDictionary class]]) {
-        for (int i = 0; i<10;i++) {
+        NSArray *addressArray = [resultdict objectForKey:@"address"];
+        for (int i = 0; i<addressArray.count;i++) {
             Address *addressModel = [[Address alloc] init];
             addressModel.province = @"上海";
             addressModel.city = @"上海";

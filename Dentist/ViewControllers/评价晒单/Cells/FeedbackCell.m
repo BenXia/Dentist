@@ -90,6 +90,7 @@
         self.feedbackTextView.text = [oldStr substringToIndex:[oldStr length] - 1];
     } else {
         [self.feedbackTextNumber setText:[NSString stringWithFormat:@"%tu", [textView.text length]]];
+        self.feedbackModel.feedBackText = self.feedbackTextView.text;
     }
 }
 
