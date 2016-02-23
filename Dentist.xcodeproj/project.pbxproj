@@ -29,6 +29,10 @@
 		33440D1F1C783C1B00A441E3 /* ELCAssetTablePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33440D161C783C1B00A441E3 /* ELCAssetTablePicker.xib */; };
 		33440D201C783C1B00A441E3 /* selected_photo_overlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33440D171C783C1B00A441E3 /* selected_photo_overlay@2x.png */; };
 		33440D211C783C1B00A441E3 /* selected_photo_overlay@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33440D181C783C1B00A441E3 /* selected_photo_overlay@3x.png */; };
+		3360B3E41C7C91B700C60AC0 /* 支付方式-微信支付@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3360B3E01C7C91B700C60AC0 /* 支付方式-微信支付@2x.png */; };
+		3360B3E51C7C91B700C60AC0 /* 支付方式-微信支付@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3360B3E11C7C91B700C60AC0 /* 支付方式-微信支付@3x.png */; };
+		3360B3E61C7C91B700C60AC0 /* 支付方式-支付宝@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3360B3E21C7C91B700C60AC0 /* 支付方式-支付宝@2x.png */; };
+		3360B3E71C7C91B700C60AC0 /* 支付方式-支付宝@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3360B3E31C7C91B700C60AC0 /* 支付方式-支付宝@3x.png */; };
 		33C9885D1C42401D00262141 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 33C9885C1C42401D00262141 /* AppDelegate.m */; };
 		33CAE4091C735B2C0038748F /* OrderVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CAE4081C735B2C0038748F /* OrderVM.m */; };
 		33CAE43C1C7372DB0038748F /* OrderReceiverCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CAE43A1C7372DB0038748F /* OrderReceiverCell.m */; };
@@ -210,10 +214,6 @@
 		33DD6D091C611A5500CE6B31 /* 技工@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33DD6C7A1C611A5500CE6B31 /* 技工@3x.png */; };
 		33DD6D0A1C611A5500CE6B31 /* 搜索-放大镜@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33DD6C7B1C611A5500CE6B31 /* 搜索-放大镜@2x.png */; };
 		33DD6D0B1C611A5500CE6B31 /* 搜索-放大镜@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33DD6C7C1C611A5500CE6B31 /* 搜索-放大镜@3x.png */; };
-		33DD6D0C1C611A5500CE6B31 /* 支付方式-微信支付@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33DD6C7D1C611A5500CE6B31 /* 支付方式-微信支付@2x.png */; };
-		33DD6D0D1C611A5500CE6B31 /* 支付方式-微信支付@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33DD6C7E1C611A5500CE6B31 /* 支付方式-微信支付@3x.png */; };
-		33DD6D0E1C611A5500CE6B31 /* 支付方式-支付宝@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33DD6C7F1C611A5500CE6B31 /* 支付方式-支付宝@2x.png */; };
-		33DD6D0F1C611A5500CE6B31 /* 支付方式-支付宝@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33DD6C801C611A5500CE6B31 /* 支付方式-支付宝@3x.png */; };
 		33DD6D121C611A5500CE6B31 /* 新浪微博@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33DD6C831C611A5500CE6B31 /* 新浪微博@2x.png */; };
 		33DD6D131C611A5500CE6B31 /* 新浪微博@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33DD6C841C611A5500CE6B31 /* 新浪微博@3x.png */; };
 		33DD6D141C611A5500CE6B31 /* 确认订单-购买资质-已认证@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33DD6C851C611A5500CE6B31 /* 确认订单-购买资质-已认证@2x.png */; };
@@ -455,6 +455,10 @@
 		33440D161C783C1B00A441E3 /* ELCAssetTablePicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ELCAssetTablePicker.xib; sourceTree = "<group>"; };
 		33440D171C783C1B00A441E3 /* selected_photo_overlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "selected_photo_overlay@2x.png"; sourceTree = "<group>"; };
 		33440D181C783C1B00A441E3 /* selected_photo_overlay@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "selected_photo_overlay@3x.png"; sourceTree = "<group>"; };
+		3360B3E01C7C91B700C60AC0 /* 支付方式-微信支付@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "支付方式-微信支付@2x.png"; sourceTree = "<group>"; };
+		3360B3E11C7C91B700C60AC0 /* 支付方式-微信支付@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "支付方式-微信支付@3x.png"; sourceTree = "<group>"; };
+		3360B3E21C7C91B700C60AC0 /* 支付方式-支付宝@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "支付方式-支付宝@2x.png"; sourceTree = "<group>"; };
+		3360B3E31C7C91B700C60AC0 /* 支付方式-支付宝@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "支付方式-支付宝@3x.png"; sourceTree = "<group>"; };
 		33C988551C42401C00262141 /* Dentist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dentist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		33C9885B1C42401D00262141 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		33C9885C1C42401D00262141 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -675,10 +679,6 @@
 		33DD6C7A1C611A5500CE6B31 /* 技工@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "技工@3x.png"; sourceTree = "<group>"; };
 		33DD6C7B1C611A5500CE6B31 /* 搜索-放大镜@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "搜索-放大镜@2x.png"; sourceTree = "<group>"; };
 		33DD6C7C1C611A5500CE6B31 /* 搜索-放大镜@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "搜索-放大镜@3x.png"; sourceTree = "<group>"; };
-		33DD6C7D1C611A5500CE6B31 /* 支付方式-微信支付@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "支付方式-微信支付@2x.png"; sourceTree = "<group>"; };
-		33DD6C7E1C611A5500CE6B31 /* 支付方式-微信支付@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "支付方式-微信支付@3x.png"; sourceTree = "<group>"; };
-		33DD6C7F1C611A5500CE6B31 /* 支付方式-支付宝@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "支付方式-支付宝@2x.png"; sourceTree = "<group>"; };
-		33DD6C801C611A5500CE6B31 /* 支付方式-支付宝@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "支付方式-支付宝@3x.png"; sourceTree = "<group>"; };
 		33DD6C831C611A5500CE6B31 /* 新浪微博@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "新浪微博@2x.png"; sourceTree = "<group>"; };
 		33DD6C841C611A5500CE6B31 /* 新浪微博@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "新浪微博@3x.png"; sourceTree = "<group>"; };
 		33DD6C851C611A5500CE6B31 /* 确认订单-购买资质-已认证@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "确认订单-购买资质-已认证@2x.png"; sourceTree = "<group>"; };
@@ -1180,6 +1180,10 @@
 		33CAF1031C720C7000348763 /* 下单页 */ = {
 			isa = PBXGroup;
 			children = (
+				3360B3E01C7C91B700C60AC0 /* 支付方式-微信支付@2x.png */,
+				3360B3E11C7C91B700C60AC0 /* 支付方式-微信支付@3x.png */,
+				3360B3E21C7C91B700C60AC0 /* 支付方式-支付宝@2x.png */,
+				3360B3E31C7C91B700C60AC0 /* 支付方式-支付宝@3x.png */,
 				3332F9C01C785225006B8864 /* icon_failed@2x.png */,
 				3332F9C11C785225006B8864 /* icon_failed@3x.png */,
 				3332F9C21C785225006B8864 /* icon_successed@2x.png */,
@@ -1484,10 +1488,6 @@
 				33DD6C7A1C611A5500CE6B31 /* 技工@3x.png */,
 				33DD6C7B1C611A5500CE6B31 /* 搜索-放大镜@2x.png */,
 				33DD6C7C1C611A5500CE6B31 /* 搜索-放大镜@3x.png */,
-				33DD6C7D1C611A5500CE6B31 /* 支付方式-微信支付@2x.png */,
-				33DD6C7E1C611A5500CE6B31 /* 支付方式-微信支付@3x.png */,
-				33DD6C7F1C611A5500CE6B31 /* 支付方式-支付宝@2x.png */,
-				33DD6C801C611A5500CE6B31 /* 支付方式-支付宝@3x.png */,
 				33DD6C831C611A5500CE6B31 /* 新浪微博@2x.png */,
 				33DD6C841C611A5500CE6B31 /* 新浪微博@3x.png */,
 				33DD6C851C611A5500CE6B31 /* 确认订单-购买资质-已认证@2x.png */,
@@ -2283,6 +2283,7 @@
 				930C34471C795CEB008823F9 /* SetNickVC.xib in Resources */,
 				9379D3C01C6338BB00390702 /* 我的-收藏的商品@2x.png in Resources */,
 				93624C221C44170100262B65 /* btn_custommade_default.png in Resources */,
+				3360B3E61C7C91B700C60AC0 /* 支付方式-支付宝@2x.png in Resources */,
 				33440D0B1C783B7D00A441E3 /* topnav_icon08@3x.png in Resources */,
 				93624C1F1C44170100262B65 /* app_logo.png in Resources */,
 				932839C71C637EFF004C21CD /* 待处理@3x.png in Resources */,
@@ -2337,8 +2338,6 @@
 				9379D3C71C6338BB00390702 /* 我的-设置按钮@3x.png in Resources */,
 				888C7A5A1C79901000CA2ED9 /* ProductDescriptionVC.xib in Resources */,
 				932839CA1C637EFF004C21CD /* 已完成@2x.png in Resources */,
-				33DD6D0E1C611A5500CE6B31 /* 支付方式-支付宝@2x.png in Resources */,
-				33DD6D0F1C611A5500CE6B31 /* 支付方式-支付宝@3x.png in Resources */,
 				33DD6CD11C611A5500CE6B31 /* ico_failed.png in Resources */,
 				93A1F5DD1C6281D900CFEEC4 /* TodayIntroduceCell.xib in Resources */,
 				33DD6C9D1C611A5500CE6B31 /* Btn_Collection_pressed@2X.png in Resources */,
@@ -2347,7 +2346,6 @@
 				33CAF8971C7810D20015B4BC /* web_left_highlighted@2x.png in Resources */,
 				9379D3AE1C63239100390702 /* MultilevelTableViewCell.xib in Resources */,
 				33DD6CDC1C611A5500CE6B31 /* like_fs.png in Resources */,
-				33DD6D0C1C611A5500CE6B31 /* 支付方式-微信支付@2x.png in Resources */,
 				33CAF1021C72098200348763 /* OrderVC.xib in Resources */,
 				33DD6D241C611A5500CE6B31 /* 首页-消息提示@2x.png in Resources */,
 				930C342B1C7819D0008823F9 /* user_pic_boy@3x.png in Resources */,
@@ -2355,7 +2353,6 @@
 				88C3BADB1C787833001F4D85 /* Ico_bySelf@2x.png in Resources */,
 				33440D051C783B0700A441E3 /* common_topnav_icon01@3x.png in Resources */,
 				33DD6CF01C611A5500CE6B31 /* 培训课程@2x.png in Resources */,
-				33DD6D0D1C611A5500CE6B31 /* 支付方式-微信支付@3x.png in Resources */,
 				9379D3AC1C63239100390702 /* MultilevelCollectionViewCell.xib in Resources */,
 				33CAE4421C7373200038748F /* OrderItemHeaderCell.xib in Resources */,
 				33DD6CD81C611A5500CE6B31 /* Ico_PopPublished.png in Resources */,
@@ -2377,6 +2374,7 @@
 				33DD6D091C611A5500CE6B31 /* 技工@3x.png in Resources */,
 				93624C211C44170100262B65 /* btn_clinical_pressed.png in Resources */,
 				33440D1F1C783C1B00A441E3 /* ELCAssetTablePicker.xib in Resources */,
+				3360B3E71C7C91B700C60AC0 /* 支付方式-支付宝@3x.png in Resources */,
 				33F070651C42A40F00DAC58F /* CategoryVC.xib in Resources */,
 				33D028781C74BD2900277C3C /* FeedbackVC.xib in Resources */,
 				33CAF89A1C7810D20015B4BC /* web_right_highlighted.png in Resources */,
@@ -2458,6 +2456,7 @@
 				33DD6CC41C611A5500CE6B31 /* goods_tagL_Present@2X.png in Resources */,
 				B597107E1C788D1E006BC9FE /* OrderListTableViewCell.xib in Resources */,
 				33CAE44C1C7373520038748F /* OrderItemFooterCell.xib in Resources */,
+				3360B3E41C7C91B700C60AC0 /* 支付方式-微信支付@2x.png in Resources */,
 				33440D1C1C783C1B00A441E3 /* photoViewer_photo_placeholder@3x.png in Resources */,
 				9379D3C31C6338BB00390702 /* 我的-普通用户@3x.png in Resources */,
 				33DD6CD71C611A5500CE6B31 /* ico_ordering.png in Resources */,
@@ -2484,6 +2483,7 @@
 				33DD6D231C611A5500CE6B31 /* 赠@3x.png in Resources */,
 				33DD6D171C611A5500CE6B31 /* 积@3x.png in Resources */,
 				33440D061C783B0700A441E3 /* common_topnav_icon02@2x.png in Resources */,
+				3360B3E51C7C91B700C60AC0 /* 支付方式-微信支付@3x.png in Resources */,
 				33DD6BFA1C6119A600CE6B31 /* btn_homepage_f@2x.png in Resources */,
 				33DD6CA01C611A5500CE6B31 /* Btn_Go_default@2X.png in Resources */,
 				33DD6CE51C611A5500CE6B31 /* tv_msg_number_w.png in Resources */,
