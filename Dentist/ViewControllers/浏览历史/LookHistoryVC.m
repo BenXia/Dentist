@@ -1,23 +1,23 @@
 //
-//  MyFavoriteVC.m
+//  LookHistoryVC.m
 //  Dentist
 //
 //  Created by 郭晓倩 on 16/2/22.
 //  Copyright © 2016年 iOSStudio. All rights reserved.
 //
 
-#import "MyFavoriteVC.h"
-#import "MyFavoriteDC.h"
-#import "RemoveFavoriteDC.h"
+#import "LookHistoryVC.h"
 #import "FavoriteProductCell.h"
 #import "ProductDetailVC.h"
+#import "GetLookHistoryDC.h"
+#import "RemoveLookHistoryDC.h"
 
 static const CGFloat kItemNumPerLine = 2;
 
-@interface MyFavoriteVC ()<UICollectionViewDataSource,UICollectionViewDelegate,PPDataControllerDelegate>
+@interface LookHistoryVC ()<UICollectionViewDataSource,UICollectionViewDelegate,PPDataControllerDelegate>
 
-@property (strong,nonatomic) MyFavoriteDC* dc;
-@property (strong,nonatomic) RemoveFavoriteDC* removeFavoriteDC;
+@property (strong,nonatomic) GetLookHistoryDC* dc;
+@property (strong,nonatomic) RemoveLookHistoryDC* removeDC;
 @property (assign,nonatomic) BOOL isEditing;
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -28,14 +28,14 @@ static const CGFloat kItemNumPerLine = 2;
 
 @end
 
-@implementation MyFavoriteVC
+@implementation LookHistoryVC
 
 -(instancetype)init{
     if (self = [super init]) {
-        self.title = @"我的收藏";
+        self.title = @"浏览记录";
         self.selectedProductIds = [NSMutableArray new];
-        self.dc = [[MyFavoriteDC alloc]initWithDelegate:self];
-        self.removeFavoriteDC = [[RemoveFavoriteDC alloc]initWithDelegate:self];
+        self.dc = [[GetLookHistoryDC alloc]initWithDelegate:self];
+        self.removeDC = [[RemoveLookHistoryDC alloc]initWithDelegate:self];
     }
     return self;
 }
@@ -106,8 +106,8 @@ static const CGFloat kItemNumPerLine = 2;
 
 -(void)didClickDeleteButton{
     if (self.selectedProductIds.count > 0) {
-        self.removeFavoriteDC.productIds = self.selectedProductIds;
-        [self.removeFavoriteDC requestWithArgs:nil];
+        self.removeDC.productIds = self.selectedProductIds;
+        [self.removeDC requestWithArgs:nil];
         [Utilities showLoadingView];
     }else{
         self.isEditing = NO;
@@ -125,7 +125,7 @@ static const CGFloat kItemNumPerLine = 2;
 // 单元格代理
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    FavoriteProductModel* model = [self.dc.products objectAtIndex:indexPath.row];
+    HistoryProductModel* model = [self.dc.products objectAtIndex:indexPath.row];
     FavoriteProductCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"FavoriteProductCell" forIndexPath:indexPath];
     [cell setModel:model isEditing:self.isEditing isSelected:[self isSelectedProduct:model.iid]];
     
@@ -135,7 +135,7 @@ static const CGFloat kItemNumPerLine = 2;
 #pragma mark - UICollectionViewLayoutDelegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    FavoriteProductModel* model = [self.dc.products objectAtIndexIfIndexInBounds:indexPath.row];
+    HistoryProductModel* model = [self.dc.products objectAtIndexIfIndexInBounds:indexPath.row];
     if (self.isEditing) {
         [self selectOrDeselectProduct:model.iid];
         [self.collectionView reloadData];
@@ -166,10 +166,10 @@ static const CGFloat kItemNumPerLine = 2;
     [self.collectionView footerEndRefreshing];
     if (controller == self.dc) {
         [self.collectionView reloadData];
-    }else if(controller == self.removeFavoriteDC){
-        [Utilities showToastWithText:@"删除收藏成功"];
+    }else if(controller == self.removeDC){
+        [Utilities showToastWithText:@"删除浏览记录成功"];
         //本地删除
-       self.dc.products = [self.dc.products arrayByRemoveObjectsIfKeyPath:@"iid" containInArray:self.selectedProductIds withEqualBlock:^BOOL(NSString* dst, NSString* src) {
+        self.dc.products = [self.dc.products arrayByRemoveObjectsIfKeyPath:@"iid" containInArray:self.selectedProductIds withEqualBlock:^BOOL(NSString* dst, NSString* src) {
             return [dst isEqualToString:src];
         }];
         
@@ -186,9 +186,9 @@ static const CGFloat kItemNumPerLine = 2;
     [self.collectionView headerEndRefreshing];
     [self.collectionView footerEndRefreshing];
     if (controller == self.dc) {
-        [Utilities showToastWithText:@"获取收藏列表失败"];
-    }else if(controller == self.removeFavoriteDC){
-        [Utilities showToastWithText:@"删除收藏失败"];
+        [Utilities showToastWithText:@"获取浏览记录列表失败"];
+    }else if(controller == self.removeDC){
+        [Utilities showToastWithText:@"删除浏览记录失败"];
         
         self.isEditing = NO;
         [self.collectionView reloadData];

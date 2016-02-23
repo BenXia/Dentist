@@ -10,4 +10,11 @@
 
 @interface RemoveLookHistoryDC : PPDataController
 
+@property (nonatomic,strong) NSArray* productIds;   //商品ID
+
+//200	成功
+@property (nonatomic,assign) int code;
+@property (nonatomic,strong) NSString* message;
+
+
 @end

@@ -1,16 +1,16 @@
 //
-//  MyFavoriteDC.m
+//  GetLookHistoryDC.m
 //  Dentist
 //
-//  Created by 郭晓倩 on 16/2/22.
+//  Created by 郭晓倩 on 16/2/23.
 //  Copyright © 2016年 iOSStudio. All rights reserved.
 //
 
-#import "MyFavoriteDC.h"
+#import "GetLookHistoryDC.h"
 
 static const int kPageSize = 10;
 
-@implementation MyFavoriteDC
+@implementation GetLookHistoryDC
 
 - (NSDictionary *)requestURLArgs {
     if (self.next_iid) {
@@ -31,7 +31,7 @@ static const int kPageSize = 10;
 - (BOOL)parseContent:(NSString *)content {
     BOOL result = NO;
     
-    NSLog(@"收藏列表响应数据：%@",content);
+    NSLog(@"浏览记录响应数据：%@",content);
     
     NSError *error = nil;
     NSDictionary *resultDict = [NSJSONSerialization JSONObjectWithString:content
@@ -46,12 +46,12 @@ static const int kPageSize = 10;
         NSArray* products = [resultDict objectForKey:@"products"];
         self.products = [NSMutableArray new];
         for (NSDictionary* itemDic in products) {
-            FavoriteProductModel* item = [FavoriteProductModel new];
+            HistoryProductModel* item = [FavoriteProductModel new];
             item.iid = [itemDic objectForKey:@"iid"];
             item.title = [itemDic objectForKey:@"title"];
             item.img_url = [itemDic objectForKey:@"img_url"];
             item.price = [itemDic objectForKey:@"price"];
-
+            
             [self.products addObject:item];
         }
         
@@ -61,5 +61,6 @@ static const int kPageSize = 10;
     
     return result;
 }
+
 
 @end
