@@ -37,6 +37,7 @@
     NSLog(@"%@",[resultDict objectForKey:@"msg"]);
     if (!error || [resultDict isKindOfClass:[NSDictionary class]]) {
         if ([[resultDict objectForKey:@"code"] intValue] == 200) {
+            NSLog(@"登陆成功");
             [self saveUserInfo:resultDict];
             self.loginSuccess = YES;
         } else {
