@@ -35,16 +35,25 @@
     _cellModel = cellModel;
     for (ProductIntroduceModel *model in cellModel) {
         if ([model.location isEqualToString:@"右1"]) {
-            [self.firstBtn sd_setImageWithURL:[NSURL URLWithString:model.img_url] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"btn_clinical_default.png"]];
+            [self.firstBtn sd_setImageWithURL:[NSURL URLWithString:model.img_url] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"test.png"]];
             [self.firstBtn setTitle:model.event_id forState:UIControlStateNormal];
+            
+            //test
+            [self.secondBtn sd_setImageWithURL:[NSURL URLWithString:model.img_url] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"test.png"]];
+            [self.secondBtn setTitle:model.event_id forState:UIControlStateNormal];
+            [self.thirdBtn sd_setImageWithURL:[NSURL URLWithString:model.img_url] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"test.png"]];
+            [self.fourthBtn sd_setImageWithURL:[NSURL URLWithString:model.img_url] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"test.png"]];
+            [self.fourthBtn setTitle:model.event_id forState:UIControlStateNormal];
+
+            
         } else if ([model.location isEqualToString:@"右2"]) {
-            [self.secondBtn sd_setImageWithURL:[NSURL URLWithString:model.img_url] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"btn_clinical_default.png"]];
+            [self.secondBtn sd_setImageWithURL:[NSURL URLWithString:model.img_url] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"test.png"]];
             [self.secondBtn setTitle:model.event_id forState:UIControlStateNormal];
         } else if ([model.location isEqualToString:@"左1"]) {
-            [self.thirdBtn sd_setImageWithURL:[NSURL URLWithString:model.img_url] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"btn_clinical_default.png"]];
+            [self.thirdBtn sd_setImageWithURL:[NSURL URLWithString:model.img_url] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"test.png"]];
             [self.thirdBtn setTitle:model.event_id forState:UIControlStateNormal];
         } else if ([model.location isEqualToString:@"banner"]) {
-            [self.fourthBtn sd_setImageWithURL:[NSURL URLWithString:model.img_url] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"btn_clinical_default.png"]];
+            [self.fourthBtn sd_setImageWithURL:[NSURL URLWithString:model.img_url] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"test.png"]];
             [self.fourthBtn setTitle:model.event_id forState:UIControlStateNormal];
         }
     }

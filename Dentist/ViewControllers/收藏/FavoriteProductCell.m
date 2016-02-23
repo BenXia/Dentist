@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *productTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *giftImageView;
+@property (weak, nonatomic) IBOutlet UIButton *selectButton;
 
 @end
 
@@ -21,14 +22,29 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    [self setBorderWidth:1];
+    [self setBorderColor:[UIColor clearColor]];
 }
 
--(void)setModel:(id)model{
+-(void)setModel:(id)model isEditing:(BOOL)isEditing isSelected:(BOOL)isSelected{
     if ([model isKindOfClass:[FavoriteProductModel class]]) {
         FavoriteProductModel* favoriteModel = model;
         [self.productImageView sd_setImageWithURL:[NSURL URLWithString:favoriteModel.img_url]];
         self.productTitleLabel.text = favoriteModel.title;
         [self.priceLabel themeWithPrice:favoriteModel.price.doubleValue bigFont:14 smallFont:12];
+    }
+    
+    if (isEditing) {
+        self.selectButton.hidden = NO;
+        self.selectButton.selected = isSelected;
+        if (isSelected) {
+            [self setBorderColor:[UIColor themeCyanColor]];
+        }else{
+            [self setBorderColor:[UIColor clearColor]];
+        }
+    }else{
+        self.selectButton.hidden = YES;
+        [self setBorderColor:[UIColor clearColor]];
     }
 }
 

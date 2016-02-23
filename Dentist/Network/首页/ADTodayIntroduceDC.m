@@ -44,4 +44,11 @@
     
     return result;
 }
+
+- (NSMutableArray *)productArray {
+    if (!_productArray) {
+        _productArray = [NSMutableArray array];
+    }
+    return _productArray;
+}
 @end

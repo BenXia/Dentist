@@ -10,6 +10,6 @@
 
 @interface FavoriteProductCell : UICollectionViewCell
 
-@property (nonatomic,strong) id model;
+-(void)setModel:(id)model isEditing:(BOOL)isEditing isSelected:(BOOL)isSelected;
 
 @end

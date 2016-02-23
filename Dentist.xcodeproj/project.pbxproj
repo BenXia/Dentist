@@ -268,12 +268,14 @@
 		33F071A81C42CF1900DAC58F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F071A71C42CF1900DAC58F /* Security.framework */; };
 		33F071DB1C42DAAB00DAC58F /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F071DA1C42DAAB00DAC58F /* libstdc++.6.0.9.dylib */; };
 		49A440E851BCC056B96B1CCC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 51B5961869359BC6C0460396 /* libPods.a */; };
+		88367A971C7CA6AB00658214 /* LookHistoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88367A951C7CA6AB00658214 /* LookHistoryVC.m */; };
+		88367A981C7CA6AB00658214 /* LookHistoryVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88367A961C7CA6AB00658214 /* LookHistoryVC.xib */; };
+		88367A9B1C7CA73A00658214 /* GetLookHistoryDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88367A9A1C7CA73A00658214 /* GetLookHistoryDC.m */; };
 		888811AC1C7B4DEC00F6672C /* GuessYouLikeProductView.m in Sources */ = {isa = PBXBuildFile; fileRef = 888811AB1C7B4DEC00F6672C /* GuessYouLikeProductView.m */; };
 		888811B61C7B592600F6672C /* MyFavoriteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 888811B41C7B592600F6672C /* MyFavoriteVC.m */; };
 		888811B71C7B592600F6672C /* MyFavoriteVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 888811B51C7B592600F6672C /* MyFavoriteVC.xib */; };
 		888811BB1C7B5ACB00F6672C /* MyFavoriteDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 888811BA1C7B5ACB00F6672C /* MyFavoriteDC.m */; };
 		888811BE1C7B5AF000F6672C /* RemoveFavoriteDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 888811BD1C7B5AF000F6672C /* RemoveFavoriteDC.m */; };
-		888811C11C7B5B3400F6672C /* MyLookHistoryDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 888811C01C7B5B3400F6672C /* MyLookHistoryDC.m */; };
 		888811C41C7B5B5A00F6672C /* RemoveLookHistoryDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 888811C31C7B5B5A00F6672C /* RemoveLookHistoryDC.m */; };
 		888811C71C7B5D8400F6672C /* FavoriteProductModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 888811C61C7B5D8400F6672C /* FavoriteProductModel.m */; };
 		888811CB1C7B60B000F6672C /* FavoriteProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 888811C91C7B60B000F6672C /* FavoriteProductCell.m */; };
@@ -382,6 +384,7 @@
 		93DEA8D31C4BCBAA008211F7 /* SDCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 93DEA8CA1C4BCBAA008211F7 /* SDCollectionViewCell.m */; };
 		93DEA8D41C4BCBAA008211F7 /* SDCycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93DEA8CC1C4BCBAA008211F7 /* SDCycleScrollView.m */; };
 		93DEA8D51C4BCBAA008211F7 /* UIView+SDExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 93DEA8CE1C4BCBAA008211F7 /* UIView+SDExtension.m */; };
+		93E68A9B1C7C93E100B3A85D /* test.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 93E68A9A1C7C93E100B3A85D /* test.jpg */; };
 		93F2A0161C49E93C0034486B /* LoginDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 93F2A0151C49E93C0034486B /* LoginDC.m */; };
 		B583394B1C796FB000F9EBE2 /* Btn_Delete_default@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = B58339491C796FB000F9EBE2 /* Btn_Delete_default@2X.png */; };
 		B583394C1C796FB000F9EBE2 /* Btn_delete_selected@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = B583394A1C796FB000F9EBE2 /* Btn_delete_selected@2X.png */; };
@@ -770,6 +773,11 @@
 		390308D4EA1697DF926D8B12 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		430052BE562558A3994A1C1C /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		51B5961869359BC6C0460396 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		88367A941C7CA6AB00658214 /* LookHistoryVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LookHistoryVC.h; sourceTree = "<group>"; };
+		88367A951C7CA6AB00658214 /* LookHistoryVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LookHistoryVC.m; sourceTree = "<group>"; };
+		88367A961C7CA6AB00658214 /* LookHistoryVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LookHistoryVC.xib; sourceTree = "<group>"; };
+		88367A991C7CA73A00658214 /* GetLookHistoryDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetLookHistoryDC.h; sourceTree = "<group>"; };
+		88367A9A1C7CA73A00658214 /* GetLookHistoryDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetLookHistoryDC.m; sourceTree = "<group>"; };
 		888811AA1C7B4DEC00F6672C /* GuessYouLikeProductView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuessYouLikeProductView.h; sourceTree = "<group>"; };
 		888811AB1C7B4DEC00F6672C /* GuessYouLikeProductView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuessYouLikeProductView.m; sourceTree = "<group>"; };
 		888811B31C7B592600F6672C /* MyFavoriteVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFavoriteVC.h; sourceTree = "<group>"; };
@@ -779,8 +787,6 @@
 		888811BA1C7B5ACB00F6672C /* MyFavoriteDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFavoriteDC.m; sourceTree = "<group>"; };
 		888811BC1C7B5AF000F6672C /* RemoveFavoriteDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoveFavoriteDC.h; sourceTree = "<group>"; };
 		888811BD1C7B5AF000F6672C /* RemoveFavoriteDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoveFavoriteDC.m; sourceTree = "<group>"; };
-		888811BF1C7B5B3400F6672C /* MyLookHistoryDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyLookHistoryDC.h; sourceTree = "<group>"; };
-		888811C01C7B5B3400F6672C /* MyLookHistoryDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyLookHistoryDC.m; sourceTree = "<group>"; };
 		888811C21C7B5B5A00F6672C /* RemoveLookHistoryDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoveLookHistoryDC.h; sourceTree = "<group>"; };
 		888811C31C7B5B5A00F6672C /* RemoveLookHistoryDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoveLookHistoryDC.m; sourceTree = "<group>"; };
 		888811C51C7B5D8400F6672C /* FavoriteProductModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoriteProductModel.h; sourceTree = "<group>"; };
@@ -941,6 +947,7 @@
 		93DEA8CC1C4BCBAA008211F7 /* SDCycleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCycleScrollView.m; sourceTree = "<group>"; };
 		93DEA8CD1C4BCBAA008211F7 /* UIView+SDExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SDExtension.h"; sourceTree = "<group>"; };
 		93DEA8CE1C4BCBAA008211F7 /* UIView+SDExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SDExtension.m"; sourceTree = "<group>"; };
+		93E68A9A1C7C93E100B3A85D /* test.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test.jpg; sourceTree = "<group>"; };
 		93F2A0141C49E93C0034486B /* LoginDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginDC.h; sourceTree = "<group>"; };
 		93F2A0151C49E93C0034486B /* LoginDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginDC.m; sourceTree = "<group>"; };
 		A11DE1C2BA504D2B28E4F469 /* Pods.distribute.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.distribute.xcconfig; path = "Pods/Target Support Files/Pods/Pods.distribute.xcconfig"; sourceTree = "<group>"; };
@@ -1751,6 +1758,7 @@
 		33F070861C42B46E00DAC58F /* 公共 */ = {
 			isa = PBXGroup;
 			children = (
+				93E68A9A1C7C93E100B3A85D /* test.jpg */,
 				930C34281C7819D0008823F9 /* user_pic_boy@2x.png */,
 				930C34291C7819D0008823F9 /* user_pic_boy@3x.png */,
 				33D028811C74C4CC00277C3C /* btn_backround_default@2x.png */,
@@ -1792,10 +1800,10 @@
 		888811AD1C7B509000F6672C /* 浏览记录 */ = {
 			isa = PBXGroup;
 			children = (
-				888811BF1C7B5B3400F6672C /* MyLookHistoryDC.h */,
-				888811C01C7B5B3400F6672C /* MyLookHistoryDC.m */,
 				888811C21C7B5B5A00F6672C /* RemoveLookHistoryDC.h */,
 				888811C31C7B5B5A00F6672C /* RemoveLookHistoryDC.m */,
+				88367A991C7CA73A00658214 /* GetLookHistoryDC.h */,
+				88367A9A1C7CA73A00658214 /* GetLookHistoryDC.m */,
 			);
 			path = "浏览记录";
 			sourceTree = "<group>";
@@ -1803,6 +1811,9 @@
 		888811B11C7B58AF00F6672C /* 浏览历史 */ = {
 			isa = PBXGroup;
 			children = (
+				88367A941C7CA6AB00658214 /* LookHistoryVC.h */,
+				88367A951C7CA6AB00658214 /* LookHistoryVC.m */,
+				88367A961C7CA6AB00658214 /* LookHistoryVC.xib */,
 			);
 			path = "浏览历史";
 			sourceTree = "<group>";
@@ -2363,6 +2374,7 @@
 				33CAF8A81C781B380015B4BC /* LoginVC.xib in Resources */,
 				33DD6CE31C611A5500CE6B31 /* pic_logo2x.png in Resources */,
 				33DD6CED1C611A5500CE6B31 /* 删除@3x.png in Resources */,
+				88367A981C7CA6AB00658214 /* LookHistoryVC.xib in Resources */,
 				33DD6CCF1C611A5500CE6B31 /* ico_certification.png in Resources */,
 				3360B4021C7CA41200C60AC0 /* btn_photoplus_pressed@3x.png in Resources */,
 				33CAE4511C7373AE0038748F /* OrderBottomInfoCell.xib in Resources */,
@@ -2452,6 +2464,7 @@
 				33DD6D251C611A5500CE6B31 /* 首页-消息提示@3x.png in Resources */,
 				33D028801C74C4BE00277C3C /* icon_close@3x.png in Resources */,
 				3332F9C51C785225006B8864 /* icon_failed@3x.png in Resources */,
+				93E68A9B1C7C93E100B3A85D /* test.jpg in Resources */,
 				3332F9C41C785225006B8864 /* icon_failed@2x.png in Resources */,
 				33F0706F1C42A43200DAC58F /* ProfileVC.xib in Resources */,
 				3360B4011C7CA41200C60AC0 /* btn_photoplus_pressed@2x.png in Resources */,
@@ -2640,7 +2653,6 @@
 				930C344A1C795FBA008823F9 /* SetNickDC.m in Sources */,
 				33DD6B391C60ED2800CE6B31 /* ProductBriefInfoCell.m in Sources */,
 				93F2A0161C49E93C0034486B /* LoginDC.m in Sources */,
-				888811C11C7B5B3400F6672C /* MyLookHistoryDC.m in Sources */,
 				B58339511C79970300F9EBE2 /* OrderDetailVC.m in Sources */,
 				93A1F5DA1C6281D900CFEEC4 /* SaleActivityCell.m in Sources */,
 				93899B571C74C7470065B819 /* UserInfoDC.m in Sources */,
@@ -2659,9 +2671,11 @@
 				33DD6BB81C6103CA00CE6B31 /* IQBarButtonItem.m in Sources */,
 				93DEA8CF1C4BCBAA008211F7 /* TAAbstractDotView.m in Sources */,
 				930C34A81C7A0BEA008823F9 /* CreateOrEditAddressVC.m in Sources */,
+				88367A9B1C7CA73A00658214 /* GetLookHistoryDC.m in Sources */,
 				B59710791C78683C006BC9FE /* AllOrderListVM.m in Sources */,
 				93DEA88E1C4BC6FB008211F7 /* HomePageCourseListCell.m in Sources */,
 				9379D3AF1C63239100390702 /* MultilevelMenu.m in Sources */,
+				88367A971C7CA6AB00658214 /* LookHistoryVC.m in Sources */,
 				33F070501C429AD300DAC58F /* AppInitializer.m in Sources */,
 				9377AC651C537837003B24B1 /* ADBannerDC.m in Sources */,
 				930C34AE1C7A0CA5008823F9 /* WTLabel.m in Sources */,

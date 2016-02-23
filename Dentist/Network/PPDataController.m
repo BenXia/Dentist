@@ -180,13 +180,15 @@ NSString* const kDataControllerErrorDomain = @"NetworkErrorDomain";
 
 // 对参数列表生成URL编码后字符串
 + (NSString *)makeQueryStringFromArgs:(NSDictionary *)args {
-    NSMutableString *formatString = nil;
+    NSMutableString *formatString = [NSMutableString new];
     
     for (NSString *key in args) {
         id value = [args valueForKey:key];
         
         [PPDataController appendString:formatString withParamKey:key value:value];
     }
+    
+    NSLog(@"Body param:%@",formatString);
     
     return formatString;
 }
@@ -203,8 +205,8 @@ NSString* const kDataControllerErrorDomain = @"NetworkErrorDomain";
         }
     }
     if (stringValue) {
-        NSString* linkSymbol = formatString ? @"&" : @"";
-        formatString = [NSMutableString stringWithFormat:@"%@%@=%@", linkSymbol, key, [stringValue URLEncodedString]];
+        NSString* linkSymbol = formatString.length > 0 ? @"&" : @"";
+        [formatString appendFormat:@"%@%@=%@", linkSymbol, key, [stringValue URLEncodedString]];
     }
 }
 
@@ -305,7 +307,7 @@ NSString* const kDataControllerErrorDomain = @"NetworkErrorDomain";
 
 - (NSString *)makeParameterStringWithArgs:(NSDictionary *)argsvar {
     NSDictionary *newArgument = argsvar;
-    NSMutableString *formatString = nil;
+    NSMutableString *formatString = [NSMutableString new];
     
     NSDictionary *commonArgument = @{@"v":@"0.0.1"};
     
@@ -327,7 +329,7 @@ NSString* const kDataControllerErrorDomain = @"NetworkErrorDomain";
         
         [PPDataController appendString:formatString withParamKey:key value:value];
     }
-    
+        
     return formatString;
 }
 
