@@ -14,6 +14,12 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *quitBtn;
 @property (nonatomic, strong) NSArray *dataArray;
+@property (strong, nonatomic) IBOutlet UIViewController *shareVC;
+@property (weak, nonatomic) IBOutlet UIButton *weixinPyqBtn;
+@property (weak, nonatomic) IBOutlet UIButton *sinaBtn;
+@property (weak, nonatomic) IBOutlet UIButton *weixinBtn;
+@property (weak, nonatomic) IBOutlet UIButton *cancleBtn;
+@property (weak, nonatomic) IBOutlet UIButton *doneBtn;
 
 @end
 
@@ -36,6 +42,10 @@
     self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 1)];
     [self.quitBtn liningThematized:[UIColor themeBlueColor]];
     self.quitBtn.layer.cornerRadius = 20;
+    [self.weixinPyqBtn centerImageAndTitle];
+    [self.sinaBtn centerImageAndTitle];
+    [self.weixinBtn centerImageAndTitle];
+    self.shareVC.view.frame = CGRectMake(0, 0, 290, 180);
 }
 
 #pragma mark - UITableViewDelegate & UITableViewDataSource
@@ -110,6 +120,8 @@
         switch (indexPath.row) {
             case 0: {
                 //cell.textLabel.text = @"推荐给朋友";
+//                [Utilities showPopupVC:self.shareVC touchBackgroundHide:YES animationType:PopupAnimationType_Drop];
+                [Utilities showPopup:self.shareVC.view touchBackgroundHide:YES animationType:PopupAnimationType_Drop];
             }
                 break;
             case 1: {
