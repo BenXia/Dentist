@@ -52,7 +52,11 @@
         model.p_iids = [self parseSpecProductItemArray:[resultDict objectForKey:@"p_iids"]];
         model.scores = [self parseScoreItemArray:[resultDict objectForKey:@"scores"]];
         
-        
+        model.express = ((NSNumber*)[resultDict objectForKey:@"express"]).intValue;
+        model.pick_up = ((NSNumber*)[resultDict objectForKey:@"pick_up"]).intValue;
+        model.is_del = ((NSNumber*)[resultDict objectForKey:@"pick_up"]).intValue;
+        model.item_is_del = ((NSNumber*)[resultDict objectForKey:@"item_is_del"]).intValue;
+
         //TODO-GUO:测试数据
         if(model.p_sids.count == 0){
             NSMutableArray* itemArray = [NSMutableArray new];

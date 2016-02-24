@@ -66,6 +66,14 @@ UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *basePriceViewHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *basePriceViewTopConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *baseDeliverViewHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *baseDeliverExpressButtonLeadingConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *baseDeliverPickupButtonLeadingConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *basePriceFreeShippingImageViewLeadingConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *basePricePresentImageViewLeadingConstraint;
+@property (weak, nonatomic) IBOutlet UIImageView *basePriceFreeShippingImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *basePricePresentImageView;
+@property (weak, nonatomic) IBOutlet UIButton *baseDeliverExpressButton;
+@property (weak, nonatomic) IBOutlet UIButton *baseDeliverPickupButton;
 
 @property (strong, nonatomic) IBOutlet UIView *groupDiscountView;
 @property (weak, nonatomic) IBOutlet UILabel *groupReducePriceLabel;
@@ -192,7 +200,8 @@ UIScrollViewDelegate>
     _cycleScrollView.imageURLStringsGroup = nil;
     _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
     _cycleScrollView.pageControlStyle=SDCycleScrollViewPageContolStyleClassic;
-    _cycleScrollView.dotColor = [UIColor whiteColor]; // 自定义分页控件小圆标颜色
+    _cycleScrollView.showPageControl = YES;
+    _cycleScrollView.dotColor = [UIColor blackColor]; // 自定义分页控件小圆标颜色
     _cycleScrollView.delegate = self;
     _cycleScrollView.autoScroll = NO;
     _cycleScrollView.autoScrollTimeInterval = 10;
@@ -203,20 +212,20 @@ UIScrollViewDelegate>
 - (void)initMainScrollView {
     self.scrollView.backgroundColor = [UIColor bgGray002Color];
     
-    // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
-    [self.scrollView addHeaderWithTarget:self action:@selector(headerRereshing)];
-    
-    // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
-    [self.scrollView addFooterWithTarget:self action:@selector(footerRereshing)];
-    
-    // 设置文字(也可以不设置,默认的文字在MJRefreshConst中修改)
-    self.scrollView.headerPullToRefreshText = @"下拉刷新";
-    self.scrollView.headerReleaseToRefreshText = @"松开就可以刷新了";
-    self.scrollView.headerRefreshingText = @"正在刷新";
-    
-    self.scrollView.footerPullToRefreshText = @"上拉可以加载更多数据了";
-    self.scrollView.footerReleaseToRefreshText = @"松开马上加载更多数据了";
-    self.scrollView.footerRefreshingText = @"正在加载中";
+//    // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
+//    [self.scrollView addHeaderWithTarget:self action:@selector(headerRereshing)];
+//    
+//    // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
+//    [self.scrollView addFooterWithTarget:self action:@selector(footerRereshing)];
+//    
+//    // 设置文字(也可以不设置,默认的文字在MJRefreshConst中修改)
+//    self.scrollView.headerPullToRefreshText = @"下拉刷新";
+//    self.scrollView.headerReleaseToRefreshText = @"松开就可以刷新了";
+//    self.scrollView.headerRefreshingText = @"正在刷新";
+//    
+//    self.scrollView.footerPullToRefreshText = @"上拉可以加载更多数据了";
+//    self.scrollView.footerReleaseToRefreshText = @"松开马上加载更多数据了";
+//    self.scrollView.footerRefreshingText = @"正在加载中";
 }
 
 -(void)initGroupDiscountView{
@@ -328,6 +337,33 @@ UIScrollViewDelegate>
     
     self.baseOldPriceLabel.text = [NSString stringWithFormat: @"%.2f",productDetail.old_price];
     
+    //赠品和包邮
+    BOOL hasGift = self.dc.productDetail.gifts.count > 0;
+    //TODO-GUO:如何判断包邮
+    BOOL freeShipping = YES;
+    if (hasGift && !freeShipping) {
+        self.basePriceFreeShippingImageView.hidden = YES;
+    }else if(!hasGift && !freeShipping){
+        self.basePricePresentImageView.hidden = YES;
+        self.basePriceFreeShippingImageView.hidden = YES;
+    }else if(!hasGift && freeShipping){
+        self.basePricePresentImageView.hidden = YES;
+        self.basePriceFreeShippingImageViewLeadingConstraint.constant = self.basePricePresentImageViewLeadingConstraint.constant;
+    }
+    
+    //快递和自取
+    BOOL canExpress = self.dc.productDetail.express;
+    BOOL canPickup = self.dc.productDetail.pick_up;
+    if (canExpress && !canPickup) {
+        self.baseDeliverPickupButton.hidden = YES;
+    }else if(!canExpress && !canPickup){
+        self.baseDeliverExpressButton.hidden = YES;
+        self.baseDeliverPickupButton.hidden = YES;
+    }else if(!canExpress && canPickup){
+        self.baseDeliverExpressButton.hidden = YES;
+        self.baseDeliverPickupButtonLeadingConstraint.constant = self.baseDeliverExpressButtonLeadingConstraint.constant;
+    }
+    
     //调整高度
     CGFloat limitWidth = kScreenWidth - 2*self.baseTitleLabelLeadingConstraint.constant;
     [self.baseTitleLabel ajustHeightWithLimitWidth:limitWidth];
@@ -337,7 +373,7 @@ UIScrollViewDelegate>
     }else{
         [self.baseSubtitleLabel ajustHeightWithLimitWidth:limitWidth];
     }
-    self.baseInfoView.height = self.baseTitleLabelTopConstraint.constant + self.baseTitleLabel.height + self.baseSubtitleLabelTopConstraint.constant + self.baseSubtitleLabel.height + self.basePriceViewTopConstraint.constant + self.basePriceViewHeightConstraint.constant + self.baseDeliverViewHeightConstraint.constant * 3 + self.baseTitleLabelTopConstraint.constant;
+    self.baseInfoView.height = self.baseTitleLabelTopConstraint.constant + self.baseTitleLabel.height + self.baseSubtitleLabelTopConstraint.constant + self.baseSubtitleLabel.height + self.basePriceViewTopConstraint.constant + self.basePriceViewHeightConstraint.constant + self.baseDeliverViewHeightConstraint.constant * 3 + PIXEL_8;
 }
 
 -(void)refreshGroupDiscountView{
@@ -348,6 +384,7 @@ UIScrollViewDelegate>
     for (NSInteger i=0; i < firstGroup.items.count; ++i) {
         GroupContentItem* item  = [firstGroup.items objectAtIndex:i];
         GroupProductView* view = [groupProductViewArray objectAtIndex:i];
+        view.tag = i;
         [view.imageView sd_setImageWithURL:[NSURL URLWithString:item.img]];
         view.titleLabel.text = item.title;
         view.priceLabel.text = [NSString stringWithFormat:@"%@%.2f",kYuanSymbolStr,item.price];
@@ -435,7 +472,7 @@ UIScrollViewDelegate>
         itemView.titleLabel.text = @"我还好急急急急急急急急急";
         itemView.priceLabel.text = [NSString stringWithFormat:@"%@%.2f",kYuanSymbolStr,1999.5];
         itemView.delegate = self;
-        
+        itemView.tag = i;
         [self.guessYouLikeContentView addSubview:itemView];
     }
     
@@ -769,7 +806,7 @@ UIScrollViewDelegate>
     }
     
     //TODO-GUO:MJRefresh不好用，只能这样了
-    CGFloat limit = self.scrollContentHeight > self.scrollView.height ? self.scrollContentHeight - self.scrollView.height + 50 : 50;
+    CGFloat limit = self.scrollContentHeight > self.scrollView.height ? self.scrollContentHeight - self.scrollView.height + 80 : 80;
     if (point.y >=  limit) {
         [self footerRereshing];
     }
@@ -784,23 +821,35 @@ UIScrollViewDelegate>
 #pragma mark - GroupProductViewDelegate
 
 -(void)groupProductView:(GroupProductView*)view didClickImageView:(UIImageView*)imageView{
-    //点击了套餐优惠里的一项
-    //    double totalPrice = self.dc.productDetail.price;
-    //    NSArray* groupContentItems = (NSArray*)[self.dc.productDetail.groups firstObject];
-    //    if (view == self.groupSecondProductView) {
-    //        GroupContentItem* item = [groupContentItems objectAtIndexIfIndexInBounds:0];
-    //        totalPrice += item.price;
-    //    }else{
-    //        GroupContentItem* item = [groupContentItems objectAtIndexIfIndexInBounds:1];
-    //        totalPrice += item.price;
-    //    }
-    //    self.groupReducePriceLabel.text = [NSString stringWithFormat:@"%@%.2f",kYuanSymbolStr,totalPrice];
+    if (view != self.groupFirstProductView) {
+        NSString* productId = nil;
+        GroupItem* group = [self.dc.productDetail.groups firstObject];
+        if(group.items.count > view.tag){
+            GroupContentItem* item = [group.items objectAtIndex:view.tag];
+            productId = item.iid;
+        }
+        if (productId) {
+            ProductDetailVC* detailVC = [[ProductDetailVC alloc] initWithProductId:productId];
+            [self.navigationController pushViewController:detailVC animated:YES];
+        }
+    }
 }
 
 #pragma mark - GuessYouLikeProductViewDelegate
 
 -(void)guessYouLikeProductView:(GuessYouLikeProductView *)view didClickProduct:(id)model{
-
+    
+    //TODO-GUO:获取ID
+    NSArray* guessYouLikeArray = [NSArray new];
+    NSString* productId = nil;
+    if (guessYouLikeArray.count > view.tag) {
+        id item = [guessYouLikeArray objectAtIndex:view.tag];
+    }
+    
+    if (productId) {
+        ProductDetailVC* detailVC = [[ProductDetailVC alloc] initWithProductId:productId];
+        [self.navigationController pushViewController:detailVC animated:YES];
+    }
 }
 
 #pragma mark - EditNumberViewDelegate

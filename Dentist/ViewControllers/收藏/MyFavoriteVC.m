@@ -72,7 +72,7 @@ static const CGFloat kItemNumPerLine = 2;
     self.itemHeight = self.itemWidth + 80;
     
     // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
-    [self.collectionView addHeaderWithTarget:self action:@selector(headerRereshing)];
+//    [self.collectionView addHeaderWithTarget:self action:@selector(headerRereshing)];
     
     // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
     [self.collectionView addFooterWithTarget:self action:@selector(footerRereshing)];
@@ -106,9 +106,15 @@ static const CGFloat kItemNumPerLine = 2;
 
 -(void)didClickDeleteButton{
     if (self.selectedProductIds.count > 0) {
-        self.removeFavoriteDC.productIds = self.selectedProductIds;
-        [self.removeFavoriteDC requestWithArgs:nil];
-        [Utilities showLoadingView];
+        QQingAlertView* alertView = [[QQingAlertView alloc]initWithTitle:nil message:@"确认要删除这些收藏吗？" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        [alertView showWithDismissBlock:^(QQingAlertView *alertView, int dismissButtonIndex) {
+            if (dismissButtonIndex == 1) {
+                //确认删除
+                self.removeFavoriteDC.productIds = self.selectedProductIds;
+                [self.removeFavoriteDC requestWithArgs:nil];
+                [Utilities showLoadingView];
+            }
+        }];
     }else{
         self.isEditing = NO;
         [self.collectionView reloadData];

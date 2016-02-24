@@ -95,10 +95,10 @@
 }
 
 -(void)didClickImageView{
-//    self.selected = !self.selected;
-//    if (self.delegate && [self.delegate respondsToSelector:@selector(groupProductView:didClickImageView:)]) {
-//        [self.delegate groupProductView:self didClickImageView:self.imageView];
-//    }
+    self.selected = !self.selected;
+    if (self.delegate && [self.delegate respondsToSelector:@selector(groupProductView:didClickImageView:)]) {
+        [self.delegate groupProductView:self didClickImageView:self.imageView];
+    }
 }
 
 @end

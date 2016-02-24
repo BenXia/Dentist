@@ -69,7 +69,7 @@ static const CGFloat kItemNumPerLine = 2;
     self.itemHeight = self.itemWidth + 80;
     
     // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
-    [self.collectionView addHeaderWithTarget:self action:@selector(headerRereshing)];
+//    [self.collectionView addHeaderWithTarget:self action:@selector(headerRereshing)];
     
     // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
     [self.collectionView addFooterWithTarget:self action:@selector(footerRereshing)];
