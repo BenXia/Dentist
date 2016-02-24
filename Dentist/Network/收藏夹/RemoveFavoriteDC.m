@@ -20,7 +20,7 @@
 }
 
 -(NSDictionary*)requestHTTPBody{
-    return @{@"iid[]":self.productIds};
+    return @{@"iid":self.productIds};
 }
 
 - (BOOL)parseContent:(NSString *)content {

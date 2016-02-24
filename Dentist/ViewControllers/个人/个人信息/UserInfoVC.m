@@ -173,7 +173,9 @@ UINavigationControllerDelegate>
     // 回到当前页面
     [self.navigationController dismissViewControllerAnimated:YES completion:^{
         //上传头像接口
-        [[[PictureUploader alloc] init] uploadHeadPicture:image imageUploadType:kImageUploadType_HeadimgUploadType success:^(id obj) {
+        [[[PictureUploader alloc] init] uploadPicture:image
+                                      imageUploadType:kImageUploadType_HeadimgUploadType
+                                              success:^(id obj) {
             [[GCDQueue mainQueue] queueBlock:^{
                 //更新缓存
                 [Utilities showToastWithText:@"头像上传成功"];

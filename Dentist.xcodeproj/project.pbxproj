@@ -1307,7 +1307,7 @@
 			path = "评价晒单";
 			sourceTree = "<group>";
 		};
-		33D187351C70C98E00658F3D /* 详情页 */ = {
+		33D187351C70C98E00658F3D /* 商品详情 */ = {
 			isa = PBXGroup;
 			children = (
 				33D187361C70C9D100658F3D /* ProductDetailVC.h */,
@@ -1323,6 +1323,7 @@
 				888C7A571C79901000CA2ED9 /* ProductDescriptionVC.m */,
 				888C7A581C79901000CA2ED9 /* ProductDescriptionVC.xib */,
 			);
+			name = "商品详情";
 			path = "详情页";
 			sourceTree = "<group>";
 		};
@@ -1620,7 +1621,7 @@
 				33F0703B1C4295F200DAC58F /* 分类 */,
 				33F0703C1C4295F200DAC58F /* 购物车 */,
 				33F0703A1C4295F200DAC58F /* 个人 */,
-				33D187351C70C98E00658F3D /* 详情页 */,
+				33D187351C70C98E00658F3D /* 商品详情 */,
 				33CAF0FD1C72094C00348763 /* 下单页 */,
 				33D028731C74BD1600277C3C /* 评价晒单 */,
 				33CAF8731C7809690015B4BC /* H5页面 */,

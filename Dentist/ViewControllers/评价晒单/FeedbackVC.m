@@ -13,11 +13,16 @@ static NSString* const kCellReuseIdentifier = @"FeedbackCell";
 
 @interface FeedbackVC () <
 UITableViewDataSource,
-UITableViewDelegate
+UITableViewDelegate,
+FeedbackCellDelegate
 >
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *feedbackModelsArray;
+
+@property (nonatomic, strong) MultiPictureUploader *picturesUploader;
+
+@property (nonatomic, assign) BOOL statusBarHidden; // 需要控制状态栏隐藏和显示，在PhotosBrowserVC里面难以实现
 
 @end
 
@@ -29,9 +34,14 @@ UITableViewDelegate
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    self.picturesUploader = [[MultiPictureUploader alloc] init];
     [self initUIRelated];
     
     [self initDataSourceArray];
+}
+
+- (BOOL)prefersStatusBarHidden {
+    return _statusBarHidden;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -96,6 +106,8 @@ UITableViewDelegate
     cell.accessoryType = UITableViewCellAccessoryNone;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
+    cell.delegate = self;
+    cell.vc = self;
     [cell setupWithModel:[self.feedbackModelsArray objectAtIndex:indexPath.row]];
     
     return cell;
@@ -107,6 +119,21 @@ UITableViewDelegate
     
 }
 
+#pragma mark - FeedbackCellDelegate
+
+- (void)setStatusBarHidden:(BOOL)statusBarHidden {
+    _statusBarHidden = statusBarHidden;
+    
+    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
+        [self prefersStatusBarHidden];
+        [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
+    }
+}
+
+- (void)needReloadData {
+    [self.tableView reloadData];
+}
+
 #pragma mark - IBActions
 
 - (void)didClickOnLeftNavButtonAction:(id)sender {
@@ -114,7 +141,26 @@ UITableViewDelegate
 }
 
 - (void)didClickOnRightNavButtonAction:(id)sender {
-    
+//    NSMutableArray *imagesToUpload = [NSMutableArray array];
+//    
+//    for (int i = 0; i < self.feedbackModelsArray.count; i++) {
+//        FeedbackModel *feedback = [self.feedbackModelsArray objectAtIndex:i];
+//        for (int j = 0; j < feedback.imagesArray.count; j++) {
+//            QQingImageView *imageView = [feedback.imagesArray objectAtIndex:j];
+//            [imagesToUpload addObject:imageView.imageView.image];
+//        }
+//    }
+//    
+//    [Utilities showLoadingView];
+//    [self.picturesUploader uploadMultiImages:imagesToUpload
+//                imageUploadType:kImageUploadType_PhotoUploadType
+//                        success:^(NSArray *array) {
+//                            [Utilities hideLoadingView];
+//                            NSLog (@"array: %@", array);
+//                        } fail:^(NSError *error) {
+//                            [Utilities hideLoadingView];
+//                            NSLog (@"error: %@", error);
+//                        }];
 }
 
 @end
