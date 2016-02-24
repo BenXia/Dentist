@@ -20,6 +20,8 @@ FeedbackCellDelegate
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *feedbackModelsArray;
 
+@property (nonatomic, strong) MultiPictureUploader *picturesUploader;
+
 @property (nonatomic, assign) BOOL statusBarHidden; // 需要控制状态栏隐藏和显示，在PhotosBrowserVC里面难以实现
 
 @end
@@ -32,6 +34,7 @@ FeedbackCellDelegate
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    self.picturesUploader = [[MultiPictureUploader alloc] init];
     [self initUIRelated];
     
     [self initDataSourceArray];
@@ -138,7 +141,26 @@ FeedbackCellDelegate
 }
 
 - (void)didClickOnRightNavButtonAction:(id)sender {
-    
+//    NSMutableArray *imagesToUpload = [NSMutableArray array];
+//    
+//    for (int i = 0; i < self.feedbackModelsArray.count; i++) {
+//        FeedbackModel *feedback = [self.feedbackModelsArray objectAtIndex:i];
+//        for (int j = 0; j < feedback.imagesArray.count; j++) {
+//            QQingImageView *imageView = [feedback.imagesArray objectAtIndex:j];
+//            [imagesToUpload addObject:imageView.imageView.image];
+//        }
+//    }
+//    
+//    [Utilities showLoadingView];
+//    [self.picturesUploader uploadMultiImages:imagesToUpload
+//                imageUploadType:kImageUploadType_PhotoUploadType
+//                        success:^(NSArray *array) {
+//                            [Utilities hideLoadingView];
+//                            NSLog (@"array: %@", array);
+//                        } fail:^(NSError *error) {
+//                            [Utilities hideLoadingView];
+//                            NSLog (@"error: %@", error);
+//                        }];
 }
 
 @end
