@@ -298,7 +298,7 @@ UIScrollViewDelegate>
     }
     
     //猜你喜欢
-    {
+    if (self.dc.productDetail.likes.count > 0) {
         [self refreshGuessYouLikeView];
         [self addScrollSubview:self.guessYouLikeView];
         self.scrollContentHeight += kHeightOfSectionHeader;
@@ -379,7 +379,9 @@ UIScrollViewDelegate>
 -(void)refreshGroupDiscountView{
     GroupItem* firstGroup = [self.dc.productDetail.groups firstObject];
     NSArray* groupProductViewArray = @[self.groupSecondProductView,self.groupThirdProductView];
-    
+    for (UIView* view in groupProductViewArray) {
+        view.tag = -1;
+    }
     double totalPrice = self.dc.productDetail.price;
     for (NSInteger i=0; i < firstGroup.items.count; ++i) {
         GroupContentItem* item  = [firstGroup.items objectAtIndex:i];
@@ -431,6 +433,17 @@ UIScrollViewDelegate>
     [self.appraiseHeaderView addGestureRecognizer:tap];
     self.appraiseHeaderViewHeightConstraint.constant = 2*self.appraiseTotalLabel.y + self.appraiseTotalLabel.height;
     
+    //好评率
+    NSString* goodPercentStr = [NSString stringWithFormat:@"%.0f%%",self.dc.productDetail.product_score_good];
+    NSString* totalNumStr = [NSString stringWithFormat:@"%d人",self.dc.productDetail.product_score];
+    NSString* appraiseTotalStr = [NSString stringWithFormat:@"好评率%@ %@评价",goodPercentStr,totalNumStr];
+    NSMutableAttributedString* attStr = [[NSMutableAttributedString alloc] initWithString:appraiseTotalStr];
+    NSRange goodRange = [appraiseTotalStr rangeOfString:goodPercentStr];
+    NSRange numRange = [appraiseTotalStr rangeOfString:totalNumStr];
+    [attStr addAttributes:@{NSForegroundColorAttributeName:[UIColor redColor]} range:goodRange];
+    [attStr addAttributes:@{NSForegroundColorAttributeName:[UIColor gray006Color]} range:numRange];
+    self.appraiseTotalLabel.attributedText = attStr;
+    
     //添加Cell
     NSArray* scoreArray = self.dc.productDetail.scores;
     CGFloat currentY = 0;
@@ -463,14 +476,15 @@ UIScrollViewDelegate>
     [self.guessYouLikeLabel ajustHeightWithLimitWidth:kScreenWidth];
     self.guessYouLikeHeaderViewHeightConstraint.constant = 2*self.guessYouLikeLabel.y + self.guessYouLikeLabel.height;
     
-    //TODO-GUO:测试数据
-    int kMaxNumOfGuessYouLike = 4;
+    NSInteger kMaxNumOfGuessYouLike = 4;
     CGFloat itemWidth = (kScreenWidth -(kMaxNumOfGuessYouLike+1)*PIXEL_12) / kMaxNumOfGuessYouLike;
     CGFloat itemHeight = itemWidth + 45;
-    for(int i = 0 ; i < kMaxNumOfGuessYouLike ; ++ i){
+    for(int i = 0 ; i < self.dc.productDetail.likes.count && i < kMaxNumOfGuessYouLike; ++ i){
+        LikeProductItem* item = [self.dc.productDetail.likes objectAtIndex:i];
         GuessYouLikeProductView* itemView = [[GuessYouLikeProductView alloc] initWithFrame:CGRectMake(PIXEL_12*(i+1)+itemWidth*i, PIXEL_12, itemWidth, itemHeight)];
-        itemView.titleLabel.text = @"我还好急急急急急急急急急";
-        itemView.priceLabel.text = [NSString stringWithFormat:@"%@%.2f",kYuanSymbolStr,1999.5];
+        itemView.titleLabel.text = item.title;
+        [itemView.imageView sd_setImageWithURL:[NSURL URLWithString:item.img]];
+        itemView.priceLabel.text = [NSString stringWithFormat:@"%@%.2f",kYuanSymbolStr,item.price];
         itemView.delegate = self;
         itemView.tag = i;
         [self.guessYouLikeContentView addSubview:itemView];
@@ -824,7 +838,7 @@ UIScrollViewDelegate>
     if (view != self.groupFirstProductView) {
         NSString* productId = nil;
         GroupItem* group = [self.dc.productDetail.groups firstObject];
-        if(group.items.count > view.tag){
+        if(view.tag >= 0 && group.items.count > view.tag){
             GroupContentItem* item = [group.items objectAtIndex:view.tag];
             productId = item.iid;
         }
@@ -838,18 +852,9 @@ UIScrollViewDelegate>
 #pragma mark - GuessYouLikeProductViewDelegate
 
 -(void)guessYouLikeProductView:(GuessYouLikeProductView *)view didClickProduct:(id)model{
-    
-    //TODO-GUO:获取ID
-    NSArray* guessYouLikeArray = [NSArray new];
-    NSString* productId = nil;
-    if (guessYouLikeArray.count > view.tag) {
-        id item = [guessYouLikeArray objectAtIndex:view.tag];
-    }
-    
-    if (productId) {
-        ProductDetailVC* detailVC = [[ProductDetailVC alloc] initWithProductId:productId];
-        [self.navigationController pushViewController:detailVC animated:YES];
-    }
+    LikeProductItem* item = [self.dc.productDetail.likes objectAtIndex:view.tag];
+    ProductDetailVC* detailVC = [[ProductDetailVC alloc] initWithProductId:item.iid];
+    [self.navigationController pushViewController:detailVC animated:YES];
 }
 
 #pragma mark - EditNumberViewDelegate

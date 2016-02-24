@@ -20,7 +20,12 @@
 }
 
 -(NSDictionary*)requestHTTPBody{
-    return @{@"iid":self.productIds};
+    if (self.productIds.count == 1) {
+        return @{@"iid":self.productIds.firstObject};
+    }else if(self.productIds.count > 1){
+        return @{@"iid[]":self.productIds};
+    }
+    return nil;
 }
 
 - (BOOL)parseContent:(NSString *)content {
@@ -36,6 +41,11 @@
         NSNumber* code = [resultDict objectForKey:@"code"];
         self.code = code.intValue;
         self.message = [resultDict objectForKey:@"msg"];
+        
+        if (self.code != 200) {
+            NSLog(@"删除收藏响应码:%d 消息:%@",self.code,self.message);
+        }
+        
         result = YES;
     }
     
