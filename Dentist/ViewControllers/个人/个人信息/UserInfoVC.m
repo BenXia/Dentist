@@ -10,7 +10,6 @@
 #import "UserInfoVC.h"
 #import "UserInfoDC.h"
 #import "UIImageView+WebCache.h"
-#import "ChangeUserHeadImageDC.h"
 #import "SetNickVC.h"
 #import "AddressListVC.h"
 
@@ -23,7 +22,6 @@ UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (nonatomic, strong) UserInfoDC *userInfoRequest;
-@property (strong, nonatomic) ChangeUserHeadImageDC *changeUserHeadRequest;
 @property (strong, nonatomic) NSMutableArray *modelArray;
 @property (strong, nonatomic) UIImageView *headImageView;
 @property (strong, nonatomic) UIImage *uploadImage;
@@ -40,9 +38,6 @@ UINavigationControllerDelegate>
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"个人信息";
-//    self.userInfoRequest = [[UserInfoDC alloc] initWithDelegate:self];
-//    [self.userInfoRequest requestWithArgs:nil];
-    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)didReceiveMemoryWarning {
@@ -201,8 +196,6 @@ UINavigationControllerDelegate>
 - (void)loadingData:(PPDataController *)controller failedWithError:(NSError *)error {
     if (controller == self.userInfoRequest) {
         [Utilities showToastWithText:[NSString stringWithFormat:@"获取个人信息失败:%@", error]];
-    } else if (controller == self.changeUserHeadRequest) {
-        [Utilities showToastWithText:[NSString stringWithFormat:@"设置头像失败:%@", error]];
     }
 }
 
@@ -211,10 +204,6 @@ UINavigationControllerDelegate>
         [[GCDQueue mainQueue] queueBlock:^{
             [self.tableView reloadData];
         }];
-    }else if (controller == self.changeUserHeadRequest) {
-        if (self.changeUserHeadRequest.responseCode == 200) {
-            [Utilities showToastWithText:[NSString stringWithFormat:@"头像设置成功"]];
-        }
     }
 }
 

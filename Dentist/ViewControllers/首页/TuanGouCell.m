@@ -26,11 +26,14 @@
 
 - (void)awakeFromNib {
     self.timeLabel.text = @"还剩99:59:59";
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onProductImage:)];
-    [self.firstImageView addGestureRecognizer:tap];
-    [self.secondImageView addGestureRecognizer:tap];
-    [self.thirdImageView addGestureRecognizer:tap];
-    [self.fourthImageView addGestureRecognizer:tap];
+    UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onProductImage:)];
+    UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onProductImage:)];
+    UITapGestureRecognizer *tap3 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onProductImage:)];
+    UITapGestureRecognizer *tap4 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onProductImage:)];
+    [self.firstImageView addGestureRecognizer:tap1];
+    [self.secondImageView addGestureRecognizer:tap2];
+    [self.thirdImageView addGestureRecognizer:tap3];
+    [self.fourthImageView addGestureRecognizer:tap4];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

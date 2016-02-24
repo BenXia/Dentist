@@ -24,10 +24,12 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onProductImage:)];
-    [self.firstItemImageView addGestureRecognizer:tap];
-    [self.secondItemImageView addGestureRecognizer:tap];
-    [self.thirdItemImageView addGestureRecognizer:tap];
+    UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onProductImage:)];
+    UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onProductImage:)];
+    UITapGestureRecognizer *tap3 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onProductImage:)];
+    [self.firstItemImageView addGestureRecognizer:tap1];
+    [self.secondItemImageView addGestureRecognizer:tap2];
+    [self.thirdItemImageView addGestureRecognizer:tap3];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

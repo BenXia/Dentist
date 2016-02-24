@@ -9,7 +9,7 @@
 #import "PPDataController.h"
 
 @interface DeleteAddressDC : PPDataController
-@property (nonatomic, assign) int aid; //修改地址时候传
+@property (nonatomic, strong) NSString *aid; //修改地址时候传
 
 //output
 @property (nonatomic, assign) int responseCode;

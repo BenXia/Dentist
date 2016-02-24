@@ -33,14 +33,16 @@
     if (!error || [resultdict isKindOfClass:[NSDictionary class]]) {
         NSArray *addressArray = [resultdict objectForKey:@"address"];
         for (int i = 0; i<addressArray.count;i++) {
+            NSDictionary *addressDict = addressArray[i];
             Address *addressModel = [[Address alloc] init];
-            addressModel.province = @"上海";
-            addressModel.city = @"上海";
-            addressModel.area = @"张江";
-            addressModel.detailAddress = @"亮秀路112号浦东软件园";
-            addressModel.recipientName = @"王涛";
-            addressModel.recipientPhoneNum = @"15221323805";
-            addressModel.postCode = @"123456";
+            addressModel.province = [addressDict objectForKey:@"province_name"];
+            addressModel.city = [addressDict objectForKey:@"city_name"];
+            addressModel.area = [addressDict objectForKey:@"area_name"];
+            addressModel.detailAddress = [addressDict objectForKey:@"address"];
+            addressModel.recipientName = [addressDict objectForKey:@"name"];
+            addressModel.recipientPhoneNum = [addressDict objectForKey:@"mobile"];
+            addressModel.postCode = [addressDict objectForKey:@"zipcode"];
+            addressModel.ID = [addressDict objectForKey:@"aid"];
             if (i == 0) {
                 addressModel.isDefault = YES;
             }

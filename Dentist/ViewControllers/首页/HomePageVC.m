@@ -344,7 +344,7 @@ saleActivityCellDelegate>
     } else if (indexPath.section == 2) {
         return 320;
     } else if (indexPath.section == 3) {
-        return 350;
+        return 400;
     } else {
         return 300;
     }

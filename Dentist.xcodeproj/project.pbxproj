@@ -326,6 +326,7 @@
 		932839C91C637EFF004C21CD /* 待评价@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 932839C31C637EFF004C21CD /* 待评价@3x.png */; };
 		932839CA1C637EFF004C21CD /* 已完成@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 932839C41C637EFF004C21CD /* 已完成@2x.png */; };
 		932839CB1C637EFF004C21CD /* 已完成@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 932839C51C637EFF004C21CD /* 已完成@3x.png */; };
+		9353628B1C7DDDC4004F9BC5 /* GetAddressRegionDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9353628A1C7DDDC4004F9BC5 /* GetAddressRegionDC.m */; };
 		93624C1F1C44170100262B65 /* app_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 93624C131C44170100262B65 /* app_logo.png */; };
 		93624C201C44170100262B65 /* btn_clinical_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 93624C141C44170100262B65 /* btn_clinical_default.png */; };
 		93624C211C44170100262B65 /* btn_clinical_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 93624C151C44170100262B65 /* btn_clinical_pressed.png */; };
@@ -367,7 +368,6 @@
 		939345681C7B54B20054E2EC /* SettingVCViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 939345661C7B54B20054E2EC /* SettingVCViewController.xib */; };
 		9393456C1C7B5CEE0054E2EC /* AboutUsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9393456A1C7B5CEE0054E2EC /* AboutUsVC.m */; };
 		9393456D1C7B5CEE0054E2EC /* AboutUsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9393456B1C7B5CEE0054E2EC /* AboutUsVC.xib */; };
-		939715441C761BE4007582C4 /* ChangeUserHeadImageDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 939715431C761BE4007582C4 /* ChangeUserHeadImageDC.m */; };
 		93A1F5D01C6281B800CFEEC4 /* good_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 93A1F5CF1C6281B800CFEEC4 /* good_logo.png */; };
 		93A1F5DA1C6281D900CFEEC4 /* SaleActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A1F5D21C6281D900CFEEC4 /* SaleActivityCell.m */; };
 		93A1F5DB1C6281D900CFEEC4 /* SaleActivityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93A1F5D31C6281D900CFEEC4 /* SaleActivityCell.xib */; };
@@ -869,6 +869,8 @@
 		932839C31C637EFF004C21CD /* 待评价@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "待评价@3x.png"; sourceTree = "<group>"; };
 		932839C41C637EFF004C21CD /* 已完成@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "已完成@2x.png"; sourceTree = "<group>"; };
 		932839C51C637EFF004C21CD /* 已完成@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "已完成@3x.png"; sourceTree = "<group>"; };
+		935362891C7DDDC4004F9BC5 /* GetAddressRegionDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetAddressRegionDC.h; sourceTree = "<group>"; };
+		9353628A1C7DDDC4004F9BC5 /* GetAddressRegionDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetAddressRegionDC.m; sourceTree = "<group>"; };
 		93624C131C44170100262B65 /* app_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_logo.png; sourceTree = "<group>"; };
 		93624C141C44170100262B65 /* btn_clinical_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_clinical_default.png; sourceTree = "<group>"; };
 		93624C151C44170100262B65 /* btn_clinical_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_clinical_pressed.png; sourceTree = "<group>"; };
@@ -923,8 +925,6 @@
 		939345691C7B5CEE0054E2EC /* AboutUsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUsVC.h; sourceTree = "<group>"; };
 		9393456A1C7B5CEE0054E2EC /* AboutUsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUsVC.m; sourceTree = "<group>"; };
 		9393456B1C7B5CEE0054E2EC /* AboutUsVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutUsVC.xib; sourceTree = "<group>"; };
-		939715421C761BE4007582C4 /* ChangeUserHeadImageDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeUserHeadImageDC.h; sourceTree = "<group>"; };
-		939715431C761BE4007582C4 /* ChangeUserHeadImageDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeUserHeadImageDC.m; sourceTree = "<group>"; };
 		93A1F5CF1C6281B800CFEEC4 /* good_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = good_logo.png; sourceTree = "<group>"; };
 		93A1F5D11C6281D900CFEEC4 /* SaleActivityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaleActivityCell.h; sourceTree = "<group>"; };
 		93A1F5D21C6281D900CFEEC4 /* SaleActivityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaleActivityCell.m; sourceTree = "<group>"; };
@@ -1923,6 +1923,8 @@
 				930C349A1C7A0BC1008823F9 /* UPdataAddressDC.m */,
 				9393455A1C7B3CB30054E2EC /* DeleteAddressDC.h */,
 				9393455B1C7B3CB30054E2EC /* DeleteAddressDC.m */,
+				935362891C7DDDC4004F9BC5 /* GetAddressRegionDC.h */,
+				9353628A1C7DDDC4004F9BC5 /* GetAddressRegionDC.m */,
 			);
 			path = "地址管理";
 			sourceTree = "<group>";
@@ -2089,8 +2091,6 @@
 			children = (
 				93899B551C74C7470065B819 /* UserInfoDC.h */,
 				93899B561C74C7470065B819 /* UserInfoDC.m */,
-				939715421C761BE4007582C4 /* ChangeUserHeadImageDC.h */,
-				939715431C761BE4007582C4 /* ChangeUserHeadImageDC.m */,
 				930C34481C795FBA008823F9 /* SetNickDC.h */,
 				930C34491C795FBA008823F9 /* SetNickDC.m */,
 			);
@@ -2671,6 +2671,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9353628B1C7DDDC4004F9BC5 /* GetAddressRegionDC.m in Sources */,
 				888811D21C7B674700F6672C /* UILabel+Price.m in Sources */,
 				93DEA8711C4BC552008211F7 /* HomePageVC.m in Sources */,
 				33F070CE1C42BE1E00DAC58F /* SendSmsDataController.m in Sources */,
@@ -2701,7 +2702,6 @@
 				93A1F5DE1C6281D900CFEEC4 /* TuanGouCell.m in Sources */,
 				3360B3EE1C7C963F00C60AC0 /* FeedbackCell.m in Sources */,
 				33F06F981C42477300DAC58F /* main.m in Sources */,
-				939715441C761BE4007582C4 /* ChangeUserHeadImageDC.m in Sources */,
 				B583396E1C79BE8E00F9EBE2 /* OrderDetailModel.m in Sources */,
 				930C34A61C7A0BEA008823F9 /* AddressListVC.m in Sources */,
 				33DD6BB51C6103CA00CE6B31 /* IQKeyboardReturnKeyHandler.m in Sources */,
