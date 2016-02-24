@@ -82,6 +82,15 @@
     self.selectButton.selected = NO;
 }
 
+- (void)hideDeleteAndFinishButton {
+    self.subContentView1.hidden = YES;
+    self.subContentView2.hidden = YES;
+}
+
+- (void)showDeleteAndFinishButton {
+    self.subContentView1.hidden = NO;
+    self.subContentView2.hidden = YES;
+}
 #pragma mark - IBActions
 
 - (IBAction)didClickSelectButtonAction:(id)sender {
@@ -93,11 +102,11 @@
 
 - (IBAction)didClickEditMinusButtonAction:(id)sender {
     int currentCount = [self.editCountTextField.text intValue];
-    if (currentCount <= 1) {
-        currentCount = 0;
+    if (currentCount == 1) {
         self.editMinusButton.enabled = NO;
     } else {
         currentCount--;
+        self.editPlusButton.enabled = YES;
     }
     
     self.editCountTextField.text = [NSString stringWithFormat:@"%d", currentCount];
@@ -111,8 +120,12 @@
 
 - (IBAction)didClickEditPlusButtonAction:(id)sender {
     int currentCount = [self.editCountTextField.text intValue];
-    currentCount++;
-    self.editMinusButton.enabled = YES;
+    if (self.shoppingCartModel.shoppingCartProductSurplusNumber.intValue <= currentCount) {
+        self.editPlusButton.enabled = NO;
+    } else {
+        currentCount++;
+        self.editMinusButton.enabled = YES;
+    }
     
     self.editCountTextField.text = [NSString stringWithFormat:@"%d", currentCount];
     self.countInfoLabel.text = [NSString stringWithFormat:@"x %d", currentCount];

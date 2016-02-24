@@ -12,8 +12,7 @@
 #import "OrderListTableViewCell.h"
 #import "ProductListModel.h"
 #import "AllOrderListVM.h"
-
-
+#import "OrderDetailDC.h"
 
 #define kTableViewCellHeight        95
 #define kSectionHeaderViewHeight    40
@@ -24,7 +23,7 @@
 #define kPayButtonHeight            30
 #define kInsert                     10
 
-@interface OrderDetailVC ()
+@interface OrderDetailVC ()<PPDataControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (strong, nonatomic) IBOutlet UIView  *tableHeaderView;
@@ -49,64 +48,37 @@
 
 @implementation OrderDetailVC
 
+- (id)initWithOid:(NSString *)oid {
+    if (self = [super init]) {
+        self.orderDetailVM.orderDetailDC.oid = oid;
+    }
+    return self;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     [self initUI];
+    [self initData];
     
-    ProductListModel *model = [ProductListModel new];
-    model.orderID = @"1111";
-    model.orderShowNumber = @"1565465489469468";
-    model.statusCode = @"0";
-    model.productExpressPrice = @"12";
-    model.productListGoodsArray = [NSMutableArray new];
-    
-    
-    ProductListGoodsModel *goodmodel = [ProductListGoodsModel new];
-    goodmodel.productTitle = @"松开就可以刷新开开就开就可以刷新可以刷新就可以刷新了";
-    goodmodel.productColor = @"绿色";
-    goodmodel.productModel = @"w125 jhs455";
-    goodmodel.productPrice = @"200";
-    goodmodel.productNumber = @"2";
-    goodmodel.productImageUrl = @"http://image.baidu.com/search/detail?ct=503316480&z=0&ipn=d&word=壁纸&pn=7&spn=0&di=153726435720&pi=&rn=1&tn=baiduimagedetail&istype=&ie=utf-8&oe=utf-8&in=3354&cl=2&lm=-1&st=&cs=545228853%2C2699540663&os=3179416101%2C3232832399&simid=4143495518%2C553170011&adpicid=0&ln=1000&fmq=1378374347070_R&ic=0&s=0&se=&sme=&tab=&face=&ist=&jit=&statnum=wallpaper&cg=&bdtype=10&objurl=http%3A%2F%2Fpic5.nipic.com%2F20100121%2F4183722_103138000079_2.jpg&fromurl=ippr_z2C%24qAzdH3FAzdH3Fooo_z%26e3Bgtrtv_z%26e3Bv54AzdH3Ffi5oAzdH3FdAzdH3Fn9AzdH3F9kbwv9mnvk0w8ja8_z%26e3Bip4s&gsm=200001e";
-    
-    
-    
-    ProductListGoodsModel *goodmodel1 = [ProductListGoodsModel new];
-    goodmodel1.productTitle = @"松开就可以刷新开开就开就可以刷新可以刷新就可以刷新了";
-    goodmodel1.productColor = @"绿色";
-    goodmodel1.productModel = @"w125 jhs455";
-    goodmodel1.productPrice = @"300";
-    goodmodel1.productNumber = @"3";
-    goodmodel1.productImageUrl = @"http://image.baidu.com/search/detail?ct=503316480&z=0&ipn=d&word=壁纸&pn=7&spn=0&di=153726435720&pi=&rn=1&tn=baiduimagedetail&istype=&ie=utf-8&oe=utf-8&in=3354&cl=2&lm=-1&st=&cs=545228853%2C2699540663&os=3179416101%2C3232832399&simid=4143495518%2C553170011&adpicid=0&ln=1000&fmq=1378374347070_R&ic=0&s=0&se=&sme=&tab=&face=&ist=&jit=&statnum=wallpaper&cg=&bdtype=10&objurl=http%3A%2F%2Fpic5.nipic.com%2F20100121%2F4183722_103138000079_2.jpg&fromurl=ippr_z2C%24qAzdH3FAzdH3Fooo_z%26e3Bgtrtv_z%26e3Bv54AzdH3Ffi5oAzdH3FdAzdH3Fn9AzdH3F9kbwv9mnvk0w8ja8_z%26e3Bip4s&gsm=200001e";
-    
-    [model.productListGoodsArray addObject:goodmodel];
-    [model.productListGoodsArray addObject:goodmodel1];
+}
 
+- (void)initUI {
+    self.title = @"订单详情";
+    self.view.backgroundColor = [UIColor backGroundGrayColor];
+    self.receiverProductButton.layer.cornerRadius = self.receiverProductButton.frame.size.height/2;
+    [self.receiverProductButton.layer masksToBounds];
+}
 
-    
-    OrderDetailModel *orderDetailModel  = [OrderDetailModel new];
-    orderDetailModel.orderStatus = @"1";
-    orderDetailModel.orderShowNumber = @"1254564989879894";
-    orderDetailModel.orderExpressCompany = @"圆通";
-    orderDetailModel.orderPickUpCode = @"123564";
-    orderDetailModel.orderExpressNumber = @"123 568 565 5698 123";
-    orderDetailModel.orderReceiverName = @"小时候";
-    orderDetailModel.orderReceiverAddress = @"上海市浦东新区百合去23栋川江花园445号";
-    orderDetailModel.orderReceiverPhone = @"18651893427";
-    orderDetailModel.orderPayTime = @"2016-2-10 15:20:36";
-    orderDetailModel.orderProduceTime = @"2016-2-10 15:10:36";
-    orderDetailModel.orderProductListModel = model;
+#pragma mark - PPDataControllerDelegate
 
-    
-    
-    self.orderDetailVM.orderDetailModel = orderDetailModel;
-    
-    
-    
-    
-    
-    switch ([self.orderDetailVM.orderDetailModel.orderStatus intValue]) {
+- (void)initData {
+    self.orderDetailVM.orderDetailDC = [[OrderDetailDC alloc] initWithDelegate:self];
+    [self.orderDetailVM.orderDetailDC requestWithArgs:nil];
+}
+
+//数据请求成功回调
+- (void)loadingDataFinished:(PPDataController *)controller{
+    switch ([self.orderDetailVM.orderDetailDC.orderDetailModel.orderStatus intValue]) {
         case 0: {
             self.orderStateLabel.text = @"待支付";
             [self.receiverProductButton setTitle:@"立即支付" forState:UIControlStateNormal];
@@ -133,7 +105,7 @@
             self.tableView.tableFooterView = self.tableViewTimeView;
             self.tableViewBottomContrainst.constant = 0;
             self.bottomView.hidden = YES;
-
+            
         }
             break;
         case 10: {
@@ -143,38 +115,36 @@
             self.bottomView.hidden = YES;
         }
             break;
-
+            
         default:
             break;
     }
     
     self.tableView.tableHeaderView = self.tableHeaderView;
     
-    self.orderShowNumberLabel.text = self.orderDetailVM.orderDetailModel.orderShowNumber;
-    if (self.orderDetailVM.orderDetailModel.orderExpressCompany.length > 0) {
-        self.expressCompanyLabel.text = self.orderDetailVM.orderDetailModel.orderExpressCompany;
+    self.orderShowNumberLabel.text = self.orderDetailVM.orderDetailDC.orderDetailModel.orderShowNumber;
+    if (self.orderDetailVM.orderDetailDC.orderDetailModel.orderExpressCompany.length > 0) {
+        self.expressCompanyLabel.text = self.orderDetailVM.orderDetailDC.orderDetailModel.orderExpressCompany;
     } else {
         self.expressCompanyLabel.text = @"买家自提";
     }
     
-    self.receiverNameLabel.text = self.orderDetailVM.orderDetailModel.orderReceiverName;
+    self.receiverNameLabel.text = self.orderDetailVM.orderDetailDC.orderDetailModel.orderReceiverName;
     
-    self.receiverPhoneLabel.text = [NSString stringWithFormat:@"电话:%@",self.orderDetailVM.orderDetailModel.orderReceiverPhone];
+    self.receiverPhoneLabel.text = [NSString stringWithFormat:@"电话:%@",self.orderDetailVM.orderDetailDC.orderDetailModel.orderReceiverPhone];
     
-    self.receiverAddressLabel.text = self.orderDetailVM.orderDetailModel.orderReceiverAddress;
+    self.receiverAddressLabel.text = self.orderDetailVM.orderDetailDC.orderDetailModel.orderReceiverAddress;
     
-    self.purchaseTimeLabel.text = self.orderDetailVM.orderDetailModel.orderPayTime;
+    self.purchaseTimeLabel.text = self.orderDetailVM.orderDetailDC.orderDetailModel.orderPayTime;
     
-    self.makeSureOrderTimeLabel.text = self.orderDetailVM.orderDetailModel.orderProduceTime;
+    self.makeSureOrderTimeLabel.text = self.orderDetailVM.orderDetailDC.orderDetailModel.orderProduceTime;
     
     [self.tableView reloadData];
 }
 
-- (void)initUI {
-    self.title = @"订单详情";
-    self.view.backgroundColor = [UIColor backGroundGrayColor];
-    self.receiverProductButton.layer.cornerRadius = self.receiverProductButton.frame.size.height/2;
-    [self.receiverProductButton.layer masksToBounds];
+//数据请求失败回调
+- (void)loadingData:(PPDataController *)controller failedWithError:(NSError *)error{
+    [Utilities showToastWithText:@"订单详情获取失败"];
 }
 
 #pragma mark - UITableViewDataSource & UITableViewDelegate
@@ -184,7 +154,7 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    return [self createSectionHeaderViewWithProductListModel:self.orderDetailVM.orderDetailModel.orderProductListModel];
+    return [self createSectionHeaderViewWithProductListModel:self.orderDetailVM.orderDetailDC.orderDetailModel.orderProductListModel];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -192,7 +162,7 @@
 }
 
 - (nullable UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    return [self createSectionFooterViewWithProductListModel:self.orderDetailVM.orderDetailModel.orderProductListModel withSection:section];
+    return [self createSectionFooterViewWithProductListModel:self.orderDetailVM.orderDetailDC.orderDetailModel.orderProductListModel withSection:section];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
@@ -200,7 +170,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.orderDetailVM.orderDetailModel.orderProductListModel.productListGoodsArray.count;
+    return self.orderDetailVM.orderDetailDC.orderDetailModel.orderProductListModel.productListGoodsArray.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -214,7 +184,7 @@
         cell = [[[NSBundle mainBundle] loadNibNamed:@"OrderListTableViewCell" owner:nil options:nil] objectAtIndex:0];
     }
     
-    ProductListModel *model = self.orderDetailVM.orderDetailModel.orderProductListModel;
+    ProductListModel *model = self.orderDetailVM.orderDetailDC.orderDetailModel.orderProductListModel;
     [cell setModelWithProductListGoodsModel:[model.productListGoodsArray objectAtIndex:indexPath.row]];
     return cell;
 }

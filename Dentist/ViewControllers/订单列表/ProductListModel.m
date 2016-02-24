@@ -10,4 +10,11 @@
 
 @implementation ProductListModel
 
+- (id)init {
+    if (self = [super init]) {
+        self.productListGoodsArray = [NSMutableArray new];
+    }
+    return self;
+}
+
 @end
