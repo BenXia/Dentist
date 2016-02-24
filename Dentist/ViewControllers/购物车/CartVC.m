@@ -290,20 +290,20 @@ static NSString* const kCellReuseIdentifier = @"ProductBriefInfoCell";
 #pragma mark - IBActions
 
 - (void)didClickOnEditNavButtonAction:(id)sender {
-    if (self.isEditType) {
-        [self setNavRightItemWithName:@"编辑" target:self action:@selector(didClickOnEditNavButtonAction:)];
-        [self.shoppingCardVM.shoppingCartProductCellEditArray removeAllObjects];
-    } else {
-        [self setNavRightItemWithName:@"确定" target:self action:@selector(didClickOnEditNavButtonAction:)];
-        [self.shoppingCardVM.shoppingCartProductCellEditArray addObjectsFromArray:self.shoppingCardVM.shoppingCartProductsArray];
-    }
-    self.isEditType = !self.isEditType;
-    [self.tableView reloadData];
+//    if (self.isEditType) {
+//        [self setNavRightItemWithName:@"编辑" target:self action:@selector(didClickOnEditNavButtonAction:)];
+//        [self.shoppingCardVM.shoppingCartProductCellEditArray removeAllObjects];
+//    } else {
+//        [self setNavRightItemWithName:@"确定" target:self action:@selector(didClickOnEditNavButtonAction:)];
+//        [self.shoppingCardVM.shoppingCartProductCellEditArray addObjectsFromArray:self.shoppingCardVM.shoppingCartProductsArray];
+//    }
+//    self.isEditType = !self.isEditType;
+//    [self.tableView reloadData];
     
-//    FeedbackVC *vc = [[FeedbackVC alloc] init];
-////    PayFailedVC *vc = [[PayFailedVC alloc] init];
-//    vc.hidesBottomBarWhenPushed = YES;
-//    [self.navigationController pushViewController:vc animated:YES];
+    FeedbackVC *vc = [[FeedbackVC alloc] init];
+//    PayFailedVC *vc = [[PayFailedVC alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (IBAction)didClickSelectAllButtonAction:(id)sender {

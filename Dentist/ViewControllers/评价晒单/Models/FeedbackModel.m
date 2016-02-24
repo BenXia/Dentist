@@ -10,4 +10,11 @@
 
 @implementation FeedbackModel
 
+- (id)init {
+    if (self = [super init]) {
+        self.imagesArray = [NSMutableArray array];
+    }
+    return self;
+}
+
 @end

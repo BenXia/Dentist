@@ -13,11 +13,14 @@ static NSString* const kCellReuseIdentifier = @"FeedbackCell";
 
 @interface FeedbackVC () <
 UITableViewDataSource,
-UITableViewDelegate
+UITableViewDelegate,
+FeedbackCellDelegate
 >
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *feedbackModelsArray;
+
+@property (nonatomic, assign) BOOL statusBarHidden; // 需要控制状态栏隐藏和显示，在PhotosBrowserVC里面难以实现
 
 @end
 
@@ -32,6 +35,10 @@ UITableViewDelegate
     [self initUIRelated];
     
     [self initDataSourceArray];
+}
+
+- (BOOL)prefersStatusBarHidden {
+    return _statusBarHidden;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -96,6 +103,8 @@ UITableViewDelegate
     cell.accessoryType = UITableViewCellAccessoryNone;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
+    cell.delegate = self;
+    cell.vc = self;
     [cell setupWithModel:[self.feedbackModelsArray objectAtIndex:indexPath.row]];
     
     return cell;
@@ -105,6 +114,21 @@ UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+}
+
+#pragma mark - FeedbackCellDelegate
+
+- (void)setStatusBarHidden:(BOOL)statusBarHidden {
+    _statusBarHidden = statusBarHidden;
+    
+    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
+        [self prefersStatusBarHidden];
+        [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
+    }
+}
+
+- (void)needReloadData {
+    [self.tableView reloadData];
 }
 
 #pragma mark - IBActions

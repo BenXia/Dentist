@@ -9,12 +9,25 @@
 #import <UIKit/UIKit.h>
 #import "FeedbackModel.h"
 
+@protocol FeedbackCellDelegate;
+
 @interface FeedbackCell : UITableViewCell
 
+@property (nonatomic, weak) id<FeedbackCellDelegate> delegate;
+
+@property (nonatomic, weak) UIViewController *vc;
 @property (nonatomic, strong) FeedbackModel *feedbackModel;
 
 - (void)setupWithModel:(FeedbackModel *)feedbackModel;
 
 + (CGFloat)cellHeightWithModel:(FeedbackModel *)feedbackModel;
+
+@end
+
+@protocol FeedbackCellDelegate <NSObject>
+
+@optional
+- (void)setStatusBarHidden:(BOOL)statusBarHidden;
+- (void)needReloadData;
 
 @end
