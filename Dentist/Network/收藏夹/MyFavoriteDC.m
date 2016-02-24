@@ -13,10 +13,11 @@ static const int kPageSize = 10;
 @implementation MyFavoriteDC
 
 - (NSDictionary *)requestURLArgs {
+    NSString* token = [UserCache sharedUserCache].token ? [UserCache sharedUserCache].token : @"";
     if (self.next_iid) {
-        return @{@"method":@"item.favorite_list",@"pagesize":@(kPageSize),@"next_iid":self.next_iid};
+        return @{@"method":@"item.favorite_list",@"pagesize":@(kPageSize),@"next_iid":self.next_iid,@"auth":token};
     }else{
-        return @{@"method":@"item.favorite_list",@"pagesize":@(kPageSize)};
+        return @{@"method":@"item.favorite_list",@"pagesize":@(kPageSize),@"auth":token};
     }
 }
 
@@ -63,7 +64,11 @@ static const int kPageSize = 10;
         self.total_num = [resultDict objectForKey:@"total_num"];
         self.next_iid = [resultDict objectForKey:@"next_iid"];
 
-        
+        NSNumber* code = [resultDict objectForKey:@"code"];
+        NSString* message = [resultDict objectForKey:@"msg"];
+        if (code && code.intValue != 200) {
+            NSLog(@"获取收藏响应码:%d 消息:%@",code.intValue,message);
+        }
         
         result = YES;
     }

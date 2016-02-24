@@ -12,7 +12,7 @@
 
 - (NSDictionary *)requestURLArgs {
     NSString* token = [UserCache sharedUserCache].token ? [UserCache sharedUserCache].token : @"";
-    return @{@"method":@"item.favorite_del",@"auth":token};
+    return @{@"method":@"item.view_del",@"auth":token};
 }
 
 - (RequestMethod)requestMethod {
@@ -36,6 +36,11 @@
         NSNumber* code = [resultDict objectForKey:@"code"];
         self.code = code.intValue;
         self.message = [resultDict objectForKey:@"msg"];
+        
+        if (self.code != 200) {
+            NSLog(@"删除浏览记录响应码:%d 消息:%@",self.code,self.message);
+        }
+        
         result = YES;
     }
     

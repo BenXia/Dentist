@@ -13,10 +13,11 @@ static const int kPageSize = 10;
 @implementation GetLookHistoryDC
 
 - (NSDictionary *)requestURLArgs {
+    NSString* token = [UserCache sharedUserCache].token ? [UserCache sharedUserCache].token : @"";
     if (self.next_iid) {
-        return @{@"method":@"item.favorite_list",@"pagesize":@(kPageSize),@"next_iid":self.next_iid};
+        return @{@"method":@"item.view_list",@"pagesize":@(kPageSize),@"next_iid":self.next_iid,@"auth":token};
     }else{
-        return @{@"method":@"item.favorite_list",@"pagesize":@(kPageSize)};
+        return @{@"method":@"item.view_list",@"pagesize":@(kPageSize),@"auth":token};
     }
 }
 
@@ -64,6 +65,12 @@ static const int kPageSize = 10;
         self.next_iid = [resultDict objectForKey:@"next_iid"];
 
         
+        NSNumber* code = [resultDict objectForKey:@"code"];
+        NSString* message = [resultDict objectForKey:@"msg"];
+        
+        if (code && code.intValue != 200) {
+            NSLog(@"获取浏览记录响应码:%d 消息:%@",code.intValue,message);
+        }
         
         result = YES;
     }
