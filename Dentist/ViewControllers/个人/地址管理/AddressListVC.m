@@ -24,11 +24,15 @@ WTLabelDelegate>
 
 @implementation AddressListVC
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.addressListRequest = [[AddressListDC alloc] initWithDelegate:self];
+    [self.addressListRequest requestWithArgs:nil];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"我的地址";
-    self.addressListRequest = [[AddressListDC alloc] initWithDelegate:self];
-    [self.addressListRequest requestWithArgs:nil];
     self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 1)];
     [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"新建" style:UIBarButtonItemStylePlain target:self action:@selector(didClickOnRightBtn)]];
 }

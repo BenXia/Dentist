@@ -187,11 +187,12 @@
                     <constraints>
                         <constraint firstItem="WNy-kV-Boe" firstAttribute="leading" secondItem="ce0-Kw-YgI" secondAttribute="leading" constant="15" id="M83-Bh-keJ"/>
                         <constraint firstItem="WNy-kV-Boe" firstAttribute="centerY" secondItem="ce0-Kw-YgI" secondAttribute="centerY" id="Nax-xT-qTg"/>
+                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="WNy-kV-Boe" secondAttribute="trailing" constant="12" id="jPO-IH-FxR"/>
                         <constraint firstAttribute="height" constant="35" id="vBl-mN-sUY"/>
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+            <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="Beg-RW-YRP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="3c4-y5-PyU"/>
                 <constraint firstItem="F6Z-fe-CTM" firstAttribute="top" secondItem="LLE-Wz-nHZ" secondAttribute="bottom" constant="1" id="5hs-A8-Qd5"/>

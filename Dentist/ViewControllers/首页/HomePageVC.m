@@ -137,14 +137,6 @@ saleActivityCellDelegate>
     return kWhiteHighlightedColor;
 }
 
-#pragma cellDelegate
-
-- (void)todayIntroduceCell:(TodayIntroduceCell *)cell toProductDetailWith:(NSString *)iid {
-    ProductDetailVC *detailVC = [[ProductDetailVC alloc] initWithProductId:iid];
-    detailVC.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:detailVC animated:YES];
-}
-
 #pragma mark - Private methods
 
 - (void)initUIReleated {
@@ -323,9 +315,12 @@ saleActivityCellDelegate>
     } else if (indexPath.section == 2) {
         TuanGouCell *cell = [tableView dequeueReusableCellWithIdentifier:[TuanGouCell identifier] forIndexPath:indexPath];
         cell.cellModelArray = self.groupBuyingRequest.productArray;
+        cell.delegate = self;
         return cell;
     }  else if (indexPath.section == 3) {
         SaleActivityCell *cell = [tableView dequeueReusableCellWithIdentifier:[SaleActivityCell identifier] forIndexPath:indexPath];
+        cell.delegate = self;
+        cell.cellModelArray = self.salesPromotionRequest.productArray;
         return cell;
     } else {
         static NSString *cellIdentifier = @"cell";
@@ -345,11 +340,11 @@ saleActivityCellDelegate>
         float cellHeight = (kScreenWidth - 5*24)/4 + 48;
         return cellHeight;
     } else if (indexPath.section == 1) {
-        return 300;
+        return 200;
     } else if (indexPath.section == 2) {
-        return 300;
+        return 320;
     } else if (indexPath.section == 3) {
-        return 330;
+        return 400;
     } else {
         return 300;
     }
@@ -373,6 +368,26 @@ saleActivityCellDelegate>
 - (void)didSelectCourseWithId:(int)courseId {
     // （重要）设置下订单方式：首页老师列表（包括科目横向列表）
     
+}
+
+#pragma mark - CellDelegate
+
+- (void)todayIntroduceCell:(TodayIntroduceCell *)cell toProductDetailWith:(NSString *)iid {
+    ProductDetailVC *detailVC = [[ProductDetailVC alloc] initWithProductId:iid];
+    detailVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:detailVC animated:YES];
+}
+
+- (void)tuanGouCell:(TuanGouCell *)cell toProductDetailWith:(NSString *)iid {
+    ProductDetailVC *detailVC = [[ProductDetailVC alloc] initWithProductId:iid];
+    detailVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:detailVC animated:YES];
+}
+
+- (void)saleActivityCell:(SaleActivityCell *)cell toProductDetailWith:(NSString *)iid {
+    ProductDetailVC *detailVC = [[ProductDetailVC alloc] initWithProductId:iid];
+    detailVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:detailVC animated:YES];
 }
 
 #pragma mark - PPDataControllerDelegate

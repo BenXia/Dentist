@@ -21,7 +21,7 @@
     if (!self.aid) {
         return nil;
     }
-    return @{@"aid":[NSNumber numberWithInt:self.aid]};
+    return @{@"aid":self.aid};
 }
 
 - (BOOL)parseContent:(NSString *)content {

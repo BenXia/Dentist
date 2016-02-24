@@ -7,9 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FeedbackModel.h"
 
 @interface FeedbackCell : UITableViewCell
 
-+ (CGFloat)cellHeight;
+@property (nonatomic, strong) FeedbackModel *feedbackModel;
+
+- (void)setupWithModel:(FeedbackModel *)feedbackModel;
+
++ (CGFloat)cellHeightWithModel:(FeedbackModel *)feedbackModel;
 
 @end

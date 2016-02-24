@@ -30,9 +30,11 @@
                                                                error:&error];
     if (!error || [resultDict isKindOfClass:[NSDictionary class]]) {
         self.name = [resultDict objectForKey:@"name"];
-        self.start_time = [[resultDict objectForKey:@"start_time"] doubleValue];
-        self.end_time = [[resultDict objectForKey:@"end_time"] doubleValue];
-        for (NSDictionary *dict in [resultDict objectForKey:@"content"]) {
+        self.start_time = [[resultDict objectForKey:@"start_time"] intValue];
+        self.end_time = [[resultDict objectForKey:@"end_time"] intValue];
+        self.has_time = [[resultDict objectForKey:@"has_time"] longLongValue];
+        NSDictionary *tempDict = [resultDict objectForKey:@"row"];
+        for (NSDictionary *dict in [tempDict objectForKey:@"content"]) {
             ProductIntroduceModel *model = [[ProductIntroduceModel alloc] init];
             model.img_url = [dict objectForKey:@"img_url"];
             model.iid = [dict objectForKey:@"iid"];
@@ -43,4 +45,12 @@
     
     return result;
 }
+
+- (NSMutableArray *)productArray {
+    if (!_productArray) {
+        _productArray = [NSMutableArray array];
+    }
+    return _productArray;
+}
+
 @end

@@ -9,6 +9,7 @@
 #import "CreateOrEditAddressVC.h"
 #import "HZLocation.h"
 #import "UPdataAddressDC.h"
+#import "GetAddressRegionDC.h"
 
 #define PickerViewHeight             250
 
@@ -37,7 +38,7 @@
 
 //网络请求
 @property (strong, nonatomic) UPdataAddressDC *updataAddressRequest;
-
+@property (strong, nonatomic) GetAddressRegionDC *getAddressRegionRequest;
 @end
 
 @implementation CreateOrEditAddressVC
@@ -45,7 +46,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.isDefault = YES;
-    [self initData];
+    [self downloadfromNet];
     [self initUI];
     if (self.type == kAddressToChange) {
         [self refreshUI];
@@ -124,18 +125,19 @@
 #pragma mark - Private Method
 
 - (void)initData {
-    self.provinces = [[NSArray alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"area.plist" ofType:nil]];
-    self.cities = [[self.provinces objectAtIndex:0] objectForKey:@"cities"];
+    self.provinces = self.getAddressRegionRequest.provinceArray;
+    self.cities = [[self.provinces objectAtIndex:0] objectForKey:@"c"];
     
-    self.locate.state = [[self.provinces objectAtIndex:0] objectForKey:@"state"];
-    self.locate.city = [[self.cities objectAtIndex:0] objectForKey:@"city"];
+    self.locate.state = [[self.provinces objectAtIndex:0] objectForKey:@"p"];
+    self.locate.city = [[self.cities objectAtIndex:0] objectForKey:@"n"];
     
-    self.areas = [[self.cities objectAtIndex:0] objectForKey:@"areas"];
+    self.areas = [[self.cities objectAtIndex:0] objectForKey:@"a"];
     if (self.areas.count > 0) {
-        self.locate.district = [self.areas objectAtIndex:0];
+        self.locate.district = [[self.areas objectAtIndex:0] objectForKey:@"s"];
     } else{
         self.locate.district = @"";
     }
+    [self.pickerContentView reloadAllComponents];
     
 }
 
@@ -173,6 +175,11 @@
     self.areaTextField.text = [NSString stringWithFormat:@"%@%@%@",self.addressModel.province,self.addressModel.city,self.addressModel.area];
     self.detailAddressTextField.text = self.addressModel.detailAddress;
     self.postCodeTextField.text = self.addressModel.postCode;
+}
+
+- (void)downloadfromNet {
+    self.getAddressRegionRequest = [[GetAddressRegionDC alloc] initWithDelegate:self];
+    [self.getAddressRegionRequest requestWithArgs:nil];
 }
 
 #pragma mark 手势处理
@@ -231,14 +238,14 @@
 {
     switch (component) {
         case 0:
-            return [[self.provinces objectAtIndex:row] objectForKey:@"state"];
+            return [[self.provinces objectAtIndex:row] objectForKey:@"p"];
             break;
         case 1:
-            return [[self.cities objectAtIndex:row] objectForKey:@"city"];
+            return [[self.cities objectAtIndex:row] objectForKey:@"n"];
             break;
         case 2:
             if ([self.areas count] > 0) {
-                return [self.areas objectAtIndex:row];
+                return [[self.areas objectAtIndex:row] objectForKey:@"s"];
                 break;
             }
         default:
@@ -260,37 +267,37 @@
 {
     switch (component) {
         case 0:
-            self.cities = [[self.provinces objectAtIndex:row] objectForKey:@"cities"];
+            self.cities = [[self.provinces objectAtIndex:row] objectForKey:@"c"];
             [self.pickerContentView selectRow:0 inComponent:1 animated:YES];
             [self.pickerContentView reloadComponent:1];
             
-            self.areas = [[self.cities objectAtIndex:0] objectForKey:@"areas"];
+            self.areas = [[self.cities objectAtIndex:0] objectForKey:@"a"];
             [self.pickerContentView selectRow:0 inComponent:2 animated:YES];
             [self.pickerContentView reloadComponent:2];
             
-            self.locate.state = [[self.provinces objectAtIndex:row] objectForKey:@"state"];
-            self.locate.city = [[self.cities objectAtIndex:0] objectForKey:@"city"];
+            self.locate.state = [[self.provinces objectAtIndex:row] objectForKey:@"p"];
+            self.locate.city = [[self.cities objectAtIndex:0] objectForKey:@"n"];
             if ([self.areas count] > 0) {
-                self.locate.district = [self.areas objectAtIndex:0];
+                self.locate.district = [[self.areas objectAtIndex:0] objectForKey:@"s"];
             } else{
                 self.locate.district = @"";
             }
             break;
         case 1:
-            self.areas = [[self.cities objectAtIndex:row] objectForKey:@"areas"];
+            self.areas = [[self.cities objectAtIndex:row] objectForKey:@"a"];
             [self.pickerContentView selectRow:0 inComponent:2 animated:YES];
             [self.pickerContentView reloadComponent:2];
             
-            self.locate.city = [[self.cities objectAtIndex:row] objectForKey:@"city"];
+            self.locate.city = [[self.cities objectAtIndex:row] objectForKey:@"n"];
             if ([self.areas count] > 0) {
-                self.locate.district = [self.areas objectAtIndex:0];
+                self.locate.district = [[self.areas objectAtIndex:0] objectForKey:@"s"];
             } else{
                 self.locate.district = @"";
             }
             break;
         case 2:
             if ([self.areas count] > 0) {
-                self.locate.district = [self.areas objectAtIndex:row];
+                self.locate.district = [[self.areas objectAtIndex:row] objectForKey:@"s"];
             } else{
                 self.locate.district = @"";
             }
@@ -329,6 +336,8 @@
 - (void)loadingData:(PPDataController *)controller failedWithError:(NSError *)error {
     if (controller == self.updataAddressRequest) {
         [Utilities showToastWithText:[NSString stringWithFormat:@"保存地址失败:%@", error]];
+    } else if (controller == self.getAddressRegionRequest) {
+        [Utilities showToastWithText:[NSString stringWithFormat:@"获取后台城市列表失败:%@", error]];
     }
 }
 
@@ -343,6 +352,8 @@
             }
             
         }];
+    }else if (controller == self.getAddressRegionRequest) {
+        [self initData];
     }
 }
 
