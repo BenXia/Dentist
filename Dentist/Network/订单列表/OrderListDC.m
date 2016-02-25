@@ -43,7 +43,7 @@
         NSArray *ordersArray = [resultDict objectForKey:@"orders"];
         for (NSDictionary *ordersDic in ordersArray) {
             ProductListModel *model = [ProductListModel new];
-            model.orderShowNumber = [ordersDic objectForKey:@"oid"];
+            model.orderID = [ordersDic objectForKey:@"oid"];
             model.statusCode = [ordersDic objectForKey:@"status"];
             model.productExpressPrice = [ordersDic objectForKey:@"express_money"];
             

@@ -10,4 +10,7 @@
 
 @interface OrderItemFooterCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *orderItemsCountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *priceLabel;
+
 @end

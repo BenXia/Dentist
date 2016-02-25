@@ -755,7 +755,8 @@ UIScrollViewDelegate>
 }
 
 - (void)didClickAppraiseHeaderVie{
-    [self.navigationController pushViewController:[ProductEvaluateVC new] animated:YES];
+    ProductEvaluateVC *productEvaluateVC = [[ProductEvaluateVC alloc] initWithProductId:self.dc.productId];
+    [self.navigationController pushViewController:productEvaluateVC animated:YES];
 }
 
 - (IBAction)didClickCustomiseBackgroundViewAction:(id)sender {
