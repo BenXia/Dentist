@@ -97,7 +97,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    OrderDetailVC *orderDetailVC = [OrderDetailVC new];
+    
+    ProductListModel *model = [self.allOrderListVM.orderListDC.orderListArray objectAtIndex:indexPath.section];
+    OrderDetailVC *orderDetailVC = [[OrderDetailVC alloc] initWithOid:model.orderID];
     [self.navigationController pushViewController:orderDetailVC animated:YES];
 }
 
@@ -148,7 +150,7 @@
     
     UILabel *orderNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(kInsert, 0, kScreenWidth - kInsert - kStatusLabelWidth,kSectionHeaderViewHeight - 20)];
     orderNumLabel.font = [UIFont systemFontOfSize:13];
-    NSMutableAttributedString *AttributedStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"订单号:%@",productListModel.orderShowNumber]];
+    NSMutableAttributedString *AttributedStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"订单号:%@",productListModel.orderID]];
     [AttributedStr addAttribute:NSForegroundColorAttributeName
                           value:[UIColor gray005Color]
                           range:NSMakeRange(0, 4)];
@@ -167,15 +169,23 @@
         }
             break;
         case 1: {
-            orderStateLabel.text = @"交易成功";
+            orderStateLabel.text = @"已支付,待发货";
         }
             break;
         case 2: {
-            orderStateLabel.text = @"已发货";
+            orderStateLabel.text = @"已发货,待收货";
         }
             break;
         case 3: {
-            orderStateLabel.text = @"交易失败";
+            orderStateLabel.text = @"已收货,待评价";
+        }
+            break;
+        case 4: {
+            orderStateLabel.text = @"已评价";
+        }
+            break;
+        case 10: {
+            orderStateLabel.text = @"已关闭";
         }
             break;
 
@@ -205,8 +215,8 @@
         }
             break;
         case 1: {
-            return [self createSuccessSectionFooterView:productListModel
-                                            withSection:section];
+            return [self createDeliveredSectionFooterView:productListModel
+                                              withSection:section];
         }
             break;
         case 2: {
@@ -215,12 +225,22 @@
         }
             break;
         case 3: {
+            return [self createSuccessSectionFooterView:productListModel
+                                            withSection:section];
+        }
+            break;
+        case 4: {
+            return [self createDeliveredSectionFooterView:productListModel
+                                              withSection:section];
+        }
+            break;
+        case 10: {
             //交易关闭的footerview跟成功的一致
             return [self createSuccessSectionFooterView:productListModel
                                             withSection:section];
         }
             break;
-            
+
         default:
             break;
     }

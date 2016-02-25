@@ -7,9 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ProductEvaluateDC.h"
 
 @interface ProductEvaluateVM : NSObject
 
-@property (nonatomic, strong) NSMutableArray *productEvaluateArray;    //
+@property (strong, nonatomic)  ProductEvaluateDC *productEvaluateDC;
+@property (strong, nonatomic)  NSString *productId;
 
 @end

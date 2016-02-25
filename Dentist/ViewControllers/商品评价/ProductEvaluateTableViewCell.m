@@ -14,7 +14,7 @@
 #define kInsertSize        10
 
 
-@interface ProductEvaluateTableViewCell()
+@interface ProductEvaluateTableViewCell()<QQingImageViewSingleClickDelegate,QQingPhotosBrowserVCDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *topLineView;
 @property (weak, nonatomic) IBOutlet UIImageView *scoreImageView1;
@@ -27,6 +27,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *evaluateTimeLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *evaluateContentConstrainstHeight;
 
+@property (strong, nonatomic) NSMutableArray *imageUrlArray;
+
 @end
 
 
@@ -34,6 +36,7 @@
 
 - (void)awakeFromNib {
     self.topLineView.hidden = YES;
+    self.imageUrlArray = [NSMutableArray new];
 }
 
 - (void)setTopLineViewHidden:(BOOL)hidden{
@@ -118,10 +121,15 @@
         }
 
         float y = self.evaluateContentLabel.frame.origin.y+self.evaluateContentConstrainstHeight.constant + 8*imageLineNumber + kImageViewHeight*(imageLineNumber - 1);
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(x, y, kImageViewWidth, kImageViewHeight)];
+        
+        QQingImageView *imageView = [[QQingImageView alloc] initWithFrame:CGRectMake(x, y, kImageViewWidth, kImageViewHeight)];
+        imageView.defaultImageName = @"user_pic_boy";
+        imageView.tag = index;
+        imageView.singleClickDelegate = self;
+        imageView.imageView.contentMode = UIViewContentModeScaleAspectFill;
+        imageView.imageURL = [NSURL URLWithString:[model.evaluateImageArray objectAtIndexIfIndexInBounds:index]];
         [self.contentView addSubview:imageView];
-        [imageView sd_setImageWithURL:[NSURL URLWithString:[model.evaluateImageArray objectAtIndexIfIndexInBounds:index]]
-                                 placeholderImage:[UIImage imageNamed:@"user_pic_boy"]];
+        [self.imageUrlArray addObject:[model.evaluateImageArray objectAtIndexIfIndexInBounds:index]];
     }
 }
 
@@ -137,6 +145,33 @@
     }
     
     return size.height + 84 - 21 + imageLineNumber*kImageViewHeight + imageLineNumber*kInsertSize;
+}
+
+#pragma mark - QQingImageViewSingleClickDelegate
+
+- (void)didSingleClickImageView:(QQingImageView *)imageView {
+    static BOOL s_inOpenAnimating = NO;    //避免多次点击，动画效果不正确
+    if (s_inOpenAnimating) {
+        return;
+    }
+    s_inOpenAnimating = YES;
+    
+    NSInteger index = imageView.tag;
+    NSMutableArray *photosArray = [NSMutableArray array];
+    for (NSInteger i = 0; i < self.imageUrlArray.count; i++) {
+        EGOQuickPhoto *subPhoto = [[EGOQuickPhoto alloc] initWithImageURL:[NSURL URLWithString:self.imageUrlArray[i]]];
+        [photosArray addObject:subPhoto];
+    }
+    
+    EGOQuickPhotoSource *source = [[EGOQuickPhotoSource alloc] initWithPhotos:photosArray];
+    QQingPhotosBrowserVC *photoController = [[QQingPhotosBrowserVC alloc] initWithPhotoSource:source];
+    photoController.delegate = self;
+    photoController.isEditMode = NO;
+    photoController.pageIndex = index;
+    
+    [photoController showWithImageView:imageView withCompletion:^{
+        s_inOpenAnimating = NO;
+    }];
 }
 
 @end

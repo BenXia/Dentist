@@ -8,10 +8,11 @@
 
 #import "PPDataController.h"
 
-static const int pageSize = 10;
-
 @interface ProductEvaluateDC : PPDataController
 
-@property (nonatomic, strong) NSString *cartProductId;     //购物车商品id
+@property (nonatomic, strong) NSString *productId;     //商品id
+@property (nonatomic, strong) NSNumber *nextId;        //下一页商品
+
+@property (nonatomic, strong) NSMutableArray *productEvaluateArray;    //
 
 @end

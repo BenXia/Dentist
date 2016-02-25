@@ -29,9 +29,9 @@
 
 - (void)setModelWithProductListGoodsModel:(ProductListGoodsModel *)productListGoodsModel {
     self.productTitleLabel.text = productListGoodsModel.productTitle;
-    self.productColorAndModelLabel.text = [NSString stringWithFormat:@"颜色：%@；型号：%@",productListGoodsModel.productColor,productListGoodsModel.productModel];
-    self.productPriceLabel.text = productListGoodsModel.productPrice;
-    self.productNumberLabel.text = [NSString stringWithFormat:@"%@",productListGoodsModel.productNumber];
+    self.productColorAndModelLabel.text = productListGoodsModel.productModel;
+    self.productPriceLabel.text = [NSString stringWithFormat:@"¥ %@",productListGoodsModel.productPrice];
+    self.productNumberLabel.text = [NSString stringWithFormat:@"x %@",productListGoodsModel.productNumber];
     [self.productImageView sd_setImageWithURL:[NSURL URLWithString:productListGoodsModel.productImageUrl]
                              placeholderImage:[UIImage imageNamed:@"user_pic_boy"]];
 

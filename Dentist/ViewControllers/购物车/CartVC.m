@@ -50,7 +50,6 @@ static NSString* const kCellReuseIdentifier = @"ProductBriefInfoCell";
         self.tabBarItem.image = [UIImage imageNamed:@"btn_cart_f"];
         self.tabBarItem.selectedImage = [[UIImage imageNamed:@"btn_cart_t"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         self.isEditType = NO;
-
     }
     return self;
 }
@@ -64,12 +63,6 @@ static NSString* const kCellReuseIdentifier = @"ProductBriefInfoCell";
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.tableView headerBeginRefreshing];
-    //[self initData];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Navigation Style
@@ -175,30 +168,14 @@ static NSString* const kCellReuseIdentifier = @"ProductBriefInfoCell";
     // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
     [self.tableView addHeaderWithTarget:self action:@selector(headerRereshing)];
     
-//    // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
-//    [self.tableView addFooterWithTarget:self action:@selector(footerRereshing)];
-    
     // 设置文字(也可以不设置,默认的文字在MJRefreshConst中修改)
     self.tableView.headerPullToRefreshText = @"下拉刷新";
     self.tableView.headerReleaseToRefreshText = @"松开就可以刷新了";
     self.tableView.headerRefreshingText = @"正在刷新";
-    
-//    self.tableView.footerPullToRefreshText = @"上拉可以加载更多数据了";
-//    self.tableView.footerReleaseToRefreshText = @"松开马上加载更多数据了";
-//    self.tableView.footerRefreshingText = @"正在加载中";
 }
 
 - (void)headerRereshing {
     [self sendCartListRequest];
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        [self.tableView headerEndRefreshing];
-//    });
-}
-
-- (void)footerRereshing {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self.tableView footerEndRefreshing];
-    });
 }
 
 #pragma mark - PPDataControllerDelegate
@@ -232,11 +209,11 @@ static NSString* const kCellReuseIdentifier = @"ProductBriefInfoCell";
         [Utilities showToastWithText:@"购物车列表获取失败"];
         [self.tableView headerEndRefreshing];
     } else if ([controller isKindOfClass:[CartProductDeleteDC class]]) {
-        
+        [Utilities showToastWithText:@"商品删除失败"];
     } else if ([controller isKindOfClass:[AddFavoriteDC class]]) {
-        
+        [Utilities showToastWithText:@"商品移到收藏夹失败"];
     } else if ([controller isKindOfClass:[CartProductUpdateNumberDC class]]) {
-        
+        [Utilities showToastWithText:@"商品更新数量失败"];
     }
 }
 
@@ -388,6 +365,7 @@ static NSString* const kCellReuseIdentifier = @"ProductBriefInfoCell";
 }
 
 - (IBAction)didClickRemoveButtonAction:(id)sender {
+    self.shoppingCardVM.shoppingCartProductCellDeleteArray = self.shoppingCardVM.shoppingCartProductCellSelectArray;
     [self sendCartProductDeleteRequest];
 }
 
