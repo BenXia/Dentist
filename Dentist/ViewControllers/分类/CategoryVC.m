@@ -11,7 +11,7 @@
 #import "ProductCategoryDC.h"
 #import "ProductCategoryModel.h"
 #import "SubCategoryVC.h"
-
+#import "SearchProductVC.h"
 
 @interface CategoryVC ()<PPDataControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIView *searchContentView;
@@ -52,6 +52,14 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - UI Action
+
+-(IBAction)didClickOnSearchView{
+    SearchProductVC* searchVC = [SearchProductVC new];
+    searchVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:searchVC animated:YES];
 }
 
 #pragma mark - Private Method

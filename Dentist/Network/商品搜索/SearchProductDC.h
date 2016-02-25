@@ -13,7 +13,7 @@ typedef FavoriteProductModel SearchProductModel;
 
 @interface SearchProductDC : PPDataController
 
-@property (strong,nonatomic) NSString* searchContent;//搜素内容
+@property (strong,nonatomic) NSString* searchKey;//搜素内容
 @property (strong,nonatomic) NSNumber* next_iid;
 @property (strong,nonatomic) NSNumber* cid;         //主分类
 @property (strong,nonatomic) NSNumber* s_cid;       //子分类

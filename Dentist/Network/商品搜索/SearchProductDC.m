@@ -13,14 +13,21 @@ static const int pagesize = 10;
 @implementation SearchProductDC
 
 - (NSDictionary *)requestURLArgs {
-    NSDictionary* paramDic = @{@"method":@"item.search",@"v":@"0.0.1",@"pagesize":@(pagesize),@"cid":self.cid,@"s_cid":self.s_cid};
-    if (self.next_iid) {
-        NSMutableDictionary* tmpDic = [NSMutableDictionary dictionaryWithDictionary:paramDic];
-        [tmpDic setValue:self.next_iid forKey:@"next_iid"];
-        return tmpDic;
-    }else{
-        return paramDic;
+    NSDictionary* tmpDic = @{@"method":@"item.search",@"v":@"0.0.1",@"pagesize":@(pagesize)};
+    NSMutableDictionary* paramDic = [NSMutableDictionary dictionaryWithDictionary:tmpDic];
+    if (self.cid) {
+        [paramDic setValue:self.cid forKey:@"cid"];
     }
+    if (self.s_cid) {
+        [paramDic setValue:self.s_cid forKey:@"s_cid"];
+    }
+    if (self.searchKey) {
+        [paramDic setValue:self.searchKey forKey:@"k"];
+    }
+    if (self.next_iid) {
+        [paramDic setValue:self.next_iid forKey:@"next_iid"];
+    }
+    return paramDic;
 }
 
 - (RequestMethod)requestMethod {

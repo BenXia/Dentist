@@ -59,7 +59,7 @@
     
     _imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.width)];
     [_imageView setBorderWidth:1];
-    [_imageView setBorderColor:[UIColor lightGrayColor]];
+    [_imageView setBorderColor:[UIColor lineGray001Color]];
     
     _titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, frame.size.width
                                                            , frame.size.width, frame.size.height - frame.size.width)];
@@ -90,12 +90,11 @@
     if (_selected) {
         [_imageView setBorderColor:[UIColor themeCyanColor]];
     }else{
-        [_imageView setBorderColor:[UIColor lightGrayColor]];
+        [_imageView setBorderColor:[UIColor lineGray001Color]];
     }
 }
 
 -(void)didClickImageView{
-//    self.selected = !self.selected;
     if (self.delegate && [self.delegate respondsToSelector:@selector(groupProductView:didClickImageView:)]) {
         [self.delegate groupProductView:self didClickImageView:self.imageView];
     }

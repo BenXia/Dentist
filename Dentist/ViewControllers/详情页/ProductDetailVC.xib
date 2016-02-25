@@ -294,22 +294,22 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yMa-bE-Atc">
-                            <rect key="frame" x="36" y="-3" width="66" height="36"/>
+                            <rect key="frame" x="36" y="6" width="50" height="18"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <state key="normal" title="快递" image="Ico_Logistics@2X.png">
+                            <state key="normal" title=" 快递" image="快递.png">
                                 <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1GC-Mx-UV9">
-                            <rect key="frame" x="122" y="-3" width="66" height="36"/>
+                            <rect key="frame" x="108" y="6" width="49" height="18"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <state key="normal" title="自提" image="Ico_bySelf@2X.png">
+                            <state key="normal" title=" 自提" image="自提.png">
                                 <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                         </button>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="1GC-Mx-UV9" firstAttribute="leading" secondItem="J8b-v1-FH8" secondAttribute="trailing" constant="94" id="5pC-8z-sEV"/>
+                        <constraint firstItem="1GC-Mx-UV9" firstAttribute="leading" secondItem="J8b-v1-FH8" secondAttribute="trailing" constant="80" id="5pC-8z-sEV"/>
                         <constraint firstItem="yMa-bE-Atc" firstAttribute="leading" secondItem="J8b-v1-FH8" secondAttribute="trailing" constant="8" id="I9D-uQ-XAM"/>
                         <constraint firstItem="yMa-bE-Atc" firstAttribute="centerY" secondItem="J8b-v1-FH8" secondAttribute="centerY" id="Re5-EO-XL2"/>
                         <constraint firstItem="J8b-v1-FH8" firstAttribute="leading" secondItem="EwO-P3-hvT" secondAttribute="leading" id="bib-M1-Lnk"/>
@@ -893,15 +893,15 @@
     </objects>
     <resources>
         <image name="Btn_Go_default.png" width="30" height="30"/>
-        <image name="Ico_Logistics@2X.png" width="36" height="36"/>
-        <image name="Ico_bySelf@2X.png" width="36" height="36"/>
         <image name="btn_backround_default.png" width="30" height="30"/>
         <image name="goods_tagL_FreeShipping.png" width="35" height="18"/>
         <image name="goods_tagL_Present.png" width="46" height="18"/>
         <image name="goodsdetails_ico_TopDrug.png" width="36" height="36"/>
         <image name="icon_close.png" width="17" height="17"/>
+        <image name="快递.png" width="16" height="12"/>
         <image name="收藏.png" width="28" height="29"/>
         <image name="立即购买.png" width="32" height="32"/>
+        <image name="自提.png" width="15" height="15"/>
         <image name="购物车.png" width="32" height="32"/>
     </resources>
 </document>

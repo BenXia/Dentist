@@ -288,12 +288,16 @@
 		888811D21C7B674700F6672C /* UILabel+Price.m in Sources */ = {isa = PBXBuildFile; fileRef = 888811D11C7B674700F6672C /* UILabel+Price.m */; };
 		888C7A591C79901000CA2ED9 /* ProductDescriptionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 888C7A571C79901000CA2ED9 /* ProductDescriptionVC.m */; };
 		888C7A5A1C79901000CA2ED9 /* ProductDescriptionVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 888C7A581C79901000CA2ED9 /* ProductDescriptionVC.xib */; };
+		888E70F21C7F2D7100A12377 /* 快递@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 888E70EE1C7F2D7100A12377 /* 快递@2x.png */; };
+		888E70F31C7F2D7100A12377 /* 快递@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 888E70EF1C7F2D7100A12377 /* 快递@3x.png */; };
+		888E70F41C7F2D7100A12377 /* 自提@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 888E70F01C7F2D7100A12377 /* 自提@2x.png */; };
+		888E70F51C7F2D7100A12377 /* 自提@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 888E70F11C7F2D7100A12377 /* 自提@3x.png */; };
+		888E70FA1C7F320D00A12377 /* SearchProductVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 888E70F81C7F320D00A12377 /* SearchProductVC.m */; };
+		888E70FB1C7F320D00A12377 /* SearchProductVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 888E70F91C7F320D00A12377 /* SearchProductVC.xib */; };
 		88C3BACD1C781F5B001F4D85 /* ProductDetailDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C3BACA1C781F5B001F4D85 /* ProductDetailDC.m */; };
 		88C3BACE1C781F5B001F4D85 /* ProductDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C3BACC1C781F5B001F4D85 /* ProductDetailModel.m */; };
 		88C3BAD21C78508C001F4D85 /* GroupProductView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C3BAD11C78508C001F4D85 /* GroupProductView.m */; };
 		88C3BAD51C787068001F4D85 /* goodsdetails_ico_TopDrug@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88C3BAD31C787068001F4D85 /* goodsdetails_ico_TopDrug@2x.png */; };
-		88C3BADB1C787833001F4D85 /* Ico_bySelf@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88C3BAD91C787833001F4D85 /* Ico_bySelf@2x.png */; };
-		88C3BADC1C787833001F4D85 /* Ico_Logistics@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88C3BADA1C787833001F4D85 /* Ico_Logistics@2x.png */; };
 		88C3BADF1C78824A001F4D85 /* goods_tagL_FreeShipping@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88C3BADD1C78824A001F4D85 /* goods_tagL_FreeShipping@2x.png */; };
 		88C3BAE01C78824A001F4D85 /* goods_tagL_Present@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88C3BADE1C78824A001F4D85 /* goods_tagL_Present@2x.png */; };
 		88C3BAE31C78A2B0001F4D85 /* EditNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C3BAE21C78A2AF001F4D85 /* EditNumberView.m */; };
@@ -812,6 +816,13 @@
 		888C7A561C79901000CA2ED9 /* ProductDescriptionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductDescriptionVC.h; sourceTree = "<group>"; };
 		888C7A571C79901000CA2ED9 /* ProductDescriptionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductDescriptionVC.m; sourceTree = "<group>"; };
 		888C7A581C79901000CA2ED9 /* ProductDescriptionVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductDescriptionVC.xib; sourceTree = "<group>"; };
+		888E70EE1C7F2D7100A12377 /* 快递@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "快递@2x.png"; sourceTree = "<group>"; };
+		888E70EF1C7F2D7100A12377 /* 快递@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "快递@3x.png"; sourceTree = "<group>"; };
+		888E70F01C7F2D7100A12377 /* 自提@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "自提@2x.png"; sourceTree = "<group>"; };
+		888E70F11C7F2D7100A12377 /* 自提@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "自提@3x.png"; sourceTree = "<group>"; };
+		888E70F71C7F320D00A12377 /* SearchProductVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchProductVC.h; sourceTree = "<group>"; };
+		888E70F81C7F320D00A12377 /* SearchProductVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchProductVC.m; sourceTree = "<group>"; };
+		888E70F91C7F320D00A12377 /* SearchProductVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchProductVC.xib; sourceTree = "<group>"; };
 		88C3BAC91C781F5B001F4D85 /* ProductDetailDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductDetailDC.h; sourceTree = "<group>"; };
 		88C3BACA1C781F5B001F4D85 /* ProductDetailDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductDetailDC.m; sourceTree = "<group>"; };
 		88C3BACB1C781F5B001F4D85 /* ProductDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductDetailModel.h; sourceTree = "<group>"; };
@@ -819,8 +830,6 @@
 		88C3BAD01C78508C001F4D85 /* GroupProductView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupProductView.h; sourceTree = "<group>"; };
 		88C3BAD11C78508C001F4D85 /* GroupProductView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupProductView.m; sourceTree = "<group>"; };
 		88C3BAD31C787068001F4D85 /* goodsdetails_ico_TopDrug@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "goodsdetails_ico_TopDrug@2x.png"; sourceTree = "<group>"; };
-		88C3BAD91C787833001F4D85 /* Ico_bySelf@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Ico_bySelf@2x.png"; sourceTree = "<group>"; };
-		88C3BADA1C787833001F4D85 /* Ico_Logistics@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Ico_Logistics@2x.png"; sourceTree = "<group>"; };
 		88C3BADD1C78824A001F4D85 /* goods_tagL_FreeShipping@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "goods_tagL_FreeShipping@2x.png"; sourceTree = "<group>"; };
 		88C3BADE1C78824A001F4D85 /* goods_tagL_Present@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "goods_tagL_Present@2x.png"; sourceTree = "<group>"; };
 		88C3BAE11C78A2AF001F4D85 /* EditNumberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditNumberView.h; sourceTree = "<group>"; };
@@ -1330,13 +1339,15 @@
 		33D1873B1C70CE3800658F3D /* 详情页 */ = {
 			isa = PBXGroup;
 			children = (
+				888E70EE1C7F2D7100A12377 /* 快递@2x.png */,
+				888E70EF1C7F2D7100A12377 /* 快递@3x.png */,
+				888E70F01C7F2D7100A12377 /* 自提@2x.png */,
+				888E70F11C7F2D7100A12377 /* 自提@3x.png */,
 				888811CD1C7B65A600F6672C /* goods_tag_Present@2x.png */,
 				88EBEE801C79F27200F20C90 /* Btn_Go_default@2x.png */,
 				88EBEE811C79F27200F20C90 /* btn_Go_pressed.png */,
 				88C3BADD1C78824A001F4D85 /* goods_tagL_FreeShipping@2x.png */,
 				88C3BADE1C78824A001F4D85 /* goods_tagL_Present@2x.png */,
-				88C3BAD91C787833001F4D85 /* Ico_bySelf@2x.png */,
-				88C3BADA1C787833001F4D85 /* Ico_Logistics@2x.png */,
 				88C3BAD31C787068001F4D85 /* goodsdetails_ico_TopDrug@2x.png */,
 				33D1873C1C70CE3800658F3D /* 收藏@2x.png */,
 				33D1873D1C70CE3800658F3D /* 收藏@3x.png */,
@@ -1607,6 +1618,7 @@
 		33F070391C4295F200DAC58F /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				888E70F61C7F31DB00A12377 /* 搜索商品 */,
 				888811B11C7B58AF00F6672C /* 浏览历史 */,
 				888811B21C7B58AF00F6672C /* 收藏 */,
 				B58339531C79972900F9EBE2 /* 商品评价 */,
@@ -1876,6 +1888,16 @@
 				888811D11C7B674700F6672C /* UILabel+Price.m */,
 			);
 			path = Category;
+			sourceTree = "<group>";
+		};
+		888E70F61C7F31DB00A12377 /* 搜索商品 */ = {
+			isa = PBXGroup;
+			children = (
+				888E70F71C7F320D00A12377 /* SearchProductVC.h */,
+				888E70F81C7F320D00A12377 /* SearchProductVC.m */,
+				888E70F91C7F320D00A12377 /* SearchProductVC.xib */,
+			);
+			path = "搜索商品";
 			sourceTree = "<group>";
 		};
 		88C3BAC81C781F5B001F4D85 /* 商品详情 */ = {
@@ -2367,6 +2389,7 @@
 				33440D0B1C783B7D00A441E3 /* topnav_icon08@3x.png in Resources */,
 				93624C1F1C44170100262B65 /* app_logo.png in Resources */,
 				932839C71C637EFF004C21CD /* 待处理@3x.png in Resources */,
+				888E70F41C7F2D7100A12377 /* 自提@2x.png in Resources */,
 				3332F9C61C785225006B8864 /* icon_successed@2x.png in Resources */,
 				93A1F5D01C6281B800CFEEC4 /* good_logo.png in Resources */,
 				33CAF89C1C7810D20015B4BC /* web_right.png in Resources */,
@@ -2427,6 +2450,8 @@
 				33DD6C9D1C611A5500CE6B31 /* Btn_Collection_pressed@2X.png in Resources */,
 				33DD6CDA1C611A5500CE6B31 /* img_avatar.png in Resources */,
 				33DD6CF21C611A5500CE6B31 /* 定制套装@2x.png in Resources */,
+				888E70F31C7F2D7100A12377 /* 快递@3x.png in Resources */,
+				888E70F51C7F2D7100A12377 /* 自提@3x.png in Resources */,
 				33CAF8971C7810D20015B4BC /* web_left_highlighted@2x.png in Resources */,
 				9379D3AE1C63239100390702 /* MultilevelTableViewCell.xib in Resources */,
 				33DD6CDC1C611A5500CE6B31 /* like_fs.png in Resources */,
@@ -2434,7 +2459,6 @@
 				33DD6D241C611A5500CE6B31 /* 首页-消息提示@2x.png in Resources */,
 				930C342B1C7819D0008823F9 /* user_pic_boy@3x.png in Resources */,
 				33DD6CEA1C611A5500CE6B31 /* 临床@2x.png in Resources */,
-				88C3BADB1C787833001F4D85 /* Ico_bySelf@2x.png in Resources */,
 				33440D051C783B0700A441E3 /* common_topnav_icon01@3x.png in Resources */,
 				33DD6CF01C611A5500CE6B31 /* 培训课程@2x.png in Resources */,
 				9379D3AC1C63239100390702 /* MultilevelCollectionViewCell.xib in Resources */,
@@ -2451,6 +2475,7 @@
 				33DD6D1B1C611A5500CE6B31 /* 评价晒单-五星@3x.png in Resources */,
 				3360B3FC1C7CA41200C60AC0 /* btn_photo_default@3x.png in Resources */,
 				9379D3B11C632A2200390702 /* tempShop.png in Resources */,
+				888E70F21C7F2D7100A12377 /* 快递@2x.png in Resources */,
 				33DD6CBF1C611A5500CE6B31 /* example.png in Resources */,
 				33DD6CCC1C611A5500CE6B31 /* ico_adress.png in Resources */,
 				33440D1A1C783C1B00A441E3 /* photoViewer_error_placeholder@3x.png in Resources */,
@@ -2498,6 +2523,7 @@
 				3360B4031C7CA41200C60AC0 /* like_f@3x.png in Resources */,
 				33DD6CCD1C611A5500CE6B31 /* ico_browserecord.png in Resources */,
 				93624C261C44170100262B65 /* btn_lesson_default.png in Resources */,
+				888E70FB1C7F320D00A12377 /* SearchProductVC.xib in Resources */,
 				33DD6BF71C6119A600CE6B31 /* btn_cart_t@2x.png in Resources */,
 				93A1F5DF1C6281D900CFEEC4 /* TuanGouCell.xib in Resources */,
 				33DD6D251C611A5500CE6B31 /* 首页-消息提示@3x.png in Resources */,
@@ -2610,7 +2636,6 @@
 				33DD6CD41C611A5500CE6B31 /* Ico_Logistics@2X.png in Resources */,
 				33DD6D131C611A5500CE6B31 /* 新浪微博@3x.png in Resources */,
 				33DD6BE81C61195600CE6B31 /* btn_choice_f@3x.png in Resources */,
-				88C3BADC1C787833001F4D85 /* Ico_Logistics@2x.png in Resources */,
 				33DD6CD01C611A5500CE6B31 /* ico_collectiongoods.png in Resources */,
 				33DD6CB11C611A5500CE6B31 /* btn_setting_default.png in Resources */,
 				33DD6CFB1C611A5500CE6B31 /* 微信@3x.png in Resources */,
@@ -2796,6 +2821,7 @@
 				93A1F5DC1C6281D900CFEEC4 /* TodayIntroduceCell.m in Sources */,
 				939345601C7B42010054E2EC /* ProductCategoryDC.m in Sources */,
 				88367AA51C7CB11900658214 /* SubCategoryVC.m in Sources */,
+				888E70FA1C7F320D00A12377 /* SearchProductVC.m in Sources */,
 				93DEA8D51C4BCBAA008211F7 /* UIView+SDExtension.m in Sources */,
 				9379D3AB1C63239100390702 /* MultilevelCollectionViewCell.m in Sources */,
 				33CAE4461C7373360038748F /* OrderItemCell.m in Sources */,

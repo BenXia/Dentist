@@ -19,6 +19,7 @@
 #import "TuanGouCell.h"
 #import "SaleActivityCell.h"
 #import "ProductDetailVC.h"
+#import "SearchProductVC.h"
 
 static const CGFloat kTopImageViewRatio = 16.f/9;
 static CGFloat kHomePageTopBarHeight = 64;
@@ -250,9 +251,10 @@ saleActivityCellDelegate>
 #pragma mark - IBActions
 
 
-- (IBAction)didTapPhoneNumberSearchTeacherAction:(id)sender {
-      
-    
+- (IBAction)didTapSearchButton:(id)sender {
+    SearchProductVC* searchVC = [SearchProductVC new];
+    searchVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:searchVC animated:YES];
 }
 
 #pragma mark - SDCycleScrollViewDelegate

@@ -201,7 +201,8 @@ UIScrollViewDelegate>
     _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
     _cycleScrollView.pageControlStyle=SDCycleScrollViewPageContolStyleClassic;
     _cycleScrollView.showPageControl = YES;
-    _cycleScrollView.dotColor = [UIColor blackColor]; // 自定义分页控件小圆标颜色
+    _cycleScrollView.dotColor = [UIColor themeBlueColor]; // 自定义分页控件小圆标颜色
+    _cycleScrollView.notSelectDotColor = [UIColor gray000Color];
     _cycleScrollView.delegate = self;
     _cycleScrollView.autoScroll = NO;
     _cycleScrollView.autoScrollTimeInterval = 10;
@@ -211,21 +212,7 @@ UIScrollViewDelegate>
 
 - (void)initMainScrollView {
     self.scrollView.backgroundColor = [UIColor bgGray002Color];
-    
-//    // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
-//    [self.scrollView addHeaderWithTarget:self action:@selector(headerRereshing)];
-//    
-//    // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
-//    [self.scrollView addFooterWithTarget:self action:@selector(footerRereshing)];
-//    
-//    // 设置文字(也可以不设置,默认的文字在MJRefreshConst中修改)
-//    self.scrollView.headerPullToRefreshText = @"下拉刷新";
-//    self.scrollView.headerReleaseToRefreshText = @"松开就可以刷新了";
-//    self.scrollView.headerRefreshingText = @"正在刷新";
-//    
-//    self.scrollView.footerPullToRefreshText = @"上拉可以加载更多数据了";
-//    self.scrollView.footerReleaseToRefreshText = @"松开马上加载更多数据了";
-//    self.scrollView.footerRefreshingText = @"正在加载中";
+
 }
 
 -(void)initGroupDiscountView{
@@ -746,8 +733,12 @@ UIScrollViewDelegate>
 }
 
 - (IBAction)didClickFavoriteButtonAction:(id)sender {
-    self.addFavoriteDC.productIds = @[self.dc.productDetail.iid];
-    [self.addFavoriteDC requestWithArgs:nil];
+    if (self.dc.productDetail.iid) {
+        self.addFavoriteDC.productIds = @[self.dc.productDetail.iid];
+        [self.addFavoriteDC requestWithArgs:nil];
+    }else{
+        [Utilities showToastWithText:@"商品不存在"];
+    }
 }
 
 - (IBAction)didClickCartButtonAction:(id)sender {
@@ -775,19 +766,35 @@ UIScrollViewDelegate>
 }
 
 - (IBAction)didClickAddCartButtonOnPopView:(id)sender {
-    if (self.isSelectSpecCompleted && self.buyNum > 0) {
-        NSString* productId = self.specProduct.iid ? self.specProduct.iid : self.dc.productDetail.iid;
+    if (!self.isSelectSpecCompleted) {
+        [Utilities showToastWithText:@"请选择商品种类"];
+        return;
+    }
+    if (self.buyNum <= 0) {
+        [Utilities showToastWithText:@"请选择商品数量"];
+        return;
+    }
+    NSString* productId = self.specProduct.iid ? self.specProduct.iid : self.dc.productDetail.iid;
+    if (productId) {
         self.addCartDC.productIds = @[productId];
         self.addCartDC.cartNums = @[@(self.buyNum)];
         [self.addCartDC requestWithArgs:nil];
+    }else{
+        [Utilities showToastWithText:@"商品不存在"];
     }
 }
 
 - (IBAction)didClickBuyButtonOnPopView:(id)sender {
-    if (self.isSelectSpecCompleted && self.buyNum > 0) {
-        //TODO-GUO:进入下单页
-        
+    if (!self.isSelectSpecCompleted) {
+        [Utilities showToastWithText:@"请选择商品种类"];
+        return;
     }
+    if (self.buyNum <= 0) {
+        [Utilities showToastWithText:@"请选择商品数量"];
+        return;
+    }
+    
+    //TODO-GUO:进入下单页
 }
 
 

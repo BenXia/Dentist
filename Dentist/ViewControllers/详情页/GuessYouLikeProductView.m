@@ -59,7 +59,7 @@
     
     _imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.width)];
     [_imageView setBorderWidth:1];
-    [_imageView setBorderColor:[UIColor lightGrayColor]];
+    [_imageView setBorderColor:[UIColor lineGray001Color]];
     
     _priceLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, frame.size.height - kHeightOfPriceLabel , frame.size.width, kHeightOfPriceLabel)];
     _priceLabel.textColor = [UIColor redColor];
