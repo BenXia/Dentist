@@ -9,11 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "ProductListModel.h"
 #import "ProductListGoodsModel.h"
+#import "OrderListDC.h"
 
 
 @interface AllOrderListVM : NSObject
 
-@property (nonatomic, strong) NSMutableArray *orderListArray;    //订单列表数组
+@property (strong, nonatomic) OrderListDC    *orderListDC;
 
 
 + (int)getOrderTotalPriceWithProductListModel:(ProductListModel *)productListModel;

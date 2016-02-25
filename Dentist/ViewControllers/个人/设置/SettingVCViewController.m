@@ -45,7 +45,7 @@
     [self.weixinPyqBtn centerImageAndTitle];
     [self.sinaBtn centerImageAndTitle];
     [self.weixinBtn centerImageAndTitle];
-    self.shareVC.view.frame = CGRectMake(0, 0, 290, 180);
+    self.shareVC.view.frame = CGRectMake(0, 0, kScreenWidth - 24, 200);
 }
 
 #pragma mark - UITableViewDelegate & UITableViewDataSource
@@ -120,7 +120,6 @@
         switch (indexPath.row) {
             case 0: {
                 //cell.textLabel.text = @"推荐给朋友";
-//                [Utilities showPopupVC:self.shareVC touchBackgroundHide:YES animationType:PopupAnimationType_Drop];
                 [Utilities showPopup:self.shareVC.view touchBackgroundHide:YES animationType:PopupAnimationType_Drop];
             }
                 break;
@@ -164,6 +163,21 @@
 - (IBAction)onQuitBtn:(UIButton *)sender {
     [[AppDeinitializer sharedInstance] cleanUpWhenLogout];
     [[MainViewManager sharedInstance] loadLoginVC];
+}
+- (IBAction)onShareToPengyouquan:(UIButton *)sender {
+    
+}
+- (IBAction)onShareToSina:(UIButton *)sender {
+    
+}
+- (IBAction)onShareToWeixin:(UIButton *)sender {
+    
+}
+- (IBAction)onShareCancle:(UIButton *)sender {
+    [Utilities dismissPopup];
+}
+- (IBAction)onShareDone:(UIButton *)sender {
+    [Utilities dismissPopup];
 }
 
 /*

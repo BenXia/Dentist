@@ -26,7 +26,7 @@
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="iCg-7O-BM8">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="582"/>
-                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="9bO-cj-ghw"/>
                         <outlet property="delegate" destination="-1" id="VaZ-ly-m7X"/>
@@ -45,7 +45,7 @@
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+            <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="Asi-1O-ikf" firstAttribute="top" secondItem="iCg-7O-BM8" secondAttribute="bottom" constant="25" id="FaS-YH-AVm"/>
                 <constraint firstAttribute="bottom" secondItem="Asi-1O-ikf" secondAttribute="bottom" constant="20" id="Jpe-zb-fQG"/>
@@ -68,26 +68,32 @@
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CEW-Uv-VWm">
-                        <rect key="frame" x="0.0" y="0.0" width="290" height="147"/>
+                        <rect key="frame" x="0.0" y="0.0" width="290" height="139"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aAQ-h5-C1q">
                                 <rect key="frame" x="193" y="51" width="96.5" height="96.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                <state key="normal" title="微信" image="微信.png">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="微信" image="icon_weixin.png">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="onShareToWeixin:" destination="-1" eventType="touchUpInside" id="eT8-0t-2Eu"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ToP-sd-3u7">
                                 <rect key="frame" x="96" y="51" width="97" height="96.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                <state key="normal" title="新浪微博" image="新浪微博.png">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="新浪微博" image="ic_share05.png">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="onShareToSina:" destination="-1" eventType="touchUpInside" id="Zgb-Qs-vcW"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="推荐给朋友" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mQ1-ue-EGA">
                                 <rect key="frame" x="105" y="20" width="80" height="19.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FCe-Lh-buv">
@@ -95,10 +101,13 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="FCe-Lh-buv" secondAttribute="height" multiplier="1:1" id="e2b-SC-gjU"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                <state key="normal" title="微信朋友圈" image="微信朋友圈.png">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="微信朋友圈" image="icon_pengyouquan.png">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="onShareToPengyouquan:" destination="-1" eventType="touchUpInside" id="3MQ-Gc-VGd"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -127,19 +136,28 @@
                         </variation>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z4G-px-Dda">
-                        <rect key="frame" x="0.0" y="148" width="144.5" height="32"/>
+                        <rect key="frame" x="0.0" y="140" width="144.5" height="40"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="t9e-QZ-fzy"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <state key="normal" title="取消"/>
+                        <connections>
+                            <action selector="onShareCancle:" destination="-1" eventType="touchUpInside" id="WDF-lK-vMD"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dy8-Ph-eCx">
-                        <rect key="frame" x="145" y="148" width="144.5" height="32"/>
+                        <rect key="frame" x="145" y="140" width="144.5" height="40"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <state key="normal" title="确定"/>
+                        <connections>
+                            <action selector="onShareDone:" destination="-1" eventType="touchUpInside" id="6rF-I4-WfP"/>
+                        </connections>
                     </button>
                 </subviews>
-                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstItem="CEW-Uv-VWm" firstAttribute="top" secondItem="XGH-sH-n5s" secondAttribute="bottom" id="3pK-LO-uKk"/>
                     <constraint firstItem="z4G-px-Dda" firstAttribute="top" secondItem="CEW-Uv-VWm" secondAttribute="bottom" constant="1" id="94u-cB-glE"/>
@@ -161,8 +179,8 @@
         </viewController>
     </objects>
     <resources>
-        <image name="微信.png" width="59" height="59"/>
-        <image name="微信朋友圈.png" width="37" height="37"/>
-        <image name="新浪微博.png" width="56" height="51"/>
+        <image name="ic_share05.png" width="63" height="63"/>
+        <image name="icon_pengyouquan.png" width="63" height="63"/>
+        <image name="icon_weixin.png" width="63" height="63"/>
     </resources>
 </document>
