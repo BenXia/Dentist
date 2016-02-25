@@ -10,4 +10,6 @@
 
 @interface OrderItemHeaderCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *orderNumberLabel;
+
 @end

@@ -69,9 +69,18 @@
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Btn_Go_default.png" translatesAutoresizingMaskIntoConstraints="NO" id="rwK-Y0-kLi">
+                        <rect key="frame" x="280" y="20" width="30" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="Q7h-3s-K2I"/>
+                            <constraint firstAttribute="height" constant="30" id="V1D-M1-J53"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="WOS-oZ-9sL" firstAttribute="leading" secondItem="lrq-dO-zHG" secondAttribute="trailing" constant="8" id="7zW-b4-PWG"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="rwK-Y0-kLi" secondAttribute="trailing" constant="2" id="B0C-ph-cZ9"/>
                     <constraint firstItem="CTB-No-LG5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="2" id="CNy-FO-xfU"/>
                     <constraint firstItem="wtP-fw-Xcw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="52" id="HE7-4h-BW0"/>
                     <constraint firstAttribute="topMargin" secondItem="lrq-dO-zHG" secondAttribute="top" id="HmU-vb-jNO"/>
@@ -84,6 +93,7 @@
                     <constraint firstItem="CTB-No-LG5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="24" id="e3y-X9-PDz"/>
                     <constraint firstAttribute="trailingMargin" secondItem="ten-WY-5Fi" secondAttribute="trailing" id="f71-sD-Skp"/>
                     <constraint firstItem="lrq-dO-zHG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="52" id="mfg-xX-Lc0"/>
+                    <constraint firstItem="rwK-Y0-kLi" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="vFY-QR-FN9"/>
                     <constraint firstItem="WOS-oZ-9sL" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" constant="17" id="x6s-ph-8l0"/>
                     <constraint firstAttribute="topMargin" secondItem="nyj-qb-kTh" secondAttribute="top" id="yCF-hq-ZJW"/>
                     <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="CTB-No-LG5" secondAttribute="bottom" id="zjq-ic-TKX"/>
@@ -97,4 +107,7 @@
             <point key="canvasLocation" x="301" y="204"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="Btn_Go_default.png" width="30" height="30"/>
+    </resources>
 </document>
