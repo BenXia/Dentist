@@ -13,12 +13,16 @@
 #import "OrderItemCell.h"
 #import "OrderItemFooterCell.h"
 #import "OrderBottomInfoCell.h"
-#import "FeedbackVC.h"
+#import "InvoiceVC.h"
+#import "DeliverTypeVC.h"
+#import "PayTypeVC.h"
 
 @interface OrderVC () <
 UITableViewDataSource,
 UITableViewDelegate,
-OrderBottomInfoCellDelegate>
+OrderBottomInfoCellDelegate,
+DeliverTypeVCDelegate,
+PayTypeVCDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *bottomContentView;
@@ -217,7 +221,7 @@ OrderBottomInfoCellDelegate>
     } else if (indexPath.row == self.vm.productItemsArray.count + 2) {
         return 40;
     } else if (indexPath.row == self.vm.productItemsArray.count + 3) {
-        return 220;
+        return 230;
     } else {
         return 96;
     }
@@ -251,15 +255,42 @@ OrderBottomInfoCellDelegate>
 }
 
 - (void)didClickDeliverButton {
-    
+    DeliverTypeVC *vc = [[DeliverTypeVC alloc] init];
+    vc.priceArray = @[@(10.0), @(10.0), @(0)];
+    vc.delegate = self;
+    [Utilities showPopupVC:vc];
 }
 
 - (void)didClickTicketButton {
-    
+    InvoiceVC *vc = [[InvoiceVC alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)didClickPayTypeButton {
-    
+    PayTypeVC *vc = [[PayTypeVC alloc] init];
+    vc.delegate = self;
+    [Utilities showPopupVC:vc];
+}
+
+#pragma mark - DeliverTypeVCDelegate 
+
+- (void)didClickCancelButtonInDeliverTypeVC {
+    [Utilities dismissPopup];
+}
+
+- (void)didClickConfirmButtonWithDeliverType:(DeliverType)deliverType price:(CGFloat)price {
+    NSLog (@"deliverType: %zd price: %f", deliverType, price);
+}
+
+#pragma mark - PayTypeVCDelegate
+
+- (void)didClickCancelButtonInPayTypeVC {
+    [Utilities dismissPopup];
+}
+
+- (void)didClickConfirmButtonWithPayType:(PayType)payType {
+    NSLog (@"payType: %zd", payType);
 }
 
 @end
