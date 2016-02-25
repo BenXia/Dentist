@@ -10,4 +10,6 @@
 
 @interface OrderVM : NSObject
 
+@property (nonatomic, strong) NSMutableArray *productItemsArray;
+
 @end

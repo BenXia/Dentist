@@ -13,10 +13,12 @@
 #import "OrderItemCell.h"
 #import "OrderItemFooterCell.h"
 #import "OrderBottomInfoCell.h"
+#import "FeedbackVC.h"
 
 @interface OrderVC () <
 UITableViewDataSource,
-UITableViewDelegate>
+UITableViewDelegate,
+OrderBottomInfoCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *bottomContentView;
@@ -35,7 +37,10 @@ UITableViewDelegate>
     
     [self initUIReleated];
     
+    self.vm.productItemsArray = [NSMutableArray arrayWithObjects:@"1", @"2", @"3", nil];
     [self bindViewModel];
+    
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -57,6 +62,10 @@ UITableViewDelegate>
     if ([self respondsToSelector:@selector(edgesForExtendedLayout)]) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
     }
+    
+    self.bottomContentView.layer.shadowOffset = CGSizeMake(2, -2);
+    self.bottomContentView.layer.shadowOpacity = 0.2;
+    self.bottomContentView.layer.shadowColor = [UIColor grayColor].CGColor;
     
     [self setNavTitleString:@"确认订单"];
     
@@ -161,26 +170,57 @@ UITableViewDelegate>
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+    return self.vm.productItemsArray.count + 4;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    OrderReceiverCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderReceiverCell"];
-    cell.backgroundColor = [UIColor clearColor];
-    cell.accessoryType = UITableViewCellAccessoryNone;
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    //    GPBStudyTraceDetail *studyTrace = self.vm.studyTrackArray[indexPath.row];
-    //    cell.delegate = self;
-    //    [cell setupWithStudyTraceDetailModel:studyTrace];
-    
-    return cell;
+    if (indexPath.row == 0) {
+        OrderReceiverCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderReceiverCell"];
+        cell.backgroundColor = [UIColor clearColor];
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        return cell;
+    } else if (indexPath.row == 1) {
+        OrderItemHeaderCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderItemHeaderCell"];
+        cell.backgroundColor = [UIColor clearColor];
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+    } else if (indexPath.row == self.vm.productItemsArray.count + 2) {
+        OrderItemFooterCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderItemFooterCell"];
+        cell.backgroundColor = [UIColor clearColor];
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+    } else if (indexPath.row == self.vm.productItemsArray.count + 3) {
+        OrderBottomInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderBottomInfoCell"];
+        cell.backgroundColor = [UIColor clearColor];
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.delegate = self;
+        
+        return cell;
+    } else {
+        OrderItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderItemCell"];
+        cell.backgroundColor = [UIColor clearColor];
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        return cell;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    //    GPBStudyTraceDetail *studyTrace = self.vm.studyTrackArray[indexPath.row];
-    //    return [StudyTrackCell cellHeightWithStudyTraceDetailModel:studyTrace];
-    return 44;
+    if (indexPath.row == 0) {
+        return 70;
+    } else if (indexPath.row == 1) {
+        return 50;
+    } else if (indexPath.row == self.vm.productItemsArray.count + 2) {
+        return 40;
+    } else if (indexPath.row == self.vm.productItemsArray.count + 3) {
+        return 220;
+    } else {
+        return 96;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -194,6 +234,32 @@ UITableViewDelegate>
     if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
         [cell setLayoutMargins:UIEdgeInsetsZero];
     }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == 0) {
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        
+        // TODO-Ben:选择地址
+    }
+}
+
+#pragma mark - OrderBottomInfoCellDelegate
+
+- (void)didClickCertificateButton {
+    
+}
+
+- (void)didClickDeliverButton {
+    
+}
+
+- (void)didClickTicketButton {
+    
+}
+
+- (void)didClickPayTypeButton {
+    
 }
 
 @end

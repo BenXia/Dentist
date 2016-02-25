@@ -360,6 +360,10 @@ static NSString* const kCellReuseIdentifier = @"ProductBriefInfoCell";
     }
     self.isEditType = !self.isEditType;
     [self.tableView reloadData];
+    
+//    OrderVC *vc = [[OrderVC alloc] init];
+//    vc.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (IBAction)didClickSelectAllButtonAction:(id)sender {
