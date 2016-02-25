@@ -10,4 +10,9 @@
 
 @interface OrderReceiverCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *receiverNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *receiverPhoneNumberLabel;
+@property (weak, nonatomic) IBOutlet UILabel *receiverAddressLabel;
+
+
 @end

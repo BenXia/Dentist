@@ -1,18 +1,18 @@
 //
-//  RemoveFavoriteDC.m
+//  CartProductDeleteDC.m
 //  Dentist
 //
-//  Created by 郭晓倩 on 16/2/22.
-//  Copyright © 2016年 iOSStudio. All rights reserved.
+//  Created by Ben on 2/24/16.
+//  Copyright © 2016 iOSStudio. All rights reserved.
 //
 
-#import "RemoveFavoriteDC.h"
+#import "CartProductDeleteDC.h"
 
-@implementation RemoveFavoriteDC
+@implementation CartProductDeleteDC
 
 - (NSDictionary *)requestURLArgs {
     NSString* token = [UserCache sharedUserCache].token ? [UserCache sharedUserCache].token : @"";
-    return @{@"method":@"item.favorite_del",@"auth":token};
+    return @{@"method":@"order.cart_del",@"method":@"0.0.1",@"auth":token};
 }
 
 - (RequestMethod)requestMethod {
@@ -20,18 +20,13 @@
 }
 
 -(NSDictionary*)requestHTTPBody{
-    if (self.productIds.count == 1) {
-        return @{@"iid":self.productIds.firstObject};
-    }else if(self.productIds.count > 1){
-        return @{@"iid[]":self.productIds};
-    }
-    return nil;
+    return @{@"iid[]":self.productIdArray};
 }
 
 - (BOOL)parseContent:(NSString *)content {
     BOOL result = NO;
     
-    NSLog(@"删除收藏响应数据：%@",content);
+    NSLog(@"购物车商品数量响应数据：%@",content);
     
     NSError *error = nil;
     NSDictionary *resultDict = [NSJSONSerialization JSONObjectWithString:content
@@ -39,14 +34,9 @@
                                                                    error:&error];
     if (!error || [resultDict isKindOfClass:[NSDictionary class]]) {
         NSNumber* code = [resultDict objectForKey:@"code"];
-        self.code = code.intValue;
-        self.message = [resultDict objectForKey:@"msg"];
-        
-        if (self.code != 200) {
-            NSLog(@"删除收藏响应码:%d 消息:%@",self.code,self.message);
+        if (code.intValue == 200) {
+            result = YES;
         }
-        
-        result = YES;
     }
     
     return result;

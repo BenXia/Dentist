@@ -40,5 +40,7 @@
 - (void)setCellToSelectType;
 - (void)setCellToUnSelectType;
 
+- (void)hideDeleteAndFinishButton;
+- (void)showDeleteAndFinishButton;
 
 @end

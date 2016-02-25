@@ -16,7 +16,7 @@
 
 
 #define kTableViewCellHeight        95
-#define kSectionHeaderViewHeight    40
+#define kSectionHeaderViewHeight    60
 #define kSectionFooterViewHeight    80
 #define kStatusLabelWidth           60
 #define kDeleteButtonWidth          30
@@ -28,7 +28,6 @@
 @interface AllOrderListVC ()<PPDataControllerDelegate>
 @property (weak,   nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic)          AllOrderListVM *allOrderListVM;
-@property (strong, nonatomic)          OrderListDC    *orderListDC;
 
 @end
 
@@ -39,40 +38,6 @@
 
     [self initUI];
     [self initData];
-    
-    ProductListModel *model = [ProductListModel new];
-    model.orderID = @"1111";
-    model.orderShowNumber = @"1565465489469468";
-    model.statusCode = @"0";
-    model.productExpressPrice = @"12";
-    model.productListGoodsArray = [NSMutableArray new];
-
-    
-    ProductListGoodsModel *goodmodel = [ProductListGoodsModel new];
-    goodmodel.productTitle = @"松开就可以刷新开开就开就可以刷新可以刷新就可以刷新了";
-    goodmodel.productColor = @"绿色";
-    goodmodel.productModel = @"w125 jhs455";
-    goodmodel.productPrice = @"200";
-    goodmodel.productNumber = @"2";
-    goodmodel.productImageUrl = @"http://image.baidu.com/search/detail?ct=503316480&z=0&ipn=d&word=壁纸&pn=7&spn=0&di=153726435720&pi=&rn=1&tn=baiduimagedetail&istype=&ie=utf-8&oe=utf-8&in=3354&cl=2&lm=-1&st=&cs=545228853%2C2699540663&os=3179416101%2C3232832399&simid=4143495518%2C553170011&adpicid=0&ln=1000&fmq=1378374347070_R&ic=0&s=0&se=&sme=&tab=&face=&ist=&jit=&statnum=wallpaper&cg=&bdtype=10&objurl=http%3A%2F%2Fpic5.nipic.com%2F20100121%2F4183722_103138000079_2.jpg&fromurl=ippr_z2C%24qAzdH3FAzdH3Fooo_z%26e3Bgtrtv_z%26e3Bv54AzdH3Ffi5oAzdH3FdAzdH3Fn9AzdH3F9kbwv9mnvk0w8ja8_z%26e3Bip4s&gsm=200001e";
-
-    
-    
-    ProductListGoodsModel *goodmodel1 = [ProductListGoodsModel new];
-    goodmodel1.productTitle = @"松开就可以刷新开开就开就可以刷新可以刷新就可以刷新了";
-    goodmodel1.productColor = @"绿色";
-    goodmodel1.productModel = @"w125 jhs455";
-    goodmodel1.productPrice = @"300";
-    goodmodel1.productNumber = @"3";
-    goodmodel1.productImageUrl = @"http://image.baidu.com/search/detail?ct=503316480&z=0&ipn=d&word=壁纸&pn=7&spn=0&di=153726435720&pi=&rn=1&tn=baiduimagedetail&istype=&ie=utf-8&oe=utf-8&in=3354&cl=2&lm=-1&st=&cs=545228853%2C2699540663&os=3179416101%2C3232832399&simid=4143495518%2C553170011&adpicid=0&ln=1000&fmq=1378374347070_R&ic=0&s=0&se=&sme=&tab=&face=&ist=&jit=&statnum=wallpaper&cg=&bdtype=10&objurl=http%3A%2F%2Fpic5.nipic.com%2F20100121%2F4183722_103138000079_2.jpg&fromurl=ippr_z2C%24qAzdH3FAzdH3Fooo_z%26e3Bgtrtv_z%26e3Bv54AzdH3Ffi5oAzdH3FdAzdH3Fn9AzdH3F9kbwv9mnvk0w8ja8_z%26e3Bip4s&gsm=200001e";
-
-    [model.productListGoodsArray addObject:goodmodel];
-    [model.productListGoodsArray addObject:goodmodel1];
-
-    self.allOrderListVM.orderListArray = [NSMutableArray arrayWithObjects:model,nil];
-    
-    
-    [self.tableView reloadData];
 }
 
 - (void)initUI {
@@ -81,19 +46,19 @@
 }
 
 - (void)initData {
-    self.orderListDC = [[OrderListDC alloc] initWithDelegate:self];
-    [self.orderListDC requestWithArgs:nil];
+    self.allOrderListVM.orderListDC = [[OrderListDC alloc] initWithDelegate:self];
+    [self.allOrderListVM.orderListDC requestWithArgs:nil];
 }
 
 
 #pragma mark - UITableViewDataSource & UITableViewDelegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.allOrderListVM.orderListArray.count;
+    return self.allOrderListVM.orderListDC.orderListArray.count;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    return [self createSectionHeaderViewWithProductListModel:[self.allOrderListVM.orderListArray objectAtIndex:section]];
+    return [self createSectionHeaderViewWithProductListModel:[self.allOrderListVM.orderListDC.orderListArray objectAtIndex:section]];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -101,7 +66,7 @@
 }
 
 - (nullable UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    return [self createSectionFooterViewWithProductListModel:[self.allOrderListVM.orderListArray objectAtIndex:section]
+    return [self createSectionFooterViewWithProductListModel:[self.allOrderListVM.orderListDC.orderListArray objectAtIndex:section]
                                                  withSection:section];
 }
 
@@ -110,7 +75,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    ProductListModel *model = [self.allOrderListVM.orderListArray objectAtIndex:section];
+    ProductListModel *model = [self.allOrderListVM.orderListDC.orderListArray objectAtIndex:section];
     return model.productListGoodsArray.count;
 }
 
@@ -125,34 +90,22 @@
         cell = [[[NSBundle mainBundle] loadNibNamed:@"OrderListTableViewCell" owner:nil options:nil] objectAtIndex:0];
     }
     
-    ProductListModel *model = [self.allOrderListVM.orderListArray objectAtIndex:indexPath.section];
+    ProductListModel *model = [self.allOrderListVM.orderListDC.orderListArray objectAtIndex:indexPath.section];
     [cell setModelWithProductListGoodsModel:[model.productListGoodsArray objectAtIndex:indexPath.row]];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    
-//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//    OrderDetailVC *orderDetailVC = [OrderDetailVC new];
-//    [self.navigationController pushViewController:orderDetailVC animated:YES];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    OrderDetailVC *orderDetailVC = [OrderDetailVC new];
+    [self.navigationController pushViewController:orderDetailVC animated:YES];
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    CGFloat sectionHeaderHeight = kSectionFooterViewHeight;
-    if (scrollView.contentOffset.y >= sectionHeaderHeight) {
-        scrollView.contentInset = UIEdgeInsetsMake(0, 0, -sectionHeaderHeight, 0);
-        NSLog(@"111111111111");
-    } else if (scrollView.contentOffset.y >= sectionHeaderHeight&&(scrollView.contentOffset.y >= scrollView.contentSize.height)) {
-        scrollView.contentInset = UIEdgeInsetsMake(0, 0, -scrollView.contentOffset.y, 0);
-        NSLog(@"222222222222");
-    }
-}
 #pragma mark - Button Action
 
 - (void)deleteOrder:(id)sender {
     UIButton *btn = (UIButton *)sender;
-    [self.allOrderListVM.orderListArray removeObjectAtIndex:btn.tag];
+    [self.allOrderListVM.orderListDC.orderListArray removeObjectAtIndex:btn.tag];
     [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:btn.tag] withRowAnimation:UITableViewRowAnimationFade];
     [self.tableView reloadData];
 }
@@ -176,21 +129,24 @@
 
 //数据请求成功回调
 - (void)loadingDataFinished:(PPDataController *)controller{
-
+    [self.tableView reloadData];
 }
 
 //数据请求失败回调
 - (void)loadingData:(PPDataController *)controller failedWithError:(NSError *)error{
-
+    [Utilities showToastWithText:@"订单列表获取失败"];
 }
 
 #pragma mark - Data Init
 
 - (UIView *)createSectionHeaderViewWithProductListModel:(ProductListModel *)productListModel {
-    UIView *sectionHeaderBackView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kSectionHeaderViewHeight)];
+    UIView *sectionHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kSectionHeaderViewHeight)];
+    sectionHeaderView.backgroundColor = [UIColor clearColor];
+    
+    UIView *sectionHeaderBackView = [[UIView alloc] initWithFrame:CGRectMake(0, 20, kScreenWidth, kSectionHeaderViewHeight - 20)];
     sectionHeaderBackView.backgroundColor = [UIColor whiteColor];
     
-    UILabel *orderNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(kInsert, 0, kScreenWidth - kInsert - kStatusLabelWidth,kSectionHeaderViewHeight)];
+    UILabel *orderNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(kInsert, 0, kScreenWidth - kInsert - kStatusLabelWidth,kSectionHeaderViewHeight - 20)];
     orderNumLabel.font = [UIFont systemFontOfSize:13];
     NSMutableAttributedString *AttributedStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"订单号:%@",productListModel.orderShowNumber]];
     [AttributedStr addAttribute:NSForegroundColorAttributeName
@@ -201,7 +157,7 @@
                           range:NSMakeRange(4, AttributedStr.length - 4)];
     orderNumLabel.attributedText = AttributedStr;
     
-    UILabel *orderStateLabel = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth - kStatusLabelWidth - kInsert, 0, kStatusLabelWidth,kSectionHeaderViewHeight)];
+    UILabel *orderStateLabel = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth - kStatusLabelWidth - kInsert, 0, kStatusLabelWidth,kSectionHeaderViewHeight - 20)];
     orderStateLabel.textAlignment = NSTextAlignmentRight;
     orderStateLabel.font = [UIFont systemFontOfSize:13];
     orderStateLabel.textColor = [UIColor redColor];
@@ -227,14 +183,16 @@
             break;
     }
     
-    UIImageView *lineImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, kSectionHeaderViewHeight - 1, kScreenWidth, 1)];
+    UIImageView *lineImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, kSectionHeaderViewHeight - 20 - 1, kScreenWidth, 1)];
     lineImageView.backgroundColor = [UIColor gray003Color];
 
     [sectionHeaderBackView addSubview:orderNumLabel];
     [sectionHeaderBackView addSubview:orderStateLabel];
     [sectionHeaderBackView addSubview:lineImageView];
     
-    return sectionHeaderBackView;
+    [sectionHeaderView addSubview:sectionHeaderBackView];
+    
+    return sectionHeaderView;
 }
 
 - (UIView *)createSectionFooterViewWithProductListModel:(ProductListModel *)productListModel

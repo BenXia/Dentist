@@ -10,4 +10,6 @@
 
 @interface OrderDetailVC : UIViewController
 
+- (id)initWithOid:(NSString *)oid;
+
 @end

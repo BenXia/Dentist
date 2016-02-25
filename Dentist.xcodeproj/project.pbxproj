@@ -420,6 +420,11 @@
 		B597107E1C788D1E006BC9FE /* OrderListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B597107C1C788D1E006BC9FE /* OrderListTableViewCell.xib */; };
 		B5DA4D0C1C7B41F4003677DD /* ShoppingCartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DA4D0B1C7B41F4003677DD /* ShoppingCartModel.m */; };
 		B5DA4D0F1C7B4402003677DD /* ShoppingCardVM.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DA4D0E1C7B4402003677DD /* ShoppingCardVM.m */; };
+		B5DA4D151C7CAC93003677DD /* OrderDetailDC.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DA4D141C7CAC93003677DD /* OrderDetailDC.m */; };
+		B5DA4D181C7CB426003677DD /* CartListDC.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DA4D171C7CB426003677DD /* CartListDC.m */; };
+		B5DA4D1B1C7DD9C9003677DD /* CartProductUpdateNumberDC.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DA4D1A1C7DD9C9003677DD /* CartProductUpdateNumberDC.m */; };
+		B5DA4D1E1C7DDBBE003677DD /* CartProductDeleteDC.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DA4D1D1C7DDBBE003677DD /* CartProductDeleteDC.m */; };
+		B5DA4D211C7DDEDC003677DD /* ProductEvaluateDC.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DA4D201C7DDEDC003677DD /* ProductEvaluateDC.m */; };
 		B5F386061C45ED3A00E666F7 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F071C51C42D12900DAC58F /* CoreFoundation.framework */; };
 /* End PBXBuildFile section */
 
@@ -1014,6 +1019,16 @@
 		B5DA4D0B1C7B41F4003677DD /* ShoppingCartModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingCartModel.m; sourceTree = "<group>"; };
 		B5DA4D0D1C7B4402003677DD /* ShoppingCardVM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingCardVM.h; sourceTree = "<group>"; };
 		B5DA4D0E1C7B4402003677DD /* ShoppingCardVM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingCardVM.m; sourceTree = "<group>"; };
+		B5DA4D131C7CAC93003677DD /* OrderDetailDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailDC.h; sourceTree = "<group>"; };
+		B5DA4D141C7CAC93003677DD /* OrderDetailDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailDC.m; sourceTree = "<group>"; };
+		B5DA4D161C7CB426003677DD /* CartListDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartListDC.h; sourceTree = "<group>"; };
+		B5DA4D171C7CB426003677DD /* CartListDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartListDC.m; sourceTree = "<group>"; };
+		B5DA4D191C7DD9C9003677DD /* CartProductUpdateNumberDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartProductUpdateNumberDC.h; sourceTree = "<group>"; };
+		B5DA4D1A1C7DD9C9003677DD /* CartProductUpdateNumberDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartProductUpdateNumberDC.m; sourceTree = "<group>"; };
+		B5DA4D1C1C7DDBBE003677DD /* CartProductDeleteDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartProductDeleteDC.h; sourceTree = "<group>"; };
+		B5DA4D1D1C7DDBBE003677DD /* CartProductDeleteDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartProductDeleteDC.m; sourceTree = "<group>"; };
+		B5DA4D1F1C7DDEDC003677DD /* ProductEvaluateDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductEvaluateDC.h; sourceTree = "<group>"; };
+		B5DA4D201C7DDEDC003677DD /* ProductEvaluateDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductEvaluateDC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1589,6 +1604,7 @@
 			isa = PBXGroup;
 			children = (
 				88367A9E1C7CACE200658214 /* 商品搜索 */,
+				B5DA4D121C7CAC6E003677DD /* 订单详情 */,
 				B58339721C79FF7F00F9EBE2 /* 订单列表 */,
 				33F0708F1C42B58E00DAC58F /* PPDataCache.h */,
 				33F070901C42B58E00DAC58F /* PPDataCache.m */,
@@ -1898,6 +1914,8 @@
 				88C3BACA1C781F5B001F4D85 /* ProductDetailDC.m */,
 				88C3BACB1C781F5B001F4D85 /* ProductDetailModel.h */,
 				88C3BACC1C781F5B001F4D85 /* ProductDetailModel.m */,
+				B5DA4D1F1C7DDEDC003677DD /* ProductEvaluateDC.h */,
+				B5DA4D201C7DDEDC003677DD /* ProductEvaluateDC.m */,
 			);
 			path = "商品详情";
 			sourceTree = "<group>";
@@ -1907,6 +1925,12 @@
 			children = (
 				88EBEE791C79B83000F20C90 /* AddCartDC.h */,
 				88EBEE7A1C79B83000F20C90 /* AddCartDC.m */,
+				B5DA4D161C7CB426003677DD /* CartListDC.h */,
+				B5DA4D171C7CB426003677DD /* CartListDC.m */,
+				B5DA4D191C7DD9C9003677DD /* CartProductUpdateNumberDC.h */,
+				B5DA4D1A1C7DD9C9003677DD /* CartProductUpdateNumberDC.m */,
+				B5DA4D1C1C7DDBBE003677DD /* CartProductDeleteDC.h */,
+				B5DA4D1D1C7DDBBE003677DD /* CartProductDeleteDC.m */,
 			);
 			path = "购物车";
 			sourceTree = "<group>";
@@ -2290,6 +2314,15 @@
 				B597107C1C788D1E006BC9FE /* OrderListTableViewCell.xib */,
 			);
 			path = "订单列表";
+			sourceTree = "<group>";
+		};
+		B5DA4D121C7CAC6E003677DD /* 订单详情 */ = {
+			isa = PBXGroup;
+			children = (
+				B5DA4D131C7CAC93003677DD /* OrderDetailDC.h */,
+				B5DA4D141C7CAC93003677DD /* OrderDetailDC.m */,
+			);
+			path = "订单详情";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2709,6 +2742,7 @@
 				93DEA8711C4BC552008211F7 /* HomePageVC.m in Sources */,
 				33F070CE1C42BE1E00DAC58F /* SendSmsDataController.m in Sources */,
 				33F0704F1C429AD300DAC58F /* AppDeinitializer.m in Sources */,
+				B5DA4D181C7CB426003677DD /* CartListDC.m in Sources */,
 				33D028671C74BCA100277C3C /* InvoiceVC.m in Sources */,
 				33CAF8AC1C781BCD0015B4BC /* UserInfoModel.m in Sources */,
 				33CAF8A71C781B380015B4BC /* LoginVC.m in Sources */,
@@ -2781,14 +2815,17 @@
 				33D187391C70C9D100658F3D /* ProductDetailVC.m in Sources */,
 				888811CB1C7B60B000F6672C /* FavoriteProductCell.m in Sources */,
 				9377AC681C53793A003B24B1 /* BannerModel.m in Sources */,
+				B5DA4D1B1C7DD9C9003677DD /* CartProductUpdateNumberDC.m in Sources */,
 				33D028711C74BCDF00277C3C /* PayFailedVC.m in Sources */,
 				33CAF8781C7809690015B4BC /* WebBrowserVC.m in Sources */,
 				33F0705B1C42A3D400DAC58F /* MainPageTabBarVC.m in Sources */,
 				33CAF1011C72098200348763 /* OrderVC.m in Sources */,
 				B597106E1C785F98006BC9FE /* ProductListModel.m in Sources */,
+				B5DA4D151C7CAC93003677DD /* OrderDetailDC.m in Sources */,
 				9393455C1C7B3CB30054E2EC /* DeleteAddressDC.m in Sources */,
 				9379D3AD1C63239100390702 /* MultilevelTableViewCell.m in Sources */,
 				88C3BAD21C78508C001F4D85 /* GroupProductView.m in Sources */,
+				B5DA4D211C7DDEDC003677DD /* ProductEvaluateDC.m in Sources */,
 				93DEA8691C4BA2D2008211F7 /* RegistDC.m in Sources */,
 				888811C41C7B5B5A00F6672C /* RemoveLookHistoryDC.m in Sources */,
 				33F0707A1C42AB8300DAC58F /* AppAppearance.m in Sources */,
@@ -2806,6 +2843,7 @@
 				33CAF8891C780C030015B4BC /* EasyJSDataFunction.m in Sources */,
 				B5DA4D0F1C7B4402003677DD /* ShoppingCardVM.m in Sources */,
 				93DEA8D21C4BCBAA008211F7 /* TAPageControl.m in Sources */,
+				B5DA4D1E1C7DDBBE003677DD /* CartProductDeleteDC.m in Sources */,
 				33CAF88C1C780C030015B4BC /* PPEasyWebViewController.m in Sources */,
 				33CAE4501C7373AE0038748F /* OrderBottomInfoCell.m in Sources */,
 				33CAF88A1C780C030015B4BC /* EasyJSWebView.m in Sources */,

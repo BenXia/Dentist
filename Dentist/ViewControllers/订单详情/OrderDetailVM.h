@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@class OrderDetailModel;
+@class OrderDetailModel,OrderDetailDC;
 @interface OrderDetailVM : NSObject
 
-@property(nonatomic, strong) OrderDetailModel *orderDetailModel;
+@property(nonatomic, strong) OrderDetailDC *orderDetailDC;
 
 @end

@@ -36,6 +36,11 @@
         NSNumber* code = [resultDict objectForKey:@"code"];
         self.code = code.intValue;
         self.message = [resultDict objectForKey:@"msg"];
+        
+        if (self.code != 200) {
+            NSLog(@"添加收藏响应码:%d 消息:%@",self.code,self.message);
+        }
+        
         result = YES;
     }
     

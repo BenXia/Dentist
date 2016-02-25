@@ -67,6 +67,12 @@ static const int pagesize = 10;
         self.total_num = [resultDict objectForKey:@"total_num"];
         self.next_iid = [resultDict objectForKey:@"next_iid"];
         
+        NSNumber* code = [resultDict objectForKey:@"code"];
+        NSString* message = [resultDict objectForKey:@"msg"];
+        if (code && code.intValue != 200) {
+            NSLog(@"商品搜索响应码:%d 消息:%@",code.intValue,message);
+        }
+        
         result = YES;
     }
     
