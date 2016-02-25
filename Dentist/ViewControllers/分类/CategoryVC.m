@@ -25,6 +25,7 @@
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        self.title = @"分类表";
         self.tabBarItem.title = @"分类";
         self.tabBarItem.image = [UIImage imageNamed:@"btn_classification_f"];
         self.tabBarItem.selectedImage = [[UIImage imageNamed:@"btn_classification_t"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
@@ -127,7 +128,8 @@
         ProductCategoryModel *homeMeun = self.productCategoryRequest.productCategoryArray[left];
         int cid = [homeMeun.cid intValue];
         int scid = [info.ID intValue];
-        SubCategoryVC* subCategoryVC = [[SubCategoryVC alloc] initWithCid:@(cid) scid:@(scid)];
+        NSString* scidTitle = info.meunName;
+        SubCategoryVC* subCategoryVC = [[SubCategoryVC alloc] initWithCid:@(cid) scid:@(scid) title:scidTitle];
         subCategoryVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:subCategoryVC animated:YES];
     }];

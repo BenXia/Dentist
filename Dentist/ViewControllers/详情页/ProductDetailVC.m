@@ -153,6 +153,7 @@ UIScrollViewDelegate>
     [self initUIReleated];
     
     [self.dc requestWithArgs:nil];
+    [self showLoadingView];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -874,6 +875,7 @@ UIScrollViewDelegate>
 
 //数据请求成功回调
 - (void)loadingDataFinished:(PPDataController *)controller{
+    [self hideLoadingView];
     if (controller == self.dc) {
         [self refreshUI];
     }else if(controller == self.addFavoriteDC){
@@ -896,6 +898,7 @@ UIScrollViewDelegate>
 }
 //数据请求失败回调
 - (void)loadingData:(PPDataController *)controller failedWithError:(NSError *)error{
+    [self hideLoadingView];
     if (controller == self.dc) {
         [Utilities showToastWithText:@"获取商品详情失败"];
     }else if(controller == self.addFavoriteDC){

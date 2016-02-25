@@ -46,6 +46,7 @@ static const CGFloat kItemNumPerLine = 2;
     [self setNavRightItemWithName:@"编辑" target:self action:@selector(didClickEditButton)];
     [self initCollectionView];
     [self.dc requestWithArgs:nil];
+    [self showLoadingView];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -175,6 +176,7 @@ static const CGFloat kItemNumPerLine = 2;
 
 //数据请求成功回调
 - (void)loadingDataFinished:(PPDataController *)controller{
+    [self hideLoadingView];
     [Utilities hideLoadingView];
     [self.collectionView headerEndRefreshing];
     [self.collectionView footerEndRefreshing];
@@ -196,6 +198,7 @@ static const CGFloat kItemNumPerLine = 2;
 }
 //数据请求失败回调
 - (void)loadingData:(PPDataController *)controller failedWithError:(NSError *)error{
+    [self hideLoadingView];
     [Utilities hideLoadingView];
     [self.collectionView headerEndRefreshing];
     [self.collectionView footerEndRefreshing];

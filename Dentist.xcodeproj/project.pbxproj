@@ -275,6 +275,8 @@
 		88367AA11C7CACF400658214 /* SearchProductDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88367AA01C7CACF400658214 /* SearchProductDC.m */; };
 		88367AA51C7CB11900658214 /* SubCategoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88367AA31C7CB11900658214 /* SubCategoryVC.m */; };
 		88367AA61C7CB11900658214 /* SubCategoryVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88367AA41C7CB11900658214 /* SubCategoryVC.xib */; };
+		88816DD71C7F5BBA00314B43 /* 搜索-放大镜@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88816DD51C7F5BBA00314B43 /* 搜索-放大镜@2x.png */; };
+		88816DD81C7F5BBA00314B43 /* 搜索-放大镜@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88816DD61C7F5BBA00314B43 /* 搜索-放大镜@3x.png */; };
 		888811AC1C7B4DEC00F6672C /* GuessYouLikeProductView.m in Sources */ = {isa = PBXBuildFile; fileRef = 888811AB1C7B4DEC00F6672C /* GuessYouLikeProductView.m */; };
 		888811B61C7B592600F6672C /* MyFavoriteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 888811B41C7B592600F6672C /* MyFavoriteVC.m */; };
 		888811B71C7B592600F6672C /* MyFavoriteVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 888811B51C7B592600F6672C /* MyFavoriteVC.xib */; };
@@ -805,6 +807,8 @@
 		88367AA21C7CB11900658214 /* SubCategoryVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubCategoryVC.h; sourceTree = "<group>"; };
 		88367AA31C7CB11900658214 /* SubCategoryVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubCategoryVC.m; sourceTree = "<group>"; };
 		88367AA41C7CB11900658214 /* SubCategoryVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SubCategoryVC.xib; sourceTree = "<group>"; };
+		88816DD51C7F5BBA00314B43 /* 搜索-放大镜@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "搜索-放大镜@2x.png"; sourceTree = "<group>"; };
+		88816DD61C7F5BBA00314B43 /* 搜索-放大镜@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "搜索-放大镜@3x.png"; sourceTree = "<group>"; };
 		888811AA1C7B4DEC00F6672C /* GuessYouLikeProductView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuessYouLikeProductView.h; sourceTree = "<group>"; };
 		888811AB1C7B4DEC00F6672C /* GuessYouLikeProductView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuessYouLikeProductView.m; sourceTree = "<group>"; };
 		888811B31C7B592600F6672C /* MyFavoriteVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFavoriteVC.h; sourceTree = "<group>"; };
@@ -1808,6 +1812,7 @@
 		33F070851C42B46E00DAC58F /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				88816DD41C7F5BBA00314B43 /* 分类 */,
 				93EBD6831C7F2D14005FA9A1 /* 分享 */,
 				B58339641C79BB3400F9EBE2 /* 商品评价 */,
 				B58339481C796FB000F9EBE2 /* 订单列表 */,
@@ -1874,6 +1879,15 @@
 				88367AA01C7CACF400658214 /* SearchProductDC.m */,
 			);
 			path = "商品搜索";
+			sourceTree = "<group>";
+		};
+		88816DD41C7F5BBA00314B43 /* 分类 */ = {
+			isa = PBXGroup;
+			children = (
+				88816DD51C7F5BBA00314B43 /* 搜索-放大镜@2x.png */,
+				88816DD61C7F5BBA00314B43 /* 搜索-放大镜@3x.png */,
+			);
+			path = "分类";
 			sourceTree = "<group>";
 		};
 		888811AD1C7B509000F6672C /* 浏览记录 */ = {
@@ -2595,6 +2609,7 @@
 				93E68A9B1C7C93E100B3A85D /* test.jpg in Resources */,
 				3332F9C41C785225006B8864 /* icon_failed@2x.png in Resources */,
 				33F0706F1C42A43200DAC58F /* ProfileVC.xib in Resources */,
+				88816DD81C7F5BBA00314B43 /* 搜索-放大镜@3x.png in Resources */,
 				93EBD68F1C7F2D14005FA9A1 /* icon_weixin@3x.png in Resources */,
 				3360B4011C7CA41200C60AC0 /* btn_photoplus_pressed@2x.png in Resources */,
 				33DD6CA41C611A5500CE6B31 /* btn_numberminus90_pressed@2X.png in Resources */,
@@ -2692,6 +2707,7 @@
 				93624C2A1C44170100262B65 /* Btn_Msg_pressed@2x.png in Resources */,
 				33DD6D081C611A5500CE6B31 /* 技工@2x.png in Resources */,
 				33DD6CB31C611A5500CE6B31 /* buy.png in Resources */,
+				88816DD71C7F5BBA00314B43 /* 搜索-放大镜@2x.png in Resources */,
 				33DD6BE51C61195600CE6B31 /* btn_back_white@2x.png in Resources */,
 				33DD6CD21C611A5500CE6B31 /* ico_idnormal.png in Resources */,
 				33DD6CEC1C611A5500CE6B31 /* 删除@2x.png in Resources */,
