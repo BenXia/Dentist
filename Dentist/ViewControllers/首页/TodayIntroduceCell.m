@@ -49,22 +49,21 @@
 - (void)setCellModel:(id)cellModel {
     _cellModel = cellModel;
     for (ProductIntroduceModel *model in cellModel) {
-        NSLog(@"图片地址 = %@",model.img_url);
         if ([model.location isEqualToString:@"中上"]) {
             self.firstModel = model;
-            [self.firstImageView sd_setImageWithURL:[NSURL URLWithString:model.img_url]placeholderImage:[UIImage imageNamed:@"test.png"]];
+            [self.firstImageView sd_setImageWithURL:[NSURL URLWithString:model.img_url]placeholderImage:[UIImage imageNamed:@"网络不给力-03"]];
         } else if ([model.location isEqualToString:@"右上"]) {
             self.secondModel = model;
-            [self.secondImageView sd_setImageWithURL:[NSURL URLWithString:model.img_url] placeholderImage:[UIImage imageNamed:@"test.png"]];
+            [self.secondImageView sd_setImageWithURL:[NSURL URLWithString:model.img_url] placeholderImage:[UIImage imageNamed:@"网络不给力-03"]];
         } else if ([model.location isEqualToString:@"中下"]) {
             self.thirdModel = model;
-            [self.thirdImageView sd_setImageWithURL:[NSURL URLWithString:model.img_url] placeholderImage:[UIImage imageNamed:@"test.png"]];
+            [self.thirdImageView sd_setImageWithURL:[NSURL URLWithString:model.img_url] placeholderImage:[UIImage imageNamed:@"网络不给力-03"]];
         } else if ([model.location isEqualToString:@"右下"]) {
             self.fourthModel = model;
-            [self.fourthImageView sd_setImageWithURL:[NSURL URLWithString:model.img_url] placeholderImage:[UIImage imageNamed:@"test.png"]];
+            [self.fourthImageView sd_setImageWithURL:[NSURL URLWithString:model.img_url] placeholderImage:[UIImage imageNamed:@"网络不给力-03"]];
         } else if ([model.location isEqualToString:@"左"]) {
             self.leftModel = model;
-            [self.leftImageShowImageView sd_setImageWithURL:[NSURL URLWithString:model.img_url]placeholderImage:[UIImage imageNamed:@"test.png"]];
+            [self.leftImageShowImageView sd_setImageWithURL:[NSURL URLWithString:model.img_url]placeholderImage:[UIImage imageNamed:@"网络不给力-01"]];
         }
     }
 }

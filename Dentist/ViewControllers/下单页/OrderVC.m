@@ -16,16 +16,23 @@
 #import "InvoiceVC.h"
 #import "DeliverTypeVC.h"
 #import "PayTypeVC.h"
+#import "AddressListVC.h"
+#import "PPConfirmOrderDC.h"
+#import "PPCreateOrderDC.h"
 
 @interface OrderVC () <
 UITableViewDataSource,
 UITableViewDelegate,
 OrderBottomInfoCellDelegate,
 DeliverTypeVCDelegate,
-PayTypeVCDelegate>
+PayTypeVCDelegate,
+PPDataControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *bottomContentView;
+
+@property (nonatomic, strong) PPConfirmOrderDC *confirmOrderDC;
+@property (nonatomic, strong) PPCreateOrderDC *createOrderDC;
 
 @property (nonatomic, strong) OrderVM *vm;
 
@@ -35,21 +42,52 @@ PayTypeVCDelegate>
 
 #pragma mark - View life cycle
 
+- (instancetype)init {
+    if (self = [super init]) {
+        self.confirmOrderDC = [[PPConfirmOrderDC alloc] init];
+        self.confirmOrderDC.delegate = self;
+        
+        self.createOrderDC = [[PPCreateOrderDC alloc] init];
+        self.createOrderDC.delegate = self;
+    }
+    
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
     [self initUIReleated];
     
-    self.vm.productItemsArray = [NSMutableArray arrayWithObjects:@"1", @"2", @"3", nil];
     [self bindViewModel];
     
-    [self.tableView reloadData];
+    [self.confirmOrderDC requestWithArgs:nil];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Setter methods
+
+- (void)setProductItemsArray:(NSMutableArray *)productItemsArray {
+    self.vm.productItemsArray = productItemsArray;
+    
+    self.confirmOrderDC.productItemsArray = productItemsArray;
+    self.createOrderDC.productItemsArray = productItemsArray;
+}
+
+- (void)setGroupId:(NSString *)groupIds {
+    self.confirmOrderDC.groupIds = groupIds;
+    self.createOrderDC.groupIds = groupIds;
 }
 
 #pragma mark - Private methods
@@ -182,6 +220,11 @@ PayTypeVCDelegate>
         OrderReceiverCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderReceiverCell"];
         cell.backgroundColor = [UIColor clearColor];
         cell.accessoryType = UITableViewCellAccessoryNone;
+        
+        cell.receiverNameLabel.text = self.vm.addressModel.recipientName ? self.vm.addressModel.recipientName : @"收件人姓名";
+        cell.receiverPhoneNumberLabel.text = self.vm.addressModel.recipientPhoneNum ? self.vm.addressModel.recipientPhoneNum : @"收件人电话";
+        cell.receiverAddressLabel.text = self.vm.addressModel.detailAddress ? self.vm.addressModel.detailAddress : @"收件人地址";
+        
         return cell;
     } else if (indexPath.row == 1) {
         OrderItemHeaderCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderItemHeaderCell"];
@@ -208,6 +251,13 @@ PayTypeVCDelegate>
         cell.backgroundColor = [UIColor clearColor];
         cell.accessoryType = UITableViewCellAccessoryNone;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        OrderItemModel *model = [self.vm.productItemsArray objectAtIndex:indexPath.row - 2];
+        [cell.productImageView setImageURL:[NSURL URLWithString:model.productImageUrl]];
+        cell.productTitleLabel.text = model.productTitle;
+        cell.productCustomiseLabel.text = model.descriptionString;
+        cell.priceLabel.text = [NSString stringWithFormat:@"%.2f", model.productPrice];
+        cell.productNumberLabel.text = [NSString stringWithFormat:@"x %d", model.buyNum];
         
         return cell;
     }
@@ -244,8 +294,44 @@ PayTypeVCDelegate>
     if (indexPath.row == 0) {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         
-        // TODO-Ben:选择地址
+        AddressListVC *vc = [[AddressListVC alloc] init];
+        vc.isSelectAddress = YES;
+        vc.selectedCompleteBlock = ^(Address *address) {
+            self.vm.addressModel = address;
+            
+            [[GCDQueue mainQueue] queueBlock:^{
+                [self.tableView reloadData];
+            }];
+        };
+        
+        [self.navigationController pushViewController:vc animated:YES];
     }
+}
+
+#pragma mark - IBActions
+
+- (IBAction)didClickPayNowButtonAction:(id)sender {
+    self.createOrderDC.orderExpress = @"pick_up";
+    self.createOrderDC.aid = self.vm.addressModel.ID;
+    self.createOrderDC.payType = @"weixin";//@"alipay";
+    self.createOrderDC.orderCertArray = @[];
+    self.createOrderDC.piaoType = @"0";
+    self.createOrderDC.piaoTitle = @"携程在手，说走就走";
+    self.createOrderDC.piaoContent = @"发票明细是什么";
+    self.createOrderDC.remarkNum = @"备注是什么";
+    
+    [self.createOrderDC requestWithArgs:nil];
+    
+//    @property (nonatomic, strong) NSString *orderExpress;
+//    @property (nonatomic, strong) NSString *aid;
+//    @property (nonatomic, strong) NSString *payType;
+//    
+//    // 非必选字段
+//    @property (nonatomic, strong) NSArray *orderCertArray;
+//    @property (nonatomic, strong) NSString *piaoType;
+//    @property (nonatomic, strong) NSString *piaoTitle;
+//    @property (nonatomic, strong) NSString *piaoContent;
+//    @property (nonatomic, strong) NSString *remarkNum;
 }
 
 #pragma mark - OrderBottomInfoCellDelegate
@@ -281,6 +367,7 @@ PayTypeVCDelegate>
 
 - (void)didClickConfirmButtonWithDeliverType:(DeliverType)deliverType price:(CGFloat)price {
     NSLog (@"deliverType: %zd price: %f", deliverType, price);
+    [Utilities dismissPopup];
 }
 
 #pragma mark - PayTypeVCDelegate
@@ -291,6 +378,35 @@ PayTypeVCDelegate>
 
 - (void)didClickConfirmButtonWithPayType:(PayType)payType {
     NSLog (@"payType: %zd", payType);
+    [Utilities dismissPopup];
+}
+
+#pragma mark - PPDataControllerDelegate
+
+- (void)loadingDataFinished:(PPDataController *)controller {
+    if (controller == self.confirmOrderDC) {
+        self.vm.addressModel = self.confirmOrderDC.address;
+        self.vm.productItemsArray = [NSMutableArray arrayWithArray:self.confirmOrderDC.orderItemsArray];
+        
+        [[GCDQueue mainQueue] queueBlock:^{
+            [self.tableView reloadData];
+        }];
+    } else if (controller == self.createOrderDC) {
+        
+    }
+}
+
+- (void)loadingData:(PPDataController *)controller failedWithError:(NSError *)error {
+    if (controller == self.confirmOrderDC) {
+        @weakify(self);
+        [[GCDQueue mainQueue] queueBlock:^{
+            @strongify(self);
+            [Utilities showToastWithText:@"确认订单失败" withImageName:nil blockUI:NO];
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
+    } else if (controller == self.createOrderDC) {
+        [Utilities showToastWithText:@"生成订单失败" withImageName:nil blockUI:NO];
+    }
 }
 
 @end

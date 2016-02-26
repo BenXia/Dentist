@@ -44,16 +44,16 @@
     for (ProductIntroduceModel *model in cellModelArray) {
         if ([model.location isEqualToString:@"左1"]) {
             self.firstModel = model;
-            [self.firstItemImageView sd_setImageWithURL:[NSURL URLWithString:model.img_url]placeholderImage:[UIImage imageNamed:@"test.png"]];
+            [self.firstItemImageView sd_setImageWithURL:[NSURL URLWithString:model.img_url]placeholderImage:[UIImage imageNamed:@"网络不给力-01"]];
         } else if ([model.location isEqualToString:@"右1"]) {
             self.secondModel = model;
-            [self.secondItemImageView sd_setImageWithURL:[NSURL URLWithString:model.img_url] placeholderImage:[UIImage imageNamed:@"test.png"]];
+            [self.secondItemImageView sd_setImageWithURL:[NSURL URLWithString:model.img_url] placeholderImage:[UIImage imageNamed:@"网络不给力-02"]];
         } else if ([model.location isEqualToString:@"右2"]) {
             self.thirdModel = model;
-            [self.thirdItemImageView sd_setImageWithURL:[NSURL URLWithString:model.img_url] placeholderImage:[UIImage imageNamed:@"test.png"]];
+            [self.thirdItemImageView sd_setImageWithURL:[NSURL URLWithString:model.img_url] placeholderImage:[UIImage imageNamed:@"网络不给力-02"]];
         } else if ([model.location isEqualToString:@"banner"]) {
             self.bannerModel = model;
-            [self.headImageView sd_setImageWithURL:[NSURL URLWithString:model.img_url] placeholderImage:[UIImage imageNamed:@"test.png"]];
+            [self.headImageView sd_setImageWithURL:[NSURL URLWithString:model.img_url] placeholderImage:[UIImage imageNamed:@"网络不给力-02"]];
         }
     }
 }

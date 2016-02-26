@@ -174,8 +174,8 @@
                     <rect key="frame" x="0.0" y="348" width="375" height="35"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WNy-kV-Boe">
-                            <rect key="frame" x="15" y="7" width="138" height="22"/>
-                            <state key="normal" title="  设为默认地址" image="Ico_Successed.png">
+                            <rect key="frame" x="15" y="7" width="140" height="22"/>
+                            <state key="normal" title="  设为默认地址" image="btn_choice_t.png">
                                 <color key="titleColor" red="0.17254901959999999" green="0.36470588240000001" blue="0.65098039220000004" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <connections>
@@ -316,6 +316,6 @@
         </view>
     </objects>
     <resources>
-        <image name="Ico_Successed.png" width="20" height="20"/>
+        <image name="btn_choice_t.png" width="22" height="22"/>
     </resources>
 </document>

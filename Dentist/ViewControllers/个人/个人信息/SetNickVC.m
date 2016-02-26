@@ -40,7 +40,7 @@
 
 - (void)loadingData:(PPDataController *)controller failedWithError:(NSError *)error {
     if (controller == self.setNickRequest) {
-        [Utilities showToastWithText:[NSString stringWithFormat:@"设置昵称失败:%@", error]];
+        [Utilities showToastWithText:[NSString stringWithFormat:@"设置昵称失败"]];
     }
 }
 

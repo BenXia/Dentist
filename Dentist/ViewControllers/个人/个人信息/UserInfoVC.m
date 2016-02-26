@@ -69,7 +69,7 @@ UINavigationControllerDelegate>
     }
     if (indexPath.row == 0) {
         cell.textLabel.text = @"头像";
-        [self.headImageView sd_setImageWithURL:[NSURL URLWithString:[UserInfoModel sharedUserInfoModel].headPath] placeholderImage:[UIImage imageNamed:@"user_pic_boy"]];
+        [self.headImageView sd_setImageWithURL:[NSURL URLWithString:[UserInfoModel sharedUserInfoModel].headPath] placeholderImage:[UIImage imageNamed:@"头像"]];
         [cell.contentView addSubview:self.headImageView];
     } else if (indexPath.row == 1) {
         cell.textLabel.text = @"昵称";
@@ -197,7 +197,7 @@ UINavigationControllerDelegate>
 
 - (void)loadingData:(PPDataController *)controller failedWithError:(NSError *)error {
     if (controller == self.userInfoRequest) {
-        [Utilities showToastWithText:[NSString stringWithFormat:@"获取个人信息失败:%@", error]];
+        [Utilities showToastWithText:[NSString stringWithFormat:@"获取个人信息失败"]];
     }
 }
 

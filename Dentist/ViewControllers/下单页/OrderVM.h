@@ -7,9 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Address.h"
 
 @interface OrderVM : NSObject
 
+@property (nonatomic, strong) Address *addressModel;
 @property (nonatomic, strong) NSMutableArray *productItemsArray;
 
 @end

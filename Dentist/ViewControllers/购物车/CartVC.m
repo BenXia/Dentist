@@ -9,14 +9,12 @@
 #import "CartVC.h"
 #import "ProductBriefInfoCell.h"
 #import "ProductDetailVC.h"
-#import "OrderVC.h"
 #import "WebBrowserVC.h"
 #import "PaySuccessVC.h"
 #import "PayFailedVC.h"
-#import "FeedbackVC.h"
 #import "ShoppingCardVM.h"
 #import "ShoppingCartModel.h"
-
+#import "OrderVC.h"
 
 static NSString* const kCellReuseIdentifier = @"ProductBriefInfoCell";
 
@@ -337,10 +335,6 @@ static NSString* const kCellReuseIdentifier = @"ProductBriefInfoCell";
     }
     self.isEditType = !self.isEditType;
     [self.tableView reloadData];
-    
-//    OrderVC *vc = [[OrderVC alloc] init];
-//    vc.hidesBottomBarWhenPushed = YES;
-//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (IBAction)didClickSelectAllButtonAction:(id)sender {
@@ -357,7 +351,22 @@ static NSString* const kCellReuseIdentifier = @"ProductBriefInfoCell";
 }
 
 - (IBAction)didClickPayButtonAction:(id)sender {
+    NSMutableArray *modelArray = [NSMutableArray array];
+    for (ShoppingCartModel* item in self.shoppingCardVM.shoppingCartProductCellSelectArray) {
+        OrderItemModel* submodel = [OrderItemModel new];
+        submodel.productId = item.shoppingCartProductID;
+        submodel.productTitle = item.shoppingCartProductTitle;
+        submodel.productImageUrl = item.shoppingCartProductImage;
+        submodel.descriptionString = item.shoppingCartProductSids;
+        submodel.productPrice = [item.shoppingCartProductPrice floatValue];
+        submodel.buyNum = [item.shoppingCartProductNumber intValue];
+        [modelArray addObject:submodel];
+    }
     
+    OrderVC *vc = [[OrderVC alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [vc setProductItemsArray:modelArray];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (IBAction)didClickMoveToFavoriteButtonAction:(id)sender {

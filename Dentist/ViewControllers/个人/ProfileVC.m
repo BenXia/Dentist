@@ -21,7 +21,7 @@
 @property (strong, nonatomic) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet UIImageView *headImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nickLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *userLevelImage;
+@property (weak, nonatomic) IBOutlet UIButton *userLevelBtn;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
@@ -53,7 +53,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self clearNavLeftItem];
-    [self setNavRightItemWithImage:@"我的-设置按钮" target:self action:@selector(onSettingBtn)];
+    [self setNavRightItemWithImage:@"设置" target:self action:@selector(onSettingBtn)];
     [self initUI];
     [self initTableView];
 }
@@ -66,11 +66,12 @@
 #pragma mark - Private Method
 
 - (void)refreshUI {
-    [self.headImageView sd_setImageWithURL:[NSURL URLWithString:[UserInfoModel sharedUserInfoModel].headPath] placeholderImage:[UIImage imageNamed:@"user_pic_boy"]];
+    [self.headImageView sd_setImageWithURL:[NSURL URLWithString:[UserInfoModel sharedUserInfoModel].headPath] placeholderImage:[UIImage imageNamed:@"头像"]];
     self.nickLabel.text = [UserInfoModel sharedUserInfoModel].nickName;
 }
 
 - (void)initUI {
+    [self.userLevelBtn liningThematized:[UIColor themeButtonBlueColor]];
     self.headImageView.layer.cornerRadius = self.headImageView.width/2;
     self.headImageView.layer.masksToBounds = YES;
     self.headImageView.userInteractionEnabled = YES;
@@ -175,6 +176,12 @@
     }
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 1) {
+        [Utilities makePhoneCall:@"40088889990"];
+    }
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0 && indexPath.row == 1) {
         return 90;
@@ -191,10 +198,34 @@
     return 1;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    AllOrderListVC * allOrderListVC = [[AllOrderListVC alloc] initWithOrderStatusType:OrderStatusType_All];
+    allOrderListVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:allOrderListVC animated:YES];
+}
 #pragma mark - UITableViewCellDelegate
 
 - (void)orderButtonClickedWithType:(OrderHandleType)orderHandleType {
-    AllOrderListVC * allOrderListVC = [AllOrderListVC new];
+    OrderStatusType orderType;
+    switch (orderHandleType) {
+        case OrderHandle_WaitingPay: {
+            orderType = OrderStatusType_NeedHandle;
+        }
+            break;
+        case OrderHandle_WaitingPraise: {
+            orderType = OrderStatusType_NeedPraise;
+        }
+            break;
+        case OrderHandle_Done: {
+            orderType = OrderStatusType_Complete;
+        }
+            break;
+
+        default:
+            break;
+    }
+
+    AllOrderListVC * allOrderListVC = [[AllOrderListVC alloc] initWithOrderStatusType:orderType];
     allOrderListVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:allOrderListVC animated:YES];
 }
