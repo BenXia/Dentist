@@ -9,8 +9,17 @@
 #import <UIKit/UIKit.h>
 
 @class ProductEvaluateModel;
+
+@protocol ProductEvaluateTableViewCellDelegate <NSObject>
+
+@optional
+- (void)setStatusBarHidden:(BOOL)statusBarHidden;
+
+@end
+
 @interface ProductEvaluateTableViewCell : UITableViewCell
 
+@property (nonatomic, weak) id<ProductEvaluateTableViewCellDelegate> delegate;
 
 + (float)getCellHeightWithContent:(ProductEvaluateModel *)model;
 

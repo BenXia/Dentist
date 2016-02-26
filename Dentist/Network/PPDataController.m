@@ -77,24 +77,24 @@ NSString* const kDataControllerErrorDomain = @"NetworkErrorDomain";
 // 开始发请求，可直接带上参数args，也可以不带（不带除POST类型请求会使用子类重写的requestURLArgs方法得到参数）
 - (void)requestWithArgs:(NSDictionary *)args {
     _requestArgs = nil;
-
+    
     _requestArgs = args;
-
+    
     if (!_requestArgs) {
         _requestArgs = [self requestURLArgs];
     }
-
+    
     // 取消当前的请求
     [self cancelRequest];
-
+    
     NSString *cache = nil;
-
+    
     // 尝试读取缓存
     if ([self cacheKeyName] != nil) {
         PPDataCache *dataCache = [PPDataCache sharedPPDataCache];
         cache = [dataCache cacheForKey:[self cacheKeyName]];
     }
-
+    
     NSMutableURLRequest *urlRequest = nil;
     
     switch ([self requestMethod]) {
@@ -124,7 +124,9 @@ NSString* const kDataControllerErrorDomain = @"NetworkErrorDomain";
             [urlRequest setValue:@"application/x-www-form-urlencoded; charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
             
             if (self.requestHTTPBody) {
-                [urlRequest setHTTPBody:[[PPDataController makeQueryStringFromArgs:self.requestHTTPBody] dataUsingEncoding:NSUTF8StringEncoding]];
+                [urlRequest setHTTPBody:[[PPDataController makeBodyParamStringWithArgs:self.requestHTTPBody] dataUsingEncoding:NSUTF8StringEncoding]];
+            }else if(self.requestHTTPBodyPlainJsonParams){
+                [urlRequest setHTTPBody:[[PPDataController makePlainJsonStringWithArgs:self.requestHTTPBodyPlainJsonParams] dataUsingEncoding:NSUTF8StringEncoding]];
             }
         }
             break;
@@ -140,7 +142,7 @@ NSString* const kDataControllerErrorDomain = @"NetworkErrorDomain";
         default:
             break;
     }
-
+    
     //设置Http header
     if (self.requestHTTPHeaderField && self.requestHTTPHeaderField.count > 0) {
         [self.requestHTTPHeaderField enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *value, BOOL *stop) {
@@ -148,23 +150,23 @@ NSString* const kDataControllerErrorDomain = @"NetworkErrorDomain";
               forHTTPHeaderField:key];
         }];
     }
-
+    
     //设置User-Agent,规避被封
     [urlRequest addValue:[NSURL userAgent] forHTTPHeaderField:@"User-Agent"];
-
+    
     if (cache == nil) {
         [self requestWithAFNetworking:urlRequest];
     } else {
         if ([self parseContent:cache]) {
             if (self.delegate
                 && [self.delegate respondsToSelector:@selector(loadingDataFinished:)]) {
-
+                
                 [self.delegate performSelector:@selector(loadingDataFinished:)
                                     withObject:self];
             }
         } else {
             NSAssert(NO, @"缓存了错误的接口");
-
+            
             [self requestWithAFNetworking:urlRequest];
         }
     }
@@ -176,38 +178,6 @@ NSString* const kDataControllerErrorDomain = @"NetworkErrorDomain";
 
 - (BOOL)isRequesting {
     return (self.httpOperation != nil);
-}
-
-// 对参数列表生成URL编码后字符串
-+ (NSString *)makeQueryStringFromArgs:(NSDictionary *)args {
-    NSMutableString *formatString = [NSMutableString new];
-    
-    for (NSString *key in args) {
-        id value = [args valueForKey:key];
-        
-        [PPDataController appendString:formatString withParamKey:key value:value];
-    }
-    
-    NSLog(@"Body param:%@",formatString);
-    
-    return formatString;
-}
-
-+ (void)appendString:(NSMutableString*)formatString withParamKey:(NSString*)key value:(id)value{
-    NSString* stringValue = nil;
-    if ([value isKindOfClass:[NSString class]]) {
-        stringValue = value;
-    }else if([value isKindOfClass:[NSNumber class]]){
-        stringValue = ((NSNumber*)value).stringValue;
-    }else if([value isKindOfClass:[NSArray class]]){
-        for (id subValue in value) {
-            [PPDataController appendString:formatString withParamKey:key value:subValue];
-        }
-    }
-    if (stringValue) {
-        NSString* linkSymbol = formatString.length > 0 ? @"&" : @"";
-        [formatString appendFormat:@"%@%@=%@", linkSymbol, key, [stringValue URLEncodedString]];
-    }
 }
 
 // 对string做URL编码
@@ -281,9 +251,15 @@ NSString* const kDataControllerErrorDomain = @"NetworkErrorDomain";
     return nil;
 }
 
+- (NSDictionary *)requestHTTPBodyPlainJsonParams{
+    // 子类根据需要实现
+    return nil;
+}
+
+
 // 根据URL域名和参数构造最终的完整URL
 - (NSURL *)makeURLWithArgs:(NSDictionary *)args {
-    NSString *formatString = [self makeParameterStringWithArgs:args];
+    NSString *formatString = [PPDataController makeURLParamStringWithArgs:args];
     
     NSString *aURLString = nil;
     if (formatString) {
@@ -305,7 +281,8 @@ NSString* const kDataControllerErrorDomain = @"NetworkErrorDomain";
 
 #pragma mark - Private Methods
 
-- (NSString *)makeParameterStringWithArgs:(NSDictionary *)argsvar {
+// 对参数列表生成URL编码后字符串
++ (NSString *)makeURLParamStringWithArgs:(NSDictionary *)argsvar {
     NSDictionary *newArgument = argsvar;
     NSMutableString *formatString = [NSMutableString new];
     
@@ -315,22 +292,101 @@ NSString* const kDataControllerErrorDomain = @"NetworkErrorDomain";
     [newCommonArgument addEntriesFromDictionary:argsvar];  // args里面的Key会覆盖默认的key
     newArgument = newCommonArgument;
     
-    
-//    for (NSString *key in newArgument) {
-//        if (formatString == nil) {
-//            formatString = [NSMutableString stringWithFormat:@"%@=%@", key, [self encodeURIComponent:[newArgument valueForKey:key]]];
-//        } else {
-//            [formatString appendFormat:@"&%@=%@", key, [self encodeURIComponent:[newArgument valueForKey:key]]];
-//        }
-//    }
-    
     for (NSString *key in newArgument) {
         id value = [newArgument valueForKey:key];
         
-        [PPDataController appendString:formatString withParamKey:key value:value];
+        [PPDataController appendURLParamString:formatString withParamKey:key value:value];
     }
-        
+    
+    NSLog(@"URL param:%@",formatString);
+    
     return formatString;
+}
+
++ (void)appendURLParamString:(NSMutableString*)formatString withParamKey:(NSString*)key value:(id)value{
+    NSString* stringValue = nil;
+    if ([value isKindOfClass:[NSString class]]) {
+        stringValue = value;
+    }else if([value isKindOfClass:[NSNumber class]]){
+        stringValue = ((NSNumber*)value).stringValue;
+    }else if([value isKindOfClass:[NSArray class]]){
+        for (id subValue in value) {
+            [PPDataController appendURLParamString:formatString withParamKey:key value:subValue];
+        }
+    }
+    if (stringValue) {
+        NSString* linkSymbol = formatString.length > 0 ? @"&" : @"";
+        [formatString appendFormat:@"%@%@=%@", linkSymbol, key, [stringValue URLEncodedString]];
+    }
+}
+
++ (NSString *)makeBodyParamStringWithArgs:(NSDictionary *)args {
+    NSMutableString *formatString = [NSMutableString new];
+    
+    for (NSString *key in args) {
+        id value = [args valueForKey:key];
+        
+        [PPDataController appendBodyParamString:formatString withParamKey:key value:value];
+    }
+    
+    NSLog(@"Body param:%@",formatString);
+    
+    return formatString;
+}
+
+
++ (void)appendBodyParamString:(NSMutableString*)formatString withParamKey:(NSString*)key value:(id)value{
+    NSString* stringValue = nil;
+    if ([value isKindOfClass:[NSString class]]) {
+        stringValue = value;
+    }else if([value isKindOfClass:[NSNumber class]]){
+        stringValue = ((NSNumber*)value).stringValue;
+    }else if([value isKindOfClass:[NSArray class]]){
+        for (id subValue in value) {
+            [PPDataController appendBodyParamString:formatString withParamKey:key value:subValue];
+        }
+    }
+    if (stringValue) {
+        NSString* linkSymbol = formatString.length > 0 ? @"&" : @"";
+        [formatString appendFormat:@"%@%@=%@", linkSymbol, key, stringValue];
+    }
+}
+
+//使用Dictionary构建一个Json串，可存在重复key，即value为数组的话，变成多条key:value
++ (NSString *)makePlainJsonStringWithArgs:(NSDictionary *)args {
+    NSMutableString *formatString = [NSMutableString new];
+    
+    for (NSString *key in args) {
+        id value = [args valueForKey:key];
+        
+        [PPDataController appendPlainJsonString:formatString withParamKey:key value:value];
+    }
+    
+    NSString* finalFormatString = [NSString stringWithFormat:@"{%@}",formatString];
+    
+    NSLog(@"Body json:%@",finalFormatString);
+    
+    return finalFormatString;
+}
+
++ (void)appendPlainJsonString:(NSMutableString*)formatString withParamKey:(NSString*)key value:(id)value{
+    BOOL isNumber = NO;
+    NSString* stringValue = nil;
+    if ([value isKindOfClass:[NSString class]]) {
+        stringValue = value;
+    }else if([value isKindOfClass:[NSNumber class]]){
+        stringValue = ((NSNumber*)value).stringValue;
+        isNumber = YES;
+    }else if([value isKindOfClass:[NSArray class]]){
+        for (id subValue in value) {
+            [PPDataController appendPlainJsonString:formatString withParamKey:key value:subValue];
+        }
+    }
+    if (stringValue) {
+        NSString* linkSymbol = formatString.length > 0 ? @"," : @"";
+        NSString* quoteSymbol = isNumber ? @"":@"\"";
+        [formatString appendFormat:@"%@\"%@\":%@%@%@", linkSymbol, key,quoteSymbol,stringValue,quoteSymbol];
+    }
 }
 
 - (NSDate *)dateFromDayString:(NSString *)dayString {

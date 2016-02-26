@@ -14,6 +14,7 @@
 #import "AllOrderListVM.h"
 #import "OrderDetailDC.h"
 #import "OrderConfermDC.h"
+#import "FeedbackVC.h"
 
 #define kTableViewCellHeight        95
 #define kSectionHeaderViewHeight    40
@@ -95,6 +96,9 @@
             break;
         case 3: {
             //跳转评价
+            NSArray* productArray = self.orderDetailVM.orderDetailDC.orderDetailModel.orderProductListModel.productListGoodsArray;
+            FeedbackVC* feedbackVC = [[FeedbackVC alloc] initWithOrderId:self.orderDetailVM.orderDetailDC.oid products:productArray];
+            [self.navigationController pushViewController:feedbackVC animated:YES];
         }
             break;
             

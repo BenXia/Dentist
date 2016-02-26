@@ -12,6 +12,7 @@
 #define kImageViewWidth    50
 #define kImageViewHeight   50
 #define kInsertSize        10
+#define kImageViewTag      100
 
 
 @interface ProductEvaluateTableViewCell()<QQingImageViewSingleClickDelegate,QQingPhotosBrowserVCDelegate>
@@ -124,7 +125,7 @@
         
         QQingImageView *imageView = [[QQingImageView alloc] initWithFrame:CGRectMake(x, y, kImageViewWidth, kImageViewHeight)];
         imageView.defaultImageName = @"user_pic_boy";
-        imageView.tag = index;
+        imageView.tag = kImageViewTag + index;
         imageView.singleClickDelegate = self;
         imageView.imageView.contentMode = UIViewContentModeScaleAspectFill;
         imageView.imageURL = [NSURL URLWithString:[model.evaluateImageArray objectAtIndexIfIndexInBounds:index]];
@@ -156,7 +157,7 @@
     }
     s_inOpenAnimating = YES;
     
-    NSInteger index = imageView.tag;
+    NSInteger index = imageView.tag - kImageViewTag;
     NSMutableArray *photosArray = [NSMutableArray array];
     for (NSInteger i = 0; i < self.imageUrlArray.count; i++) {
         EGOQuickPhoto *subPhoto = [[EGOQuickPhoto alloc] initWithImageURL:[NSURL URLWithString:self.imageUrlArray[i]]];
@@ -172,6 +173,26 @@
     [photoController showWithImageView:imageView withCompletion:^{
         s_inOpenAnimating = NO;
     }];
+}
+
+#pragma mark - QQingPhotosBrowserVCDelegate
+
+- (BOOL)shouldShowCloseAnimation {
+    return YES;
+}
+
+- (UIView *)imageViewContentViewForCloseAnimation {
+    return self.contentView;
+}
+
+- (NSInteger)imageViewTagOffsetForCloseAnimation {
+    return kImageViewTag;
+}
+
+- (void)setStatusBarHidden:(BOOL)statusBarHidden {
+    if ([self.delegate respondsToSelector:@selector(setStatusBarHidden:)]) {
+        [self.delegate setStatusBarHidden:statusBarHidden];
+    }
 }
 
 @end

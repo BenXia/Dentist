@@ -8,19 +8,24 @@
 
 #import "FeedbackVC.h"
 #import "FeedbackCell.h"
+#import "ProductAppraiseDC.h"
+#import "ProductListGoodsModel.h"
 
 static NSString* const kCellReuseIdentifier = @"FeedbackCell";
 
 @interface FeedbackVC () <
 UITableViewDataSource,
 UITableViewDelegate,
-FeedbackCellDelegate
+FeedbackCellDelegate,
+PPDataControllerDelegate
 >
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 @property (nonatomic, strong) NSMutableArray *feedbackModelsArray;
 
 @property (nonatomic, strong) MultiPictureUploader *picturesUploader;
+@property (nonatomic, strong) ProductAppraiseDC* dc;
 
 @property (nonatomic, assign) BOOL statusBarHidden; // 需要控制状态栏隐藏和显示，在PhotosBrowserVC里面难以实现
 
@@ -30,14 +35,29 @@ FeedbackCellDelegate
 
 #pragma mark - View life cycle
 
+-(instancetype)initWithOrderId:(NSString*)oid products:(NSArray*)products{
+    if (self = [super init]) {
+        self.title = @"评价晒单";
+        self.picturesUploader = [[MultiPictureUploader alloc] init];
+        self.dc = [[ProductAppraiseDC alloc]initWithDelegate:self];
+        self.dc.oid = @(oid.intValue);
+        
+        self.feedbackModelsArray = [NSMutableArray new];
+        for (ProductListGoodsModel* product in products) {
+            FeedbackModel* model = [FeedbackModel new];
+            model.product = product;
+            model.imagesArray = [NSMutableArray new];
+            model.imageUrls = [NSMutableArray new];
+            [self.feedbackModelsArray addObject:model];
+        }
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
     
-    self.picturesUploader = [[MultiPictureUploader alloc] init];
     [self initUIRelated];
-    
-    [self initDataSourceArray];
 }
 
 - (BOOL)prefersStatusBarHidden {
@@ -50,22 +70,6 @@ FeedbackCellDelegate
 }
 
 #pragma mark - Private methods
-
-- (void)initDataSourceArray {
-    FeedbackModel *model1 = [[FeedbackModel alloc] init];
-    model1.starNumber = 0;
-    model1.feedBackText = @"";
-    model1.imagesArray = [NSMutableArray array];
-    
-    FeedbackModel *model2 = [[FeedbackModel alloc] init];
-    model2.starNumber = 0;
-    model2.feedBackText = @"";
-    model2.imagesArray = [NSMutableArray array];
-    
-    self.feedbackModelsArray = [NSMutableArray arrayWithObjects:model1, model2, nil];
-    
-    [self.tableView reloadData];
-}
 
 - (void)initUIRelated {
     if ([self respondsToSelector:@selector(edgesForExtendedLayout)]) {
@@ -141,26 +145,98 @@ FeedbackCellDelegate
 }
 
 - (void)didClickOnRightNavButtonAction:(id)sender {
-//    NSMutableArray *imagesToUpload = [NSMutableArray array];
-//    
-//    for (int i = 0; i < self.feedbackModelsArray.count; i++) {
-//        FeedbackModel *feedback = [self.feedbackModelsArray objectAtIndex:i];
-//        for (int j = 0; j < feedback.imagesArray.count; j++) {
-//            QQingImageView *imageView = [feedback.imagesArray objectAtIndex:j];
-//            [imagesToUpload addObject:imageView.imageView.image];
-//        }
-//    }
-//    
-//    [Utilities showLoadingView];
-//    [self.picturesUploader uploadMultiImages:imagesToUpload
-//                imageUploadType:kImageUploadType_PhotoUploadType
-//                        success:^(NSArray *array) {
-//                            [Utilities hideLoadingView];
-//                            NSLog (@"array: %@", array);
-//                        } fail:^(NSError *error) {
-//                            [Utilities hideLoadingView];
-//                            NSLog (@"error: %@", error);
-//                        }];
+    NSMutableArray *imagesToUpload = [NSMutableArray array];
+    
+    for (int i = 0; i < self.feedbackModelsArray.count; i++) {
+        FeedbackModel *feedback = [self.feedbackModelsArray objectAtIndex:i];
+        for (int j = 0; j < feedback.imagesArray.count; j++) {
+            QQingImageView *imageView = [feedback.imagesArray objectAtIndex:j];
+            [imagesToUpload addObject:imageView.imageView.image];
+        }
+    }
+    
+    [Utilities showLoadingView];
+    [self.picturesUploader uploadMultiImages:imagesToUpload
+                imageUploadType:kImageUploadType_PhotoUploadType
+                        success:^(NSArray *array) {
+                            [Utilities hideLoadingView];
+                            NSInteger index = 0;
+                            for (int i = 0; i < self.feedbackModelsArray.count && index < array.count; i++) {
+                                FeedbackModel *feedback = [self.feedbackModelsArray objectAtIndex:i];
+                                feedback.imageUrls = [NSMutableArray new];
+                                for (int j = 0; j < feedback.imagesArray.count && index < array.count; j++) {
+                                    [feedback.imageUrls addObject:[array objectAtIndex:index++]];
+                                }
+                            }
+
+                            [self sendAppraiseRequest];
+                            NSLog (@"array: %@", array);
+                        } fail:^(NSError *error) {
+                            [Utilities hideLoadingView];
+                            [Utilities showToastWithText:@"上传图片失败"];
+                            NSLog (@"error: %@", error);
+                        }];
+}
+
+#pragma mark - Request 
+
+-(void)sendAppraiseRequest{
+    NSMutableArray* productIdArray = [NSMutableArray new]; //NSNumber数组
+    NSMutableArray* scoreArray = [NSMutableArray new];
+    NSMutableArray* contentArray = [NSMutableArray new];
+    NSMutableArray* imageUrlArray = [NSMutableArray new];
+    for (int i= 0 ; i < self.feedbackModelsArray.count; ++i) {
+        FeedbackModel* model = [self.feedbackModelsArray objectAtIndex:i];
+        if (!model.starNumber) {
+            [Utilities showToastWithText:[NSString stringWithFormat:@"请给第%d个商品打分",i+1]];
+            return;
+        }
+        if (model.feedBackText <= 0) {
+            [Utilities showToastWithText:[NSString stringWithFormat:@"请给第%d个商品评论",i+1]];
+            return;
+        }
+        
+        [productIdArray addObject:@(model.product.productID.intValue)];
+        [scoreArray addObject:model.starNumber];
+        [contentArray addObject:model.feedBackText];
+        
+        if (model.imageUrls.count > 0) {
+            NSMutableString* formatString = [NSMutableString new];
+            for (NSString* imageUrl in model.imageUrls) {
+                NSString* linkSymbol = formatString ? @"###" : @"";
+                [formatString appendFormat:@"%@%@",linkSymbol,imageUrl];
+            }
+            [imageUrlArray addObject:formatString];
+        }else{
+            [imageUrlArray addObject:@""];
+        }
+    }
+    
+    self.dc.iid = productIdArray;
+    self.dc.content = contentArray;
+    self.dc.imgs = imageUrlArray;
+    self.dc.score = scoreArray;
+    
+    [self.dc requestWithArgs:nil];
+    [Utilities showLoadingView];
+}
+
+
+#pragma mark - PPDataControllerDelegate
+
+//数据请求成功回调
+- (void)loadingDataFinished:(PPDataController *)controller{
+    [Utilities hideLoadingView];
+    if (self.dc.appraiseSuccess) {
+        [Utilities showToastWithText:@"评价成功"];
+    }else{
+        [Utilities showToastWithText:@"评价失败"];
+    }
+}
+//数据请求失败回调
+- (void)loadingData:(PPDataController *)controller failedWithError:(NSError *)error{
+    [Utilities hideLoadingView];
+    [Utilities showToastWithText:@"评价失败"];
 }
 
 @end

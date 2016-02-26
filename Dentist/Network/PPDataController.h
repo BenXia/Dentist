@@ -50,7 +50,7 @@ typedef enum {
 //取消请求
 - (void)cancelRequest;
 
-+ (NSString *)makeQueryStringFromArgs:(NSDictionary *)args;
++ (NSString *)makeURLParamStringWithArgs:(NSDictionary *)args;
 //对string做URL编码
 - (NSString *)encodeURIComponent:(NSString *)string;
 
@@ -76,6 +76,7 @@ typedef enum {
 - (NSString *)cacheKeyName;
 - (NSDictionary *)requestHTTPHeaderField;
 - (NSDictionary *)requestHTTPBody;
+- (NSDictionary *)requestHTTPBodyPlainJsonParams;
 //请求将要开始时调用
 - (void)requestWillStart;
 

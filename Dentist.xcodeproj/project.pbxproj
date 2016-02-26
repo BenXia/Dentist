@@ -315,6 +315,7 @@
 		888E70F51C7F2D7100A12377 /* 自提@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 888E70F11C7F2D7100A12377 /* 自提@3x.png */; };
 		888E70FA1C7F320D00A12377 /* SearchProductVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 888E70F81C7F320D00A12377 /* SearchProductVC.m */; };
 		888E70FB1C7F320D00A12377 /* SearchProductVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 888E70F91C7F320D00A12377 /* SearchProductVC.xib */; };
+		88965B051C808E4F001FA633 /* ProductAppraiseDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88965B041C808E4F001FA633 /* ProductAppraiseDC.m */; };
 		88C3BACD1C781F5B001F4D85 /* ProductDetailDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C3BACA1C781F5B001F4D85 /* ProductDetailDC.m */; };
 		88C3BACE1C781F5B001F4D85 /* ProductDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C3BACC1C781F5B001F4D85 /* ProductDetailModel.m */; };
 		88C3BAD21C78508C001F4D85 /* GroupProductView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C3BAD11C78508C001F4D85 /* GroupProductView.m */; };
@@ -894,6 +895,8 @@
 		888E70F71C7F320D00A12377 /* SearchProductVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchProductVC.h; sourceTree = "<group>"; };
 		888E70F81C7F320D00A12377 /* SearchProductVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchProductVC.m; sourceTree = "<group>"; };
 		888E70F91C7F320D00A12377 /* SearchProductVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchProductVC.xib; sourceTree = "<group>"; };
+		88965B031C808E4F001FA633 /* ProductAppraiseDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductAppraiseDC.h; sourceTree = "<group>"; };
+		88965B041C808E4F001FA633 /* ProductAppraiseDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductAppraiseDC.m; sourceTree = "<group>"; };
 		88C3BAC91C781F5B001F4D85 /* ProductDetailDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductDetailDC.h; sourceTree = "<group>"; };
 		88C3BACA1C781F5B001F4D85 /* ProductDetailDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductDetailDC.m; sourceTree = "<group>"; };
 		88C3BACB1C781F5B001F4D85 /* ProductDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductDetailModel.h; sourceTree = "<group>"; };
@@ -1719,6 +1722,7 @@
 		33F070361C4295F200DAC58F /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				88965B021C808E0F001FA633 /* 商品评价 */,
 				88367A9E1C7CACE200658214 /* 商品搜索 */,
 				B5DA4D121C7CAC6E003677DD /* 订单详情 */,
 				B58339721C79FF7F00F9EBE2 /* 订单列表 */,
@@ -2043,6 +2047,15 @@
 				888E70F91C7F320D00A12377 /* SearchProductVC.xib */,
 			);
 			path = "搜索商品";
+			sourceTree = "<group>";
+		};
+		88965B021C808E0F001FA633 /* 商品评价 */ = {
+			isa = PBXGroup;
+			children = (
+				88965B031C808E4F001FA633 /* ProductAppraiseDC.h */,
+				88965B041C808E4F001FA633 /* ProductAppraiseDC.m */,
+			);
+			path = "商品评价";
 			sourceTree = "<group>";
 		};
 		88C3BAC81C781F5B001F4D85 /* 商品详情 */ = {
@@ -2948,6 +2961,7 @@
 				B58339751C79FFAC00F9EBE2 /* OrderListDC.m in Sources */,
 				B58339571C79976A00F9EBE2 /* ProductEvaluateVC.m in Sources */,
 				3360B4111C7CB47D00C60AC0 /* FeedbackModel.m in Sources */,
+				88965B051C808E4F001FA633 /* ProductAppraiseDC.m in Sources */,
 				88C3BACD1C781F5B001F4D85 /* ProductDetailDC.m in Sources */,
 				932839BE1C6378A9004C21CD /* MyOrderCell.m in Sources */,
 				930C344A1C795FBA008823F9 /* SetNickDC.m in Sources */,

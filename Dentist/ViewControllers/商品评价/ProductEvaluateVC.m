@@ -12,10 +12,11 @@
 #import "ProductEvaluateModel.h"
 #import "ProductEvaluateDC.h"
 
-@interface ProductEvaluateVC ()<PPDataControllerDelegate>
+@interface ProductEvaluateVC ()<PPDataControllerDelegate,ProductEvaluateTableViewCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic)  ProductEvaluateVM *productEvaluateVM;
+@property (nonatomic, assign)  BOOL               statusBarHidden;
 
 @end
 
@@ -51,6 +52,17 @@
     [self.productEvaluateVM.productEvaluateDC requestWithArgs:nil];
 }
 
+- (BOOL)prefersStatusBarHidden {
+    return _statusBarHidden;
+}
+
+- (void)setStatusBarHidden:(BOOL)statusBarHidden{
+    _statusBarHidden = statusBarHidden;
+    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
+        [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
+    }
+}
+
 #pragma mark - UITableViewDataSource & UITableViewDelegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -82,7 +94,7 @@
         cell = [[[NSBundle mainBundle] loadNibNamed:@"ProductEvaluateTableViewCell" owner:nil options:nil] objectAtIndex:0];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    
+    cell.delegate = self;
     ProductEvaluateModel *model = [self.productEvaluateVM.productEvaluateDC.productEvaluateArray objectAtIndex:indexPath.section];
     [cell setCellWithProductEvaluateModel:model];
     return cell;

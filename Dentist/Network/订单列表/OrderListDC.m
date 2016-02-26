@@ -15,7 +15,7 @@
 
 - (NSDictionary *)requestURLArgs {
     NSString* token = [UserCache sharedUserCache].token ? [UserCache sharedUserCache].token : @"";
-    if (self.next_iid.length > 0) {
+    if (self.next_iid.integerValue > 0) {
         return @{@"method":@"order.mylist",@"v":@"0.0.1",@"auth":token,@"next_iid":self.next_iid};
     } else {
         return @{@"method":@"order.mylist",@"v":@"0.0.1",@"auth":token};
@@ -44,9 +44,7 @@
         for (NSDictionary *ordersDic in ordersArray) {
             ProductListModel *model = [ProductListModel new];
             model.orderID = [ordersDic objectForKey:@"oid"];
-//            model.statusCode = [ordersDic objectForKey:@"status"];
-            model.statusCode = @"4";
-
+            model.statusCode = [ordersDic objectForKey:@"status"];
             model.productExpressPrice = [ordersDic objectForKey:@"express_money"];
             
             NSMutableArray *goodsList = [ordersDic objectForKey:@"goods"];

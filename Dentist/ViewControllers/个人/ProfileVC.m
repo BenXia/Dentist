@@ -201,7 +201,6 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 1;
 }
-
 #pragma mark - UITableViewCellDelegate
 
 - (void)orderButtonClickedWithType:(OrderHandleType)orderHandleType {
