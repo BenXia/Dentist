@@ -10,8 +10,7 @@
 
 typedef NS_ENUM(NSInteger, DeliverType) {
     DeliverType_KuaiDi = 0,
-    DeliverType_DaJianWuliu = 1,
-    DeliverType_ZiTi = 2
+    DeliverType_ZiTi = 1
 };
 
 @protocol DeliverTypeVCDelegate;

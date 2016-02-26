@@ -8,6 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol InvoiceVCDelegate;
+
 @interface InvoiceVC : UIViewController
+
+@property (nonatomic, weak) id<InvoiceVCDelegate> delegate;
+
+@end
+
+@protocol InvoiceVCDelegate <NSObject>
+
+@optional
+- (void)didChooseInvoiceType:(int)piaoType
+                   piaoTitle:(NSString *)piaoTitle
+                 piaoContent:(NSString *)piaoContent;
 
 @end

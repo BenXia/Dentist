@@ -106,6 +106,7 @@
 		33CB5B751C807C220038EBDC /* OrderItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CB5B741C807C220038EBDC /* OrderItemModel.m */; };
 		33CB5B781C808A990038EBDC /* PPConfirmOrderDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CB5B771C808A990038EBDC /* PPConfirmOrderDC.m */; };
 		33CB5B7B1C808AAB0038EBDC /* PPCreateOrderDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CB5B7A1C808AAB0038EBDC /* PPCreateOrderDC.m */; };
+		33CB5B851C80AB7C0038EBDC /* PPPayResultDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CB5B841C80AB7C0038EBDC /* PPPayResultDC.m */; };
 		33D00F3A1C62375B00499EE9 /* btn_numberminus72_default@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33D00F361C62375B00499EE9 /* btn_numberminus72_default@3x.png */; };
 		33D00F3B1C62375B00499EE9 /* btn_numberminus72_pressed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33D00F371C62375B00499EE9 /* btn_numberminus72_pressed@3x.png */; };
 		33D00F3C1C62375B00499EE9 /* btn_numberplus72_default@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33D00F381C62375B00499EE9 /* btn_numberplus72_default@3x.png */; };
@@ -622,6 +623,8 @@
 		33CB5B771C808A990038EBDC /* PPConfirmOrderDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPConfirmOrderDC.m; sourceTree = "<group>"; };
 		33CB5B791C808AAB0038EBDC /* PPCreateOrderDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPCreateOrderDC.h; sourceTree = "<group>"; };
 		33CB5B7A1C808AAB0038EBDC /* PPCreateOrderDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPCreateOrderDC.m; sourceTree = "<group>"; };
+		33CB5B831C80AB7C0038EBDC /* PPPayResultDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPPayResultDC.h; sourceTree = "<group>"; };
+		33CB5B841C80AB7C0038EBDC /* PPPayResultDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPPayResultDC.m; sourceTree = "<group>"; };
 		33D00F361C62375B00499EE9 /* btn_numberminus72_default@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_numberminus72_default@3x.png"; sourceTree = "<group>"; };
 		33D00F371C62375B00499EE9 /* btn_numberminus72_pressed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_numberminus72_pressed@3x.png"; sourceTree = "<group>"; };
 		33D00F381C62375B00499EE9 /* btn_numberplus72_default@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_numberplus72_default@3x.png"; sourceTree = "<group>"; };
@@ -1342,6 +1345,8 @@
 				33CB5B771C808A990038EBDC /* PPConfirmOrderDC.m */,
 				33CB5B791C808AAB0038EBDC /* PPCreateOrderDC.h */,
 				33CB5B7A1C808AAB0038EBDC /* PPCreateOrderDC.m */,
+				33CB5B831C80AB7C0038EBDC /* PPPayResultDC.h */,
+				33CB5B841C80AB7C0038EBDC /* PPPayResultDC.m */,
 				33CB5B731C807C220038EBDC /* OrderItemModel.h */,
 				33CB5B741C807C220038EBDC /* OrderItemModel.m */,
 				33CAE4071C735B2C0038748F /* OrderVM.h */,
@@ -3050,6 +3055,7 @@
 				B583396B1C79BE4F00F9EBE2 /* OrderDetailVM.m in Sources */,
 				93DEA8D31C4BCBAA008211F7 /* SDCollectionViewCell.m in Sources */,
 				888811C71C7B5D8400F6672C /* FavoriteProductModel.m in Sources */,
+				33CB5B851C80AB7C0038EBDC /* PPPayResultDC.m in Sources */,
 				33CAE44B1C7373520038748F /* OrderItemFooterCell.m in Sources */,
 				33DD6B511C60EDCC00CE6B31 /* RegistVC.m in Sources */,
 				B5DA4D0C1C7B41F4003677DD /* ShoppingCartModel.m in Sources */,

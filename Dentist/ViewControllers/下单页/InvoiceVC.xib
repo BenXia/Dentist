@@ -59,20 +59,7 @@
                                 <action selector="didClickInvoiceTypeButtonAction:" destination="-1" eventType="touchUpInside" id="LbV-cp-ny5"/>
                             </connections>
                         </button>
-                        <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oqf-kn-gKW">
-                            <rect key="frame" x="215" y="55" width="95" height="30"/>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="30" id="Ltz-zP-SPb"/>
-                                <constraint firstAttribute="width" constant="95" id="Yci-nt-qkK"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <state key="normal" title="增值税发票"/>
-                            <connections>
-                                <action selector="didClickInvoiceTypeButtonAction:" destination="-1" eventType="touchUpInside" id="dtG-GH-BmV"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YPM-de-K59">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YPM-de-K59">
                             <rect key="frame" x="118" y="55" width="85" height="30"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
@@ -83,6 +70,19 @@
                             <state key="normal" title="不开发票"/>
                             <connections>
                                 <action selector="didClickInvoiceTypeButtonAction:" destination="-1" eventType="touchUpInside" id="VaZ-Mw-kCm"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oqf-kn-gKW">
+                            <rect key="frame" x="215" y="55" width="95" height="30"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="Ltz-zP-SPb"/>
+                                <constraint firstAttribute="width" constant="95" id="Yci-nt-qkK"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <state key="normal" title="增值税发票"/>
+                            <connections>
+                                <action selector="didClickInvoiceTypeButtonAction:" destination="-1" eventType="touchUpInside" id="dtG-GH-BmV"/>
                             </connections>
                         </button>
                     </subviews>
