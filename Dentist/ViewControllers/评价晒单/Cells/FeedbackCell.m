@@ -121,12 +121,12 @@ QQingPhotosBrowserVCDelegate
     UIButton *btn = (UIButton *)sender;
     NSInteger starNumber = btn.tag - 100;
     
-    if (btn.selected && (starNumber == 1) && (self.feedbackModel.starNumber == 1)) {
+    if (btn.selected && (starNumber == 1) && (self.feedbackModel.starNumber.intValue == 1)) {
         [self refreshStarButtonsArrayWithStarNumber:0];
-        self.feedbackModel.starNumber = 0;
+        self.feedbackModel.starNumber = @(0);
     } else {
         [self refreshStarButtonsArrayWithStarNumber:starNumber];
-        self.feedbackModel.starNumber = starNumber;
+        self.feedbackModel.starNumber = @(starNumber);
     }
 }
 
@@ -419,8 +419,14 @@ QQingPhotosBrowserVCDelegate
 
 #pragma mark - Public methods
 
-- (void)setupWithModel:(FeedbackModel *)feedbackModel {
+- (void)setupWithModel:(FeedbackModel*)feedbackModel {
     self.feedbackModel = feedbackModel;
+    
+    [self.productImageView setImageURL:[NSURL URLWithString:feedbackModel.product.productImageUrl]];
+    self.productTitleLabel.text = feedbackModel.product.productTitle;
+    self.priceLabel.text = [NSString stringWithFormat:@"%@%.2f",kYuanSymbolStr,feedbackModel.product.productPrice.floatValue];
+    self.productCustomiseLabel.text = feedbackModel.product.productModel;
+    self.productNumberLabel.text = [NSString stringWithFormat:@"x%@",feedbackModel.product.productNumber];
     
     [self refreshStarButtonsArrayWithStarNumber:self.feedbackModel.starNumber];
     

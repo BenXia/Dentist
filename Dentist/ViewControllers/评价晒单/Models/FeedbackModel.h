@@ -7,11 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ProductListGoodsModel.h"
 
 @interface FeedbackModel : NSObject
 
-@property (nonatomic, assign) NSInteger starNumber;
+@property (nonatomic, strong) ProductListGoodsModel* product;
+@property (nonatomic, assign) NSNumber* starNumber;
 @property (nonatomic, strong) NSString *feedBackText;
 @property (nonatomic, strong) NSMutableArray *imagesArray;
+@property (nonatomic, strong) NSMutableArray *imageUrls;
 
 @end

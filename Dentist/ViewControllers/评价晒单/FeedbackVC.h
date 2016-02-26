@@ -10,4 +10,7 @@
 
 @interface FeedbackVC : UIViewController
 
+//products为ProductListGoodsModel数组
+-(instancetype)initWithOrderId:(NSString*)oid products:(NSArray*)products;
+
 @end
