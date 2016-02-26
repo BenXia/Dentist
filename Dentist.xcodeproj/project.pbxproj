@@ -1283,7 +1283,6 @@
 				33F070771C42AB8300DAC58F /* Application */,
 				33F070851C42B46E00DAC58F /* Images */,
 				33F070361C4295F200DAC58F /* Network */,
-				33F070371C4295F200DAC58F /* Utilities */,
 				33F070391C4295F200DAC58F /* ViewControllers */,
 				33F06F921C42477300DAC58F /* Supporting Files */,
 				33C9885B1C42401D00262141 /* AppDelegate.h */,
@@ -1724,13 +1723,6 @@
 				33F070C81C42BE1E00DAC58F /* 公用 */,
 			);
 			path = Network;
-			sourceTree = "<group>";
-		};
-		33F070371C4295F200DAC58F /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Utilities;
 			sourceTree = "<group>";
 		};
 		33F070391C4295F200DAC58F /* ViewControllers */ = {

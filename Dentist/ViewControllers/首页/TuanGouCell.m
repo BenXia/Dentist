@@ -8,8 +8,12 @@
 
 #import "TuanGouCell.h"
 
-@interface TuanGouCell ()
-@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@interface TuanGouCell ()<SimpleCountdownDelegate>
+@property (weak, nonatomic) IBOutlet UILabel *hhTimeLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *mmTimeLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *ssTimeLabel;
 
 @property (weak, nonatomic) IBOutlet UIImageView *firstImageView;
 
@@ -19,13 +23,19 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *fourthImageView;
 
+@property (assign, nonatomic) NSTimeInterval totalCountDownEndTimeInterval;
+
+@property (strong, nonatomic) SimpleCountdown *totalCountDown;
 
 @end
 
 @implementation TuanGouCell
 
+- (void)prepareForReuse {
+    [self.totalCountDown cancel];
+}
+
 - (void)awakeFromNib {
-    self.timeLabel.text = @"还剩99:59:59";
     UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onProductImage:)];
     UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onProductImage:)];
     UITapGestureRecognizer *tap3 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onProductImage:)];
@@ -34,6 +44,16 @@
     [self.secondImageView addGestureRecognizer:tap2];
     [self.thirdImageView addGestureRecognizer:tap3];
     [self.fourthImageView addGestureRecognizer:tap4];
+    
+    self.hhTimeLabel.layer.cornerRadius = 3.0;
+    self.hhTimeLabel.layer.masksToBounds = YES;
+    
+    self.mmTimeLabel.layer.cornerRadius = 3.0;
+    self.mmTimeLabel.layer.masksToBounds = YES;
+    
+    self.ssTimeLabel.layer.cornerRadius = 3.0;
+    self.ssTimeLabel.layer.masksToBounds = YES;
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -60,6 +80,35 @@
     }
     
 }
+
+- (void)setEndTime:(long long)endTime {
+    _endTime = endTime;
+    NSTimeInterval currentTimeInterval = [[NSDate date] timeIntervalSince1970];
+    self.totalCountDownEndTimeInterval = (endTime - currentTimeInterval)/1000.0;
+    if (self.totalCountDownEndTimeInterval>0) {
+        [self startCountDown];
+    }
+}
+
+-(void)startCountDown{
+    self.totalCountDown = [[SimpleCountdown alloc]initWithTimeout:self.totalCountDownEndTimeInterval autoStart:NO];
+    self.totalCountDown.delegate = self;
+    self.totalCountDown.countdown = YES;
+    [self.totalCountDown start];
+}
+
+#pragma mark - SimpleCountdownDelegate
+
+- (BOOL)simpleCounter:(SimpleCountdown *)counter didCountingAt:(NSInteger)count{
+    self.hhTimeLabel.text = [NSString stringWithFormat:@"%02ld",count/3600];
+    self.mmTimeLabel.text = [NSString stringWithFormat:@"%02ld",count%3600/60];
+    self.ssTimeLabel.text = [NSString stringWithFormat:@"%02ld",count%3600%60];
+    if (count == 0) {
+        return NO;
+    }
+    return YES;
+}
+
 
 #pragma mark - UI Action
 

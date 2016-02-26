@@ -178,7 +178,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 1) {
-        [Utilities makePhoneCall:@"40088889990"];
+        [Utilities makePhoneCall:@"4000014980"];
+    } else {
+        AllOrderListVC * allOrderListVC = [[AllOrderListVC alloc] initWithOrderStatusType:OrderStatusType_All];
+        allOrderListVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:allOrderListVC animated:YES];
     }
 }
 
@@ -198,11 +202,6 @@
     return 1;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    AllOrderListVC * allOrderListVC = [[AllOrderListVC alloc] initWithOrderStatusType:OrderStatusType_All];
-    allOrderListVC.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:allOrderListVC animated:YES];
-}
 #pragma mark - UITableViewCellDelegate
 
 - (void)orderButtonClickedWithType:(OrderHandleType)orderHandleType {
