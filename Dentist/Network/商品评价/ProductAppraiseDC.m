@@ -21,20 +21,13 @@
 
 -(NSDictionary*)requestHTTPBodyPlainJsonParams{
     NSMutableDictionary* paramDic = [NSMutableDictionary new];
-    if (self.oid) {
-        [paramDic setObject:self.oid forKey:@"oid"];
-    }
-    if (self.iid && self.iid.count > 0) {
-        [paramDic setObject:self.iid forKey:@"iid"];
-    }
-    if (self.score && self.score.count > 0) {
-        [paramDic setObject:self.score forKey:@"score"];
-    }
-    if (self.content && self.content.count > 0) {
-        [paramDic setObject:self.content forKey:@"content"];
-    }
+    [paramDic setObject:self.oid forKey:@"oid"];
+    [paramDic setObject:self.iid forKey:@"iid[]"];
+    [paramDic setObject:self.score forKey:@"score[]"];
+    [paramDic setObject:self.content forKey:@"content[]"];
+    
     if (self.imgs && self.imgs.count > 0) {
-        [paramDic setObject:self.imgs forKey:@"imgs"];
+        [paramDic setObject:self.imgs forKey:@"imgs[]"];
     }
     
     return paramDic;

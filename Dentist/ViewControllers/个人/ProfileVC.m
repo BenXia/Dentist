@@ -198,11 +198,11 @@
     return 1;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    AllOrderListVC * allOrderListVC = [[AllOrderListVC alloc] initWithOrderStatusType:OrderStatusType_All];
-    allOrderListVC.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:allOrderListVC animated:YES];
-}
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+//    AllOrderListVC * allOrderListVC = [[AllOrderListVC alloc] initWithOrderStatusType:OrderStatusType_All];
+//    allOrderListVC.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController:allOrderListVC animated:YES];
+//}
 #pragma mark - UITableViewCellDelegate
 
 - (void)orderButtonClickedWithType:(OrderHandleType)orderHandleType {

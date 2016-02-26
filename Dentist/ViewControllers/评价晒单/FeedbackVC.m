@@ -40,9 +40,8 @@ PPDataControllerDelegate
         self.title = @"评价晒单";
         self.picturesUploader = [[MultiPictureUploader alloc] init];
         self.dc = [[ProductAppraiseDC alloc]initWithDelegate:self];
-        self.dc.oid = oid;
-        self.dc.iid = [products valueForKey:@"productId"];
-
+        self.dc.oid = @(oid.intValue);
+        
         self.feedbackModelsArray = [NSMutableArray new];
         for (ProductListGoodsModel* product in products) {
             FeedbackModel* model = [FeedbackModel new];
@@ -182,6 +181,7 @@ PPDataControllerDelegate
 #pragma mark - Request 
 
 -(void)sendAppraiseRequest{
+    NSMutableArray* productIdArray = [NSMutableArray new]; //NSNumber数组
     NSMutableArray* scoreArray = [NSMutableArray new];
     NSMutableArray* contentArray = [NSMutableArray new];
     NSMutableArray* imageUrlArray = [NSMutableArray new];
@@ -196,6 +196,7 @@ PPDataControllerDelegate
             return;
         }
         
+        [productIdArray addObject:@(model.product.productID.intValue)];
         [scoreArray addObject:model.starNumber];
         [contentArray addObject:model.feedBackText];
         
@@ -211,6 +212,7 @@ PPDataControllerDelegate
         }
     }
     
+    self.dc.iid = productIdArray;
     self.dc.content = contentArray;
     self.dc.imgs = imageUrlArray;
     self.dc.score = scoreArray;

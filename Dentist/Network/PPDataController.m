@@ -370,11 +370,13 @@ NSString* const kDataControllerErrorDomain = @"NetworkErrorDomain";
 }
 
 + (void)appendPlainJsonString:(NSMutableString*)formatString withParamKey:(NSString*)key value:(id)value{
+    BOOL isNumber = NO;
     NSString* stringValue = nil;
     if ([value isKindOfClass:[NSString class]]) {
         stringValue = value;
     }else if([value isKindOfClass:[NSNumber class]]){
         stringValue = ((NSNumber*)value).stringValue;
+        isNumber = YES;
     }else if([value isKindOfClass:[NSArray class]]){
         for (id subValue in value) {
             [PPDataController appendPlainJsonString:formatString withParamKey:key value:subValue];
@@ -382,7 +384,8 @@ NSString* const kDataControllerErrorDomain = @"NetworkErrorDomain";
     }
     if (stringValue) {
         NSString* linkSymbol = formatString.length > 0 ? @"," : @"";
-        [formatString appendFormat:@"%@%@:%@", linkSymbol, key,stringValue];
+        NSString* quoteSymbol = isNumber ? @"":@"\"";
+        [formatString appendFormat:@"%@\"%@\":%@%@%@", linkSymbol, key,quoteSymbol,stringValue,quoteSymbol];
     }
 }
 
