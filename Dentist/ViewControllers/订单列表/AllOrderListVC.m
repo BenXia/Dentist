@@ -13,6 +13,7 @@
 #import "OrderListTableViewCell.h"
 #import "OrderDetailVC.h"
 #import "OrderListDC.h"
+#import "FeedbackVC.h"
 
 
 #define kTableViewCellHeight        95
@@ -151,8 +152,12 @@
 }
 
 - (void)praiseOrder:(id)sender {
-//    UIButton *btn = (UIButton *)sender;
+    UIButton *btn = (UIButton *)sender;
     //跳转评价晒单
+    NSArray* orderArray = self.allOrderListVM.orderListDC.orderListArray;
+    ProductListModel* model = [orderArray objectAtIndexIfIndexInBounds:btn.tag];
+    FeedbackVC* feedbackVC = [[FeedbackVC alloc] initWithOrderId:model.orderID products:model.productListGoodsArray];
+    [self.navigationController pushViewController:feedbackVC animated:YES];
 }
 
 

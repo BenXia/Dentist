@@ -29,11 +29,12 @@
                                                              options:0
                                                                error:&error];
     if (!error || [resultDict isKindOfClass:[NSDictionary class]]) {
-        self.name = [resultDict objectForKey:@"name"];
-        self.start_time = [[resultDict objectForKey:@"start_time"] intValue];
-        self.end_time = [[resultDict objectForKey:@"end_time"] intValue];
-        self.has_time = [[resultDict objectForKey:@"has_time"] longLongValue];
         NSDictionary *tempDict = [resultDict objectForKey:@"row"];
+        self.name = [tempDict objectForKey:@"name"];
+        self.start_time = [[tempDict objectForKey:@"start_time"] longLongValue];
+        self.end_time = [[tempDict objectForKey:@"end_time"] longLongValue];
+        self.has_time = [[tempDict objectForKey:@"has_time"] longLongValue];
+        
         for (NSDictionary *dict in [tempDict objectForKey:@"content"]) {
             ProductIntroduceModel *model = [[ProductIntroduceModel alloc] init];
             model.img_url = [dict objectForKey:@"img_url"];

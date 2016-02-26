@@ -318,6 +318,7 @@ saleActivityCellDelegate>
     } else if (indexPath.section == 2) {
         TuanGouCell *cell = [tableView dequeueReusableCellWithIdentifier:[TuanGouCell identifier] forIndexPath:indexPath];
         cell.cellModelArray = self.groupBuyingRequest.productArray;
+        cell.endTime = self.groupBuyingRequest.end_time;
         cell.delegate = self;
         return cell;
     }  else if (indexPath.section == 3) {

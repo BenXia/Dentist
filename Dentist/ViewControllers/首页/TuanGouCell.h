@@ -18,4 +18,5 @@
 @interface TuanGouCell : UITableViewCell
 @property (nonatomic, strong) NSArray *cellModelArray;
 @property (nonatomic, weak) id<TuanGouCellDelegate>delegate;
+@property (nonatomic, assign) long long endTime;
 @end

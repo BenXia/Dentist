@@ -11,8 +11,8 @@
 @interface GroupBuyingDC : PPDataController
 //output
 @property (nonatomic, strong) NSString *name;
-@property (nonatomic, assign) int start_time;
-@property (nonatomic, assign) int end_time;
+@property (nonatomic, assign) long long start_time;
+@property (nonatomic, assign) long long end_time;
 @property (nonatomic, assign) long long has_time;
 @property (nonatomic, strong) NSMutableArray *productArray;
 @end
