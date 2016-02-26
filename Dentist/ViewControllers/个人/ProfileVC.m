@@ -21,7 +21,7 @@
 @property (strong, nonatomic) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet UIImageView *headImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nickLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *userLevelImage;
+@property (weak, nonatomic) IBOutlet UIButton *userLevelBtn;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
@@ -53,7 +53,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self clearNavLeftItem];
-    [self setNavRightItemWithImage:@"我的-设置按钮" target:self action:@selector(onSettingBtn)];
+    [self setNavRightItemWithImage:@"设置" target:self action:@selector(onSettingBtn)];
     [self initUI];
     [self initTableView];
 }
@@ -66,11 +66,12 @@
 #pragma mark - Private Method
 
 - (void)refreshUI {
-    [self.headImageView sd_setImageWithURL:[NSURL URLWithString:[UserInfoModel sharedUserInfoModel].headPath] placeholderImage:[UIImage imageNamed:@"user_pic_boy"]];
+    [self.headImageView sd_setImageWithURL:[NSURL URLWithString:[UserInfoModel sharedUserInfoModel].headPath] placeholderImage:[UIImage imageNamed:@"头像"]];
     self.nickLabel.text = [UserInfoModel sharedUserInfoModel].nickName;
 }
 
 - (void)initUI {
+    [self.userLevelBtn liningThematized:[UIColor themeButtonBlueColor]];
     self.headImageView.layer.cornerRadius = self.headImageView.width/2;
     self.headImageView.layer.masksToBounds = YES;
     self.headImageView.userInteractionEnabled = YES;

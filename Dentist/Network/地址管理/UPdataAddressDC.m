@@ -22,7 +22,7 @@
         return nil;
     }
     if (self.aid) {
-        return @{@"name":self.recipientName, @"p":self.province,@"n":self.city,@"c":self.area,@"address":self.addressString,@"mobile":self.mobile,@"zipcode":self.zipcode,@"is_delault":self.is_default ? @"1" : @"0" ,@"aid":[NSNumber numberWithInt:self.aid]};
+        return @{@"name":self.recipientName, @"p":self.province,@"n":self.city,@"c":self.area,@"address":self.addressString,@"mobile":self.mobile,@"zipcode":self.zipcode,@"is_delault":self.is_default ? @"1" : @"0" ,@"aid":self.aid};
     } else {
         return @{@"name":self.recipientName,@"p":self.province,@"n":self.city,@"c":self.area,@"address":self.addressString,@"mobile":self.mobile,@"zipcode":self.zipcode,@"is_delault":self.is_default ? @"1" : @"0" };
     }

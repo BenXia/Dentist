@@ -69,9 +69,9 @@
 - (IBAction)onDefaultAddressBtn:(UIButton *)sender {
     self.isDefault = !self.isDefault;
     if (self.isDefault) {
-        [self.defaultAddressBtn setImage:[UIImage imageNamed:@"Ico_Successed.png"] forState:UIControlStateNormal];
+        [self.defaultAddressBtn setImage:[UIImage imageNamed:@"btn_choice_t"] forState:UIControlStateNormal];
     } else {
-        [self.defaultAddressBtn setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+        [self.defaultAddressBtn setImage:[UIImage imageNamed:@"btn_choice_f"] forState:UIControlStateNormal];
     }
 }
 
