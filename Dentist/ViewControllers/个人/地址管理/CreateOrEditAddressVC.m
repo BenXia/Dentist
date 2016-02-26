@@ -335,9 +335,9 @@
 
 - (void)loadingData:(PPDataController *)controller failedWithError:(NSError *)error {
     if (controller == self.updataAddressRequest) {
-        [Utilities showToastWithText:[NSString stringWithFormat:@"保存地址失败:%@", error]];
+        [Utilities showToastWithText:[NSString stringWithFormat:@"保存地址失败"]];
     } else if (controller == self.getAddressRegionRequest) {
-        [Utilities showToastWithText:[NSString stringWithFormat:@"获取后台城市列表失败:%@", error]];
+        [Utilities showToastWithText:[NSString stringWithFormat:@"获取后台城市列表失败"]];
     }
 }
 

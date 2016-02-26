@@ -197,7 +197,7 @@ UINavigationControllerDelegate>
 
 - (void)loadingData:(PPDataController *)controller failedWithError:(NSError *)error {
     if (controller == self.userInfoRequest) {
-        [Utilities showToastWithText:[NSString stringWithFormat:@"获取个人信息失败:%@", error]];
+        [Utilities showToastWithText:[NSString stringWithFormat:@"获取个人信息失败"]];
     }
 }
 

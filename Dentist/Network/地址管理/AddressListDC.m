@@ -43,9 +43,7 @@
             addressModel.recipientPhoneNum = [addressDict objectForKey:@"mobile"];
             addressModel.postCode = [addressDict objectForKey:@"zipcode"];
             addressModel.ID = [addressDict objectForKey:@"aid"];
-            if (i == 0) {
-                addressModel.isDefault = YES;
-            }
+            addressModel.isDefault = [addressDict objectForKey:@"is_default"];
             [self.addressArr addObject:addressModel];
         }
         result = YES;
