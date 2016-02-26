@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AllOrderListVM.h"
 
-@interface AllOrderListVC : UIViewController
+@interface AllOrderListVC:BaseViewController
+
+- (id)initWithOrderStatusType:(OrderStatusType)type;
 
 @end

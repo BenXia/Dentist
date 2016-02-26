@@ -459,6 +459,7 @@
 		B5DA4D1B1C7DD9C9003677DD /* CartProductUpdateNumberDC.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DA4D1A1C7DD9C9003677DD /* CartProductUpdateNumberDC.m */; };
 		B5DA4D1E1C7DDBBE003677DD /* CartProductDeleteDC.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DA4D1D1C7DDBBE003677DD /* CartProductDeleteDC.m */; };
 		B5DA4D211C7DDEDC003677DD /* ProductEvaluateDC.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DA4D201C7DDEDC003677DD /* ProductEvaluateDC.m */; };
+		B5DA4D291C8094C5003677DD /* OrderConfermDC.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DA4D281C8094C5003677DD /* OrderConfermDC.m */; };
 		B5F386061C45ED3A00E666F7 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F071C51C42D12900DAC58F /* CoreFoundation.framework */; };
 /* End PBXBuildFile section */
 
@@ -1100,6 +1101,8 @@
 		B5DA4D1D1C7DDBBE003677DD /* CartProductDeleteDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartProductDeleteDC.m; sourceTree = "<group>"; };
 		B5DA4D1F1C7DDEDC003677DD /* ProductEvaluateDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductEvaluateDC.h; sourceTree = "<group>"; };
 		B5DA4D201C7DDEDC003677DD /* ProductEvaluateDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductEvaluateDC.m; sourceTree = "<group>"; };
+		B5DA4D271C8094C5003677DD /* OrderConfermDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderConfermDC.h; sourceTree = "<group>"; };
+		B5DA4D281C8094C5003677DD /* OrderConfermDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderConfermDC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2461,6 +2464,8 @@
 			children = (
 				B5DA4D131C7CAC93003677DD /* OrderDetailDC.h */,
 				B5DA4D141C7CAC93003677DD /* OrderDetailDC.m */,
+				B5DA4D271C8094C5003677DD /* OrderConfermDC.h */,
+				B5DA4D281C8094C5003677DD /* OrderConfermDC.m */,
 			);
 			path = "订单详情";
 			sourceTree = "<group>";
@@ -2956,6 +2961,7 @@
 				9379D3AF1C63239100390702 /* MultilevelMenu.m in Sources */,
 				88367A971C7CA6AB00658214 /* LookHistoryVC.m in Sources */,
 				33F070501C429AD300DAC58F /* AppInitializer.m in Sources */,
+				B5DA4D291C8094C5003677DD /* OrderConfermDC.m in Sources */,
 				9377AC651C537837003B24B1 /* ADBannerDC.m in Sources */,
 				930C34AE1C7A0CA5008823F9 /* WTLabel.m in Sources */,
 				888811BB1C7B5ACB00F6672C /* MyFavoriteDC.m in Sources */,

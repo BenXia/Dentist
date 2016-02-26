@@ -13,6 +13,7 @@
 #import "ProductListModel.h"
 #import "AllOrderListVM.h"
 #import "OrderDetailDC.h"
+#import "OrderConfermDC.h"
 
 #define kTableViewCellHeight        95
 #define kSectionHeaderViewHeight    40
@@ -51,6 +52,9 @@
 - (id)initWithOid:(NSString *)oid {
     if (self = [super init]) {
         self.orderDetailVM.orderDetailDC = [[OrderDetailDC alloc] initWithDelegate:self];
+        self.orderDetailVM.orderConfermDC = [[OrderConfermDC alloc] initWithDelegate:self];
+
+        
         self.orderDetailVM.orderDetailDC.oid = oid;
     }
     return self;
@@ -70,80 +74,126 @@
     [self.receiverProductButton.layer masksToBounds];
 }
 
-#pragma mark - PPDataControllerDelegate
+#pragma mark - ButtonAction
 
-- (void)initData {
-    [self.orderDetailVM.orderDetailDC requestWithArgs:nil];
-}
-
-//数据请求成功回调
-- (void)loadingDataFinished:(PPDataController *)controller{
+- (IBAction)buttonAction:(id)sender {
     switch ([self.orderDetailVM.orderDetailDC.orderDetailModel.orderStatus intValue]) {
         case 0: {
-            self.orderStateLabel.text = @"待支付";
-            [self.receiverProductButton setTitle:@"立即支付" forState:UIControlStateNormal];
+            //跳转立即支付
         }
             break;
-        case 1: {
-            self.orderStateLabel.text = @"已支付,待发货";
-            self.tableView.tableFooterView = self.tableViewTimeView;
-            self.tableViewBottomContrainst.constant = 0;
-            self.bottomView.hidden = YES;
+        case 1:
+        case 4:
+        case 10: {
+            //按钮隐藏
         }
             break;
         case 2: {
-            self.orderStateLabel.text = @"已发货,待收货";
+            //确认收货
+            [self orderConfermRequest];
         }
             break;
         case 3: {
-            self.orderStateLabel.text = @"已收货,待评价";
-            [self.receiverProductButton setTitle:@"立即评价" forState:UIControlStateNormal];
-        }
-            break;
-        case 4: {
-            self.orderStateLabel.text = @"已评价";
-            self.tableView.tableFooterView = self.tableViewTimeView;
-            self.tableViewBottomContrainst.constant = 0;
-            self.bottomView.hidden = YES;
-            
-        }
-            break;
-        case 10: {
-            self.orderStateLabel.text = @"已关闭";
-            self.tableView.tableFooterView = self.tableViewTimeView;
-            self.tableViewBottomContrainst.constant = 0;
-            self.bottomView.hidden = YES;
+            //跳转评价
         }
             break;
             
         default:
             break;
     }
-    
-    self.tableView.tableHeaderView = self.tableHeaderView;
-    
-    self.orderShowNumberLabel.text = self.orderDetailVM.orderDetailDC.orderDetailModel.orderShowNumber;
-    if (self.orderDetailVM.orderDetailDC.orderDetailModel.orderExpressCompany.length > 0) {
-        self.expressCompanyLabel.text = self.orderDetailVM.orderDetailDC.orderDetailModel.orderExpressCompany;
-    } else {
-        self.expressCompanyLabel.text = @"买家自提";
+}
+
+#pragma mark - PPDataControllerDelegate
+
+- (void)initData {
+    [self showLoadingView];
+    self.tableView.hidden = YES;
+    [self.orderDetailVM.orderDetailDC requestWithArgs:nil];
+}
+
+- (void)orderConfermRequest {
+    [self showLoadingView];
+    [self.orderDetailVM.orderConfermDC requestWithArgs:nil];
+}
+
+//数据请求成功回调
+- (void)loadingDataFinished:(PPDataController *)controller{
+    [self hideLoadingView];
+    if ([controller isKindOfClass:[OrderDetailDC class]]) {
+        self.tableView.hidden = NO;
+        
+        switch ([self.orderDetailVM.orderDetailDC.orderDetailModel.orderStatus intValue]) {
+            case 0: {
+                self.orderStateLabel.text = @"待支付";
+                [self.receiverProductButton setTitle:@"立即支付" forState:UIControlStateNormal];
+            }
+                break;
+            case 1: {
+                self.orderStateLabel.text = @"已支付,待发货";
+                self.tableView.tableFooterView = self.tableViewTimeView;
+                self.tableViewBottomContrainst.constant = 0;
+                self.bottomView.hidden = YES;
+            }
+                break;
+            case 2: {
+                self.orderStateLabel.text = @"已发货,待收货";
+            }
+                break;
+            case 3: {
+                self.orderStateLabel.text = @"已收货,待评价";
+                [self.receiverProductButton setTitle:@"立即评价" forState:UIControlStateNormal];
+            }
+                break;
+            case 4: {
+                self.orderStateLabel.text = @"已评价";
+                self.tableView.tableFooterView = self.tableViewTimeView;
+                self.tableViewBottomContrainst.constant = 0;
+                self.bottomView.hidden = YES;
+                
+            }
+                break;
+            case 10: {
+                self.orderStateLabel.text = @"已关闭";
+                self.tableView.tableFooterView = self.tableViewTimeView;
+                self.tableViewBottomContrainst.constant = 0;
+                self.bottomView.hidden = YES;
+            }
+                break;
+                
+            default:
+                break;
+        }
+        
+        self.tableView.tableHeaderView = self.tableHeaderView;
+        
+        if ([self.orderDetailVM.orderDetailDC.orderDetailModel.pickUp intValue] == 0) {
+            self.expressCompanyLabel.text = self.orderDetailVM.orderDetailDC.orderDetailModel.orderExpressCompany;
+            self.orderShowNumberLabel.text = self.orderDetailVM.orderDetailDC.orderDetailModel.orderShowNumber;
+        } else {
+            self.expressCompanyLabel.text = @"买家自提";
+            self.orderShowNumberLabel.text = self.orderDetailVM.orderDetailDC.orderDetailModel.orderPickUpCode;
+        }
+        
+        self.receiverNameLabel.text = self.orderDetailVM.orderDetailDC.orderDetailModel.orderReceiverName;
+        
+        self.receiverPhoneLabel.text = [NSString stringWithFormat:@"电话:%@",self.orderDetailVM.orderDetailDC.orderDetailModel.orderReceiverPhone];
+        
+        self.receiverAddressLabel.text = self.orderDetailVM.orderDetailDC.orderDetailModel.orderReceiverAddress;
+        
+        self.purchaseTimeLabel.text = self.orderDetailVM.orderDetailDC.orderDetailModel.orderPayTime;
+        
+        self.makeSureOrderTimeLabel.text = self.orderDetailVM.orderDetailDC.orderDetailModel.orderProduceTime;
+        
+        [self.tableView reloadData];
+    } else if ([controller isKindOfClass:[OrderConfermDC class]]){
+        //订单确认收货
+        [Utilities showToastWithText:@"确认收货成功"];
     }
-    
-    self.receiverNameLabel.text = self.orderDetailVM.orderDetailDC.orderDetailModel.orderReceiverName;
-    
-    self.receiverPhoneLabel.text = [NSString stringWithFormat:@"电话:%@",self.orderDetailVM.orderDetailDC.orderDetailModel.orderReceiverPhone];
-    
-    self.receiverAddressLabel.text = self.orderDetailVM.orderDetailDC.orderDetailModel.orderReceiverAddress;
-    
-    self.purchaseTimeLabel.text = self.orderDetailVM.orderDetailDC.orderDetailModel.orderPayTime;
-    
-    self.makeSureOrderTimeLabel.text = self.orderDetailVM.orderDetailDC.orderDetailModel.orderProduceTime;
-    
-    [self.tableView reloadData];
 }
 
 //数据请求失败回调
 - (void)loadingData:(PPDataController *)controller failedWithError:(NSError *)error{
+    [self hideLoadingView];
     [Utilities showToastWithText:@"订单详情获取失败"];
 }
 
@@ -241,10 +291,10 @@
     UILabel *descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(kInsert, 0, kScreenWidth, kSectionFooterViewHeight)];
     descriptionLabel.textColor = [UIColor gray006Color];
     descriptionLabel.font = [UIFont systemFontOfSize:13];
-    if (productListModel.productExpressPrice.length > 0) {
-        descriptionLabel.text = [NSString stringWithFormat:@"共%lu件商品;合计:%d元(含快递费 %d元)",(unsigned long)productListModel.productListGoodsArray.count,[AllOrderListVM getOrderTotalPriceWithProductListModel:productListModel],[productListModel.productExpressPrice intValue]];
+    if (productListModel.productExpressPrice.floatValue > 0) {
+        descriptionLabel.text = [NSString stringWithFormat:@"共%lu件商品;合计:%.2f元(含快递费 %.2f元)",(unsigned long)productListModel.productListGoodsArray.count,[AllOrderListVM getOrderTotalPriceWithProductListModel:productListModel],[productListModel.productExpressPrice floatValue]];
     } else {
-        descriptionLabel.text = [NSString stringWithFormat:@"共%lu件商品;合计:%d元",(unsigned long)productListModel.productListGoodsArray.count,[AllOrderListVM getOrderTotalPriceWithProductListModel:productListModel]];
+        descriptionLabel.text = [NSString stringWithFormat:@"共%lu件商品;合计:%.2f元",(unsigned long)productListModel.productListGoodsArray.count,[AllOrderListVM getOrderTotalPriceWithProductListModel:productListModel]];
     }
     return descriptionLabel;
 }

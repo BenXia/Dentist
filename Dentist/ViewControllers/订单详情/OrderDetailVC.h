@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OrderDetailVC : UIViewController
+@interface OrderDetailVC : BaseViewController
 
 - (id)initWithOid:(NSString *)oid;
 

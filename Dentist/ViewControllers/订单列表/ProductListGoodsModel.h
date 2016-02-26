@@ -10,6 +10,7 @@
 
 @interface ProductListGoodsModel : NSObject
 
+@property (nonatomic, strong) NSString *productID;        //产品id
 @property (nonatomic, strong) NSString *productTitle;     //产品标题
 @property (nonatomic, strong) NSString *productModel;     //产品型号
 @property (nonatomic, strong) NSString *productPrice;     //产品价格
