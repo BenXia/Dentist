@@ -22,6 +22,10 @@
 		3309CFEA1C7F484600986C30 /* ic_pay_weixin@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3309CFE41C7F484600986C30 /* ic_pay_weixin@3x.png */; };
 		3309CFEB1C7F484600986C30 /* pay_pic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3309CFE51C7F484600986C30 /* pay_pic@2x.png */; };
 		3309CFEC1C7F484600986C30 /* pay_pic@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3309CFE61C7F484600986C30 /* pay_pic@3x.png */; };
+		3309CFF31C7F55BD00986C30 /* PayTypeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3309CFF11C7F55BD00986C30 /* PayTypeVC.m */; };
+		3309CFF41C7F55BD00986C30 /* PayTypeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3309CFF21C7F55BD00986C30 /* PayTypeVC.xib */; };
+		3309CFF81C7F55D000986C30 /* DeliverTypeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3309CFF61C7F55D000986C30 /* DeliverTypeVC.m */; };
+		3309CFF91C7F55D000986C30 /* DeliverTypeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3309CFF71C7F55D000986C30 /* DeliverTypeVC.xib */; };
 		3332F9B11C784CF4006B8864 /* WebP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33CAF8F81C781F450015B4BC /* WebP.framework */; };
 		3332F9C41C785225006B8864 /* icon_failed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3332F9C01C785225006B8864 /* icon_failed@2x.png */; };
 		3332F9C51C785225006B8864 /* icon_failed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3332F9C11C785225006B8864 /* icon_failed@3x.png */; };
@@ -492,6 +496,12 @@
 		3309CFE41C7F484600986C30 /* ic_pay_weixin@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_pay_weixin@3x.png"; sourceTree = "<group>"; };
 		3309CFE51C7F484600986C30 /* pay_pic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pay_pic@2x.png"; sourceTree = "<group>"; };
 		3309CFE61C7F484600986C30 /* pay_pic@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pay_pic@3x.png"; sourceTree = "<group>"; };
+		3309CFF01C7F55BD00986C30 /* PayTypeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayTypeVC.h; sourceTree = "<group>"; };
+		3309CFF11C7F55BD00986C30 /* PayTypeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayTypeVC.m; sourceTree = "<group>"; };
+		3309CFF21C7F55BD00986C30 /* PayTypeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PayTypeVC.xib; sourceTree = "<group>"; };
+		3309CFF51C7F55D000986C30 /* DeliverTypeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeliverTypeVC.h; sourceTree = "<group>"; };
+		3309CFF61C7F55D000986C30 /* DeliverTypeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeliverTypeVC.m; sourceTree = "<group>"; };
+		3309CFF71C7F55D000986C30 /* DeliverTypeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DeliverTypeVC.xib; sourceTree = "<group>"; };
 		3332F9C01C785225006B8864 /* icon_failed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_failed@2x.png"; sourceTree = "<group>"; };
 		3332F9C11C785225006B8864 /* icon_failed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_failed@3x.png"; sourceTree = "<group>"; };
 		3332F9C21C785225006B8864 /* icon_successed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_successed@2x.png"; sourceTree = "<group>"; };
@@ -1128,6 +1138,19 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		3309CFEF1C7F55A200986C30 /* PopupVCs */ = {
+			isa = PBXGroup;
+			children = (
+				3309CFF51C7F55D000986C30 /* DeliverTypeVC.h */,
+				3309CFF61C7F55D000986C30 /* DeliverTypeVC.m */,
+				3309CFF71C7F55D000986C30 /* DeliverTypeVC.xib */,
+				3309CFF01C7F55BD00986C30 /* PayTypeVC.h */,
+				3309CFF11C7F55BD00986C30 /* PayTypeVC.m */,
+				3309CFF21C7F55BD00986C30 /* PayTypeVC.xib */,
+			);
+			path = PopupVCs;
+			sourceTree = "<group>";
+		};
 		33440CFB1C783B0700A441E3 /* 子工程公共资源 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1289,6 +1312,7 @@
 				33D0286F1C74BCDF00277C3C /* PayFailedVC.m */,
 				33D028701C74BCDF00277C3C /* PayFailedVC.xib */,
 				33CAE4381C7371160038748F /* Cells */,
+				3309CFEF1C7F55A200986C30 /* PopupVCs */,
 			);
 			path = "下单页";
 			sourceTree = "<group>";
@@ -2552,6 +2576,7 @@
 				33DD6CA11C611A5500CE6B31 /* btn_Go_pressed.png in Resources */,
 				9379D3C71C6338BB00390702 /* 我的-设置按钮@3x.png in Resources */,
 				888C7A5A1C79901000CA2ED9 /* ProductDescriptionVC.xib in Resources */,
+				3309CFF41C7F55BD00986C30 /* PayTypeVC.xib in Resources */,
 				932839CA1C637EFF004C21CD /* 已完成@2x.png in Resources */,
 				33DD6CD11C611A5500CE6B31 /* ico_failed.png in Resources */,
 				93A1F5DD1C6281D900CFEEC4 /* TodayIntroduceCell.xib in Resources */,
@@ -2656,6 +2681,7 @@
 				33DD6CA41C611A5500CE6B31 /* btn_numberminus90_pressed@2X.png in Resources */,
 				3360B3FD1C7CA41200C60AC0 /* btn_photo_pressed@2x.png in Resources */,
 				33DD6CE01C611A5500CE6B31 /* nav_SearchBg@2x.png in Resources */,
+				3309CFF91C7F55D000986C30 /* DeliverTypeVC.xib in Resources */,
 				33CAF8961C7810D20015B4BC /* web_left_highlighted.png in Resources */,
 				930C34A71C7A0BEA008823F9 /* AddressListVC.xib in Resources */,
 				33DD6CE41C611A5500CE6B31 /* tv_msg_number_r.png in Resources */,
@@ -2879,6 +2905,7 @@
 				33F070951C42B58E00DAC58F /* PPDataController.m in Sources */,
 				33DD6BBB1C6103CA00CE6B31 /* IQUIView+IQKeyboardToolbar.m in Sources */,
 				33F0706E1C42A43200DAC58F /* ProfileVC.m in Sources */,
+				3309CFF31C7F55BD00986C30 /* PayTypeVC.m in Sources */,
 				33F070641C42A40F00DAC58F /* CategoryVC.m in Sources */,
 				33F070941C42B58E00DAC58F /* PPDataCache.m in Sources */,
 				B58339631C79AAAB00F9EBE2 /* ProductEvaluateVM.m in Sources */,
@@ -2892,6 +2919,7 @@
 				88EBEE7E1C79B83000F20C90 /* AddCartDC.m in Sources */,
 				888C7A591C79901000CA2ED9 /* ProductDescriptionVC.m in Sources */,
 				930C343C1C783E5C008823F9 /* SalesPromotionDC.m in Sources */,
+				3309CFF81C7F55D000986C30 /* DeliverTypeVC.m in Sources */,
 				33DD6BB21C6103CA00CE6B31 /* IQUIView+Hierarchy.m in Sources */,
 				33DD6B4F1C60EDCC00CE6B31 /* AgreementVC.m in Sources */,
 				88C3BAE31C78A2B0001F4D85 /* EditNumberView.m in Sources */,
