@@ -61,6 +61,9 @@
                             <color key="backgroundColor" red="0.23921568630000001" green="0.71764705880000002" blue="0.92156862750000001" alpha="1" colorSpace="calibratedRGB"/>
                             <state key="normal" title="  立即支付" image="btn_paying_default"/>
                             <state key="highlighted" image="btn_paying_pressed"/>
+                            <connections>
+                                <action selector="didClickPayNowButtonAction:" destination="-1" eventType="touchUpInside" id="MEb-Ay-w46"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>

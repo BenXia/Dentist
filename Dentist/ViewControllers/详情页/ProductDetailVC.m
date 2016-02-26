@@ -18,6 +18,7 @@
 #import "ProductEvaluateModel.h"
 #import "ProductEvaluateVC.h"
 #import "GuessYouLikeProductView.h"
+#import "OrderVC.h"
 
 static const CGFloat kProductDetailVCTopImageRatio = 16.f/9;
 static const CGFloat kHeightOfSectionHeader = 12;
@@ -755,8 +756,39 @@ UIScrollViewDelegate>
     [self showPopupCustomiseView];
 }
 
-- (void)didClickSelectTipView{
+- (void)didClickSelectTipView {
     [self showPopupCustomiseView];
+}
+
+- (IBAction)didClickBuyGroupButtonAction:(id)sender {
+    NSMutableArray* modelArray = [NSMutableArray new];
+    // 主商品
+    OrderItemModel *model = [[OrderItemModel alloc] init];
+    model.productId = self.dc.productDetail.iid;
+    model.productTitle = self.dc.productDetail.title;
+    model.productImageUrl = [self.dc.productDetail.img_url firstObject];
+    model.descriptionString = self.dc.productDetail.sids;
+    model.productPrice = self.dc.productDetail.price;
+    model.buyNum = self.buyNum;
+    [modelArray addObject:model];
+    
+    // 套餐商品
+    for (GroupContentItem* item in ((GroupItem *)[self.dc.productDetail.groups firstObject]).items) {
+        OrderItemModel* submodel = [OrderItemModel new];
+        submodel.productId = item.iid;
+        submodel.productTitle = item.title;
+        submodel.productImageUrl = item.img;
+        submodel.descriptionString = @"";
+        submodel.productPrice = item.price;
+        submodel.buyNum = 1;
+        [modelArray addObject:submodel];
+    }
+    
+    OrderVC *vc = [[OrderVC alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [vc setProductItemsArray:modelArray];
+    [vc setGroupId:((GroupItem *)[self.dc.productDetail.groups firstObject]).pgp_id];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)didClickAppraiseHeaderVie{
@@ -801,9 +833,24 @@ UIScrollViewDelegate>
         return;
     }
     
-    //TODO-GUO:进入下单页
+    OrderItemModel *model = [[OrderItemModel alloc] init];
+    if (self.specProduct) {
+        model.productId = self.specProduct.iid;
+        model.descriptionString = self.specProduct.sids;
+    } else {
+        model.productId = self.dc.productDetail.iid;
+        model.descriptionString = self.dc.productDetail.sids;
+    }
+    model.productTitle = self.dc.productDetail.title;
+    model.productImageUrl = [self.dc.productDetail.img_url firstObject];
+    model.productPrice = self.dc.productDetail.price;
+    model.buyNum = self.buyNum;
+    
+    OrderVC *vc = [[OrderVC alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [vc setProductItemsArray:[NSMutableArray arrayWithObject:model]];
+    [self.navigationController pushViewController:vc animated:YES];
 }
-
 
 - (void)didSelectOptionInPopupCustomiseView:(UIButton*)sender{
     NSString* specData = [sender titleForState:UIControlStateNormal];

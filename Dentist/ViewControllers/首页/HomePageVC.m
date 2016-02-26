@@ -377,6 +377,7 @@ saleActivityCellDelegate>
 #pragma mark - CellDelegate
 
 - (void)todayIntroduceCell:(TodayIntroduceCell *)cell toProductDetailWith:(NSString *)iid {
+    //ProductDetailVC *detailVC = [[ProductDetailVC alloc] initWithProductId:@"143"];
     ProductDetailVC *detailVC = [[ProductDetailVC alloc] initWithProductId:iid];
     detailVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:detailVC animated:YES];
