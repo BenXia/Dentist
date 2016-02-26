@@ -18,7 +18,7 @@
 #define kTableViewCellHeight        95
 #define kSectionHeaderViewHeight    60
 #define kSectionFooterViewHeight    80
-#define kStatusLabelWidth           60
+#define kStatusLabelWidth           100
 #define kDeleteButtonWidth          30
 #define kDeleteButtonHeight         40
 #define kPayButtonWidth             100
@@ -33,6 +33,13 @@
 
 @implementation AllOrderListVC
 
+- (id)initWithOrderStatusType:(OrderStatusType)type {
+    if (self = [super init]) {
+        self.allOrderListVM.orderStatusType = type;
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
@@ -42,10 +49,31 @@
 
 - (void)initUI {
     self.view.backgroundColor = [UIColor backGroundGrayColor];
-    self.title = @"全部订单";
+    switch (self.allOrderListVM.orderStatusType) {
+        case OrderStatusType_NeedHandle: {
+            self.title = @"待处理订单";
+        }
+            break;
+        case OrderStatusType_Complete: {
+            self.title = @"已完成订单";
+        }
+            break;
+        case OrderStatusType_NeedPraise: {
+            self.title = @"待评价订单";
+        }
+            break;
+        case OrderStatusType_All: {
+            self.title = @"全部订单";
+        }
+            break;
+            
+        default:
+            break;
+    }
 }
 
 - (void)initData {
+    [self showLoadingView];
     self.allOrderListVM.orderListDC = [[OrderListDC alloc] initWithDelegate:self];
     [self.allOrderListVM.orderListDC requestWithArgs:nil];
 }
@@ -118,6 +146,7 @@
         //跳转立即付款
     } else if ([btn.titleLabel.text isEqualToString:@"再次购买"]) {
         //跳转再次购买
+        NSLog(@"再次购买");
     }
 }
 
@@ -131,11 +160,14 @@
 
 //数据请求成功回调
 - (void)loadingDataFinished:(PPDataController *)controller{
+    [self hideLoadingView];
+    [self.allOrderListVM filterDataWithOrderStatusType];
     [self.tableView reloadData];
 }
 
 //数据请求失败回调
 - (void)loadingData:(PPDataController *)controller failedWithError:(NSError *)error{
+    [self hideLoadingView];
     [Utilities showToastWithText:@"订单列表获取失败"];
 }
 
@@ -302,6 +334,8 @@
 
     UILabel *descriptionLabel  = [self createDescriptionLabel:productListModel];
     UIImageView *lineImageView = [self createLineImageView];
+    UIButton *deleteButton      = [self createDeleteButton:productListModel
+                                               withSection:section];
     UIButton *payButton        = [self createPayButton:productListModel
                                            withSection:section
                                              withTitle:@"再次购买"];
@@ -309,7 +343,8 @@
     [sectionFooterBackView addSubview:descriptionLabel];
     [sectionFooterBackView addSubview:lineImageView];
     [sectionFooterBackView addSubview:payButton];
-    
+    [sectionFooterBackView addSubview:deleteButton];
+
     return sectionFooterBackView;
 }
 
@@ -318,10 +353,10 @@
     UILabel *descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(kInsert, 0, kScreenWidth, kSectionFooterViewHeight/2)];
     descriptionLabel.textColor = [UIColor gray006Color];
     descriptionLabel.font = [UIFont systemFontOfSize:13];
-    if (productListModel.productExpressPrice.length > 0) {
-        descriptionLabel.text = [NSString stringWithFormat:@"共%lu件商品；合计：%d元(含快递费 %d元)",(unsigned long)productListModel.productListGoodsArray.count,[AllOrderListVM getOrderTotalPriceWithProductListModel:productListModel],[productListModel.productExpressPrice intValue]];
+    if (productListModel.productExpressPrice.floatValue > 0) {
+        descriptionLabel.text = [NSString stringWithFormat:@"共%lu件商品；合计：%.2f元(含快递费 %.2f元)",(unsigned long)productListModel.productListGoodsArray.count,[AllOrderListVM getOrderTotalPriceWithProductListModel:productListModel],[productListModel.productExpressPrice floatValue]];
     } else {
-        descriptionLabel.text = [NSString stringWithFormat:@"共%lu件商品；合计：%d元",(unsigned long)productListModel.productListGoodsArray.count,[AllOrderListVM getOrderTotalPriceWithProductListModel:productListModel]];
+        descriptionLabel.text = [NSString stringWithFormat:@"共%lu件商品；合计：%.2f元",(unsigned long)productListModel.productListGoodsArray.count,[AllOrderListVM getOrderTotalPriceWithProductListModel:productListModel]];
     }
     return descriptionLabel;
 }

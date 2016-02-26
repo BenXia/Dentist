@@ -13,6 +13,7 @@
 
 @property (nonatomic, strong) NSString *orderStatus;               //订单状态
 @property (nonatomic, strong) NSString *orderShowNumber;           //运单号
+@property (nonatomic, strong) NSString *pickUp;                    //是否是自提  1:自提   0:快递
 @property (nonatomic, strong) NSString *orderExpressCompany;       //快递公司
 @property (nonatomic, strong) NSString *orderPickUpCode;           //自提码
 @property (nonatomic, strong) NSString *orderExpressNumber;        //快递单号
