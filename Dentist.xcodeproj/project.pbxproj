@@ -103,6 +103,9 @@
 		33CAF8A71C781B380015B4BC /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CAF8A51C781B380015B4BC /* LoginVC.m */; };
 		33CAF8A81C781B380015B4BC /* LoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33CAF8A61C781B380015B4BC /* LoginVC.xib */; };
 		33CAF8AC1C781BCD0015B4BC /* UserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CAF8AB1C781BCD0015B4BC /* UserInfoModel.m */; };
+		33CB5B751C807C220038EBDC /* OrderItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CB5B741C807C220038EBDC /* OrderItemModel.m */; };
+		33CB5B781C808A990038EBDC /* PPConfirmOrderDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CB5B771C808A990038EBDC /* PPConfirmOrderDC.m */; };
+		33CB5B7B1C808AAB0038EBDC /* PPCreateOrderDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CB5B7A1C808AAB0038EBDC /* PPCreateOrderDC.m */; };
 		33D00F3A1C62375B00499EE9 /* btn_numberminus72_default@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33D00F361C62375B00499EE9 /* btn_numberminus72_default@3x.png */; };
 		33D00F3B1C62375B00499EE9 /* btn_numberminus72_pressed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33D00F371C62375B00499EE9 /* btn_numberminus72_pressed@3x.png */; };
 		33D00F3C1C62375B00499EE9 /* btn_numberplus72_default@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33D00F381C62375B00499EE9 /* btn_numberplus72_default@3x.png */; };
@@ -600,6 +603,12 @@
 		33CAF8AA1C781BCD0015B4BC /* UserInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoModel.h; sourceTree = "<group>"; };
 		33CAF8AB1C781BCD0015B4BC /* UserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoModel.m; sourceTree = "<group>"; };
 		33CAF8F81C781F450015B4BC /* WebP.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebP.framework; path = StudioCommon/StudioCommon/Vendors/WebP/WebP.framework; sourceTree = "<group>"; };
+		33CB5B731C807C220038EBDC /* OrderItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderItemModel.h; sourceTree = "<group>"; };
+		33CB5B741C807C220038EBDC /* OrderItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderItemModel.m; sourceTree = "<group>"; };
+		33CB5B761C808A990038EBDC /* PPConfirmOrderDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPConfirmOrderDC.h; sourceTree = "<group>"; };
+		33CB5B771C808A990038EBDC /* PPConfirmOrderDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPConfirmOrderDC.m; sourceTree = "<group>"; };
+		33CB5B791C808AAB0038EBDC /* PPCreateOrderDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPCreateOrderDC.h; sourceTree = "<group>"; };
+		33CB5B7A1C808AAB0038EBDC /* PPCreateOrderDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPCreateOrderDC.m; sourceTree = "<group>"; };
 		33D00F361C62375B00499EE9 /* btn_numberminus72_default@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_numberminus72_default@3x.png"; sourceTree = "<group>"; };
 		33D00F371C62375B00499EE9 /* btn_numberminus72_pressed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_numberminus72_pressed@3x.png"; sourceTree = "<group>"; };
 		33D00F381C62375B00499EE9 /* btn_numberplus72_default@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_numberplus72_default@3x.png"; sourceTree = "<group>"; };
@@ -1255,8 +1264,8 @@
 				33F070481C429AD300DAC58F /* AppInit&Deinit */,
 				33F070771C42AB8300DAC58F /* Application */,
 				33F070851C42B46E00DAC58F /* Images */,
-				33F070361C4295F200DAC58F /* Network */,
 				33F070371C4295F200DAC58F /* Utilities */,
+				33F070361C4295F200DAC58F /* Network */,
 				33F070391C4295F200DAC58F /* ViewControllers */,
 				33F06F921C42477300DAC58F /* Supporting Files */,
 				33C9885B1C42401D00262141 /* AppDelegate.h */,
@@ -1302,6 +1311,12 @@
 				33CAF0FE1C72098200348763 /* OrderVC.h */,
 				33CAF0FF1C72098200348763 /* OrderVC.m */,
 				33CAF1001C72098200348763 /* OrderVC.xib */,
+				33CB5B761C808A990038EBDC /* PPConfirmOrderDC.h */,
+				33CB5B771C808A990038EBDC /* PPConfirmOrderDC.m */,
+				33CB5B791C808AAB0038EBDC /* PPCreateOrderDC.h */,
+				33CB5B7A1C808AAB0038EBDC /* PPCreateOrderDC.m */,
+				33CB5B731C807C220038EBDC /* OrderItemModel.h */,
+				33CB5B741C807C220038EBDC /* OrderItemModel.m */,
 				33CAE4071C735B2C0038748F /* OrderVM.h */,
 				33CAE4081C735B2C0038748F /* OrderVM.m */,
 				33D028641C74BCA100277C3C /* InvoiceVC.h */,
@@ -2853,6 +2868,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9353628B1C7DDDC4004F9BC5 /* GetAddressRegionDC.m in Sources */,
+				33CB5B7B1C808AAB0038EBDC /* PPCreateOrderDC.m in Sources */,
 				888811D21C7B674700F6672C /* UILabel+Price.m in Sources */,
 				93DEA8711C4BC552008211F7 /* HomePageVC.m in Sources */,
 				33F070CE1C42BE1E00DAC58F /* SendSmsDataController.m in Sources */,
@@ -2923,6 +2939,7 @@
 				88EBEE7E1C79B83000F20C90 /* AddCartDC.m in Sources */,
 				888C7A591C79901000CA2ED9 /* ProductDescriptionVC.m in Sources */,
 				930C343C1C783E5C008823F9 /* SalesPromotionDC.m in Sources */,
+				33CB5B781C808A990038EBDC /* PPConfirmOrderDC.m in Sources */,
 				3309CFF81C7F55D000986C30 /* DeliverTypeVC.m in Sources */,
 				33DD6BB21C6103CA00CE6B31 /* IQUIView+Hierarchy.m in Sources */,
 				33DD6B4F1C60EDCC00CE6B31 /* AgreementVC.m in Sources */,
@@ -2931,6 +2948,7 @@
 				33DD6BB41C6103CA00CE6B31 /* IQKeyboardManager.m in Sources */,
 				33D187391C70C9D100658F3D /* ProductDetailVC.m in Sources */,
 				888811CB1C7B60B000F6672C /* FavoriteProductCell.m in Sources */,
+				33CB5B751C807C220038EBDC /* OrderItemModel.m in Sources */,
 				9377AC681C53793A003B24B1 /* BannerModel.m in Sources */,
 				B5DA4D1B1C7DD9C9003677DD /* CartProductUpdateNumberDC.m in Sources */,
 				33D028711C74BCDF00277C3C /* PayFailedVC.m in Sources */,

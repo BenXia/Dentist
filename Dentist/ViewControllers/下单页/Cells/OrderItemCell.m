@@ -10,12 +10,6 @@
 
 @interface OrderItemCell ()
 
-@property (weak, nonatomic) IBOutlet QQingImageView *productImageView;
-@property (weak, nonatomic) IBOutlet UILabel *productTitleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *productCustomiseLabel;
-@property (weak, nonatomic) IBOutlet UILabel *priceLabel;
-@property (weak, nonatomic) IBOutlet UILabel *productNumberLabel;
-
 @end
 
 @implementation OrderItemCell
