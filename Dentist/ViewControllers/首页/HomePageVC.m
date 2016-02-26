@@ -85,6 +85,9 @@ saleActivityCellDelegate>
     [self downLoadfromNet];
     
     self.needHideNavBarWithAnimation = YES;
+    
+    //监听通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveNotification:) name:kNotificationActionOver object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -123,6 +126,14 @@ saleActivityCellDelegate>
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return self.statusBarStyle;
+}
+
+- (void)didReceiveNotification:(NSNotification *)notification {
+    if ([notification.name isEqualToString:kNotificationActionOver]) {
+        self.groupBuyingRequest = [[GroupBuyingDC alloc] initWithDelegate:self];
+        [self.groupBuyingRequest requestWithArgs:nil];
+    }
+    
 }
 
 #pragma mark - Navigation Style
@@ -169,10 +180,12 @@ saleActivityCellDelegate>
     _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
     _cycleScrollView.pageControlStyle=SDCycleScrollViewPageContolStyleClassic;
     _cycleScrollView.dotColor = [UIColor themeBlueColor]; // 自定义分页控件小圆标颜色
+    _cycleScrollView.notSelectDotColor = [UIColor gray003Color];
+    _cycleScrollView.backgroundColor = [UIColor whiteColor];
     _cycleScrollView.delegate = self;
     _cycleScrollView.autoScroll = NO;
     _cycleScrollView.autoScrollTimeInterval = 10;
-    _cycleScrollView.placeholderImage = [UIImage imageNamed:@"ic_top_blank.png"];
+    _cycleScrollView.placeholderImage = [UIImage imageNamed:@"网络不给力-03"];
     _cycleScrollView.needChangeHeight = YES;
 }
 
@@ -202,7 +215,7 @@ saleActivityCellDelegate>
 - (void)refreshBanner {
     NSMutableArray *imagesURLStrings = [NSMutableArray array];
     for (BannerModel* banner in self.adBannerRequest.bannerArr) {
-        NSString* imageUrl = banner.imaUrl;
+        NSString* imageUrl = banner.imgUrl;
         if (imagesURLStrings.count<10) {
             [imagesURLStrings addObject:imageUrl];
         }
@@ -215,7 +228,6 @@ saleActivityCellDelegate>
         
     }
     _cycleScrollView.imageURLStringsGroup = imagesURLStrings;
-    _cycleScrollView.placeholderImage = [UIImage imageNamed:@"tempShop"];
     _cycleScrollView.hidden=NO;
 }
 
@@ -261,7 +273,10 @@ saleActivityCellDelegate>
 #pragma mark - SDCycleScrollViewDelegate
 
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
-    //
+    BannerModel *model = self.adBannerRequest.bannerArr[index];
+    ProductDetailVC *detailVC = [[ProductDetailVC alloc] initWithProductId:model.iid];
+    detailVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:detailVC animated:YES];
 }
 
 #pragma mark - UIScrollViewDelegate

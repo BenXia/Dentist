@@ -200,6 +200,7 @@
                 <outlet property="secondImageView" destination="Vkk-rB-Fa4" id="APb-JP-9Sq"/>
                 <outlet property="ssTimeLabel" destination="u4V-c4-Xmm" id="ZK6-Ce-yV7"/>
                 <outlet property="thirdImageView" destination="t9u-U1-kKg" id="z90-L0-u3p"/>
+                <outlet property="titleLabel" destination="H6u-fP-Nek" id="XMh-AH-bJU"/>
             </connections>
             <point key="canvasLocation" x="303.5" y="311.5"/>
         </tableViewCell>
