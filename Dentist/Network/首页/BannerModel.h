@@ -9,10 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface BannerModel : NSObject
-@property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSString *imaUrl;
-@property (nonatomic, assign) double cId;
-@property (nonatomic, assign) double orderBy;
+@property (nonatomic, strong) NSString *location;
+@property (nonatomic, strong) NSString *iid;
+@property (nonatomic, strong) NSString *imgUrl;
 
 + (BannerModel *)modelWithDict:(NSDictionary *)dict;
 @end

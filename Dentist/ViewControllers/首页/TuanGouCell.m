@@ -23,6 +23,7 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *fourthImageView;
 
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (assign, nonatomic) NSTimeInterval totalCountDownEndTimeInterval;
 
 @property (strong, nonatomic) SimpleCountdown *totalCountDown;
@@ -104,6 +105,8 @@
     self.mmTimeLabel.text = [NSString stringWithFormat:@"%02ld",count%3600/60];
     self.ssTimeLabel.text = [NSString stringWithFormat:@"%02ld",count%3600%60];
     if (count == 0) {
+        self.titleLabel.text = @"活动已结束";
+        [self postNotification:kNotificationActionOver];
         return NO;
     }
     return YES;

@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#define kNotificationActionOver @"notificationActionOver"
+
 @class TuanGouCell;
 @protocol TuanGouCellDelegate <NSObject>
 

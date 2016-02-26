@@ -12,11 +12,11 @@
 @implementation ADBannerDC
 
 - (NSDictionary *)requestURLArgs {
-    return @{@"method":@"item.category",@"v":@"0.0.1"};
+    return @{@"method":@"ad.banner",@"v":@"0.0.1"};
 }
 
 - (RequestMethod)requestMethod {
-    return RequestMethodPOST;
+    return RequestMethodGET;
 }
 
 - (NSDictionary *)requestHTTPBody {
@@ -27,25 +27,24 @@
     
     BOOL result = NO;
     NSError *error = nil;
-    NSDictionary *resultdict = [NSJSONSerialization JSONObjectWithString:content
+    NSArray *resultArray = [NSJSONSerialization JSONObjectWithString:content
                                                                  options:0
                                                                    error:&error];
-    if (!error || [resultdict isKindOfClass:[NSDictionary class]]) {
-        [self transModel:resultdict];
+    if (!error || [resultArray isKindOfClass:[NSArray class]]) {
+        for (NSDictionary *dict in resultArray) {
+            [self.bannerArr addObject:[BannerModel modelWithDict:dict]];
+        }
         result = YES;
     }
     
     return result;
 }
 
-- (void)transModel:(NSDictionary *)resultDict {
-    self.bannerArr = [NSMutableArray array];
-    for (NSDictionary *dict in [resultDict objectForKey:@"categorys"]) {
-        for (NSDictionary *dict2 in [dict objectForKey:@"sub"]) {
-            [self.bannerArr addObject:[BannerModel modelWithDict:dict2]];
-        }
-        
+- (NSMutableArray *)bannerArr {
+    if (!_bannerArr) {
+        _bannerArr = [NSMutableArray array];
     }
+    return _bannerArr;
 }
 
 @end

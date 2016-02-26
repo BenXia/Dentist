@@ -10,10 +10,9 @@
 @implementation BannerModel
 + (BannerModel *)modelWithDict:(NSDictionary *)dict {
     BannerModel *model = [[BannerModel alloc] init];
-    model.name = [dict objectForKey:@"name"];
-    model.imaUrl = [dict objectForKey:@"img_url"];
-    model.cId = [[dict objectForKey:@"cid"] doubleValue];
-    model.orderBy = [[dict objectForKey:@"orderby"] doubleValue];
+    model.location = [dict objectForKey:@"location"];
+    model.imgUrl = [dict objectForKey:@"img_url"];
+    model.iid = [dict objectForKey:@"iid"];
     return model;
 }
 @end
