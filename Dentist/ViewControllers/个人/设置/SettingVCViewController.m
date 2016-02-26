@@ -45,7 +45,7 @@
     [self.weixinPyqBtn centerImageAndTitle];
     [self.sinaBtn centerImageAndTitle];
     [self.weixinBtn centerImageAndTitle];
-    self.shareVC.view.frame = CGRectMake(0, 0, kScreenWidth - 24, 200);
+    self.shareVC.view.frame = CGRectMake(0, 0, kScreenWidth - 24, 210);
 }
 
 #pragma mark - UITableViewDelegate & UITableViewDataSource

@@ -64,6 +64,7 @@
                 <outlet property="scrollView" destination="B3S-Nu-yGC" id="Tlg-IB-7SX"/>
                 <outlet property="selectTipLabel" destination="cRj-vu-RAB" id="DHx-rz-tv1"/>
                 <outlet property="selectTipView" destination="HdL-AP-5dh" id="2Vf-Jq-Yf2"/>
+                <outlet property="topBarBackButton" destination="EDi-Jw-rm7" id="oaw-LV-G3I"/>
                 <outlet property="topBarBackgroundView" destination="Efa-qT-UoX" id="jSV-G6-8PT"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

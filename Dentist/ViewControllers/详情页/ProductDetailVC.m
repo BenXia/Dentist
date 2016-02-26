@@ -48,7 +48,10 @@ UIScrollViewDelegate>
 @property (assign,nonatomic) BOOL isSelectSpecCompleted;    //选择分类完成
 @property (strong,nonatomic) SpecProductItem* specProduct;  //选择分类后的商品
 
+@property (assign,nonatomic) UIStatusBarStyle statusBarStyle;
+
 @property (weak, nonatomic) IBOutlet UIView *topBarBackgroundView;
+@property (weak, nonatomic) IBOutlet UIButton *topBarBackButton;
 
 @property (weak,nonatomic)  IBOutlet UIScrollView* scrollView;
 @property (assign,nonatomic) CGFloat scrollContentHeight;
@@ -141,6 +144,7 @@ UIScrollViewDelegate>
         self.addFavoriteDC = [[AddFavoriteDC alloc] initWithDelegate:self];
         self.dc.productId = productId;
         self.buyNum = 1;
+        self.statusBarStyle = UIStatusBarStyleLightContent;
         self.title = @"商品详情";
         self.hidesBottomBarWhenPushed = YES;
     }
@@ -169,7 +173,7 @@ UIScrollViewDelegate>
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
+    return self.statusBarStyle;
 }
 
 #pragma mark - UI Init
@@ -188,6 +192,7 @@ UIScrollViewDelegate>
 }
 
 - (void)initNavBar{
+    self.topBarBackgroundView.backgroundColor = [UIColor themeBlueColor];
     self.topBarBackgroundView.layer.shadowOffset = CGSizeMake(2, 2);
     self.topBarBackgroundView.layer.shadowOpacity = 0.2;
     self.topBarBackgroundView.layer.shadowColor = [UIColor blackColor].CGColor;
@@ -311,7 +316,7 @@ UIScrollViewDelegate>
         _cycleScrollView.autoScroll=YES;
     } else {
         _cycleScrollView.autoScroll=NO;
-        
+        _cycleScrollView.showPageControl = NO;
     }
     _cycleScrollView.imageURLStringsGroup = imagesURLStrings;
     _cycleScrollView.hidden=NO;
@@ -870,9 +875,18 @@ UIScrollViewDelegate>
     if (point.y < 0) {
         self.topBarBackgroundView.alpha = 0;
         self.topBarBackgroundView.layer.shadowOpacity = 0;
+        [self.topBarBackButton setImage:[UIImage imageNamed:@"btn_backround_default"] forState:UIControlStateNormal];
+//        self.statusBarStyle = UIStatusBarStyleLightContent;
     } else {
         self.topBarBackgroundView.alpha = ((point.y > (originHeaderHeight - 60)) ? 1 : (point.y / (originHeaderHeight - 60)));
         self.topBarBackgroundView.layer.shadowOpacity = ((point.y > (originHeaderHeight - 60)) ? 0.2 : (point.y / (originHeaderHeight - 60) * 0.2));
+        if (self.topBarBackgroundView.alpha < 1) {
+            [self.topBarBackButton setImage:[UIImage imageNamed:@"btn_backround_default"] forState:UIControlStateNormal];
+//            self.statusBarStyle = UIStatusBarStyleLightContent;
+        }else{
+            [self.topBarBackButton setImage:[UIImage imageNamed:@"btn_back_white"] forState:UIControlStateNormal];
+//            self.statusBarStyle = UIStatusBarStyleDefault;
+        }
     }
     
     //TODO-GUO:MJRefresh不好用，只能这样了
@@ -964,6 +978,11 @@ UIScrollViewDelegate>
     view.width = kScreenWidth;
     [self.scrollView addSubview:view];
     self.scrollContentHeight += view.height;
+}
+
+-(void)setStatusBarStyle:(UIStatusBarStyle)statusBarStyle{
+    _statusBarStyle = statusBarStyle;
+    [self setNeedsStatusBarAppearanceUpdate];
 }
 
 @end

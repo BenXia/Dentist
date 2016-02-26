@@ -44,7 +44,9 @@
         for (NSDictionary *ordersDic in ordersArray) {
             ProductListModel *model = [ProductListModel new];
             model.orderID = [ordersDic objectForKey:@"oid"];
-            model.statusCode = [ordersDic objectForKey:@"status"];
+//            model.statusCode = [ordersDic objectForKey:@"status"];
+            model.statusCode = @"4";
+
             model.productExpressPrice = [ordersDic objectForKey:@"express_money"];
             
             NSMutableArray *goodsList = [ordersDic objectForKey:@"goods"];

@@ -134,9 +134,9 @@ WTLabelDelegate>
 
 - (void)loadingData:(PPDataController *)controller failedWithError:(NSError *)error {
     if (controller == self.addressListRequest) {
-        [Utilities showToastWithText:[NSString stringWithFormat:@"获取地址列表失败:%@", error]];
+        [Utilities showToastWithText:[NSString stringWithFormat:@"获取地址列表失败"]];
     } else if (controller == self.deleteAddressRequest) {
-        [Utilities showToastWithText:[NSString stringWithFormat:@"删除地址失败:%@", error]];
+        [Utilities showToastWithText:[NSString stringWithFormat:@"删除地址失败"]];
     }
 }
 
@@ -146,8 +146,9 @@ WTLabelDelegate>
             [self refreshTableView];
         }];
     } else if (controller == self.deleteAddressRequest) {
-        [self.addressListRequest.addressArr removeObjectAtIndex:self.willDeleteIndexPath.row];  //删除数组里的数据
-        [self.tableView deleteRowsAtIndexPaths:[NSMutableArray arrayWithObject:self.willDeleteIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];  //删除对应数据的cell
+        [[GCDQueue mainQueue] queueBlock:^{
+            [self refreshTableView];
+        }];
     }
 }
 
@@ -173,16 +174,19 @@ WTLabelDelegate>
 
 - (WTLabel *)blankLabel {
     if (!_blankLabel) {
-        _blankLabel = [[WTLabel alloc] initWithFrame:CGRectMake(0, 0, 320, 200) withTitle:@"还没有地址" andSubTitle:@"新添加一个地址吧" andButtonTitle:nil andIcon:@"user_pic_boy"];
+        _blankLabel = [[WTLabel alloc] initWithFrame:CGRectMake(0, 0, 320, 200) withTitle:@"还没有地址" andSubTitle:@"新添加一个地址吧" andButtonTitle:nil andIcon:@"头像"];
         _blankLabel.y = kBlankOldY;
         _blankLabel.centerX = [UIUtils screenWidth]/2;
         [_blankLabel setButtonTitle:@"新建"];
+        [_blankLabel.btn liningThematized:[UIColor themeButtonBlueColor]];
         _blankLabel.delegate = self;
         _blankLabel.hidden = YES;
         [self.view addSubview:_blankLabel];
     }
     return _blankLabel;
 }
+
+#pragma mark - WTLabelDelegate
 
 - (void)didClickOnBtn {
     [self didClickOnRightBtn];

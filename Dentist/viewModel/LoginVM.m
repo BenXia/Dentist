@@ -33,24 +33,18 @@
 
 - (void)loadingData:(PPDataController *)controller failedWithError:(NSError *)error {
     if (controller == self.loginRequest) {
-        [Utilities showToastWithText:[NSString stringWithFormat:@"登录失败:%@", error]];
-        [[MainViewManager sharedInstance] loadMainVC];
-        [[MainViewManager sharedInstance] selectTabHomeVC];
+        [Utilities showToastWithText:[NSString stringWithFormat:@"登录失败"]];
     }
 }
 
 - (void)loadingDataFinished:(PPDataController *)controller {
     if (controller == self.loginRequest) {
         if (self.loginRequest.loginSuccess) {
-            NSLog(@"登录成功");
             [[MainViewManager sharedInstance] loadMainVC];
             [[MainViewManager sharedInstance] selectTabHomeVC];
 
         } else {
             [Utilities showToastWithText:@"登录失败"];
-            //注册接口还未调通
-            [[MainViewManager sharedInstance] loadMainVC];
-            [[MainViewManager sharedInstance] selectTabHomeVC];
         }
     }
 }

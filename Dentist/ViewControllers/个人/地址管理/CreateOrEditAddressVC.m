@@ -69,9 +69,9 @@
 - (IBAction)onDefaultAddressBtn:(UIButton *)sender {
     self.isDefault = !self.isDefault;
     if (self.isDefault) {
-        [self.defaultAddressBtn setImage:[UIImage imageNamed:@"Ico_Successed.png"] forState:UIControlStateNormal];
+        [self.defaultAddressBtn setImage:[UIImage imageNamed:@"btn_choice_t"] forState:UIControlStateNormal];
     } else {
-        [self.defaultAddressBtn setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+        [self.defaultAddressBtn setImage:[UIImage imageNamed:@"btn_choice_f"] forState:UIControlStateNormal];
     }
 }
 
@@ -335,9 +335,9 @@
 
 - (void)loadingData:(PPDataController *)controller failedWithError:(NSError *)error {
     if (controller == self.updataAddressRequest) {
-        [Utilities showToastWithText:[NSString stringWithFormat:@"保存地址失败:%@", error]];
+        [Utilities showToastWithText:[NSString stringWithFormat:@"保存地址失败"]];
     } else if (controller == self.getAddressRegionRequest) {
-        [Utilities showToastWithText:[NSString stringWithFormat:@"获取后台城市列表失败:%@", error]];
+        [Utilities showToastWithText:[NSString stringWithFormat:@"获取后台城市列表失败"]];
     }
 }
 

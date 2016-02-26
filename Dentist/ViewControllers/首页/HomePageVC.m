@@ -398,20 +398,22 @@ saleActivityCellDelegate>
 
 - (void)loadingData:(PPDataController *)controller failedWithError:(NSError *)error {
     [[GCDQueue mainQueue] queueBlock:^{
+        self.view.userInteractionEnabled = NO;
         if (controller == self.adBannerRequest) {
-            [Utilities showToastWithText:[NSString stringWithFormat:@"获取Banner位失败:%@", error]];
+            [Utilities showToastWithText:[NSString stringWithFormat:@"获取Banner位失败"]];
         } else if (controller == self.adTodayIntroduceRequest){
-            [Utilities showToastWithText:[NSString stringWithFormat:@"获取每日推荐失败:%@", error]];
+            [Utilities showToastWithText:[NSString stringWithFormat:@"获取每日推荐失败"]];
         } else if (controller == self.groupBuyingRequest){
-            [Utilities showToastWithText:[NSString stringWithFormat:@"获取团购失败:%@", error]];
+            [Utilities showToastWithText:[NSString stringWithFormat:@"获取团购失败"]];
         } else if (controller == self.salesPromotionRequest){
-            [Utilities showToastWithText:[NSString stringWithFormat:@"获取促销失败:%@", error]];
+            [Utilities showToastWithText:[NSString stringWithFormat:@"获取促销失败"]];
         }
     
     }];
 }
 
 - (void)loadingDataFinished:(PPDataController *)controller {
+    self.view.userInteractionEnabled = YES;
     if (controller == self.adBannerRequest) {
         [self refreshBanner];
         

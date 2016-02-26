@@ -134,9 +134,9 @@ typedef enum : NSUInteger {
 - (void)loadingData:(PPDataController *)controller failedWithError:(NSError *)error {
     [[GCDQueue mainQueue] queueBlock:^{
         if (controller == self.registRequest) {
-            [Utilities showToastWithText:[NSString stringWithFormat:@"注册失败:%@", error]];
+            [Utilities showToastWithText:[NSString stringWithFormat:@"注册失败"]];
         } else if (controller == self.sendSmsRequest) {
-            [Utilities showToastWithText:[NSString stringWithFormat:@"验证码获取失败:%@", error]];
+            [Utilities showToastWithText:[NSString stringWithFormat:@"验证码获取失败"]];
         }    }];
 }
 

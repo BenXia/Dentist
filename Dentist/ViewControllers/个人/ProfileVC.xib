@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -12,7 +12,7 @@
                 <outlet property="headerView" destination="p3i-qJ-u0x" id="E1y-66-A07"/>
                 <outlet property="nickLabel" destination="u7O-zU-Fat" id="fLx-L3-CJg"/>
                 <outlet property="tableView" destination="mAI-ST-L3J" id="o7M-Yr-Zn1"/>
-                <outlet property="userLevelImage" destination="SC6-Fh-gGO" id="IsY-Ah-kIF"/>
+                <outlet property="userLevelBtn" destination="Z8L-m2-Y8Y" id="9aM-nt-Ngi"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -54,21 +54,29 @@
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的用户昵称" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u7O-zU-Fat">
-                            <rect key="frame" x="103" y="24" width="96" height="20"/>
+                            <rect key="frame" x="103" y="24" width="96" height="19.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="我的-普通用户.png" translatesAutoresizingMaskIntoConstraints="NO" id="SC6-Fh-gGO">
-                            <rect key="frame" x="103" y="51" width="82" height="24"/>
-                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z8L-m2-Y8Y">
+                            <rect key="frame" x="103" y="51" width="70" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="CU6-Vk-rRX"/>
+                                <constraint firstAttribute="width" constant="70" id="pdM-5e-DQE"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <state key="normal" title="普通用户" image="普通用户.png">
+                                <color key="titleColor" red="0.20000000000000001" green="0.65490196079999996" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="SC6-Fh-gGO" firstAttribute="top" secondItem="u7O-zU-Fat" secondAttribute="bottom" constant="8" id="LZo-SQ-VCW"/>
                         <constraint firstItem="u7O-zU-Fat" firstAttribute="leading" secondItem="1tY-7H-DiI" secondAttribute="trailing" constant="8" id="Ljl-xD-gSO"/>
-                        <constraint firstItem="SC6-Fh-gGO" firstAttribute="leading" secondItem="1tY-7H-DiI" secondAttribute="trailing" constant="8" id="MDI-6l-Bnu"/>
+                        <constraint firstItem="Z8L-m2-Y8Y" firstAttribute="top" secondItem="u7O-zU-Fat" secondAttribute="bottom" constant="8" id="Lyh-mx-HoP"/>
                         <constraint firstItem="u7O-zU-Fat" firstAttribute="top" secondItem="1tY-7H-DiI" secondAttribute="top" constant="12" id="Myy-EP-ooV"/>
+                        <constraint firstItem="Z8L-m2-Y8Y" firstAttribute="leading" secondItem="1tY-7H-DiI" secondAttribute="trailing" constant="8" id="OjH-0c-SoG"/>
                         <constraint firstItem="1tY-7H-DiI" firstAttribute="top" secondItem="vBQ-5r-06c" secondAttribute="top" constant="12" id="Ryz-ni-7QF"/>
                         <constraint firstAttribute="bottom" secondItem="1tY-7H-DiI" secondAttribute="bottom" constant="12" id="sg5-l3-rhZ"/>
                         <constraint firstItem="1tY-7H-DiI" firstAttribute="leading" secondItem="vBQ-5r-06c" secondAttribute="leading" constant="12" id="yJ6-ce-dBQ"/>
@@ -78,7 +86,7 @@
                     <rect key="frame" x="214" y="108" width="106" height="44"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <state key="normal" title="地址管理" image="我的-地址管理.png">
+                    <state key="normal" title="地址管理" image="地址管理.png">
                         <color key="titleColor" red="0.17254901959999999" green="0.36470588240000001" blue="0.65098039220000004" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
@@ -89,7 +97,7 @@
                     <rect key="frame" x="107" y="108" width="106" height="44"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <state key="normal" title="浏览记录" image="我的-浏览记录.png">
+                    <state key="normal" title="浏览记录" image="浏览记录.png">
                         <color key="titleColor" red="0.17254901959999999" green="0.36470588240000001" blue="0.65098039220000004" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
@@ -103,7 +111,7 @@
                         <constraint firstAttribute="height" constant="44" id="aWE-NG-1jj"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <state key="normal" title="收藏的商品" image="我的-收藏的商品.png">
+                    <state key="normal" title="收藏的商品" image="收藏的商品.png">
                         <color key="titleColor" red="0.17254901959999999" green="0.36470588240000001" blue="0.65098039220000004" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
@@ -131,13 +139,13 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="242" y="208"/>
+            <point key="canvasLocation" x="-167" y="195"/>
         </view>
     </objects>
     <resources>
-        <image name="我的-地址管理.png" width="19" height="19"/>
-        <image name="我的-收藏的商品.png" width="19" height="19"/>
-        <image name="我的-普通用户.png" width="82" height="24"/>
-        <image name="我的-浏览记录.png" width="19" height="19"/>
+        <image name="地址管理.png" width="14" height="18"/>
+        <image name="收藏的商品.png" width="17" height="16"/>
+        <image name="普通用户.png" width="12" height="11"/>
+        <image name="浏览记录.png" width="18" height="12"/>
     </resources>
 </document>

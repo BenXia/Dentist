@@ -80,11 +80,11 @@
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mz4-gd-QHm">
-                            <rect key="frame" x="276" y="28" width="36" height="27"/>
+                            <rect key="frame" x="276" y="30" width="36" height="23"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="36" id="fbV-bJ-Oj2"/>
                             </constraints>
-                            <state key="normal" image="首页-消息提示.png"/>
+                            <state key="normal" image="首页右上角信息栏.png"/>
                         </button>
                     </subviews>
                     <color key="backgroundColor" red="0.17254901959999999" green="0.36470588240000001" blue="0.65098039220000004" alpha="1" colorSpace="calibratedRGB"/>
@@ -137,6 +137,6 @@
     </objects>
     <resources>
         <image name="ic_top_search.png" width="20" height="20"/>
-        <image name="首页-消息提示.png" width="36" height="27"/>
+        <image name="首页右上角信息栏.png" width="26" height="23"/>
     </resources>
 </document>

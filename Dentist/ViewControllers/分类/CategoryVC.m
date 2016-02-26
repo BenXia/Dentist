@@ -13,9 +13,10 @@
 #import "SubCategoryVC.h"
 #import "SearchProductVC.h"
 
-@interface CategoryVC ()<PPDataControllerDelegate>
+@interface CategoryVC ()<PPDataControllerDelegate,WTLabelDelegate>
 @property (weak, nonatomic) IBOutlet UIView *searchContentView;
 @property (nonatomic, strong) ProductCategoryDC *productCategoryRequest;
+@property (nonatomic, strong) WTLabel *blankLabel;
 @end
 
 @implementation CategoryVC
@@ -47,7 +48,7 @@
     [super viewDidLoad];
     [self clearNavLeftItem];
     [self initNavigationBar];
-    [self initData];
+    [self downloadFromNet];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -65,7 +66,7 @@
 
 #pragma mark - Private Method
 
-- (void)initData {
+- (void)downloadFromNet {
     self.productCategoryRequest = [[ProductCategoryDC alloc] initWithDelegate:self];
     self.productCategoryRequest.md5 = [[UserCache sharedUserCache] md5];
     [self.productCategoryRequest requestWithArgs:nil];
@@ -146,7 +147,8 @@
 
 - (void)loadingData:(PPDataController *)controller failedWithError:(NSError *)error {
     if (controller == self.productCategoryRequest) {
-        [Utilities showToastWithText:[NSString stringWithFormat:@"获取分类信息失败:%@", error]];
+        [Utilities showToastWithText:[NSString stringWithFormat:@"获取分类信息失败"]];
+        self.blankLabel.hidden = NO;
     }
 }
 
@@ -154,6 +156,7 @@
     if (controller == self.productCategoryRequest) {
         [[GCDQueue mainQueue] queueBlock:^{
             if (self.productCategoryRequest.responseCode == 200) {
+                self.blankLabel.hidden = YES;
                 [self refreshView];
             } else {
                 [Utilities showToastWithText:[NSString stringWithFormat:@"获取分类信息失败"]];
@@ -175,6 +178,28 @@
 
 - (UIColor*)preferNavBarHighlightedTitleColor {
     return kWhiteHighlightedColor;
+}
+
+#pragma mark - WTLabelDelegate
+
+- (void)didClickOnBtn {
+    [self downloadFromNet];
+}
+
+#pragma mark - Setters and Getters
+
+- (WTLabel *)blankLabel {
+    if (!_blankLabel) {
+        _blankLabel = [[WTLabel alloc] initWithFrame:CGRectMake(0, 0, 320, 200) withTitle:@"网络不好" andSubTitle:@"请重新刷新一下吧" andButtonTitle:nil andIcon:@"头像"];
+        _blankLabel.y = kBlankOldY;
+        _blankLabel.centerX = [UIUtils screenWidth]/2;
+        [_blankLabel setButtonTitle:@"刷新"];
+        [_blankLabel.btn liningThematized:[UIColor themeButtonBlueColor]];
+        _blankLabel.delegate = self;
+        _blankLabel.hidden = YES;
+        [self.view addSubview:_blankLabel];
+    }
+    return _blankLabel;
 }
 
 @end

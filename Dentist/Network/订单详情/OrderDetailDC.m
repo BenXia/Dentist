@@ -38,6 +38,7 @@
         self.orderDetailModel.orderStatus = [orderDic objectForKey:@"status"];
         self.orderDetailModel.orderShowNumber = [orderDic objectForKey:@"oid"];
         self.orderDetailModel.orderExpressCompany = [orderDic objectForKey:@"express_company"];
+        self.orderDetailModel.pickUp = [orderDic objectForKey:@"pick_up"];
         self.orderDetailModel.orderPickUpCode = [orderDic objectForKey:@"pick_up_code"];
         self.orderDetailModel.orderExpressNumber = [orderDic objectForKey:@"expresssn"];
         self.orderDetailModel.orderReceiverName = [orderDic objectForKey:@"name"];
@@ -67,9 +68,9 @@
             goodsModel.productPrice = [goodDic objectForKey:@"price"];
             goodsModel.productNumber = [goodDic objectForKey:@"num"];
             goodsModel.productImageUrl = [goodDic objectForKey:@"img"];
+            goodsModel.productID = [goodDic objectForKey:@"iid"];
             [model.productListGoodsArray addObject:goodsModel];
         }
-
         self.orderDetailModel.orderProductListModel = model;
         result = YES;
     }
