@@ -40,7 +40,7 @@ static const CGFloat kItemNumPerLine = 2;
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    [self initCollectionView];    
+    [self initCollectionView];
 }
 
 -(void)viewWillAppear:(BOOL)animated{

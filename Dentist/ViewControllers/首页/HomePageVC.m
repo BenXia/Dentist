@@ -64,6 +64,7 @@ saleActivityCellDelegate>
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        self.title = @"首页";
         self.tabBarItem.title = @"首页";
         self.tabBarItem.image = [UIImage imageNamed:@"btn_homepage_f"];
         self.tabBarItem.selectedImage = [[UIImage imageNamed:@"btn_homepage_t"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];

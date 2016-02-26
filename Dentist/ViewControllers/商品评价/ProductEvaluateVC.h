@@ -10,4 +10,6 @@
 
 @interface ProductEvaluateVC : UIViewController
 
+- (instancetype)initWithProductId:(NSString *)productId;
+
 @end

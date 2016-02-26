@@ -10,13 +10,28 @@
 
 @interface InvoiceVC ()
 
+@property (weak, nonatomic) IBOutlet UIButton *ordinaryInvoiceButton;
+@property (weak, nonatomic) IBOutlet UIButton *needNoInvoiceButton;
+@property (weak, nonatomic) IBOutlet UIButton *taxInvoiceButton;
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *invoiceTypeButtonsArray;
+
+@property (weak, nonatomic) IBOutlet UITextField *invoiceHeaderTextField;
+
+@property (weak, nonatomic) IBOutlet UIButton *detailChoiceButton;
+@property (weak, nonatomic) IBOutlet UIButton *medicalChoiceButon;
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *contentChoiceButtonsArray;
+
 @end
 
 @implementation InvoiceVC
 
+#pragma mark - View life cycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+
+    [self initUIRelated];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -24,14 +39,63 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
+#pragma mark - Private methods
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)initUIRelated {
+    if ([self respondsToSelector:@selector(edgesForExtendedLayout)]) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
+    
+    [self setNavTitleString:@"发票信息"];
+    [self setNavRightItemWithName:@"保存" target:self action:@selector(didClickSaveNavButtonAction:)];
+    
+    for (UIButton *btn in self.invoiceTypeButtonsArray) {
+        [btn setBackgroundImage:[UIImage imageWithColor:[UIColor whiteColor]] forState:UIControlStateNormal];
+        [btn setBackgroundImage:[UIImage imageWithColor:[UIColor themeCyanColor]] forState:UIControlStateSelected];
+        [btn setBackgroundImage:[UIImage imageWithColor:RGB(230, 230, 230)] forState:UIControlStateDisabled];
+        [btn setTitleColor:[UIColor gray007Color] forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+        [btn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
+        [btn circularCorner];
+        btn.layer.borderColor = RGB(230, 230, 230).CGColor;
+        btn.layer.borderWidth = 1;
+    }
+    
+    [self.invoiceHeaderTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
 }
-*/
+
+#pragma mark - UITextField Related
+
+- (void)textFieldDidChange:(UITextField *)textField {
+    if (textField == self.invoiceHeaderTextField) {
+        NSLog (@"textField.text: %@", self.invoiceHeaderTextField.text);
+    }
+}
+
+#pragma mark - IBActions
+
+- (void)didClickSaveNavButtonAction:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)didClickInvoiceTypeButtonAction:(UIButton *)sender {
+    for (UIButton *btn in self.invoiceTypeButtonsArray) {
+        btn.selected = NO;
+        btn.layer.borderColor = RGB(230, 230, 230).CGColor;
+        btn.layer.borderWidth = 1;
+    }
+    
+    sender.selected = YES;
+    sender.layer.borderColor = [UIColor clearColor].CGColor;
+    sender.layer.borderWidth = 0;
+}
+
+- (IBAction)didClickInvoiceContentChoiceButtonAction:(UIButton *)sender {
+    for (UIButton *btn in self.contentChoiceButtonsArray) {
+        btn.selected = NO;
+    }
+    
+    sender.selected = YES;
+}
 
 @end

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ProductDetailVC : UIViewController
+@interface ProductDetailVC : BaseViewController
 
 -(instancetype)initWithProductId:(NSString*)productId;
 

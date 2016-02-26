@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LookHistoryVC : UIViewController
+@interface LookHistoryVC : BaseViewController
 
 @end

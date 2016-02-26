@@ -10,6 +10,7 @@
 #import "SearchProductDC.h"
 #import "ProductDetailVC.h"
 #import "FavoriteProductCell.h"
+#import "SearchProductVC.h"
 
 static const CGFloat kItemNumPerLine = 2;
 
@@ -26,12 +27,12 @@ static const CGFloat kItemNumPerLine = 2;
 
 @implementation SubCategoryVC
 
--(instancetype)initWithCid:(NSNumber*)cid scid:(NSNumber*)s_cid{
+-(instancetype)initWithCid:(NSNumber*)cid scid:(NSNumber*)s_cid title:(NSString*)title{
     if (self = [super init]) {
         self.dc = [[SearchProductDC alloc]initWithDelegate:self];
         self.dc.cid = cid;
         self.dc.s_cid = s_cid;
-        self.title = @"分类详情";
+        self.title = title;
     }
     return self;
 }
@@ -40,9 +41,12 @@ static const CGFloat kItemNumPerLine = 2;
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    [self initNavBar];
+    
     [self initCollectionView];
     
     [self.dc requestWithArgs:nil];
+    [self showLoadingView];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -56,6 +60,10 @@ static const CGFloat kItemNumPerLine = 2;
 }
 
 #pragma mark - UI Init
+
+-(void)initNavBar{
+    [self setNavRightItemWithImage:@"搜索-放大镜" target:self action:@selector(didClickSearchButton)];
+}
 
 -(void)initCollectionView{
     self.view.backgroundColor = [UIColor gray002Color];
@@ -93,6 +101,11 @@ static const CGFloat kItemNumPerLine = 2;
 
 -(void)footerRereshing{
     [self.dc requestWithArgs:nil];
+}
+
+-(void)didClickSearchButton{
+    SearchProductVC* searchVC = [SearchProductVC new];
+    [self.navigationController pushViewController:searchVC animated:YES];
 }
 
 #pragma mark - UICollectionViewDelegate
@@ -135,6 +148,7 @@ static const CGFloat kItemNumPerLine = 2;
 
 //数据请求成功回调
 - (void)loadingDataFinished:(PPDataController *)controller{
+    [self hideLoadingView];
     [Utilities hideLoadingView];
     [self.collectionView headerEndRefreshing];
     [self.collectionView footerEndRefreshing];
@@ -144,6 +158,7 @@ static const CGFloat kItemNumPerLine = 2;
 }
 //数据请求失败回调
 - (void)loadingData:(PPDataController *)controller failedWithError:(NSError *)error{
+    [self hideLoadingView];
     [Utilities hideLoadingView];
     [self.collectionView headerEndRefreshing];
     [self.collectionView footerEndRefreshing];

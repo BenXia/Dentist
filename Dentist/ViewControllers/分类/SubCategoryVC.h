@@ -10,6 +10,6 @@
 
 @interface SubCategoryVC : BaseViewController
 
--(instancetype)initWithCid:(NSNumber*)cid scid:(NSNumber*)s_cid;
+-(instancetype)initWithCid:(NSNumber*)cid scid:(NSNumber*)s_cid title:(NSString*)title;
 
 @end

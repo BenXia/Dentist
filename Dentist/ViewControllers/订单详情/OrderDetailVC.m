@@ -50,6 +50,7 @@
 
 - (id)initWithOid:(NSString *)oid {
     if (self = [super init]) {
+        self.orderDetailVM.orderDetailDC = [[OrderDetailDC alloc] initWithDelegate:self];
         self.orderDetailVM.orderDetailDC.oid = oid;
     }
     return self;
@@ -72,7 +73,6 @@
 #pragma mark - PPDataControllerDelegate
 
 - (void)initData {
-    self.orderDetailVM.orderDetailDC = [[OrderDetailDC alloc] initWithDelegate:self];
     [self.orderDetailVM.orderDetailDC requestWithArgs:nil];
 }
 
@@ -182,6 +182,7 @@
     OrderListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identify];
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"OrderListTableViewCell" owner:nil options:nil] objectAtIndex:0];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
     ProductListModel *model = self.orderDetailVM.orderDetailDC.orderDetailModel.orderProductListModel;
@@ -199,7 +200,7 @@
     
     UILabel *orderNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(kInsert, 0, kScreenWidth - kInsert,kSectionHeaderViewHeight)];
     orderNumLabel.font = [UIFont systemFontOfSize:13];
-    NSMutableAttributedString *AttributedStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"订单号:%@",productListModel.orderShowNumber]];
+    NSMutableAttributedString *AttributedStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"订单号:%@",productListModel.orderID]];
     [AttributedStr addAttribute:NSForegroundColorAttributeName
                           value:[UIColor gray005Color]
                           range:NSMakeRange(0, 4)];
