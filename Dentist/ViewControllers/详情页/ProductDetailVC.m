@@ -35,6 +35,7 @@ PPDataControllerDelegate,
 GroupProductViewDelegate,
 EditNumberViewDelegate,
 GuessYouLikeProductViewDelegate,
+ProductEvaluateTableViewCellDelegate,
 UIScrollViewDelegate>
 
 @property (nonatomic, strong) ProductDetailDC *dc;
@@ -49,6 +50,7 @@ UIScrollViewDelegate>
 @property (strong,nonatomic) SpecProductItem* specProduct;  //选择分类后的商品
 
 @property (assign,nonatomic) UIStatusBarStyle statusBarStyle;
+@property (nonatomic, assign) BOOL statusBarHidden; // 需要控制状态栏隐藏和显示，在PhotosBrowserVC里面难以实现
 
 @property (weak, nonatomic) IBOutlet UIView *topBarBackgroundView;
 @property (weak, nonatomic) IBOutlet UIButton *topBarBackButton;
@@ -176,6 +178,10 @@ UIScrollViewDelegate>
     return self.statusBarStyle;
 }
 
+- (BOOL)prefersStatusBarHidden{
+    return self.statusBarHidden;
+}
+
 #pragma mark - UI Init
 
 - (void)initUIReleated {
@@ -205,15 +211,16 @@ UIScrollViewDelegate>
     _cycleScrollView.translatesAutoresizingMaskIntoConstraints = YES;
     _cycleScrollView.infiniteLoop = YES;
     _cycleScrollView.imageURLStringsGroup = nil;
-    _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
     _cycleScrollView.pageControlStyle=SDCycleScrollViewPageContolStyleClassic;
+    _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
     _cycleScrollView.showPageControl = YES;
     _cycleScrollView.dotColor = [UIColor themeBlueColor]; // 自定义分页控件小圆标颜色
-    _cycleScrollView.notSelectDotColor = [UIColor gray000Color];
+    _cycleScrollView.notSelectDotColor = [UIColor gray003Color];
+    _cycleScrollView.backgroundColor = [UIColor whiteColor];
     _cycleScrollView.delegate = self;
     _cycleScrollView.autoScroll = NO;
     _cycleScrollView.autoScrollTimeInterval = 10;
-    _cycleScrollView.placeholderImage = [UIImage imageNamed:@"ic_top_blank.png"];
+    _cycleScrollView.placeholderImage = [UIImage imageNamed:@"网络不给力-03"];
     _cycleScrollView.needChangeHeight = YES;
 }
 
@@ -455,6 +462,7 @@ UIScrollViewDelegate>
         
         CGFloat cellHeight = [ProductEvaluateTableViewCell getCellHeightWithContent:model];
         ProductEvaluateTableViewCell* cell = [[cellNib instantiateWithOwner:nil options:nil]firstObject];
+        cell.delegate = self;
         cell.frame = CGRectMake(0, currentY, kScreenWidth, cellHeight);
         [cell setCellWithProductEvaluateModel:model];
         [cell setTopLineViewHidden:NO];
@@ -878,8 +886,8 @@ UIScrollViewDelegate>
         [self.topBarBackButton setImage:[UIImage imageNamed:@"btn_backround_default"] forState:UIControlStateNormal];
 //        self.statusBarStyle = UIStatusBarStyleLightContent;
     } else {
-        self.topBarBackgroundView.alpha = ((point.y > (originHeaderHeight - 60)) ? 1 : (point.y / (originHeaderHeight - 60)));
-        self.topBarBackgroundView.layer.shadowOpacity = ((point.y > (originHeaderHeight - 60)) ? 0.2 : (point.y / (originHeaderHeight - 60) * 0.2));
+        self.topBarBackgroundView.alpha = ((point.y > originHeaderHeight) ? 1 : (point.y / originHeaderHeight ));
+        self.topBarBackgroundView.layer.shadowOpacity = ((point.y > originHeaderHeight) ? 0.2 : (point.y / originHeaderHeight * 0.2));
         if (self.topBarBackgroundView.alpha < 1) {
             [self.topBarBackButton setImage:[UIImage imageNamed:@"btn_backround_default"] forState:UIControlStateNormal];
 //            self.statusBarStyle = UIStatusBarStyleLightContent;
@@ -931,6 +939,17 @@ UIScrollViewDelegate>
 
 -(void)editNumberView:(EditNumberView *)view didChangeNum:(int)num{
     self.buyNum = num;
+}
+
+#pragma mark - ProductEvaluateTableViewCellDelegate
+
+-(void)setStatusBarHidden:(BOOL)statusBarHidden{
+    _statusBarHidden = statusBarHidden;
+    
+    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
+        [self prefersStatusBarHidden];
+        [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
+    }
 }
 
 #pragma mark - PPDataControllerDelegate
