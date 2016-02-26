@@ -66,6 +66,9 @@
         self.responseCode = [[resultdict objectForKey:@"code"] intValue];
         self.responseMsg = [resultdict objectForKey:@"msg"];
         self.oid = [resultdict objectForKey:@"oid"];
+        self.money = [resultdict objectForKey:@"money"];
+        self.time_expire = [resultdict objectForKey:@"time_expire"];
+        self.time_start = [resultdict objectForKey:@"time_start"];
         self.weixinDict = [resultdict objectForKey:@"weixin"];
         self.alipayDict = [resultdict objectForKey:@"alipay"];
         

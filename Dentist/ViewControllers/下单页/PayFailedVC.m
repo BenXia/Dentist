@@ -57,6 +57,12 @@
     
     [self.repayButton thematizedWithBackgroundColor:[UIColor themeCyanColor]];
     [self.repayButton circular:self.repayButton.height / 2];
+    
+    if (self.currentPayType == PayType_WeChat) {
+        self.wxInUseLabel.hidden = NO;
+    } else {
+        self.alipayInUseLabel.hidden = NO;
+    }
 }
 
 #pragma mark - IBActions
@@ -64,19 +70,29 @@
 - (IBAction)didClickWXPayOptionButton:(id)sender {
     self.wxPayButton.selected = YES;
     self.alipayButton.selected = NO;
+    
+    if ([self.delegate respondsToSelector:@selector(didChangePayType:)]) {
+        [self.delegate didChangePayType:PayType_WeChat];
+    }
 }
 
 - (IBAction)didClickAlipayOptionButton:(id)sender {
     self.wxPayButton.selected = NO;
     self.alipayButton.selected = YES;
+    
+    if ([self.delegate respondsToSelector:@selector(didChangePayType:)]) {
+        [self.delegate didChangePayType:PayType_AliPay];
+    }
 }
 
 - (IBAction)didClickSearchOrderButtonAction:(id)sender {
-    
+    // TODO-Ben:
 }
 
 - (IBAction)didClickRepayButtonAction:(id)sender {
-    
+    if ([self.delegate respondsToSelector:@selector(didClickPayAgainButtonInPayFailedVC)]) {
+        [self.delegate didClickPayAgainButtonInPayFailedVC];
+    }
 }
 
 @end

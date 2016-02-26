@@ -7,7 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PayTypeVC.h"
+
+@protocol PayFailedVCDelegate;
 
 @interface PayFailedVC : UIViewController
+
+@property (nonatomic, assign) PayType currentPayType;
+@property (nonatomic, weak) id<PayFailedVCDelegate> delegate;
+
+@end
+
+@protocol PayFailedVCDelegate <NSObject>
+
+@optional
+- (void)didChangePayType:(PayType)payType;
+- (void)didClickPayAgainButtonInPayFailedVC;
 
 @end

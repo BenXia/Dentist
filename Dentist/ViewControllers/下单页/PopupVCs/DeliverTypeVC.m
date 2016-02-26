@@ -11,10 +11,8 @@
 @interface DeliverTypeVC ()
 
 @property (weak, nonatomic) IBOutlet UIButton *kuaidiChoiceButton;
-@property (weak, nonatomic) IBOutlet UIButton *dajianChoiceButton;
 @property (weak, nonatomic) IBOutlet UIButton *zitiChoiceButton;
 @property (weak, nonatomic) IBOutlet UILabel *kuaidiPriceLabel;
-@property (weak, nonatomic) IBOutlet UILabel *dajianPriceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *zitiPriceLabel;
 
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *deliverTypeButtonsArray;
@@ -43,7 +41,6 @@
 
 - (void)initUIReleated {
     self.kuaidiPriceLabel.text = [NSString stringWithFormat:@"¥ %.2f", [[self.priceArray objectAtIndex:0] floatValue]];
-    self.dajianPriceLabel.text = [NSString stringWithFormat:@"¥ %.2f", [[self.priceArray objectAtIndex:1] floatValue]];
     self.zitiPriceLabel.text = [NSString stringWithFormat:@"¥ %.2f", [[self.priceArray objectAtIndex:2] floatValue]];
 }
 

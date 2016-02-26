@@ -30,7 +30,21 @@
 @property (nonatomic, assign) int responseCode;
 @property (nonatomic, strong) NSString *responseMsg;
 @property (nonatomic, strong) NSString *oid;
+@property (nonatomic, strong) NSString *money;
+@property (nonatomic, strong) NSString *time_expire;
+@property (nonatomic, strong) NSString *time_start;
 @property (nonatomic, strong) NSDictionary *weixinDict;
+//weixin =     {
+//    appid = wx983825eaeef912b7;
+//    "mch_id" = 1292687201;
+//    "nonce_str" = NBe6LOSEsxxMSLDy;
+//    "prepay_id" = wx20160227000908562ac409430006092890;
+//    "result_code" = SUCCESS;
+//    "return_code" = SUCCESS;
+//    "return_msg" = OK;
+//    sign = 6BCA9F2B2BBA86A3187EEA1AE45FDE13;
+//    "trade_type" = APP;
+//};
 @property (nonatomic, strong) NSDictionary *alipayDict;
 
 @end

@@ -10,19 +10,6 @@
 
 @interface OrderBottomInfoCell ()
 
-@property (weak, nonatomic) IBOutlet UIView *topContentView;
-@property (weak, nonatomic) IBOutlet UIView *bottomContentView;
-
-@property (weak, nonatomic) IBOutlet UIImageView *certificateImageView;
-@property (weak, nonatomic) IBOutlet UILabel *certificateLabel;
-@property (weak, nonatomic) IBOutlet UILabel *deliveryLabel;
-@property (weak, nonatomic) IBOutlet UILabel *deliveryPriceLabel;
-@property (weak, nonatomic) IBOutlet UILabel *ticketInfoLabel;
-@property (weak, nonatomic) IBOutlet UITextField *feedbackTextField;
-
-@property (weak, nonatomic) IBOutlet UIImageView *payTypeImageView;
-@property (weak, nonatomic) IBOutlet UILabel *payTypeLabel;
-
 @end
 
 @implementation OrderBottomInfoCell
@@ -43,7 +30,9 @@
 
 - (void)textFieldDidChange:(UITextField *)textField {
     if (textField == self.feedbackTextField) {
-        NSLog (@"textField.text: %@", self.feedbackTextField.text);
+        if ([self.delegate respondsToSelector:@selector(didChangeFeedbackTextTo:)]) {
+            [self.delegate didChangeFeedbackTextTo:self.feedbackTextField.text];
+        }
     }
 }
 

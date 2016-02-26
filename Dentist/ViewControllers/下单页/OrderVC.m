@@ -19,6 +19,9 @@
 #import "AddressListVC.h"
 #import "PPConfirmOrderDC.h"
 #import "PPCreateOrderDC.h"
+#import "PPPayResultDC.h"
+#import "PaySuccessVC.h"
+#import "PayFailedVC.h"
 
 @interface OrderVC () <
 UITableViewDataSource,
@@ -26,15 +29,30 @@ UITableViewDelegate,
 OrderBottomInfoCellDelegate,
 DeliverTypeVCDelegate,
 PayTypeVCDelegate,
-PPDataControllerDelegate>
+InvoiceVCDelegate,
+PPDataControllerDelegate,
+PayFailedVCDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *bottomContentView;
 
 @property (nonatomic, strong) PPConfirmOrderDC *confirmOrderDC;
 @property (nonatomic, strong) PPCreateOrderDC *createOrderDC;
+@property (nonatomic, strong) PPPayResultDC *payResultDC;
 
 @property (nonatomic, strong) OrderVM *vm;
+
+@property (nonatomic, assign) DeliverType deliverType;
+@property (nonatomic, assign) double deliverPrice;
+
+@property (nonatomic, assign) PayType payType;
+
+@property (nonatomic, assign) int piaoType;
+@property (nonatomic, strong) NSString *piaoTitle;
+@property (nonatomic, strong) NSString *piaoContent;
+
+
+@property (nonatomic, strong) NSString *feedbackText;
 
 @end
 
@@ -49,6 +67,9 @@ PPDataControllerDelegate>
         
         self.createOrderDC = [[PPCreateOrderDC alloc] init];
         self.createOrderDC.delegate = self;
+        
+        self.payResultDC = [[PPPayResultDC alloc] init];
+        self.payResultDC.delegate = self;
     }
     
     return self;
@@ -88,6 +109,42 @@ PPDataControllerDelegate>
 - (void)setGroupId:(NSString *)groupIds {
     self.confirmOrderDC.groupIds = groupIds;
     self.createOrderDC.groupIds = groupIds;
+}
+
+- (void)setPayType:(PayType)payType {
+    _payType = payType;
+    
+    [self.tableView reloadData];
+}
+
+- (void)setDeliverType:(DeliverType)deliverType {
+    _deliverType = deliverType;
+    
+    [self.tableView reloadData];
+}
+
+- (void)setDeliverPrice:(double)deliverPrice {
+    _deliverPrice = deliverPrice;
+    
+    [self.tableView reloadData];
+}
+
+- (void)setPiaoType:(int)piaoType {
+    _piaoType = piaoType;
+    
+    [self.tableView reloadData];
+}
+
+- (void)setPiaoTitle:(NSString *)piaoTitle {
+    _piaoTitle = piaoTitle;
+    
+    [self.tableView reloadData];
+}
+
+- (void)setPiaoContent:(NSString *)piaoContent {
+    _piaoContent = piaoContent;
+    
+    [self.tableView reloadData];
 }
 
 #pragma mark - Private methods
@@ -237,6 +294,15 @@ PPDataControllerDelegate>
         cell.backgroundColor = [UIColor clearColor];
         cell.accessoryType = UITableViewCellAccessoryNone;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        cell.priceLabel.text = [NSString stringWithFormat:@"¥ %.2f", self.confirmOrderDC.totoalPrice];
+        int itemsCount = 0;
+        for (OrderItemModel *model in self.confirmOrderDC.orderItemsArray) {
+            itemsCount += model.buyNum;
+        }
+        
+        cell.orderItemsCountLabel.text = [NSString stringWithFormat:@"%d", itemsCount];
+        
         return cell;
     } else if (indexPath.row == self.vm.productItemsArray.count + 3) {
         OrderBottomInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderBottomInfoCell"];
@@ -244,6 +310,22 @@ PPDataControllerDelegate>
         cell.accessoryType = UITableViewCellAccessoryNone;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.delegate = self;
+        
+        cell.deliveryLabel.text = (self.deliverType == DeliverType_KuaiDi) ? @"快递" : @"自提";
+        cell.deliveryPriceLabel.text = [NSString stringWithFormat:@"¥ %.2f", ((self.deliverType == DeliverType_KuaiDi) ? self.confirmOrderDC.kuaidiPrice : 0)];
+        
+        NSString *piaoInfoString = @"";
+        if (self.piaoType == 0) {
+            piaoInfoString = @"不开发票";
+        } else if (self.piaoType == 1) {
+            piaoInfoString = [NSString stringWithFormat:@"普通发票 %@ %@", self.piaoTitle, self.piaoContent];
+        }
+        
+        cell.ticketInfoLabel.text = piaoInfoString;
+        cell.feedbackTextField.text = self.feedbackText;
+        
+        cell.payTypeImageView.image = [UIImage imageNamed:((self.payType == PayType_WeChat) ? @"ic_pay_weixin.png" : @"pay_pic.png")];
+        cell.payTypeLabel.text = (self.payType == PayType_WeChat) ? @"微信支付" : @"支付宝";
         
         return cell;
     } else {
@@ -311,33 +393,26 @@ PPDataControllerDelegate>
 #pragma mark - IBActions
 
 - (IBAction)didClickPayNowButtonAction:(id)sender {
-    self.createOrderDC.orderExpress = @"pick_up";
+    self.createOrderDC.orderExpress = (self.deliverType == DeliverType_KuaiDi) ? @"express" : @"pick_up";
     self.createOrderDC.aid = self.vm.addressModel.ID;
-    self.createOrderDC.payType = @"weixin";//@"alipay";
+    self.createOrderDC.payType = (self.payType == PayType_WeChat) ? @"weixin" : @"alipay";
     self.createOrderDC.orderCertArray = @[];
-    self.createOrderDC.piaoType = @"0";
-    self.createOrderDC.piaoTitle = @"携程在手，说走就走";
-    self.createOrderDC.piaoContent = @"发票明细是什么";
-    self.createOrderDC.remarkNum = @"备注是什么";
+    self.createOrderDC.piaoType = [NSString stringWithFormat:@"%d", self.piaoType];
+    self.createOrderDC.piaoTitle = self.piaoTitle ? self.piaoTitle : @"";
+    self.createOrderDC.piaoContent = self.piaoContent ? self.piaoContent : @"";
+    self.createOrderDC.remarkNum = self.feedbackText ? self.feedbackText : @"";
     
     [self.createOrderDC requestWithArgs:nil];
-    
-//    @property (nonatomic, strong) NSString *orderExpress;
-//    @property (nonatomic, strong) NSString *aid;
-//    @property (nonatomic, strong) NSString *payType;
-//    
-//    // 非必选字段
-//    @property (nonatomic, strong) NSArray *orderCertArray;
-//    @property (nonatomic, strong) NSString *piaoType;
-//    @property (nonatomic, strong) NSString *piaoTitle;
-//    @property (nonatomic, strong) NSString *piaoContent;
-//    @property (nonatomic, strong) NSString *remarkNum;
 }
 
 #pragma mark - OrderBottomInfoCellDelegate
 
+- (void)didChangeFeedbackTextTo:(NSString *)feedbackText {
+    self.feedbackText = feedbackText;
+}
+
 - (void)didClickCertificateButton {
-    
+    // need do nothing
 }
 
 - (void)didClickDeliverButton {
@@ -350,6 +425,7 @@ PPDataControllerDelegate>
 - (void)didClickTicketButton {
     InvoiceVC *vc = [[InvoiceVC alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
+    vc.delegate = self;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -366,7 +442,9 @@ PPDataControllerDelegate>
 }
 
 - (void)didClickConfirmButtonWithDeliverType:(DeliverType)deliverType price:(CGFloat)price {
-    NSLog (@"deliverType: %zd price: %f", deliverType, price);
+    self.deliverType = deliverType;
+    self.deliverPrice = price;
+    
     [Utilities dismissPopup];
 }
 
@@ -377,8 +455,18 @@ PPDataControllerDelegate>
 }
 
 - (void)didClickConfirmButtonWithPayType:(PayType)payType {
-    NSLog (@"payType: %zd", payType);
+    self.payType = payType;
     [Utilities dismissPopup];
+}
+
+#pragma mark - InvoiceVCDelegate
+
+- (void)didChooseInvoiceType:(int)piaoType
+                   piaoTitle:(NSString *)piaoTitle
+                 piaoContent:(NSString *)piaoContent {
+    self.piaoType = piaoType;
+    self.piaoTitle = piaoTitle;
+    self.piaoContent = piaoContent;
 }
 
 #pragma mark - PPDataControllerDelegate
@@ -392,7 +480,17 @@ PPDataControllerDelegate>
             [self.tableView reloadData];
         }];
     } else if (controller == self.createOrderDC) {
+        self.payResultDC.oid = self.createOrderDC.oid;
         
+        [self.payResultDC requestWithArgs:nil];
+    } else if (controller == self.payResultDC) {
+        if (self.payResultDC.responseCode == 200) {
+            PaySuccessVC *successVC = [[PaySuccessVC alloc] init];
+            [self.navigationController pushViewController:successVC animated:YES];
+        } else {
+            PayFailedVC *failedVC = [[PayFailedVC alloc] init];
+            [self.navigationController pushViewController:failedVC animated:YES];
+        }
     }
 }
 
@@ -406,7 +504,21 @@ PPDataControllerDelegate>
         }];
     } else if (controller == self.createOrderDC) {
         [Utilities showToastWithText:@"生成订单失败" withImageName:nil blockUI:NO];
+    } else if (controller == self.payResultDC) {
+        [Utilities showToastWithText:@"支付失败" withImageName:nil blockUI:NO];
     }
+}
+
+#pragma mark - PayFailedVCDelegate
+
+- (void)didChangePayType:(PayType)payType {
+    self.payType = payType;
+}
+
+- (void)didClickPayAgainButtonInPayFailedVC {
+    [self.navigationController popViewControllerAnimated:YES];
+    
+    [self didClickPayNowButtonAction:nil];
 }
 
 @end

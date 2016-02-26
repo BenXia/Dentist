@@ -61,20 +61,66 @@
         btn.layer.borderWidth = 1;
     }
     
-    [self.invoiceHeaderTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+    self.needNoInvoiceButton.selected = YES;
+    self.needNoInvoiceButton.layer.borderColor = [UIColor clearColor].CGColor;
+    self.needNoInvoiceButton.layer.borderWidth = 0;
+    self.taxInvoiceButton.enabled = NO;
+    
+//    [self.invoiceHeaderTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
 }
 
-#pragma mark - UITextField Related
-
-- (void)textFieldDidChange:(UITextField *)textField {
-    if (textField == self.invoiceHeaderTextField) {
-        NSLog (@"textField.text: %@", self.invoiceHeaderTextField.text);
-    }
-}
+//#pragma mark - UITextField Related
+//
+//- (void)textFieldDidChange:(UITextField *)textField {
+//    if (textField == self.invoiceHeaderTextField) {
+//    }
+//}
 
 #pragma mark - IBActions
 
 - (void)didClickSaveNavButtonAction:(id)sender {
+    if (!self.needNoInvoiceButton.selected && !self.ordinaryInvoiceButton.selected) {
+        [Utilities showToastWithText:@"请先选择发票类型" withImageName:nil blockUI:NO];
+        return;
+    }
+    
+    if (self.ordinaryInvoiceButton.selected) {
+        if (self.invoiceHeaderTextField.text.length == 0) {
+            [Utilities showToastWithText:@"请填写发票标题" withImageName:nil blockUI:NO];
+            return;
+        }
+        
+        if (!self.detailChoiceButton.selected && !self.medicalChoiceButon.selected) {
+            [Utilities showToastWithText:@"请选择发票内容" withImageName:nil blockUI:NO];
+            return;
+        }
+    }
+
+    [self.invoiceHeaderTextField resignFirstResponder];
+    
+    if ([self.delegate respondsToSelector:@selector(didChooseInvoiceType:piaoTitle:piaoContent:)]) {
+        int piaoType = 0;
+        NSString *piaoContent = @"";
+        
+        if (self.needNoInvoiceButton.selected) {
+            piaoType = 0;
+        } else if (self.ordinaryInvoiceButton.selected) {
+            piaoType = 1;
+        }
+        
+        if (self.detailChoiceButton.selected) {
+            piaoContent = @"明细";
+        } else if (self.medicalChoiceButon.selected) {
+            piaoContent = @"医疗用品";
+        } else {
+            piaoContent = @"";
+        }
+        
+        [self.delegate didChooseInvoiceType:piaoType
+                                  piaoTitle:self.invoiceHeaderTextField.text
+                                piaoContent:piaoContent];
+    }
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
