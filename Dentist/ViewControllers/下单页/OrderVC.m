@@ -528,16 +528,18 @@ PayFailedVCDelegate>
     } else if (controller == self.createOrderDC) {
         self.payResultDC.oid = self.createOrderDC.oid ? self.createOrderDC.oid : @"";
         
-        if (self.payType == PayType_WeChat) {
+        if (self.payType == PayType_AliPay) {
             // TODO-Ben:微信支付
             
             [self.payResultDC requestWithArgs:nil];
-        } else if (self.payType == PayType_AliPay) {
+        } else if (self.payType == PayType_WeChat) {
             // TODO-WT:支付宝支付
             ComponentAlipay_Order *order = [[ComponentAlipay_Order alloc] init];
             order.ID = self.createOrderDC.oid;
-            order.name = [self.createOrderDC.alipayDict objectForKey:@"name"];
-            order.desc = [self.createOrderDC.alipayDict objectForKey:@"desc"];
+//            order.name = [self.createOrderDC.alipayDict objectForKey:@"name"];
+//            order.desc = [self.createOrderDC.alipayDict objectForKey:@"desc"];
+            order.name = @"testName";
+            order.desc = @"testDesc";
             order.price = self.createOrderDC.money;
             [[AlipayManager sharedAlipayManager] payWithAlipay:order completeBlock:^(NSDictionary *dic) {
                 [[GCDQueue mainQueue] queueBlock:^{

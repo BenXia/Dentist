@@ -1812,7 +1812,6 @@
 				33F070411C42964A00DAC58F /* 主页 */,
 				33F0703D1C4295F200DAC58F /* 首页 */,
 				33F0703B1C4295F200DAC58F /* 分类 */,
-				33F0703C1C4295F200DAC58F /* 购物车 */,
 				33F0703A1C4295F200DAC58F /* 个人 */,
 				33D187351C70C98E00658F3D /* 商品详情 */,
 				33CAF0FD1C72094C00348763 /* 下单页 */,
@@ -1869,7 +1868,8 @@
 				B5DA4D0D1C7B4402003677DD /* ShoppingCardVM.h */,
 				B5DA4D0E1C7B4402003677DD /* ShoppingCardVM.m */,
 			);
-			path = "购物车";
+			name = "购物车";
+			path = "../购物车";
 			sourceTree = "<group>";
 		};
 		33F0703D1C4295F200DAC58F /* 首页 */ = {
@@ -1887,6 +1887,7 @@
 				93DEA86E1C4BC552008211F7 /* HomePageVC.h */,
 				93DEA86F1C4BC552008211F7 /* HomePageVC.m */,
 				93DEA8701C4BC552008211F7 /* HomePageVC.xib */,
+				33F0703C1C4295F200DAC58F /* 购物车 */,
 				93DEA88B1C4BC6FB008211F7 /* HomePageCourseListCell.h */,
 				93DEA88C1C4BC6FB008211F7 /* HomePageCourseListCell.m */,
 				9377AC601C5375DB003B24B1 /* HomePageCourseListCell.xib */,

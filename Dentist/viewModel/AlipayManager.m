@@ -28,8 +28,8 @@ SINGLETON_GCD(AlipayManager);
     /*============================================================================*/
     /*=======================需要填写商户app申请的===================================*/
     /*============================================================================*/
-    NSString *partner = @"";
-    NSString *seller = @"";
+    NSString *partner = @"2088121334701862";
+    NSString *seller = @"2780887436@qq.com";
     NSString *privateKey = kPrivateKeyString;
     /*============================================================================*/
     /*============================================================================*/
@@ -60,7 +60,7 @@ SINGLETON_GCD(AlipayManager);
     order.productName = alipay_Order.name; //商品标题
     order.productDescription = alipay_Order.desc; //商品描述
     order.amount = alipay_Order.price; //商品价格
-    order.notifyURL =  @"http://www.xxx.com"; //回调URL TODO:WT 回调URL,后台提供
+    order.notifyURL =  @"http://toboom.yayiabc.com"; //回调URL TODO:WT 回调URL,后台提供
     
     order.service = @"mobile.securitypay.pay";
     order.paymentType = @"1";
