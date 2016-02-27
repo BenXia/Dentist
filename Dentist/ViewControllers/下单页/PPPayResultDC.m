@@ -27,6 +27,10 @@
     if (!error || [resultdict isKindOfClass:[NSDictionary class]]) {
         self.responseCode = [[resultdict objectForKey:@"code"] intValue];
         
+        if (self.responseCode != 200) {
+            return NO;
+        }
+        
         NSDictionary *orderDict = [resultdict objectForKey:@"order"];
         self.orderNumberString = [orderDict objectForKey:@"oid"];
         self.paytime = [orderDict objectForKey:@"paytime"];
