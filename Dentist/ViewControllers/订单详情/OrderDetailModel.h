@@ -25,7 +25,8 @@
 @property (nonatomic, strong) NSString *orderProduceTime;          //下单时间
 @property (nonatomic, strong) ProductListModel  *orderProductListModel;        //订单商品model
 
-@property (nonatomic, assign) BOOL isWexinPay;
+@property (nonatomic, strong) NSArray *payTypeArray;
+@property (nonatomic, strong) NSString *currentPay;
 @property (nonatomic, assign) int piaoType;
 @property (nonatomic, strong) NSString *piaoTitle;
 @property (nonatomic, strong) NSString *piaoContent;
