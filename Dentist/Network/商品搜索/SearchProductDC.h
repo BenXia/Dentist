@@ -7,9 +7,7 @@
 //
 
 #import "PPDataController.h"
-#import "FavoriteProductModel.h"
-
-typedef FavoriteProductModel SearchProductModel;
+#import "SearchProductModel.h"
 
 @interface SearchProductDC : PPDataController
 

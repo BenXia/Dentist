@@ -50,7 +50,7 @@
                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="goods_tag_Present.png" translatesAutoresizingMaskIntoConstraints="NO" id="vJs-VG-BLE">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="赠.png" translatesAutoresizingMaskIntoConstraints="NO" id="vJs-VG-BLE">
                                 <rect key="frame" x="209" y="285" width="18" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="vJs-VG-BLE" secondAttribute="height" multiplier="15:11" id="2c8-74-9Ql"/>
@@ -69,28 +69,37 @@
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="包邮.png" translatesAutoresizingMaskIntoConstraints="NO" id="rlb-mJ-ZVA">
+                                <rect key="frame" x="183" y="285" width="18" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="18" id="Qko-Hk-Zq1"/>
+                                    <constraint firstAttribute="width" secondItem="rlb-mJ-ZVA" secondAttribute="height" multiplier="15:11" id="WIB-0t-cUK"/>
+                                    <constraint firstAttribute="height" constant="18" id="aTM-CC-Qp9"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="WIB-0t-cUK"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="gmM-sq-vQG" firstAttribute="leading" secondItem="p6f-3x-jIt" secondAttribute="leading" id="2CS-TE-3Pw"/>
                             <constraint firstItem="3qd-PK-rRd" firstAttribute="top" secondItem="p6f-3x-jIt" secondAttribute="top" id="4VM-8S-HS6"/>
+                            <constraint firstItem="rlb-mJ-ZVA" firstAttribute="centerY" secondItem="gmM-sq-vQG" secondAttribute="centerY" id="EZm-YK-vEE"/>
                             <constraint firstItem="EYJ-vm-GPf" firstAttribute="leading" secondItem="p6f-3x-jIt" secondAttribute="leading" id="Erv-GP-vRk"/>
                             <constraint firstItem="vJs-VG-BLE" firstAttribute="centerY" secondItem="gmM-sq-vQG" secondAttribute="centerY" id="LPq-ED-23T"/>
                             <constraint firstItem="EYJ-vm-GPf" firstAttribute="trailing" secondItem="p6f-3x-jIt" secondAttribute="trailing" id="Lba-l0-fYh"/>
                             <constraint firstItem="3qd-PK-rRd" firstAttribute="leading" secondItem="p6f-3x-jIt" secondAttribute="leading" id="OTt-5Z-AGE"/>
                             <constraint firstItem="p6f-3x-jIt" firstAttribute="leading" secondItem="YZz-oT-blx" secondAttribute="leading" constant="8" id="X6T-as-16T"/>
                             <constraint firstItem="p6f-3x-jIt" firstAttribute="centerX" secondItem="YZz-oT-blx" secondAttribute="centerX" id="asT-nO-C1Q"/>
-                            <constraint firstItem="gmM-sq-vQG" firstAttribute="leading" secondItem="EYJ-vm-GPf" secondAttribute="leading" id="dkZ-BG-4wl"/>
+                            <constraint firstAttribute="trailing" secondItem="rlb-mJ-ZVA" secondAttribute="trailing" constant="34" id="bSk-aH-5Ec"/>
                             <constraint firstItem="gmM-sq-vQG" firstAttribute="top" secondItem="EYJ-vm-GPf" secondAttribute="bottom" constant="8" id="eaP-y6-yhA"/>
-                            <constraint firstItem="vJs-VG-BLE" firstAttribute="trailing" secondItem="p6f-3x-jIt" secondAttribute="trailing" id="jc4-d4-2fx"/>
                             <constraint firstItem="p6f-3x-jIt" firstAttribute="top" secondItem="YZz-oT-blx" secondAttribute="top" constant="8" id="rtX-hr-s74"/>
+                            <constraint firstAttribute="trailing" secondItem="vJs-VG-BLE" secondAttribute="trailing" constant="8" id="tz6-Iu-RkU"/>
                             <constraint firstItem="EYJ-vm-GPf" firstAttribute="top" secondItem="p6f-3x-jIt" secondAttribute="bottom" constant="8" id="ufb-AF-ws8"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="dkZ-BG-4wl"/>
-                            </mask>
-                        </variation>
                     </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -103,7 +112,10 @@
             </constraints>
             <size key="customSize" width="235" height="317"/>
             <connections>
+                <outlet property="freeSendImageView" destination="rlb-mJ-ZVA" id="mIF-bb-FFZ"/>
+                <outlet property="freeSendImageViewTrailingConstraint" destination="bSk-aH-5Ec" id="4UP-cv-mBM"/>
                 <outlet property="giftImageView" destination="vJs-VG-BLE" id="UUG-hm-cKm"/>
+                <outlet property="giftImageViewTrailingConstraint" destination="tz6-Iu-RkU" id="ZZY-7g-UWZ"/>
                 <outlet property="priceLabel" destination="gmM-sq-vQG" id="XQc-mb-o2Y"/>
                 <outlet property="productImageView" destination="p6f-3x-jIt" id="eAd-19-BCU"/>
                 <outlet property="productTitleLabel" destination="EYJ-vm-GPf" id="VTQ-h9-mEj"/>
@@ -115,6 +127,7 @@
     <resources>
         <image name="btn_choice_f.png" width="22" height="22"/>
         <image name="btn_choice_t.png" width="22" height="22"/>
-        <image name="goods_tag_Present.png" width="18" height="18"/>
+        <image name="包邮.png" width="18" height="18"/>
+        <image name="赠.png" width="18" height="18"/>
     </resources>
 </document>
