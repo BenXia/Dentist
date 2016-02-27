@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SettingVCViewController : UIViewController
+@interface SettingVCViewController : BaseViewController
 
 @end

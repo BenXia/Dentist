@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "OrderItemModel.h"
 
-@interface OrderVC : UIViewController
+@interface OrderVC : BaseViewController
 
 - (void)setProductItemsArray:(NSMutableArray *)productItemsArray;
 - (void)setGroupId:(NSString *)groupIds;

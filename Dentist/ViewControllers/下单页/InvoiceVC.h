@@ -10,7 +10,7 @@
 
 @protocol InvoiceVCDelegate;
 
-@interface InvoiceVC : UIViewController
+@interface InvoiceVC : BaseViewController
 
 @property (nonatomic, weak) id<InvoiceVCDelegate> delegate;
 

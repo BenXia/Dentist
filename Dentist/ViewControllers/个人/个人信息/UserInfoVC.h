@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UserInfoVC : UIViewController
+@interface UserInfoVC : BaseViewController
 
 @end

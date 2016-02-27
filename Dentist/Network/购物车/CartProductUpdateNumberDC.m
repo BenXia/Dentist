@@ -40,8 +40,8 @@
                                                                    error:&error];
     if (!error || [resultDict isKindOfClass:[NSDictionary class]]) {
         
-        NSNumber* code = [resultDict objectForKey:@"code"];
-        if (code.intValue == 200) {
+        self.code = [resultDict objectForKey:@"code"];
+        if (self.code.intValue == 200) {
             result = YES;
         }
     }

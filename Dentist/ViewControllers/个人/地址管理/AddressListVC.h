@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AddressListVC : UIViewController
+@interface AddressListVC : BaseViewController
 
 @property (nonatomic) BOOL isSelectAddress;
 @property (nonatomic, strong) ObjectBlock selectedCompleteBlock;

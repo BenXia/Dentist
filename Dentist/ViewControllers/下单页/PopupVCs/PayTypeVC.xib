@@ -83,10 +83,10 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yxX-pB-IKW">
-                    <rect key="frame" x="10" y="60" width="180" height="40"/>
+                    <rect key="frame" x="10" y="60" width="222" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="DK1-5F-CpT"/>
-                        <constraint firstAttribute="width" constant="180" id="fkI-XP-krS"/>
+                        <constraint firstAttribute="width" constant="222" id="fkI-XP-krS"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -99,10 +99,10 @@
                     </connections>
                 </button>
                 <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DWU-1E-wkr">
-                    <rect key="frame" x="10" y="120" width="180" height="40"/>
+                    <rect key="frame" x="10" y="120" width="222" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="937-43-SB6"/>
-                        <constraint firstAttribute="width" constant="180" id="d2s-Hw-DMl"/>
+                        <constraint firstAttribute="width" constant="222" id="d2s-Hw-DMl"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SetNickVC : UIViewController
+@interface SetNickVC : BaseViewController
 @property (nonatomic, strong) NSString *nick;
 @end

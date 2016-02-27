@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PaySuccessVC : UIViewController
+@interface PaySuccessVC : BaseViewController
 
 @property (nonatomic, strong) NSString *receiverName;
 @property (nonatomic, strong) NSString *receiverPhoneNumber;
