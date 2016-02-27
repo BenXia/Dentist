@@ -11,15 +11,11 @@
 @implementation PPPayResultDC
 
 - (NSDictionary *)requestURLArgs {
-    return @{@"method":@"order.pay_reslut", @"v":@"0.0.1", @"auth":[UserCache sharedUserCache].token};
+    return @{@"method":@"order.pay_reslut", @"v":@"0.0.1", @"auth":[UserCache sharedUserCache].token, @"oid":self.oid};
 }
 
 - (RequestMethod)requestMethod {
-    return RequestMethodPOST;
-}
-
-- (NSDictionary *)requestHTTPBody {
-    return @{@"oid": self.oid};
+    return RequestMethodGET;
 }
 
 - (BOOL)parseContent:(NSString *)content {
@@ -30,6 +26,10 @@
                                                                    error:&error];
     if (!error || [resultdict isKindOfClass:[NSDictionary class]]) {
         self.responseCode = [[resultdict objectForKey:@"code"] intValue];
+        
+        if (self.responseCode != 200) {
+            return NO;
+        }
         
         NSDictionary *orderDict = [resultdict objectForKey:@"order"];
         self.orderNumberString = [orderDict objectForKey:@"oid"];

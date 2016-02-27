@@ -22,6 +22,9 @@ typedef NS_ENUM(NSUInteger, MainTabIndexType) {
     kMainTabIndexType_Unknown            = 100,
 };
 
+// 通知相关
+#define kOrderChangedNotification  @"kOrderChangedNotification"
+
 // 颜色相关
 #define kWhiteHighlightedColor          RGBA(150, 150, 150, 1.0f)
 #define kBlackHighlightedColor          [UIColor lightGrayColor]

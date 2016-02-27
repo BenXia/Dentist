@@ -31,6 +31,11 @@
     if (!error || [resultdict isKindOfClass:[NSDictionary class]]) {
         self.responseCode = [[resultdict objectForKey:@"code"] intValue];
         self.responseMsg = [resultdict objectForKey:@"msg"];
+        
+        if (self.responseCode != 200) {
+            return NO;
+        }
+        
         self.orderNumberId = [resultdict objectForKey:@"oid"];
         //self.money = [resultdict objectForKey:@"money"];
         //self.time_expire = [resultdict objectForKey:@"time_expire"];

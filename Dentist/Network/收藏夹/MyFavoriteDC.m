@@ -48,6 +48,9 @@ static const int kPageSize = 10;
             item.title = [itemDic objectForKey:@"title"];
             item.img_url = [itemDic objectForKey:@"img_url"];
             item.price = [itemDic objectForKey:@"price"];
+        
+            item.hasGift = ((NSString*)[itemDic objectForKey:@"gifts"]).intValue > 0;
+            item.hasFreeSend = ((NSNumber*)[itemDic objectForKey:@"is_baoyou"]).boolValue;
             
             [tmpArray addObject:item];
         }

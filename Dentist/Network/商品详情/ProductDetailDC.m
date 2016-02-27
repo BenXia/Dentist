@@ -11,7 +11,8 @@
 @implementation ProductDetailDC
 
 - (NSDictionary *)requestURLArgs {
-    return @{@"method":@"item.get",@"iid":self.productId};
+    NSString* token = [UserCache sharedUserCache].token ? [UserCache sharedUserCache].token : @"";
+    return @{@"method":@"item.get",@"iid":self.productId,@"auth":token};
 }
 
 - (RequestMethod)requestMethod {
@@ -32,9 +33,9 @@
         
         model.iid = [resultDict objectForKey:@"iid"];
         model.sids = [resultDict objectForKey:@"sids"];
-        model.old_price = ((NSNumber*)[resultDict objectForKey:@"old_price"]).doubleValue;
-        model.price = ((NSNumber*)[resultDict objectForKey:@"price"]).doubleValue;
-        model.num = ((NSNumber*)[resultDict objectForKey:@"num"]).intValue;
+        model.old_price = ((NSString*)[resultDict objectForKey:@"old_price"]).doubleValue;
+        model.price = ((NSString*)[resultDict objectForKey:@"price"]).doubleValue;
+        model.num = ((NSString*)[resultDict objectForKey:@"num"]).intValue;
         model.tid = [resultDict objectForKey:@"tid"];
         model.p_sids = [self parseSpecItemArray:[resultDict objectForKey:@"p_sids"]];
         model.cid = [resultDict objectForKey:@"cid"];
@@ -44,22 +45,25 @@
         model.title_fu = [resultDict objectForKey:@"title_fu"];
         model.img_url = [resultDict objectForKey:@"img_url"];
         model.code = [resultDict objectForKey:@"code"];
-        model.buy_cert = ((NSNumber*)[resultDict objectForKey:@"buy_cert"]).intValue;
+        model.buy_cert = ((NSString*)[resultDict objectForKey:@"buy_cert"]).intValue;
         model.description_p = [resultDict objectForKey:@"description"];
         model.gifts = [self parseGiftItemArray:[resultDict objectForKey:@"gifts"]];
         model.groups = [self parseGroupItemArray:[resultDict objectForKey:@"groups"]];
-        model.update_time = ((NSNumber*)[resultDict objectForKey:@"update_time"]).longLongValue;
+        model.update_time = ((NSString*)[resultDict objectForKey:@"update_time"]).longLongValue;
         model.p_iids = [self parseSpecProductItemArray:[resultDict objectForKey:@"p_iids"]];
         model.scores = [self parseScoreItemArray:[resultDict objectForKey:@"scores"]];
         
-        model.express = ((NSNumber*)[resultDict objectForKey:@"express"]).intValue;
-        model.pick_up = ((NSNumber*)[resultDict objectForKey:@"pick_up"]).intValue;
-        model.is_del = ((NSNumber*)[resultDict objectForKey:@"pick_up"]).intValue;
-        model.item_is_del = ((NSNumber*)[resultDict objectForKey:@"item_is_del"]).intValue;
+        model.express = ((NSString*)[resultDict objectForKey:@"express"]).intValue;
+        model.pick_up = ((NSString*)[resultDict objectForKey:@"pick_up"]).intValue;
+        model.is_del = ((NSString*)[resultDict objectForKey:@"pick_up"]).intValue;
+        model.item_is_del = ((NSString*)[resultDict objectForKey:@"item_is_del"]).intValue;
         
         model.likes = [self parseLikeItemArray:[resultDict objectForKey:@"likes"]];
-        model.product_score = ((NSNumber*)[resultDict objectForKey:@"product_score"]).intValue;
+        model.product_score = ((NSString*)[resultDict objectForKey:@"product_score"]).intValue;
         model.product_score_good = ((NSNumber*)[resultDict objectForKey:@"product_score_good"]).intValue;
+        
+        model.is_baoyou = ((NSNumber*)[resultDict objectForKey:@"is_baoyou"]).boolValue;
+        
         
         NSNumber* code = [resultDict objectForKey:@"code"];
         NSString* message = [resultDict objectForKey:@"msg"];

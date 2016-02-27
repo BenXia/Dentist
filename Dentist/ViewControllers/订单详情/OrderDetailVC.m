@@ -66,6 +66,7 @@
     [super viewDidLoad];
 
     [self initUI];
+    [self initObserver];
     [self initData];
     
 }
@@ -75,6 +76,25 @@
     self.view.backgroundColor = [UIColor backGroundGrayColor];
     self.receiverProductButton.layer.cornerRadius = self.receiverProductButton.frame.size.height/2;
     [self.receiverProductButton.layer masksToBounds];
+}
+
+#pragma mark - Notification
+
+- (void)initObserver {
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleNotification:)
+                                                 name:kOrderChangedNotification
+                                               object:nil];
+}
+
+- (void)handleNotification:(NSNotification *)notification {
+    self.orderDetailVM.orderDetailDC.orderDetailModel.orderStatus = @"1";
+    [self loadingDataFinished:self.orderDetailVM.orderDetailDC];
+    [Utilities showToastWithText:@"支付成功成功"];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - ButtonAction
@@ -197,6 +217,8 @@
         [self.tableView reloadData];
     } else if ([controller isKindOfClass:[OrderConfermDC class]]){
         //订单确认收货
+        self.orderDetailVM.orderDetailDC.orderDetailModel.orderStatus = @"3";
+        [self loadingDataFinished:self.orderDetailVM.orderDetailDC];
         [Utilities showToastWithText:@"确认收货成功"];
     }
 }

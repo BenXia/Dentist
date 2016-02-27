@@ -59,8 +59,8 @@ static const int pagesize = 10;
             item.img_url = [itemDic objectForKey:@"img_url"];
             item.price = [itemDic objectForKey:@"price"];
             
-            item.gifts = [itemDic objectForKey:@"gifts"];
-            item.groups = [itemDic objectForKey:@"groups"];
+            item.hasGift = ((NSString*)[itemDic objectForKey:@"gifts"]).intValue > 0;
+            item.hasFreeSend = ((NSNumber*)[itemDic objectForKey:@"is_baoyou"]).boolValue;
             
             [tmpArray addObject:item];
         }

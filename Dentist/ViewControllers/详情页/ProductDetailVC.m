@@ -346,8 +346,7 @@ UIScrollViewDelegate>
     
     //赠品和包邮
     BOOL hasGift = self.dc.productDetail.gifts.count > 0;
-    //TODO-GUO:如何判断包邮
-    BOOL freeShipping = YES;
+    BOOL freeShipping = self.dc.productDetail.is_baoyou;
     if (hasGift && !freeShipping) {
         self.basePriceFreeShippingImageView.hidden = YES;
     }else if(!hasGift && !freeShipping){

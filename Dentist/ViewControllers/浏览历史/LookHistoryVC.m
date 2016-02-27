@@ -24,7 +24,7 @@ static const CGFloat kItemNumPerLine = 2;
 @property (assign,nonatomic) CGFloat itemWidth;
 @property (assign,nonatomic) CGFloat itemHeight;
 
-@property (strong,nonatomic) NSMutableArray* selectedProductIndexs;
+@property (strong,nonatomic) NSMutableArray* selectedProductIds;
 
 @end
 
@@ -33,7 +33,7 @@ static const CGFloat kItemNumPerLine = 2;
 -(instancetype)init{
     if (self = [super init]) {
         self.title = @"浏览记录";
-        self.selectedProductIndexs = [NSMutableArray new];
+        self.selectedProductIds = [NSMutableArray new];
         self.dc = [[GetLookHistoryDC alloc]initWithDelegate:self];
         self.removeDC = [[RemoveLookHistoryDC alloc]initWithDelegate:self];
     }
@@ -105,19 +105,12 @@ static const CGFloat kItemNumPerLine = 2;
 }
 
 -(void)didClickDeleteButton{
-    NSMutableArray* proudctIds = [NSMutableArray new];
-    for (NSNumber* tmpIndex in self.selectedProductIndexs) {
-        HistoryProductModel* model = [self.dc.products objectAtIndexIfIndexInBounds:tmpIndex.integerValue];
-        if (model) {
-            [proudctIds addObject:model.iid];
-        }
-    }
-    if (proudctIds.count > 0) {
+    if (self.selectedProductIds.count > 0) {
         QQingAlertView* alertView = [[QQingAlertView alloc]initWithTitle:nil message:@"确认要删除这些浏览记录吗？" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
         [alertView showWithDismissBlock:^(QQingAlertView *alertView, int dismissButtonIndex) {
             if (dismissButtonIndex == 1) {
                 //确认删除
-                self.removeDC.productIds = proudctIds;
+                self.removeDC.productIds = self.selectedProductIds;
                 [self.removeDC requestWithArgs:nil];
                 [Utilities showLoadingView];
             }
@@ -141,7 +134,7 @@ static const CGFloat kItemNumPerLine = 2;
     
     HistoryProductModel* model = [self.dc.products objectAtIndex:indexPath.row];
     FavoriteProductCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"FavoriteProductCell" forIndexPath:indexPath];
-    [cell setModel:model isEditing:self.isEditing isSelected:[self isSelectedProduct:@(indexPath.row)]];
+    [cell setModel:model isEditing:self.isEditing isSelected:[self isSelectedProduct:model.iid]];
     
     return cell;
 }
@@ -151,7 +144,7 @@ static const CGFloat kItemNumPerLine = 2;
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     HistoryProductModel* model = [self.dc.products objectAtIndexIfIndexInBounds:indexPath.row];
     if (self.isEditing) {
-        [self selectOrDeselectProduct:@(indexPath.row)];
+        [self selectOrDeselectProduct:model.iid];
         [self.collectionView reloadData];
     }else{
         ProductDetailVC* detailVC = [[ProductDetailVC alloc] initWithProductId:model.iid];
@@ -184,12 +177,12 @@ static const CGFloat kItemNumPerLine = 2;
     }else if(controller == self.removeDC){
         [Utilities showToastWithText:@"删除浏览记录成功"];
         //本地删除
-        self.dc.products = [self.dc.products arrayByRemoveObjectsIfKeyPath:@"iid" containInArray:self.selectedProductIndexs withEqualBlock:^BOOL(NSString* dst, NSString* src) {
+        self.dc.products = [self.dc.products arrayByRemoveObjectsIfKeyPath:@"iid" containInArray:self.selectedProductIds withEqualBlock:^BOOL(NSString* dst, NSString* src) {
             return [dst isEqualToString:src];
         }];
         
         self.isEditing = NO;
-        [self.selectedProductIndexs removeAllObjects];
+        [self.selectedProductIds removeAllObjects];
         [self.collectionView reloadData];
         [self setNavRightItemWithName:@"编辑" target:self action:@selector(didClickEditButton)];
     }
@@ -207,7 +200,7 @@ static const CGFloat kItemNumPerLine = 2;
         [Utilities showToastWithText:@"删除浏览记录失败"];
         
         self.isEditing = NO;
-        [self.selectedProductIndexs removeAllObjects];
+        [self.selectedProductIds removeAllObjects];
         [self.collectionView reloadData];
         [self setNavRightItemWithName:@"编辑" target:self action:@selector(didClickEditButton)];
     }
@@ -215,20 +208,20 @@ static const CGFloat kItemNumPerLine = 2;
 
 #pragma mark - Private Method
 
-- (BOOL)isSelectedProduct:(NSNumber*)productIndex {
-    for (NSNumber* tmpIndex in self.selectedProductIndexs) {
-        if ([tmpIndex isEqualToNumber:productIndex]) {
+- (BOOL)isSelectedProduct:(NSString*)productId {
+    for (NSString* tmpId in self.selectedProductIds) {
+        if ([tmpId isEqualToString:productId]) {
             return YES;
         }
     }
     return NO;
 }
 
--(void)selectOrDeselectProduct:(NSNumber *)productIndex{
-    if ([self isSelectedProduct:productIndex]) {
-        [self.selectedProductIndexs removeObject:productIndex];
+-(void)selectOrDeselectProduct:(NSString *)productId{
+    if ([self isSelectedProduct:productId]) {
+        [self.selectedProductIds removeObject:productId];
     } else {
-        [self.selectedProductIndexs addObject:productIndex];
+        [self.selectedProductIds addObject:productId];
     }
 }
 
