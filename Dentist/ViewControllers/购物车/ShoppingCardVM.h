@@ -30,7 +30,7 @@
 //已选中的商品个数
 - (int)getShoppingCartProductsSelectCount;
 //已选中的商品的价格
-- (int)getShoppingCartProductsSelectTotalPrice;
+- (float)getShoppingCartProductsSelectTotalPrice;
 //已选中的商品id数组
 - (NSMutableArray *)getProductSelectIDArray;
 //所有商品的id数组
