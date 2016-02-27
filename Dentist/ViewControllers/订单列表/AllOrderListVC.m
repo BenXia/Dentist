@@ -14,7 +14,8 @@
 #import "OrderDetailVC.h"
 #import "OrderListDC.h"
 #import "FeedbackVC.h"
-
+#import "OrderItemModel.h"
+#import "OrderVC.h"
 
 #define kTableViewCellHeight        95
 #define kSectionHeaderViewHeight    60
@@ -170,8 +171,25 @@
 
 - (void)payOrder:(id)sender {
     UIButton *btn = (UIButton *)sender;
+    ProductListModel* model = [self.allOrderListVM.orderListDC.orderListArray objectAtIndexIfIndexInBounds:btn.tag];
     if ([btn.titleLabel.text isEqualToString:@"立即付款"]) {
         //跳转立即付款
+        NSMutableArray *modelArray = [NSMutableArray array];
+        for (ProductListGoodsModel* item in model.productListGoodsArray) {
+            OrderItemModel* submodel = [OrderItemModel new];
+            submodel.productId = item.productID;
+            submodel.productTitle = item.productTitle;
+            submodel.productImageUrl = item.productImageUrl;
+            submodel.descriptionString = item.productModel;
+            submodel.productPrice = [item.productPrice floatValue];
+            submodel.buyNum = [item.productNumber intValue];
+            [modelArray addObject:submodel];
+        }
+        
+        OrderVC *vc = [[OrderVC alloc] init];
+        vc.hidesBottomBarWhenPushed = YES;
+        [vc setProductItemsArray:modelArray];
+        [self.navigationController pushViewController:vc animated:YES];
     } else if ([btn.titleLabel.text isEqualToString:@"再次购买"]) {
         //跳转再次购买
         NSLog(@"再次购买");

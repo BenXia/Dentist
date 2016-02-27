@@ -36,10 +36,10 @@
     return totalShoppingCardProductsNumber;
 }
 
-- (int)getShoppingCartProductsSelectTotalPrice {
-    int totalPrice = 0;
+- (float)getShoppingCartProductsSelectTotalPrice {
+    float totalPrice = 0;
     for (ShoppingCartModel *model in self.shoppingCartProductCellSelectArray) {
-        totalPrice += [model.shoppingCartProductNumber intValue]*[model.shoppingCartProductPrice intValue];
+        totalPrice += [model.shoppingCartProductNumber intValue]*[model.shoppingCartProductPrice floatValue];
     }
     return totalPrice;
 }
@@ -61,10 +61,10 @@
 }
 
 - (NSMutableArray *)getAllProductNumberArray {
-    NSMutableArray *idArray = [NSMutableArray new];
+    NSMutableArray *numberArray = [NSMutableArray new];
     for (ShoppingCartModel *model in self.cartListDC.shoppingCartProductsArray) {
-        [idArray addObject:model.shoppingCartProductNumber];
+        [numberArray addObject:model.shoppingCartProductNumber];
     }
-    return idArray;
+    return numberArray;
 }
 @end
