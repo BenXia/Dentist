@@ -16,6 +16,8 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    
+    self.productTitleLabel.numberOfLines = 0;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

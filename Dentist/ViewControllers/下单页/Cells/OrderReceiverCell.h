@@ -14,5 +14,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *receiverPhoneNumberLabel;
 @property (weak, nonatomic) IBOutlet UILabel *receiverAddressLabel;
 
++ (CGFloat)heightWithAddress:(NSString *)receiverAddress;
 
 @end
