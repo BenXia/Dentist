@@ -15,6 +15,8 @@
 #import "OrderDetailDC.h"
 #import "OrderConfermDC.h"
 #import "FeedbackVC.h"
+#import "OrderItemModel.h"
+#import "OrderVC.h"
 
 #define kTableViewCellHeight        95
 #define kSectionHeaderViewHeight    40
@@ -81,6 +83,10 @@
     switch ([self.orderDetailVM.orderDetailDC.orderDetailModel.orderStatus intValue]) {
         case 0: {
             //跳转立即支付
+            OrderVC *vc = [[OrderVC alloc] init];
+            vc.hidesBottomBarWhenPushed = YES;
+            [vc setOrderId:self.orderDetailVM.orderDetailDC.oid];
+            [self.navigationController pushViewController:vc animated:YES];
         }
             break;
         case 1:

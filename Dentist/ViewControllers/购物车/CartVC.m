@@ -60,6 +60,7 @@ static NSString* const kCellReuseIdentifier = @"ProductBriefInfoCell";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self.tableView headerBeginRefreshing];
 }
 
@@ -307,6 +308,11 @@ static NSString* const kCellReuseIdentifier = @"ProductBriefInfoCell";
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    ShoppingCartModel *model = [self.shoppingCardVM.cartListDC.shoppingCartProductsArray objectAtIndex:indexPath.row];
+    ProductDetailVC* detailVC = [[ProductDetailVC alloc] initWithProductId:model.shoppingCartProductID];
+    [self.navigationController pushViewController:detailVC animated:YES];
+}
 
 #pragma mark - TableViewCellDelegate
 

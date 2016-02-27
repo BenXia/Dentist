@@ -48,7 +48,7 @@
 
     [self initUI];
     [self initRefreshView];
-    [self.tableView headerBeginRefreshing];
+    [self orderListRequest];
 }
 
 - (void)initUI {
@@ -77,25 +77,12 @@
 }
 
 -(void)initRefreshView{
-    // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
-    [self.tableView addHeaderWithTarget:self action:@selector(headerRereshing)];
-    
     // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
     [self.tableView addFooterWithTarget:self action:@selector(footerRereshing)];
-    
-    // 设置文字(也可以不设置,默认的文字在MJRefreshConst中修改)
-    self.tableView.headerPullToRefreshText = @"下拉刷新";
-    self.tableView.headerReleaseToRefreshText = @"松开就可以刷新了";
-    self.tableView.headerRefreshingText = @"正在刷新";
     
     self.tableView.footerPullToRefreshText = @"上拉可以加载更多数据了";
     self.tableView.footerReleaseToRefreshText = @"松开马上加载更多数据了";
     self.tableView.footerRefreshingText = @"正在加载中";
-}
-
--(void)headerRereshing{
-    self.allOrderListVM.orderListDC.next_iid = nil;
-    [self orderListRequest];
 }
 
 -(void)footerRereshing{
@@ -103,7 +90,7 @@
 }
 
 - (void)orderListRequest {
-//    [self showLoadingView];
+    [self showLoadingView];
     [self.allOrderListVM.orderListDC requestWithArgs:nil];
 }
 
@@ -174,6 +161,13 @@
     ProductListModel* model = [self.allOrderListVM.orderListDC.orderListArray objectAtIndexIfIndexInBounds:btn.tag];
     if ([btn.titleLabel.text isEqualToString:@"立即付款"]) {
         //跳转立即付款
+        OrderVC *vc = [[OrderVC alloc] init];
+        vc.hidesBottomBarWhenPushed = YES;
+        [vc setOrderId:model.orderID];
+        [self.navigationController pushViewController:vc animated:YES];
+    } else if ([btn.titleLabel.text isEqualToString:@"再次购买"]) {
+        //跳转再次购买
+        NSLog(@"再次购买");
         NSMutableArray *modelArray = [NSMutableArray array];
         for (ProductListGoodsModel* item in model.productListGoodsArray) {
             OrderItemModel* submodel = [OrderItemModel new];
@@ -190,9 +184,6 @@
         vc.hidesBottomBarWhenPushed = YES;
         [vc setProductItemsArray:modelArray];
         [self.navigationController pushViewController:vc animated:YES];
-    } else if ([btn.titleLabel.text isEqualToString:@"再次购买"]) {
-        //跳转再次购买
-        NSLog(@"再次购买");
     }
 }
 
