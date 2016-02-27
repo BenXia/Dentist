@@ -35,10 +35,10 @@
         
         NSDictionary *orderDic = [resultDict objectForKey:@"order"];
         self.orderDetailModel = [OrderDetailModel new];
-//        //TODO-GUO:测试
+        self.orderDetailModel.orderStatus = [orderDic objectForKey:@"status"];
+        //TODO-GUO:测试
 //        self.orderDetailModel.orderStatus = @"3";
 
-        self.orderDetailModel.orderStatus = [orderDic objectForKey:@"status"];
         self.orderDetailModel.orderShowNumber = [orderDic objectForKey:@"oid"];
         self.orderDetailModel.orderExpressCompany = [orderDic objectForKey:@"express_company"];
         self.orderDetailModel.pickUp = [orderDic objectForKey:@"pick_up"];

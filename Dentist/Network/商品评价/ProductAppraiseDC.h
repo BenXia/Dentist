@@ -17,5 +17,6 @@
 @property (strong,nonatomic) NSArray* imgs;     //产品图片
 
 @property (assign,nonatomic) BOOL appraiseSuccess;
+@property (strong,nonatomic) NSString* message;
 
 @end
