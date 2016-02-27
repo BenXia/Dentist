@@ -428,7 +428,7 @@ QQingPhotosBrowserVCDelegate
     self.productCustomiseLabel.text = feedbackModel.product.productModel;
     self.productNumberLabel.text = [NSString stringWithFormat:@"x%@",feedbackModel.product.productNumber];
     
-    [self refreshStarButtonsArrayWithStarNumber:self.feedbackModel.starNumber.intValue];
+    [self refreshStarButtonsArrayWithStarNumber:self.feedbackModel.starNumber.integerValue];
     
     self.feedbackTextView.placeholder = @"写下心得，为其他小伙伴提供参考；字数300字内";
     self.feedbackTextView.placeholderType = PlaceholderType_Left;

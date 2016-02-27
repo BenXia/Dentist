@@ -45,7 +45,9 @@
                 <outlet property="groupPayPriceLabel" destination="bTp-vQ-olc" id="s1j-hY-K22"/>
                 <outlet property="groupProductViewWidthConstraint" destination="xzj-zb-5y0" id="WK3-Bu-ajA"/>
                 <outlet property="groupReducePriceLabel" destination="Jx6-4D-Dfj" id="lSl-kY-gWc"/>
+                <outlet property="groupSecondAddSymbol" destination="JXZ-h2-eFx" id="BBB-zH-iv5"/>
                 <outlet property="groupSecondProductView" destination="rMe-cj-18i" id="MlB-X9-ni4"/>
+                <outlet property="groupThirdAddSymbol" destination="lZ4-ji-R5q" id="g3F-NB-Xnz"/>
                 <outlet property="groupThirdProductView" destination="Dph-hX-hXw" id="zcJ-9W-mIZ"/>
                 <outlet property="guessYouLikeContentView" destination="FnC-4O-wsY" id="aBb-Em-is6"/>
                 <outlet property="guessYouLikeContentViewHeightConstraint" destination="21t-nf-iyt" id="6uT-E4-r7I"/>

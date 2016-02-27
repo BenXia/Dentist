@@ -12,7 +12,7 @@
 @interface FeedbackModel : NSObject
 
 @property (nonatomic, strong) ProductListGoodsModel* product;
-@property (nonatomic, assign) NSNumber* starNumber;
+@property (nonatomic, strong) NSNumber* starNumber;
 @property (nonatomic, strong) NSString *feedBackText;
 @property (nonatomic, strong) NSMutableArray *imagesArray;
 @property (nonatomic, strong) NSMutableArray *imageUrls;
