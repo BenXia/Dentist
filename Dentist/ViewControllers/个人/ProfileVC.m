@@ -63,7 +63,15 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Private Method
+#pragma mark - Public methods
+
+- (void)showAllOrderListVC {
+    AllOrderListVC * allOrderListVC = [[AllOrderListVC alloc] initWithOrderStatusType:OrderStatusType_NeedHandle];
+    allOrderListVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:allOrderListVC animated:NO];
+}
+
+#pragma mark - Private methods
 
 - (void)refreshUI {
     [self.headImageView sd_setImageWithURL:[NSURL URLWithString:[UserInfoModel sharedUserInfoModel].headPath] placeholderImage:[UIImage imageNamed:@"头像"]];

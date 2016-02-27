@@ -7,6 +7,7 @@
 //
 
 #import "PayFailedVC.h"
+#import "ProfileVC.h"
 
 @interface PayFailedVC ()
 
@@ -86,7 +87,10 @@
 }
 
 - (IBAction)didClickSearchOrderButtonAction:(id)sender {
-    // TODO-Ben:
+    [[MainViewManager sharedInstance] popToRootTabViewControllerWithCompletion:^{
+        [[MainViewManager sharedInstance] selectTabProfileVC];
+        [(ProfileVC *)([((UINavigationController *)[[MainViewManager sharedInstance].tabBarController.viewControllers objectAtIndex:kMainTabIndexType_ProfilePage]).viewControllers objectAtIndex:0]) showAllOrderListVC];
+    }];
 }
 
 - (IBAction)didClickRepayButtonAction:(id)sender {

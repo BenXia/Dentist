@@ -73,7 +73,9 @@
 #pragma mark - IBActions
 
 - (IBAction)didClickContinueBuyButtonAction:(id)sender {
-    // TODO-Ben:
+    [[MainViewManager sharedInstance] popToRootTabViewControllerWithCompletion:^{
+        [[MainViewManager sharedInstance] selectTabHomeVC];
+    }];
 }
 
 @end

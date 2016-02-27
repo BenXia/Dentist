@@ -10,4 +10,6 @@
 
 @interface ProfileVC : BaseViewController
 
+- (void)showAllOrderListVC;
+
 @end
