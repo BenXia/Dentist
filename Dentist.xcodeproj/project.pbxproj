@@ -65,7 +65,6 @@
 		3360B4051C7CA41200C60AC0 /* like_t@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3360B3FA1C7CA41200C60AC0 /* like_t@3x.png */; };
 		3360B4111C7CB47D00C60AC0 /* FeedbackModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3360B4101C7CB47D00C60AC0 /* FeedbackModel.m */; };
 		33C9885D1C42401D00262141 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 33C9885C1C42401D00262141 /* AppDelegate.m */; };
-		33CAE4091C735B2C0038748F /* OrderVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CAE4081C735B2C0038748F /* OrderVM.m */; };
 		33CAE43C1C7372DB0038748F /* OrderReceiverCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CAE43A1C7372DB0038748F /* OrderReceiverCell.m */; };
 		33CAE43D1C7372DB0038748F /* OrderReceiverCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33CAE43B1C7372DB0038748F /* OrderReceiverCell.xib */; };
 		33CAE4411C7373200038748F /* OrderItemHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CAE43F1C7373200038748F /* OrderItemHeaderCell.m */; };
@@ -600,8 +599,6 @@
 		33C9885B1C42401D00262141 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		33C9885C1C42401D00262141 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		33C988941C42418B00262141 /* StudioCommon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = StudioCommon.xcodeproj; path = StudioCommon/StudioCommon.xcodeproj; sourceTree = "<group>"; };
-		33CAE4071C735B2C0038748F /* OrderVM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderVM.h; sourceTree = "<group>"; };
-		33CAE4081C735B2C0038748F /* OrderVM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderVM.m; sourceTree = "<group>"; };
 		33CAE4391C7372DB0038748F /* OrderReceiverCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderReceiverCell.h; sourceTree = "<group>"; };
 		33CAE43A1C7372DB0038748F /* OrderReceiverCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderReceiverCell.m; sourceTree = "<group>"; };
 		33CAE43B1C7372DB0038748F /* OrderReceiverCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderReceiverCell.xib; sourceTree = "<group>"; };
@@ -1431,8 +1428,6 @@
 				33CB5B841C80AB7C0038EBDC /* PPPayResultDC.m */,
 				33CB5B731C807C220038EBDC /* OrderItemModel.h */,
 				33CB5B741C807C220038EBDC /* OrderItemModel.m */,
-				33CAE4071C735B2C0038748F /* OrderVM.h */,
-				33CAE4081C735B2C0038748F /* OrderVM.m */,
 				33D028641C74BCA100277C3C /* InvoiceVC.h */,
 				33D028651C74BCA100277C3C /* InvoiceVC.m */,
 				33D028661C74BCA100277C3C /* InvoiceVC.xib */,
@@ -3123,7 +3118,6 @@
 				33D028671C74BCA100277C3C /* InvoiceVC.m in Sources */,
 				33CAF8AC1C781BCD0015B4BC /* UserInfoModel.m in Sources */,
 				33CAF8A71C781B380015B4BC /* LoginVC.m in Sources */,
-				33CAE4091C735B2C0038748F /* OrderVM.m in Sources */,
 				B59710751C78674E006BC9FE /* AllOrderListVC.m in Sources */,
 				88C3BACE1C781F5B001F4D85 /* ProductDetailModel.m in Sources */,
 				88EBEE7F1C79B83000F20C90 /* AddFavoriteDC.m in Sources */,

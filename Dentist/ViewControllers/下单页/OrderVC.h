@@ -11,7 +11,12 @@
 
 @interface OrderVC : BaseViewController
 
+// 下单需要调用的接口
 - (void)setProductItemsArray:(NSMutableArray *)productItemsArray;
 - (void)setGroupId:(NSString *)groupIds;
+
+
+// 直接支付需要调用的接口
+- (void)setOrderId:(NSString *)orderId;
 
 @end

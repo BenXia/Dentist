@@ -58,6 +58,13 @@
         NSDate* createDate = [NSDate dateWithTimeIntervalSince1970:[createtime longLongValue]];
         self.orderDetailModel.orderProduceTime = [dateFormatter stringFromDate:createDate];
         
+        // TODO-Ben:
+        self.orderDetailModel.isWexinPay = YES;
+        self.orderDetailModel.piaoType = 0;
+        self.orderDetailModel.piaoTitle = @"";
+        self.orderDetailModel.piaoContent = @"";
+        self.orderDetailModel.feedbackText = @"";
+        
         ProductListModel *model = [ProductListModel new];
         model.orderID = [orderDic objectForKey:@"oid"];
         model.statusCode = [orderDic objectForKey:@"status"];
