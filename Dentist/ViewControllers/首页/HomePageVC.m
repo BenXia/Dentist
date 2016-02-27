@@ -42,7 +42,6 @@ saleActivityCellDelegate>
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topBarHeightConstraint;
 @property (weak, nonatomic) IBOutlet UIView *searchContentView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topBarButtonTrailingConstaint;
-@property (nonatomic, assign) UIStatusBarStyle statusBarStyle;
 @property (nonatomic, strong) HomePageCourseListCell *tableViewCourseListCell;   // TableView中的科目列表
 @property (nonatomic, strong) HomePageCourseListCell *headerCourseListView;      // 当滑动到上面后需要常
 //网络请求
@@ -122,10 +121,6 @@ saleActivityCellDelegate>
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (UIStatusBarStyle)preferredStatusBarStyle {
-    return self.statusBarStyle;
 }
 
 - (void)didReceiveNotification:(NSNotification *)notification {
@@ -284,10 +279,7 @@ saleActivityCellDelegate>
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     // 控制TableHeaderView
     CGPoint point = scrollView.contentOffset;
-    CGFloat originHeaderHeight = self.tableHeaderView.height;
     if (point.y < 0) {
-        self.statusBarStyle = UIStatusBarStyleLightContent;
-        
         CGFloat cycleScrollViewHeight = kScreenWidth / kTopImageViewRatio - point.y;
         CGFloat cycleScrollViewWidth = cycleScrollViewHeight * kTopImageViewRatio;
         CGFloat cycleScrollViewOriginX = (kScreenWidth - cycleScrollViewWidth) / 2;
@@ -296,12 +288,6 @@ saleActivityCellDelegate>
         
         [_cycleScrollView stopAutoScrollTimer];
     } else {
-        
-        if (point.y > (originHeaderHeight - kHomePageTopBarHeight - 30)) {
-            self.statusBarStyle = UIStatusBarStyleDefault;
-        } else {
-            self.statusBarStyle = UIStatusBarStyleLightContent;
-        }
         
         CGFloat cycleScrollViewHeight = kScreenWidth / kTopImageViewRatio;
         _cycleScrollView.frame = CGRectMake(0, 0, kScreenWidth, cycleScrollViewHeight);
