@@ -39,7 +39,7 @@
                             <constraints>
                                 <constraint firstAttribute="width" constant="70" id="Pkb-ig-Vrr"/>
                             </constraints>
-                            <state key="normal" title="yayiabc"/>
+                            <state key="normal" image="logo_1.png"/>
                         </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bNv-Gc-3fl" userLabel="SearchContentView">
                             <rect key="frame" x="78" y="24" width="168" height="36"/>
@@ -137,6 +137,7 @@
     </objects>
     <resources>
         <image name="ic_top_search.png" width="20" height="20"/>
+        <image name="logo_1.png" width="66" height="17"/>
         <image name="首页右上角信息栏.png" width="26" height="23"/>
     </resources>
 </document>

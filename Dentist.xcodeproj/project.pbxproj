@@ -472,6 +472,8 @@
 		93EBD68F1C7F2D14005FA9A1 /* icon_weixin@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93EBD6891C7F2D14005FA9A1 /* icon_weixin@3x.png */; };
 		93F2A0161C49E93C0034486B /* LoginDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 93F2A0151C49E93C0034486B /* LoginDC.m */; };
 		93F649CD1C8147DF0050ED1B /* AlipayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 93F649CC1C8147DF0050ED1B /* AlipayManager.m */; };
+		93F649D71C81A6E10050ED1B /* logo_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93F649D51C81A6E10050ED1B /* logo_1@2x.png */; };
+		93F649D81C81A6E10050ED1B /* logo_1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93F649D61C81A6E10050ED1B /* logo_1@3x.png */; };
 		B583394B1C796FB000F9EBE2 /* Btn_Delete_default@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = B58339491C796FB000F9EBE2 /* Btn_Delete_default@2X.png */; };
 		B583394C1C796FB000F9EBE2 /* Btn_delete_selected@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = B583394A1C796FB000F9EBE2 /* Btn_delete_selected@2X.png */; };
 		B58339511C79970300F9EBE2 /* OrderDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B583394F1C79970300F9EBE2 /* OrderDetailVC.m */; };
@@ -1143,6 +1145,8 @@
 		93F2A0151C49E93C0034486B /* LoginDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginDC.m; sourceTree = "<group>"; };
 		93F649CB1C8147DF0050ED1B /* AlipayManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlipayManager.h; path = Dentist/viewModel/AlipayManager.h; sourceTree = SOURCE_ROOT; };
 		93F649CC1C8147DF0050ED1B /* AlipayManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AlipayManager.m; path = Dentist/viewModel/AlipayManager.m; sourceTree = SOURCE_ROOT; };
+		93F649D51C81A6E10050ED1B /* logo_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_1@2x.png"; sourceTree = "<group>"; };
+		93F649D61C81A6E10050ED1B /* logo_1@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_1@3x.png"; sourceTree = "<group>"; };
 		A11DE1C2BA504D2B28E4F469 /* Pods.distribute.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.distribute.xcconfig; path = "Pods/Target Support Files/Pods/Pods.distribute.xcconfig"; sourceTree = "<group>"; };
 		B58339491C796FB000F9EBE2 /* Btn_Delete_default@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Btn_Delete_default@2X.png"; sourceTree = "<group>"; };
 		B583394A1C796FB000F9EBE2 /* Btn_delete_selected@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Btn_delete_selected@2X.png"; sourceTree = "<group>"; };
@@ -2264,6 +2268,8 @@
 		93624C121C44170100262B65 /* 首页 */ = {
 			isa = PBXGroup;
 			children = (
+				93F649D51C81A6E10050ED1B /* logo_1@2x.png */,
+				93F649D61C81A6E10050ED1B /* logo_1@3x.png */,
 				939E58961C80875600E24080 /* 首页右上角信息栏.png */,
 				939E58971C80875600E24080 /* 首页右上角信息栏@2x.png */,
 				939E58981C80875600E24080 /* 首页右上角信息栏@3x.png */,
@@ -2898,6 +2904,7 @@
 				88965B1C1C814B3A001FA633 /* 加入购物车@3x.png in Resources */,
 				33DD6CFA1C611A5500CE6B31 /* 微信@2x.png in Resources */,
 				888811B71C7B592600F6672C /* MyFavoriteVC.xib in Resources */,
+				93F649D81C81A6E10050ED1B /* logo_1@3x.png in Resources */,
 				33DD6CFC1C611A5500CE6B31 /* 微信朋友圈@2x.png in Resources */,
 				3309CFE71C7F484600986C30 /* 确认订单-购买资质-已认证@2x.png in Resources */,
 				3360B4031C7CA41200C60AC0 /* like_f@3x.png in Resources */,
@@ -2938,6 +2945,7 @@
 				88C3BADF1C78824A001F4D85 /* goods_tagL_FreeShipping@2x.png in Resources */,
 				3360B3FE1C7CA41200C60AC0 /* btn_photo_pressed@3x.png in Resources */,
 				88EBEE821C79F27200F20C90 /* Btn_Go_default@2x.png in Resources */,
+				93F649D71C81A6E10050ED1B /* logo_1@2x.png in Resources */,
 				33DD6CC21C611A5500CE6B31 /* goods_tag_Present@2X.png in Resources */,
 				93A1F5DB1C6281D900CFEEC4 /* SaleActivityCell.xib in Resources */,
 				33DD6CEE1C611A5500CE6B31 /* 图层-0@2x.png in Resources */,
