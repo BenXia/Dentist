@@ -437,6 +437,7 @@
 		93EBD68E1C7F2D14005FA9A1 /* icon_weixin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93EBD6881C7F2D14005FA9A1 /* icon_weixin@2x.png */; };
 		93EBD68F1C7F2D14005FA9A1 /* icon_weixin@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93EBD6891C7F2D14005FA9A1 /* icon_weixin@3x.png */; };
 		93F2A0161C49E93C0034486B /* LoginDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 93F2A0151C49E93C0034486B /* LoginDC.m */; };
+		93F649CD1C8147DF0050ED1B /* AlipayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 93F649CC1C8147DF0050ED1B /* AlipayManager.m */; };
 		B583394B1C796FB000F9EBE2 /* Btn_Delete_default@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = B58339491C796FB000F9EBE2 /* Btn_Delete_default@2X.png */; };
 		B583394C1C796FB000F9EBE2 /* Btn_delete_selected@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = B583394A1C796FB000F9EBE2 /* Btn_delete_selected@2X.png */; };
 		B58339511C79970300F9EBE2 /* OrderDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B583394F1C79970300F9EBE2 /* OrderDetailVC.m */; };
@@ -1070,6 +1071,8 @@
 		93EBD6891C7F2D14005FA9A1 /* icon_weixin@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_weixin@3x.png"; sourceTree = "<group>"; };
 		93F2A0141C49E93C0034486B /* LoginDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginDC.h; sourceTree = "<group>"; };
 		93F2A0151C49E93C0034486B /* LoginDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginDC.m; sourceTree = "<group>"; };
+		93F649CB1C8147DF0050ED1B /* AlipayManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlipayManager.h; path = Dentist/viewModel/AlipayManager.h; sourceTree = SOURCE_ROOT; };
+		93F649CC1C8147DF0050ED1B /* AlipayManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AlipayManager.m; path = Dentist/viewModel/AlipayManager.m; sourceTree = SOURCE_ROOT; };
 		A11DE1C2BA504D2B28E4F469 /* Pods.distribute.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.distribute.xcconfig; path = "Pods/Target Support Files/Pods/Pods.distribute.xcconfig"; sourceTree = "<group>"; };
 		B58339491C796FB000F9EBE2 /* Btn_Delete_default@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Btn_Delete_default@2X.png"; sourceTree = "<group>"; };
 		B583394A1C796FB000F9EBE2 /* Btn_delete_selected@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Btn_delete_selected@2X.png"; sourceTree = "<group>"; };
@@ -1512,6 +1515,8 @@
 			children = (
 				33DD6B3F1C60ED6D00CE6B31 /* LoginVM.h */,
 				33DD6B401C60ED6D00CE6B31 /* LoginVM.m */,
+				93F649CB1C8147DF0050ED1B /* AlipayManager.h */,
+				93F649CC1C8147DF0050ED1B /* AlipayManager.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -3042,6 +3047,7 @@
 				33CAF8781C7809690015B4BC /* WebBrowserVC.m in Sources */,
 				33F0705B1C42A3D400DAC58F /* MainPageTabBarVC.m in Sources */,
 				33CAF1011C72098200348763 /* OrderVC.m in Sources */,
+				93F649CD1C8147DF0050ED1B /* AlipayManager.m in Sources */,
 				B597106E1C785F98006BC9FE /* ProductListModel.m in Sources */,
 				B5DA4D151C7CAC93003677DD /* OrderDetailDC.m in Sources */,
 				9393455C1C7B3CB30054E2EC /* DeleteAddressDC.m in Sources */,
