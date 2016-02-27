@@ -41,6 +41,8 @@ static const CGFloat kItemNumPerLine = 2;
     // Do any additional setup after loading the view from its nib.
     
     [self initCollectionView];
+    
+    [self.searchBar becomeFirstResponder];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
