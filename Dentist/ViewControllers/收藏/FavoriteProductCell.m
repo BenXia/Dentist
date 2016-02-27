@@ -31,6 +31,7 @@
     [self setBorderWidth:1];
     [self setBorderColor:[UIColor clearColor]];
     self.originFreeSendImageViewTrailingGap = self.freeSendImageViewTrailingConstraint.constant;
+    self.productTitleLabel.numberOfLines = 0;
 }
 
 -(void)prepareForReuse{

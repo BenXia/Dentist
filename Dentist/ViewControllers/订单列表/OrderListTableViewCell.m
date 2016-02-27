@@ -20,7 +20,7 @@
 @implementation OrderListTableViewCell
 
 - (void)awakeFromNib {
-
+    self.productTitleLabel.numberOfLines = 2;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
