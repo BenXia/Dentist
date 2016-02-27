@@ -279,7 +279,9 @@ saleActivityCellDelegate>
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     // 控制TableHeaderView
     CGPoint point = scrollView.contentOffset;
+    //CGFloat originHeaderHeight = self.tableHeaderView.height;
     if (point.y < 0) {
+        
         CGFloat cycleScrollViewHeight = kScreenWidth / kTopImageViewRatio - point.y;
         CGFloat cycleScrollViewWidth = cycleScrollViewHeight * kTopImageViewRatio;
         CGFloat cycleScrollViewOriginX = (kScreenWidth - cycleScrollViewWidth) / 2;
@@ -288,6 +290,12 @@ saleActivityCellDelegate>
         
         [_cycleScrollView stopAutoScrollTimer];
     } else {
+        
+//        if (point.y > (originHeaderHeight - kHomePageTopBarHeight - 30)) {
+//            self.statusBarStyle = UIStatusBarStyleDefault;
+//        } else {
+//            self.statusBarStyle = UIStatusBarStyleLightContent;
+//        }
         
         CGFloat cycleScrollViewHeight = kScreenWidth / kTopImageViewRatio;
         _cycleScrollView.frame = CGRectMake(0, 0, kScreenWidth, cycleScrollViewHeight);
