@@ -106,6 +106,7 @@
 		33CB5B7B1C808AAB0038EBDC /* PPCreateOrderDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CB5B7A1C808AAB0038EBDC /* PPCreateOrderDC.m */; };
 		33CB5B851C80AB7C0038EBDC /* PPPayResultDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CB5B841C80AB7C0038EBDC /* PPPayResultDC.m */; };
 		33CF10091C813563008A35A3 /* PPRepayDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CF10081C813563008A35A3 /* PPRepayDC.m */; };
+		33CF10141C817649008A35A3 /* WeXinMD5Encrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CF10131C817649008A35A3 /* WeXinMD5Encrypt.m */; };
 		33D00F3A1C62375B00499EE9 /* btn_numberminus72_default@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33D00F361C62375B00499EE9 /* btn_numberminus72_default@3x.png */; };
 		33D00F3B1C62375B00499EE9 /* btn_numberminus72_pressed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33D00F371C62375B00499EE9 /* btn_numberminus72_pressed@3x.png */; };
 		33D00F3C1C62375B00499EE9 /* btn_numberplus72_default@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33D00F381C62375B00499EE9 /* btn_numberplus72_default@3x.png */; };
@@ -639,6 +640,8 @@
 		33CB5B841C80AB7C0038EBDC /* PPPayResultDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPPayResultDC.m; sourceTree = "<group>"; };
 		33CF10071C813563008A35A3 /* PPRepayDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPRepayDC.h; sourceTree = "<group>"; };
 		33CF10081C813563008A35A3 /* PPRepayDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPRepayDC.m; sourceTree = "<group>"; };
+		33CF10121C817649008A35A3 /* WeXinMD5Encrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeXinMD5Encrypt.h; sourceTree = "<group>"; };
+		33CF10131C817649008A35A3 /* WeXinMD5Encrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeXinMD5Encrypt.m; sourceTree = "<group>"; };
 		33D00F361C62375B00499EE9 /* btn_numberminus72_default@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_numberminus72_default@3x.png"; sourceTree = "<group>"; };
 		33D00F371C62375B00499EE9 /* btn_numberminus72_pressed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_numberminus72_pressed@3x.png"; sourceTree = "<group>"; };
 		33D00F381C62375B00499EE9 /* btn_numberplus72_default@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_numberplus72_default@3x.png"; sourceTree = "<group>"; };
@@ -1468,6 +1471,15 @@
 				33CAF8AB1C781BCD0015B4BC /* UserInfoModel.m */,
 			);
 			path = GlobalData;
+			sourceTree = "<group>";
+		};
+		33CF10111C817649008A35A3 /* WeXinMD5Encrypt */ = {
+			isa = PBXGroup;
+			children = (
+				33CF10121C817649008A35A3 /* WeXinMD5Encrypt.h */,
+				33CF10131C817649008A35A3 /* WeXinMD5Encrypt.m */,
+			);
+			path = WeXinMD5Encrypt;
 			sourceTree = "<group>";
 		};
 		33D028731C74BD1600277C3C /* 评价晒单 */ = {
@@ -2378,6 +2390,7 @@
 		93DEA8BE1C4BCBAA008211F7 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				33CF10111C817649008A35A3 /* WeXinMD5Encrypt */,
 				930C34AB1C7A0CA5008823F9 /* WTLabel */,
 				33440D0C1C783C1B00A441E3 /* EGOPhotoViewer */,
 				33440D121C783C1B00A441E3 /* ELCImagePicker */,
@@ -3004,6 +3017,7 @@
 				9353628B1C7DDDC4004F9BC5 /* GetAddressRegionDC.m in Sources */,
 				33CB5B7B1C808AAB0038EBDC /* PPCreateOrderDC.m in Sources */,
 				888811D21C7B674700F6672C /* UILabel+Price.m in Sources */,
+				33CF10141C817649008A35A3 /* WeXinMD5Encrypt.m in Sources */,
 				93DEA8711C4BC552008211F7 /* HomePageVC.m in Sources */,
 				33F070CE1C42BE1E00DAC58F /* SendSmsDataController.m in Sources */,
 				33F0704F1C429AD300DAC58F /* AppDeinitializer.m in Sources */,

@@ -49,7 +49,9 @@
         self.responseCode = [[resultdict objectForKey:@"code"] intValue];
         
         NSDictionary *addressDict = [resultdict objectForKey:@"address"];
-        
+        if ([resultdict isKindOfClass:[NSArray class]]) {
+            resultdict = [((NSArray *)resultdict) firstObject];
+        }
         Address *addressModel = [[Address alloc] init];
         addressModel.province = [addressDict objectForKey:@"province_name"];
         addressModel.city = [addressDict objectForKey:@"city_name"];

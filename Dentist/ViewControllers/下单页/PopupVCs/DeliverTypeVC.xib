@@ -50,9 +50,9 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sbG-r7-OmZ">
-                    <rect key="frame" x="10" y="60" width="131" height="40"/>
+                    <rect key="frame" x="10" y="60" width="260" height="40"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="131" id="DTf-t1-dno"/>
+                        <constraint firstAttribute="width" constant="260" id="DTf-t1-dno"/>
                         <constraint firstAttribute="height" constant="40" id="nVD-jY-Zq9"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -66,10 +66,10 @@
                     </connections>
                 </button>
                 <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cNN-dA-V9g">
-                    <rect key="frame" x="10" y="100" width="154" height="40"/>
+                    <rect key="frame" x="10" y="100" width="260" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="v5o-I4-LhJ"/>
-                        <constraint firstAttribute="width" constant="154" id="zs3-FJ-Rpv"/>
+                        <constraint firstAttribute="width" constant="260" id="zs3-FJ-Rpv"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>

@@ -29,9 +29,9 @@ typedef NS_ENUM(NSUInteger, MainTabIndexType) {
 
 // 支付相关
 #define kWeiXinAppID @"wx983825eaeef912b7"
-#define kWeiXinMCHID @"1292687201"
-#define kWeiXinKEY   @"gkuguRSRGF54kipo987t5vc421098klJ"
-#define kWeiXinAPPSECRET @"d4624c36b6795d1d99dcf0547af5443d"
+#define kWeiXinMchID @"1292687201"
+#define kWeiXinPrivateKey   @"gkuguRSRGF54kipo987t5vc421098klJ"
+#define kWeiXinAppSecretKey @"d4624c36b6795d1d99dcf0547af5443d"
 
 
 #endif

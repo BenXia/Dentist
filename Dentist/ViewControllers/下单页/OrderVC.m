@@ -23,6 +23,7 @@
 #import "PPRepayDC.h"
 #import "PaySuccessVC.h"
 #import "PayFailedVC.h"
+#import "WeXinMD5Encrypt.h"
 #import "AlipayManager.h"
 
 @interface OrderVC () <
@@ -530,8 +531,54 @@ PayFailedVCDelegate>
         
         if (self.payType == PayType_WeChat) {
             // TODO-Ben:微信支付
+            ComponentWechatPay_Order *order = component.payment.wechatpay.order;
+            ComponentWechatPay_Config *config = component.payment.wechatpay.config;
             
-            [self.payResultDC requestWithArgs:nil];
+            //weixin =     {
+            //    appid = wx983825eaeef912b7;
+            //    "mch_id" = 1292687201;
+            //    "nonce_str" = NBe6LOSEsxxMSLDy;
+            //    "prepay_id" = wx20160227000908562ac409430006092890;
+            //    "result_code" = SUCCESS;
+            //    "return_code" = SUCCESS;
+            //    "return_msg" = OK;
+            //    sign = 6BCA9F2B2BBA86A3187EEA1AE45FDE13;
+            //    "trade_type" = APP;
+            //};
+            
+            config.appId                    = [self.createOrderDC.weixinDict objectForKey:@"appid"];
+            config.partnerId                = [self.createOrderDC.weixinDict objectForKey:@"mch_id"];
+            order.package                   = @"Sign=WXPay";
+            order.nonceStr                  = [self.createOrderDC.weixinDict objectForKey:@"nonce_str"];
+            order.prepayId                  = [self.createOrderDC.weixinDict objectForKey:@"prepay_id"];
+//            order.sign                      = [self.createOrderDC.weixinDict objectForKey:@"sign"];;
+            
+            NSDate *datenow = [NSDate date];
+            NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)[datenow timeIntervalSince1970]];
+            UInt32 timeStamp =[timeSp intValue];
+            order.timeStamp = timeStamp;
+            
+            WeXinMD5Encrypt *md5Generator = [[WeXinMD5Encrypt alloc] init];
+            order.sign = [md5Generator createMD5SingForPay:config.appId
+                                                 partnerid:config.partnerId
+                                                  prepayid:order.prepayId
+                                                   package:order.package
+                                                  noncestr:order.nonceStr
+                                                 timestamp:order.timeStamp];
+            
+            @weakify(self);
+            ComponentWechatPay  *wechatpay  = component.payment.wechatpay;
+            wechatpay.succeedHandler        = ^ (id object) {
+                @strongify(self)
+                
+                [self.payResultDC requestWithArgs:nil];
+            };
+            wechatpay.failedHandler         = ^ (NSError *error) {
+                @strongify(self)
+                
+                [self.payResultDC requestWithArgs:nil];
+            };
+            [wechatpay pay];
         } else if (self.payType == PayType_AliPay) {
             // TODO-WT:支付宝支付
             ComponentAlipay_Order *order = [[ComponentAlipay_Order alloc] init];
@@ -546,15 +593,58 @@ PayFailedVCDelegate>
             }];
             
         }
-        
-        [self.payResultDC requestWithArgs:nil];
     } else if (controller == self.repayDC) {
         self.payResultDC.oid = self.repayDC.orderNumberId ? self.repayDC.orderNumberId : @"";
         
         if (self.payType == PayType_WeChat) {
-            // TODO-Ben:微信支付
+            ComponentWechatPay_Order *order = component.payment.wechatpay.order;
+            ComponentWechatPay_Config *config = component.payment.wechatpay.config;
             
-            [self.payResultDC requestWithArgs:nil];
+            //weixin =     {
+            //    appid = wx983825eaeef912b7;
+            //    "mch_id" = 1292687201;
+            //    "nonce_str" = NBe6LOSEsxxMSLDy;
+            //    "prepay_id" = wx20160227000908562ac409430006092890;
+            //    "result_code" = SUCCESS;
+            //    "return_code" = SUCCESS;
+            //    "return_msg" = OK;
+            //    sign = 6BCA9F2B2BBA86A3187EEA1AE45FDE13;
+            //    "trade_type" = APP;
+            //};
+            
+            config.appId                    = [self.repayDC.weixinDict objectForKey:@"appid"];
+            config.partnerId                = [self.repayDC.weixinDict objectForKey:@"mch_id"];
+            order.package                   = @"Sign=WXPay";
+            order.nonceStr                  = [self.repayDC.weixinDict objectForKey:@"nonce_str"];
+            order.prepayId                  = [self.repayDC.weixinDict objectForKey:@"prepay_id"];
+            //            order.sign                      = [self.repayDC.weixinDict objectForKey:@"sign"];;
+            
+            NSDate *datenow = [NSDate date];
+            NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)[datenow timeIntervalSince1970]];
+            UInt32 timeStamp =[timeSp intValue];
+            order.timeStamp = timeStamp;
+            
+            WeXinMD5Encrypt *md5Generator = [[WeXinMD5Encrypt alloc] init];
+            order.sign = [md5Generator createMD5SingForPay:config.appId
+                                                 partnerid:config.partnerId
+                                                  prepayid:order.prepayId
+                                                   package:order.package
+                                                  noncestr:order.nonceStr
+                                                 timestamp:order.timeStamp];
+            
+            @weakify(self);
+            ComponentWechatPay  *wechatpay  = component.payment.wechatpay;
+            wechatpay.succeedHandler        = ^ (id object) {
+                @strongify(self)
+                
+                [self.payResultDC requestWithArgs:nil];
+            };
+            wechatpay.failedHandler         = ^ (NSError *error) {
+                @strongify(self)
+                
+                [self.payResultDC requestWithArgs:nil];
+            };
+            [wechatpay pay];
         } else if (self.payType == PayType_AliPay) {
             // TODO-WT:支付宝支付
             
@@ -580,6 +670,7 @@ PayFailedVCDelegate>
             [self.navigationController pushViewController:successVC animated:YES];
         } else {
             PayFailedVC *failedVC = [[PayFailedVC alloc] init];
+            failedVC.delegate = self;
             [self.navigationController pushViewController:failedVC animated:YES];
         }
     }
