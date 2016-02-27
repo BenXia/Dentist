@@ -8,13 +8,19 @@
 
 #import "FavoriteProductCell.h"
 #import "FavoriteProductModel.h"
+#import "SearchProductModel.h"
 
 @interface FavoriteProductCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *productImageView;
 @property (weak, nonatomic) IBOutlet UILabel *productTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *freeSendImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *giftImageView;
 @property (weak, nonatomic) IBOutlet UIButton *selectButton;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *freeSendImageViewTrailingConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *giftImageViewTrailingConstraint;
+
+@property (assign,nonatomic) CGFloat originFreeSendImageViewTrailingGap;
 
 @end
 
@@ -24,14 +30,41 @@
     // Initialization code
     [self setBorderWidth:1];
     [self setBorderColor:[UIColor clearColor]];
+    self.originFreeSendImageViewTrailingGap = self.freeSendImageViewTrailingConstraint.constant;
+}
+
+-(void)prepareForReuse{
+    self.freeSendImageViewTrailingConstraint.constant = self.originFreeSendImageViewTrailingGap;
+    self.giftImageView.hidden = NO;
+    self.freeSendImageView.hidden = NO;
 }
 
 -(void)setModel:(id)model isEditing:(BOOL)isEditing isSelected:(BOOL)isSelected{
+    BOOL hasFreeSend = YES;
+    BOOL hasGift = YES;
     if ([model isKindOfClass:[FavoriteProductModel class]]) {
         FavoriteProductModel* favoriteModel = model;
         [self.productImageView sd_setImageWithURL:[NSURL URLWithString:favoriteModel.img_url]];
         self.productTitleLabel.text = favoriteModel.title;
         [self.priceLabel themeWithPrice:favoriteModel.price.doubleValue bigFont:14 smallFont:12];
+      
+    }else if([model isKindOfClass:[SearchProductModel class]]){
+        SearchProductModel* searchModel = model;
+        [self.productImageView sd_setImageWithURL:[NSURL URLWithString:searchModel.img_url]];
+        self.productTitleLabel.text = searchModel.title;
+        [self.priceLabel themeWithPrice:searchModel.price.doubleValue bigFont:14 smallFont:12];
+        
+        hasGift = searchModel.gifts.intValue != 0;
+    }
+    
+    if (hasFreeSend && !hasGift) {
+        self.freeSendImageViewTrailingConstraint.constant = self.giftImageViewTrailingConstraint.constant;
+        self.giftImageView.hidden = YES;
+    }else if(!hasFreeSend && hasGift){
+        self.freeSendImageView.hidden = YES;
+    }else if(!hasFreeSend && !hasGift){
+        self.freeSendImageView.hidden = YES;
+        self.giftImageView.hidden = YES;
     }
     
     if (isEditing) {

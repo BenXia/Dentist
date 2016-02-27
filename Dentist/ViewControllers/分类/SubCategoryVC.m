@@ -62,12 +62,12 @@ static const CGFloat kItemNumPerLine = 2;
 #pragma mark - UI Init
 
 -(void)initNavBar{
-    [self setNavRightItemWithImage:@"搜索-放大镜" target:self action:@selector(didClickSearchButton)];
+    [self setNavRightItemWithImage:@"搜索放大镜" target:self action:@selector(didClickSearchButton)];
 }
 
 -(void)initCollectionView{
-    self.view.backgroundColor = [UIColor gray002Color];
-    self.collectionView.backgroundColor = [UIColor gray002Color];
+    self.view.backgroundColor = [UIColor themeBackGrayColor];
+    self.collectionView.backgroundColor = [UIColor themeBackGrayColor];
     self.collectionView.allowsMultipleSelection = YES;
     
     UINib* cellNib = [UINib nibWithNibName:@"FavoriteProductCell" bundle:[NSBundle mainBundle]];
@@ -117,7 +117,7 @@ static const CGFloat kItemNumPerLine = 2;
 // 单元格代理
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    FavoriteProductModel* model = [self.dc.products objectAtIndex:indexPath.row];
+    SearchProductModel* model = [self.dc.products objectAtIndex:indexPath.row];
     FavoriteProductCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"FavoriteProductCell" forIndexPath:indexPath];
     [cell setModel:model isEditing:NO isSelected:NO];
     
@@ -127,7 +127,7 @@ static const CGFloat kItemNumPerLine = 2;
 #pragma mark - UICollectionViewLayoutDelegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    FavoriteProductModel* model = [self.dc.products objectAtIndexIfIndexInBounds:indexPath.row];
+    SearchProductModel* model = [self.dc.products objectAtIndexIfIndexInBounds:indexPath.row];
     ProductDetailVC* detailVC = [[ProductDetailVC alloc] initWithProductId:model.iid];
     [self.navigationController pushViewController:detailVC animated:YES];
 }

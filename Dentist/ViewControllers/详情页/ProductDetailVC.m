@@ -225,7 +225,7 @@ UIScrollViewDelegate>
 }
 
 - (void)initMainScrollView {
-    self.scrollView.backgroundColor = [UIColor bgGray002Color];
+    self.scrollView.backgroundColor = [UIColor themeBackGrayColor];
 
 }
 
@@ -883,17 +883,14 @@ UIScrollViewDelegate>
     if (point.y < 0) {
         self.topBarBackgroundView.alpha = 0;
         self.topBarBackgroundView.layer.shadowOpacity = 0;
-        [self.topBarBackButton setImage:[UIImage imageNamed:@"btn_backround_default"] forState:UIControlStateNormal];
-//        self.statusBarStyle = UIStatusBarStyleLightContent;
+        [self.topBarBackButton setImage:[UIImage imageNamed:@"箭头"] forState:UIControlStateNormal];
     } else {
         self.topBarBackgroundView.alpha = ((point.y > originHeaderHeight) ? 1 : (point.y / originHeaderHeight ));
         self.topBarBackgroundView.layer.shadowOpacity = ((point.y > originHeaderHeight) ? 0.2 : (point.y / originHeaderHeight * 0.2));
         if (self.topBarBackgroundView.alpha < 1) {
-            [self.topBarBackButton setImage:[UIImage imageNamed:@"btn_backround_default"] forState:UIControlStateNormal];
-//            self.statusBarStyle = UIStatusBarStyleLightContent;
+            [self.topBarBackButton setImage:[UIImage imageNamed:@"箭头"] forState:UIControlStateNormal];
         }else{
             [self.topBarBackButton setImage:[UIImage imageNamed:@"btn_back_white"] forState:UIControlStateNormal];
-//            self.statusBarStyle = UIStatusBarStyleDefault;
         }
     }
     

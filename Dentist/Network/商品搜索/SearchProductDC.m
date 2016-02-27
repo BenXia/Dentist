@@ -53,11 +53,14 @@ static const int pagesize = 10;
         NSArray* products = [resultDict objectForKey:@"products"];
         NSMutableArray* tmpArray = [NSMutableArray new];
         for (NSDictionary* itemDic in products) {
-            SearchProductModel* item = [FavoriteProductModel new];
+            SearchProductModel* item = [SearchProductModel new];
             item.iid = [itemDic objectForKey:@"iid"];
             item.title = [itemDic objectForKey:@"title"];
             item.img_url = [itemDic objectForKey:@"img_url"];
             item.price = [itemDic objectForKey:@"price"];
+            
+            item.gifts = [itemDic objectForKey:@"gifts"];
+            item.groups = [itemDic objectForKey:@"groups"];
             
             [tmpArray addObject:item];
         }
