@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GuidanceVC">
             <connections>
-                <outlet property="startButton" destination="Zdt-t3-qNo" id="UnN-Z4-osQ"/>
+                <outlet property="scrollView" destination="me3-xN-7BZ" id="Rge-fi-GuJ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -16,26 +16,19 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zdt-t3-qNo">
-                    <rect key="frame" x="60" y="464" width="200" height="44"/>
-                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="44" id="1Dc-dI-ZqZ"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                    <state key="normal" title="立即体验">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="me3-xN-7BZ">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <connections>
-                        <action selector="didClickStartButton:" destination="-1" eventType="touchUpInside" id="5wH-S3-F6v"/>
+                        <outlet property="delegate" destination="-1" id="XGG-hD-ih8"/>
                     </connections>
-                </button>
+                </scrollView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="Zdt-t3-qNo" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="9wp-wP-gyy"/>
-                <constraint firstItem="Zdt-t3-qNo" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="60" id="CgY-qb-Wox"/>
-                <constraint firstAttribute="bottom" secondItem="Zdt-t3-qNo" secondAttribute="bottom" constant="60" id="mAH-fG-Qgs"/>
+                <constraint firstAttribute="bottom" secondItem="me3-xN-7BZ" secondAttribute="bottom" id="DU1-l5-ChW"/>
+                <constraint firstItem="me3-xN-7BZ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="KeD-iD-6Ky"/>
+                <constraint firstAttribute="trailing" secondItem="me3-xN-7BZ" secondAttribute="trailing" id="iYc-4w-iuN"/>
+                <constraint firstItem="me3-xN-7BZ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="qbM-WR-sRW"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>

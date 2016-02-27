@@ -68,7 +68,6 @@ static const CGFloat kItemNumPerLine = 2;
 -(void)initCollectionView{
     self.view.backgroundColor = [UIColor themeBackGrayColor];
     self.collectionView.backgroundColor = [UIColor themeBackGrayColor];
-    self.collectionView.allowsMultipleSelection = YES;
     
     UINib* cellNib = [UINib nibWithNibName:@"FavoriteProductCell" bundle:[NSBundle mainBundle]];
     [self.collectionView registerNib:cellNib forCellWithReuseIdentifier:@"FavoriteProductCell"];

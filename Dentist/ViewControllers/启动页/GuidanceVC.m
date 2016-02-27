@@ -9,11 +9,15 @@
 #import "GuidanceVC.h"
 #import "SDCycleScrollView.h"
 
-@interface GuidanceVC () <UIScrollViewDelegate,UIGestureRecognizerDelegate,SDCycleScrollViewDelegate>
+#define kGapXOfStartButton  60
+
+@interface GuidanceVC () <UIScrollViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (strong,nonatomic) UIPageControl* pageControl;
 
 @property (nonatomic,strong) NSArray *scrollViewImages;
 @property (nonatomic,strong) Block completeBlock;
-@property (nonatomic,weak) IBOutlet UIButton* startButton;
 
 @end
 
@@ -84,40 +88,51 @@
                               [UIImage imageNamed:@"guide5_55_inch"]
                               ];
     }
-    
-    SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight) infiniteLoop:NO imagesGroup:_scrollViewImages];
-    cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
-    cycleScrollView.pageControlStyle=SDCycleScrollViewPageContolStyleClassic;
-    cycleScrollView.dotColor = [UIColor themeBlueColor]; // 自定义分页控件小圆标颜色
-    cycleScrollView.notSelectDotColor = [[UIColor gray003Color] colorWithAlphaComponent:0.8];
-    cycleScrollView.autoScroll = NO;
-    cycleScrollView.delegate = self;
-    cycleScrollView.backgroundColor = [UIColor themeBackGrayColor];
-    [self.view addSubview:cycleScrollView];
-    
-    [self.startButton colorlumpThematized:[UIColor themeCyanColor]];
-    self.startButton.hidden = YES;
-    [self.startButton bringToFront];
-}
 
-- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView scrollToIndex:(NSInteger)index{
-    if (index == ([_scrollViewImages count] - 1)) {
-        self.startButton.hidden = NO;
-    }else{
-        self.startButton.hidden = YES;
+    UIImageView* lastImageView = nil;
+    self.scrollView.backgroundColor = [UIColor themeBackGrayColor];
+    for (int i = 0; i < _scrollViewImages.count; ++i) {
+        UIImageView* imageView = [[UIImageView alloc] initWithFrame:CGRectMake(i*kScreenWidth, 0, kScreenWidth, kScreenHeight)];
+        imageView.userInteractionEnabled = YES;
+        imageView.image = [_scrollViewImages objectAtIndex:i];
+        [self.scrollView addSubview:imageView];
+        lastImageView = imageView;
     }
+    self.scrollView.contentSize = CGSizeMake(kScreenWidth*_scrollViewImages.count, kScreenHeight);
+    
+    UIButton* startButton = [[UIButton alloc] initWithFrame:CGRectMake(kGapXOfStartButton, kScreenHeight-100, kScreenWidth-2*kGapXOfStartButton, 44)];
+    [startButton setTitle:@"立即体验" forState:UIControlStateNormal];
+    startButton.titleLabel.font = [UIFont systemFontOfSize:18];
+    [startButton colorlumpThematized:[UIColor themeCyanColor]];
+    [startButton addTarget:self action:@selector(didClickStartButton) forControlEvents:UIControlEventTouchUpInside];
+    [lastImageView addSubview:startButton];
+    
+    UIPageControl* pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, kScreenHeight - 20, kScreenWidth, 10)];
+    pageControl.numberOfPages = _scrollViewImages.count;
+    pageControl.currentPage = 0;
+    pageControl.pageIndicatorTintColor = [[UIColor gray003Color] colorWithAlphaComponent:0.8];
+    pageControl.currentPageIndicatorTintColor = [UIColor themeBlueColor];
+    [self.view addSubview:pageControl];
+    self.pageControl = pageControl;
 }
 
-- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
-//    if (index == ([_scrollViewImages count] - 1)) {
-//        [self didClickStartButton:nil];
-//    }
-}
+#pragma mark - UI Action
 
--(IBAction)didClickStartButton:(id)sender{
+-(void)didClickStartButton{
     [[NSUserDefaults standardUserDefaults] setObject:[AppSystem appVersion] forKey:kLastShownGuidanceVCAppVersion];
     if (self.completeBlock) {
         self.completeBlock();
+    }
+}
+
+#pragma mark - UIScrollViewDelegate
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    CGPoint offset = scrollView.contentOffset;
+    int currentPage = offset.x / kScreenWidth;
+    if (currentPage != self.pageControl.currentPage) {
+        self.pageControl.currentPage = currentPage;
+        [self.pageControl updateCurrentPageDisplay];
     }
 }
 
