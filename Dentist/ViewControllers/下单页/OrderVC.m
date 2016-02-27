@@ -20,6 +20,7 @@
 #import "PPConfirmOrderDC.h"
 #import "PPCreateOrderDC.h"
 #import "PPPayResultDC.h"
+#import "PPRepayDC.h"
 #import "PaySuccessVC.h"
 #import "PayFailedVC.h"
 
@@ -39,6 +40,7 @@ PayFailedVCDelegate>
 @property (nonatomic, strong) PPConfirmOrderDC *confirmOrderDC;
 @property (nonatomic, strong) PPCreateOrderDC *createOrderDC;
 @property (nonatomic, strong) PPPayResultDC *payResultDC;
+@property (nonatomic, strong) PPRepayDC *repayDC;
 
 @property (nonatomic, strong) OrderVM *vm;
 
@@ -70,6 +72,9 @@ PayFailedVCDelegate>
         
         self.payResultDC = [[PPPayResultDC alloc] init];
         self.payResultDC.delegate = self;
+        
+        self.repayDC = [[PPRepayDC alloc] init];
+        self.repayDC.delegate = self;
     }
     
     return self;
@@ -295,7 +300,7 @@ PayFailedVCDelegate>
         cell.accessoryType = UITableViewCellAccessoryNone;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
-        cell.priceLabel.text = [NSString stringWithFormat:@"¥ %.2f", self.confirmOrderDC.totoalPrice];
+        cell.priceLabel.text = [NSString stringWithFormat:@"¥ %.2f", self.confirmOrderDC.goodsPrice + self.deliverPrice];
         int itemsCount = 0;
         for (OrderItemModel *model in self.confirmOrderDC.orderItemsArray) {
             itemsCount += model.buyNum;
@@ -416,8 +421,18 @@ PayFailedVCDelegate>
 }
 
 - (void)didClickDeliverButton {
+    if ((self.deliverType == DeliverType_KuaiDi) && !self.confirmOrderDC.enableZiti) {
+        [Utilities showToastWithText:@"暂时不支持其它配送方式" withImageName:nil blockUI:NO];
+        return;
+    }
+    if ((self.deliverType == DeliverType_ZiTi) && !self.confirmOrderDC.enableKuaidi) {
+        [Utilities showToastWithText:@"暂时不支持其它配送方式" withImageName:nil blockUI:NO];
+        return;
+    }
+    
     DeliverTypeVC *vc = [[DeliverTypeVC alloc] init];
-    vc.priceArray = @[@(10.0), @(10.0), @(0)];
+    vc.priceArray = @[@(self.confirmOrderDC.kuaidiPrice), @(0)];
+    vc.deliverType = self.deliverType;
     vc.delegate = self;
     [Utilities showPopupVC:vc];
 }
@@ -430,8 +445,18 @@ PayFailedVCDelegate>
 }
 
 - (void)didClickPayTypeButton {
+    if ((self.payType == PayType_WeChat) && ![self.confirmOrderDC.payTypeArray containsObject:@"alipay"]) {
+        [Utilities showToastWithText:@"暂时不支持其它支付方式" withImageName:nil blockUI:NO];
+        return;
+    }
+    if ((self.payType == PayType_AliPay) && ![self.confirmOrderDC.payTypeArray containsObject:@"weixin"]) {
+        [Utilities showToastWithText:@"暂时不支持其它支付方式" withImageName:nil blockUI:NO];
+        return;
+    }
+    
     PayTypeVC *vc = [[PayTypeVC alloc] init];
     vc.delegate = self;
+    vc.payType = self.payType;
     [Utilities showPopupVC:vc];
 }
 
@@ -476,16 +501,54 @@ PayFailedVCDelegate>
         self.vm.addressModel = self.confirmOrderDC.address;
         self.vm.productItemsArray = [NSMutableArray arrayWithArray:self.confirmOrderDC.orderItemsArray];
         
+        if (!self.confirmOrderDC.enableKuaidi && !self.confirmOrderDC.enableZiti) {
+            [Utilities showToastWithText:@"数据有误，不支持任何配送方式" withImageName:nil blockUI:NO];
+        }
+        
+        if (self.confirmOrderDC.enableKuaidi) {
+            self.deliverType = DeliverType_KuaiDi;
+            self.deliverPrice = self.confirmOrderDC.kuaidiPrice;
+        } else if (self.confirmOrderDC.enableZiti) {
+            self.deliverType = DeliverType_ZiTi;
+            self.deliverType = 0;
+        }
+        
+        if ([self.confirmOrderDC.payTypeArray containsObject:@"wexin"]) {
+            self.payType = PayType_WeChat;
+        } else if ([self.confirmOrderDC.payTypeArray containsObject:@"alipay"]) {
+            self.payType = PayType_AliPay;
+        }
+        
         [[GCDQueue mainQueue] queueBlock:^{
             [self.tableView reloadData];
         }];
     } else if (controller == self.createOrderDC) {
-        self.payResultDC.oid = self.createOrderDC.oid;
+        // TODO-Ben:调用支付
+        self.payResultDC.oid = self.createOrderDC.oid ? self.createOrderDC.oid : @"";
+        
+        [self.payResultDC requestWithArgs:nil];
+    } else if (controller == self.repayDC) {
+        // TODO-Ben:调用支付
+        self.payResultDC.oid = self.repayDC.orderNumberId ? self.repayDC.orderNumberId : @"";
         
         [self.payResultDC requestWithArgs:nil];
     } else if (controller == self.payResultDC) {
         if (self.payResultDC.responseCode == 200) {
             PaySuccessVC *successVC = [[PaySuccessVC alloc] init];
+            
+            successVC.receiverName = self.vm.addressModel.recipientName;
+            successVC.receiverPhoneNumber = self.vm.addressModel.recipientPhoneNum;
+            successVC.receiverAddress = self.vm.addressModel.detailAddress;
+            
+            NSDate *payDate = [NSDate dateWithTimeIntervalSince1970:[self.payResultDC.paytime longLongValue]];
+            NSDate *createDate = [NSDate dateWithTimeIntervalSince1970:[self.payResultDC.createtime longLongValue]];
+            NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+            
+            successVC.orderNumberString = self.payResultDC.orderNumberString;
+            successVC.payDateString = [dateFormatter stringFromDate:payDate];
+            successVC.createOrderDateString = [dateFormatter stringFromDate:createDate];
+            
             [self.navigationController pushViewController:successVC animated:YES];
         } else {
             PayFailedVC *failedVC = [[PayFailedVC alloc] init];
@@ -504,6 +567,8 @@ PayFailedVCDelegate>
         }];
     } else if (controller == self.createOrderDC) {
         [Utilities showToastWithText:@"生成订单失败" withImageName:nil blockUI:NO];
+    } else if (controller == self.repayDC) {
+        [Utilities showToastWithText:@"重新支付失败" withImageName:nil blockUI:NO];
     } else if (controller == self.payResultDC) {
         [Utilities showToastWithText:@"支付失败" withImageName:nil blockUI:NO];
     }
@@ -518,7 +583,14 @@ PayFailedVCDelegate>
 - (void)didClickPayAgainButtonInPayFailedVC {
     [self.navigationController popViewControllerAnimated:YES];
     
-    [self didClickPayNowButtonAction:nil];
+    // 方案一：
+    //[self didClickPayNowButtonAction:nil];
+    
+    // 方案二：
+    self.repayDC.oid = self.createOrderDC.oid;
+    self.repayDC.payType = (self.payType == PayType_WeChat) ? @"weixin" : @"alipay";
+    
+    [self.repayDC requestWithArgs:nil];
 }
 
 @end

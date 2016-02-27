@@ -10,4 +10,12 @@
 
 @interface PaySuccessVC : UIViewController
 
+@property (nonatomic, strong) NSString *receiverName;
+@property (nonatomic, strong) NSString *receiverPhoneNumber;
+@property (nonatomic, strong) NSString *receiverAddress;
+
+@property (nonatomic, strong) NSString *orderNumberString;
+@property (nonatomic, strong) NSString *payDateString;
+@property (nonatomic, strong) NSString *createOrderDateString;
+
 @end

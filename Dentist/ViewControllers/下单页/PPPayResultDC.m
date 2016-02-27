@@ -32,6 +32,7 @@
         self.responseCode = [[resultdict objectForKey:@"code"] intValue];
         
         NSDictionary *orderDict = [resultdict objectForKey:@"order"];
+        self.orderNumberString = [orderDict objectForKey:@"oid"];
         self.paytime = [orderDict objectForKey:@"paytime"];
         self.createtime = [orderDict objectForKey:@"createtime"];
         self.name = [orderDict objectForKey:@"name"];

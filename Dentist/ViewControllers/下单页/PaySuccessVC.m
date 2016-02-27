@@ -51,13 +51,29 @@
     
     [self setNavTitleString:@"付款结果"];
     
+    self.receiverAddressLabel.numberOfLines = 0;
     [self.continueBuyButton thematizedWithBackgroundColor:[UIColor themeCyanColor]];
     [self.continueBuyButton circular:self.continueBuyButton.height / 2];
+    
+    self.receiverLabel.text = self.receiverName;
+    self.receiverPhoneNumberLabel.text = self.receiverPhoneNumber;
+    self.receiverAddressLabel.text = self.receiverAddress;
+    
+    self.orderNumberLabel.text = self.orderNumberString;
+    self.payDateLabel.text = self.payDateString;
+    self.createOrderDateLabel.text = self.createOrderDateString;
+    
+    CGSize size = [self.receiverAddress textSizeWithFont:self.receiverAddressLabel.font
+                                       constrainedToSize:CGSizeMake(self.receiverAddressLabel.width, MAXFLOAT)
+                                           lineBreakMode:NSLineBreakByCharWrapping];
+    self.receiverAddressLabelHeightConstraint.constant = size.height;
+    self.topViewHeightConstraint.constant = 195 + ((size.height > 15) ? (size.height - 15) : 0);
 }
 
 #pragma mark - IBActions
 
 - (IBAction)didClickContinueBuyButtonAction:(id)sender {
+    // TODO-Ben:
 }
 
 @end

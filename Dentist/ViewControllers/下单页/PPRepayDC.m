@@ -1,0 +1,46 @@
+//
+//  PPRepayDC.m
+//  Dentist
+//
+//  Created by Ben on 16/2/27.
+//  Copyright © 2016年 iOSStudio. All rights reserved.
+//
+
+#import "PPRepayDC.h"
+
+@implementation PPRepayDC
+
+- (NSDictionary *)requestURLArgs {
+    return @{@"method":@"order.repay", @"v":@"0.0.1", @"auth":[UserCache sharedUserCache].token};
+}
+
+- (RequestMethod)requestMethod {
+    return RequestMethodPOST;
+}
+
+- (NSDictionary *)requestHTTPBody {
+    return @{@"oid":self.oid, @"pay":self.payType};
+}
+
+- (BOOL)parseContent:(NSString *)content {
+    BOOL result = NO;
+    NSError *error = nil;
+    NSDictionary *resultdict = [NSJSONSerialization JSONObjectWithString:content
+                                                                 options:0
+                                                                   error:&error];
+    if (!error || [resultdict isKindOfClass:[NSDictionary class]]) {
+        self.responseCode = [[resultdict objectForKey:@"code"] intValue];
+        self.responseMsg = [resultdict objectForKey:@"msg"];
+        self.orderNumberId = [resultdict objectForKey:@"oid"];
+        //self.money = [resultdict objectForKey:@"money"];
+        //self.time_expire = [resultdict objectForKey:@"time_expire"];
+        //self.time_start = [resultdict objectForKey:@"time_start"];
+        self.weixinDict = [resultdict objectForKey:@"weixin"];
+        
+        result = YES;
+    }
+    
+    return result;
+}
+
+@end

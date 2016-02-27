@@ -18,6 +18,7 @@ typedef NS_ENUM(NSInteger, DeliverType) {
 @interface DeliverTypeVC : UIViewController
 
 @property (nonatomic, strong) NSArray *priceArray;
+@property (nonatomic, assign) DeliverType deliverType;
 @property (nonatomic, weak) id<DeliverTypeVCDelegate> delegate;
 
 @end

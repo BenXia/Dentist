@@ -107,6 +107,7 @@
 		33CB5B781C808A990038EBDC /* PPConfirmOrderDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CB5B771C808A990038EBDC /* PPConfirmOrderDC.m */; };
 		33CB5B7B1C808AAB0038EBDC /* PPCreateOrderDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CB5B7A1C808AAB0038EBDC /* PPCreateOrderDC.m */; };
 		33CB5B851C80AB7C0038EBDC /* PPPayResultDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CB5B841C80AB7C0038EBDC /* PPPayResultDC.m */; };
+		33CF10091C813563008A35A3 /* PPRepayDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CF10081C813563008A35A3 /* PPRepayDC.m */; };
 		33D00F3A1C62375B00499EE9 /* btn_numberminus72_default@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33D00F361C62375B00499EE9 /* btn_numberminus72_default@3x.png */; };
 		33D00F3B1C62375B00499EE9 /* btn_numberminus72_pressed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33D00F371C62375B00499EE9 /* btn_numberminus72_pressed@3x.png */; };
 		33D00F3C1C62375B00499EE9 /* btn_numberplus72_default@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33D00F381C62375B00499EE9 /* btn_numberplus72_default@3x.png */; };
@@ -626,6 +627,8 @@
 		33CB5B7A1C808AAB0038EBDC /* PPCreateOrderDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPCreateOrderDC.m; sourceTree = "<group>"; };
 		33CB5B831C80AB7C0038EBDC /* PPPayResultDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPPayResultDC.h; sourceTree = "<group>"; };
 		33CB5B841C80AB7C0038EBDC /* PPPayResultDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPPayResultDC.m; sourceTree = "<group>"; };
+		33CF10071C813563008A35A3 /* PPRepayDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPRepayDC.h; sourceTree = "<group>"; };
+		33CF10081C813563008A35A3 /* PPRepayDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPRepayDC.m; sourceTree = "<group>"; };
 		33D00F361C62375B00499EE9 /* btn_numberminus72_default@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_numberminus72_default@3x.png"; sourceTree = "<group>"; };
 		33D00F371C62375B00499EE9 /* btn_numberminus72_pressed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_numberminus72_pressed@3x.png"; sourceTree = "<group>"; };
 		33D00F381C62375B00499EE9 /* btn_numberplus72_default@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_numberplus72_default@3x.png"; sourceTree = "<group>"; };
@@ -1348,6 +1351,8 @@
 				33CB5B771C808A990038EBDC /* PPConfirmOrderDC.m */,
 				33CB5B791C808AAB0038EBDC /* PPCreateOrderDC.h */,
 				33CB5B7A1C808AAB0038EBDC /* PPCreateOrderDC.m */,
+				33CF10071C813563008A35A3 /* PPRepayDC.h */,
+				33CF10081C813563008A35A3 /* PPRepayDC.m */,
 				33CB5B831C80AB7C0038EBDC /* PPPayResultDC.h */,
 				33CB5B841C80AB7C0038EBDC /* PPPayResultDC.m */,
 				33CB5B731C807C220038EBDC /* OrderItemModel.h */,
@@ -2980,6 +2985,7 @@
 				93A1F5DE1C6281D900CFEEC4 /* TuanGouCell.m in Sources */,
 				3360B3EE1C7C963F00C60AC0 /* FeedbackCell.m in Sources */,
 				33F06F981C42477300DAC58F /* main.m in Sources */,
+				33CF10091C813563008A35A3 /* PPRepayDC.m in Sources */,
 				B583396E1C79BE8E00F9EBE2 /* OrderDetailModel.m in Sources */,
 				930C34A61C7A0BEA008823F9 /* AddressListVC.m in Sources */,
 				33DD6BB51C6103CA00CE6B31 /* IQKeyboardReturnKeyHandler.m in Sources */,

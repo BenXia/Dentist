@@ -16,7 +16,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *zitiPriceLabel;
 
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *deliverTypeButtonsArray;
-@property (nonatomic, assign) DeliverType deliverType;
 @property (nonatomic, assign) CGFloat deliverPrice;
 
 @end
@@ -41,7 +40,15 @@
 
 - (void)initUIReleated {
     self.kuaidiPriceLabel.text = [NSString stringWithFormat:@"¥ %.2f", [[self.priceArray objectAtIndex:0] floatValue]];
-    self.zitiPriceLabel.text = [NSString stringWithFormat:@"¥ %.2f", [[self.priceArray objectAtIndex:2] floatValue]];
+    self.zitiPriceLabel.text = [NSString stringWithFormat:@"¥ %.2f", [[self.priceArray objectAtIndex:1] floatValue]];
+    
+    if (self.deliverType == DeliverType_KuaiDi) {
+        self.kuaidiChoiceButton.selected = YES;
+        self.deliverPrice = [[self.priceArray objectAtIndex:0] floatValue];
+    } else if (self.deliverType == DeliverType_ZiTi) {
+        self.zitiChoiceButton.selected = YES;
+        self.deliverPrice = [[self.priceArray objectAtIndex:1] floatValue];
+    }
 }
 
 #pragma mark - IBActions

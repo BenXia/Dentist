@@ -14,8 +14,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *alipayChoiceButton;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *payTypeButtonsArray;
 
-@property (nonatomic, assign) PayType payType;
-
 @end
 
 @implementation PayTypeVC
@@ -25,11 +23,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    [self initUIRelated];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Private methods
+
+- (void)initUIRelated {
+    if (self.payType == PayType_WeChat) {
+        self.wechatPayChoiceButton.selected = YES;
+    } else if (self.payType == PayType_AliPay) {
+        self.alipayChoiceButton.selected = YES;
+    }
 }
 
 #pragma mark - IBActions

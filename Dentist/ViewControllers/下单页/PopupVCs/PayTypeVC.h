@@ -18,6 +18,7 @@ typedef NS_ENUM(NSInteger, PayType) {
 @interface PayTypeVC : UIViewController
 
 @property (nonatomic, weak) id<PayTypeVCDelegate> delegate;
+@property (nonatomic, assign) PayType payType;
 
 @end
 
