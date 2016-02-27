@@ -1,15 +1,15 @@
 //
-//  DataMD5.m
+//  WeiXinMD5Encrypt.m
 //  Dentist
 //
 //  Created by Ben on 15/8/3.
 //  Copyright © 2016年 iOSStudio. All rights reserved.
 //
 
-#import "WeXinMD5Encrypt.h"
+#import "WeiXinMD5Encrypt.h"
 #import <CommonCrypto/CommonDigest.h>
 
-@interface WeXinMD5Encrypt()
+@interface WeiXinMD5Encrypt()
 
 @property (nonatomic,strong) NSString *appid;
 @property (nonatomic,strong) NSString *mch_id;
@@ -24,7 +24,7 @@
 
 @end
 
-@implementation WeXinMD5Encrypt
+@implementation WeiXinMD5Encrypt
 
 -(instancetype)initWithAppid:(NSString *)appid_key
                       mch_id:(NSString *)mch_id_key

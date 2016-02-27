@@ -65,6 +65,7 @@
 		3360B4051C7CA41200C60AC0 /* like_t@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3360B3FA1C7CA41200C60AC0 /* like_t@3x.png */; };
 		3360B4111C7CB47D00C60AC0 /* FeedbackModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3360B4101C7CB47D00C60AC0 /* FeedbackModel.m */; };
 		33C9885D1C42401D00262141 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 33C9885C1C42401D00262141 /* AppDelegate.m */; };
+		33CAB7CC1C81EAEF00911A91 /* WeiXinMD5Encrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CAB7CB1C81EAEF00911A91 /* WeiXinMD5Encrypt.m */; };
 		33CAE43C1C7372DB0038748F /* OrderReceiverCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CAE43A1C7372DB0038748F /* OrderReceiverCell.m */; };
 		33CAE43D1C7372DB0038748F /* OrderReceiverCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33CAE43B1C7372DB0038748F /* OrderReceiverCell.xib */; };
 		33CAE4411C7373200038748F /* OrderItemHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CAE43F1C7373200038748F /* OrderItemHeaderCell.m */; };
@@ -105,7 +106,6 @@
 		33CB5B7B1C808AAB0038EBDC /* PPCreateOrderDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CB5B7A1C808AAB0038EBDC /* PPCreateOrderDC.m */; };
 		33CB5B851C80AB7C0038EBDC /* PPPayResultDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CB5B841C80AB7C0038EBDC /* PPPayResultDC.m */; };
 		33CF10091C813563008A35A3 /* PPRepayDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CF10081C813563008A35A3 /* PPRepayDC.m */; };
-		33CF10141C817649008A35A3 /* WeXinMD5Encrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CF10131C817649008A35A3 /* WeXinMD5Encrypt.m */; };
 		33D00F3A1C62375B00499EE9 /* btn_numberminus72_default@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33D00F361C62375B00499EE9 /* btn_numberminus72_default@3x.png */; };
 		33D00F3B1C62375B00499EE9 /* btn_numberminus72_pressed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33D00F371C62375B00499EE9 /* btn_numberminus72_pressed@3x.png */; };
 		33D00F3C1C62375B00499EE9 /* btn_numberplus72_default@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33D00F381C62375B00499EE9 /* btn_numberplus72_default@3x.png */; };
@@ -599,6 +599,8 @@
 		33C9885B1C42401D00262141 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		33C9885C1C42401D00262141 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		33C988941C42418B00262141 /* StudioCommon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = StudioCommon.xcodeproj; path = StudioCommon/StudioCommon.xcodeproj; sourceTree = "<group>"; };
+		33CAB7CA1C81EAEF00911A91 /* WeiXinMD5Encrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiXinMD5Encrypt.h; sourceTree = "<group>"; };
+		33CAB7CB1C81EAEF00911A91 /* WeiXinMD5Encrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeiXinMD5Encrypt.m; sourceTree = "<group>"; };
 		33CAE4391C7372DB0038748F /* OrderReceiverCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderReceiverCell.h; sourceTree = "<group>"; };
 		33CAE43A1C7372DB0038748F /* OrderReceiverCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderReceiverCell.m; sourceTree = "<group>"; };
 		33CAE43B1C7372DB0038748F /* OrderReceiverCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderReceiverCell.xib; sourceTree = "<group>"; };
@@ -659,8 +661,6 @@
 		33CB5B841C80AB7C0038EBDC /* PPPayResultDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPPayResultDC.m; sourceTree = "<group>"; };
 		33CF10071C813563008A35A3 /* PPRepayDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPRepayDC.h; sourceTree = "<group>"; };
 		33CF10081C813563008A35A3 /* PPRepayDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPRepayDC.m; sourceTree = "<group>"; };
-		33CF10121C817649008A35A3 /* WeXinMD5Encrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeXinMD5Encrypt.h; sourceTree = "<group>"; };
-		33CF10131C817649008A35A3 /* WeXinMD5Encrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeXinMD5Encrypt.m; sourceTree = "<group>"; };
 		33D00F361C62375B00499EE9 /* btn_numberminus72_default@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_numberminus72_default@3x.png"; sourceTree = "<group>"; };
 		33D00F371C62375B00499EE9 /* btn_numberminus72_pressed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_numberminus72_pressed@3x.png"; sourceTree = "<group>"; };
 		33D00F381C62375B00499EE9 /* btn_numberplus72_default@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_numberplus72_default@3x.png"; sourceTree = "<group>"; };
@@ -1390,6 +1390,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		33CAB7C91C81EAEF00911A91 /* WeiXinMD5Encrypt */ = {
+			isa = PBXGroup;
+			children = (
+				33CAB7CA1C81EAEF00911A91 /* WeiXinMD5Encrypt.h */,
+				33CAB7CB1C81EAEF00911A91 /* WeiXinMD5Encrypt.m */,
+			);
+			path = WeiXinMD5Encrypt;
+			sourceTree = "<group>";
+		};
 		33CAE4381C7371160038748F /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -1511,15 +1520,6 @@
 				33CAF8AB1C781BCD0015B4BC /* UserInfoModel.m */,
 			);
 			path = GlobalData;
-			sourceTree = "<group>";
-		};
-		33CF10111C817649008A35A3 /* WeXinMD5Encrypt */ = {
-			isa = PBXGroup;
-			children = (
-				33CF10121C817649008A35A3 /* WeXinMD5Encrypt.h */,
-				33CF10131C817649008A35A3 /* WeXinMD5Encrypt.m */,
-			);
-			path = WeXinMD5Encrypt;
 			sourceTree = "<group>";
 		};
 		33D028731C74BD1600277C3C /* 评价晒单 */ = {
@@ -2462,12 +2462,12 @@
 		93DEA8BE1C4BCBAA008211F7 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
-				33CF10111C817649008A35A3 /* WeXinMD5Encrypt */,
 				930C34AB1C7A0CA5008823F9 /* WTLabel */,
 				33440D0C1C783C1B00A441E3 /* EGOPhotoViewer */,
 				33440D121C783C1B00A441E3 /* ELCImagePicker */,
 				33DD6B901C6103CA00CE6B31 /* IQKeyBoardManager */,
 				93DEA8BF1C4BCBAA008211F7 /* 幻灯控件 */,
+				33CAB7C91C81EAEF00911A91 /* WeiXinMD5Encrypt */,
 			);
 			path = Vendor;
 			sourceTree = "<group>";
@@ -3110,7 +3110,6 @@
 				9353628B1C7DDDC4004F9BC5 /* GetAddressRegionDC.m in Sources */,
 				33CB5B7B1C808AAB0038EBDC /* PPCreateOrderDC.m in Sources */,
 				888811D21C7B674700F6672C /* UILabel+Price.m in Sources */,
-				33CF10141C817649008A35A3 /* WeXinMD5Encrypt.m in Sources */,
 				93DEA8711C4BC552008211F7 /* HomePageVC.m in Sources */,
 				33F070CE1C42BE1E00DAC58F /* SendSmsDataController.m in Sources */,
 				33F0704F1C429AD300DAC58F /* AppDeinitializer.m in Sources */,
@@ -3123,6 +3122,7 @@
 				88EBEE7F1C79B83000F20C90 /* AddFavoriteDC.m in Sources */,
 				33DD6BBA1C6103CA00CE6B31 /* IQToolbar.m in Sources */,
 				33CAF88D1C780C030015B4BC /* PPJSExternal.m in Sources */,
+				33CAB7CC1C81EAEF00911A91 /* WeiXinMD5Encrypt.m in Sources */,
 				930C349D1C7A0BC1008823F9 /* UPdataAddressDC.m in Sources */,
 				B58339751C79FFAC00F9EBE2 /* OrderListDC.m in Sources */,
 				B58339571C79976A00F9EBE2 /* ProductEvaluateVC.m in Sources */,
