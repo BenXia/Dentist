@@ -84,7 +84,7 @@
     self.headImageView.layer.masksToBounds = YES;
     self.headImageView.userInteractionEnabled = YES;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didClickOnHeadImageView:)];
-    [self.headImageView addGestureRecognizer:tap];
+    [self.headerView addGestureRecognizer:tap];
     [self refreshUI];
 }
 
@@ -143,8 +143,7 @@
 #pragma mark - UITableViewDelegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-
-    return 3;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -165,7 +164,6 @@
         static NSString *cellIdentifier = @"cell";
         UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.textLabel.font = [UIFont systemFontOfSize:14];
         cell.textLabel.textColor = [UIColor gray005Color];
         cell.detailTextLabel.font = [UIFont systemFontOfSize:14];
@@ -185,6 +183,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     if (indexPath.section == 1) {
         [Utilities makePhoneCall:@"4000014980"];
     } else if (indexPath.section == 0 && indexPath.row == 0){
