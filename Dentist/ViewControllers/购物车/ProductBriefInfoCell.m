@@ -62,16 +62,23 @@
     self.productTitleLabel.text = shoppingCartModel.shoppingCartProductTitle;
     [self.productImageView setImageURL:[NSURL URLWithString:shoppingCartModel.shoppingCartProductImage]];
     self.briefInfoLabel.text = shoppingCartModel.shoppingCartProductSids;
-    self.priceLabel.text =  [NSString stringWithFormat:@"¥%d",[shoppingCartModel.shoppingCartProductPrice intValue]];
+    self.priceLabel.text =  [NSString stringWithFormat:@"¥%.2f",[shoppingCartModel.shoppingCartProductPrice floatValue]];
     self.countInfoLabel.text = [NSString stringWithFormat:@"x %d", [shoppingCartModel.shoppingCartProductNumber intValue]];
 }
 
 - (void)setCellToEditType {
-    [self didClickEditButtonAction:nil];
+    self.subContentView1.hidden = YES;
+    self.subContentView2.hidden = NO;
+    self.editContentView.hidden = NO;
+    self.productTitleLabel.hidden = YES;
+    self.editCountTextField.text = [NSString stringWithFormat:@"%d", [self.shoppingCartModel.shoppingCartProductNumber intValue]];
 }
 
 - (void)setCellToNormalType {
-    [self didClickFinishButtonAction:nil];
+    self.subContentView1.hidden = NO;
+    self.subContentView2.hidden = YES;
+    self.editContentView.hidden = YES;
+    self.productTitleLabel.hidden = NO;
 }
 
 - (void)setCellToSelectType {

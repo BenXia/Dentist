@@ -118,6 +118,7 @@ static NSString* const kCellReuseIdentifier = @"ProductBriefInfoCell";
  *删除购物车商品
  */
 - (void)sendCartProductDeleteRequest:(ShoppingCartModel *)shoppingCartModel {
+    [Utilities showLoadingView];
     self.shoppingCardVM.cartProductDeleteDC = [[CartProductDeleteDC alloc] initWithDelegate:self];
     self.shoppingCardVM.cartProductDeleteDC.productIdArray = [NSMutableArray arrayWithObject:shoppingCartModel.shoppingCartProductID];
     [self.shoppingCardVM.cartProductDeleteDC requestWithArgs:nil];
@@ -127,6 +128,11 @@ static NSString* const kCellReuseIdentifier = @"ProductBriefInfoCell";
  *批量删除购物车商品
  */
 - (void)sendCartProductDeleteRequest {
+    if (self.shoppingCardVM.shoppingCartProductCellSelectArray.count == 0) {
+        [Utilities showToastWithText:@"您还未选择商品"];
+        return;
+    }
+    [Utilities showLoadingView];
     self.shoppingCardVM.cartProductDeleteDC = [[CartProductDeleteDC alloc] initWithDelegate:self];
     self.shoppingCardVM.cartProductDeleteDC.productIdArray = [self.shoppingCardVM getProductSelectIDArray];
     [self.shoppingCardVM.cartProductDeleteDC requestWithArgs:nil];
@@ -136,9 +142,13 @@ static NSString* const kCellReuseIdentifier = @"ProductBriefInfoCell";
  *批量添加到收藏夹
  */
 - (void)sendAddFavoriteRequest {
+    if (self.shoppingCardVM.shoppingCartProductCellSelectArray.count == 0) {
+        [Utilities showToastWithText:@"您还未选择商品"];
+        return;
+    }
+    [Utilities showLoadingView];
     self.shoppingCardVM.addFavoriteDC = [[AddFavoriteDC alloc] initWithDelegate:self];
     self.shoppingCardVM.addFavoriteDC.productIds = [self.shoppingCardVM getProductSelectIDArray];
-    
     [self.shoppingCardVM.addFavoriteDC requestWithArgs:nil];
 }
 
@@ -146,6 +156,7 @@ static NSString* const kCellReuseIdentifier = @"ProductBriefInfoCell";
  *批量更新购物车商品数量
  */
 - (void)sendCartProductUpdateNumberRequest {
+    [Utilities showLoadingView];
     self.shoppingCardVM.cartProductUpdateNumberDC = [[CartProductUpdateNumberDC alloc] initWithDelegate:self];
     self.shoppingCardVM.cartProductUpdateNumberDC.cartProductIdArray = [self.shoppingCardVM getAllProductIDArray];
     self.shoppingCardVM.cartProductUpdateNumberDC.productNumberArray = [self.shoppingCardVM getAllProductNumberArray];
@@ -156,6 +167,7 @@ static NSString* const kCellReuseIdentifier = @"ProductBriefInfoCell";
  *更新购物车商品数量
  */
 - (void)sendCartProductUpdateNumberRequest:(ShoppingCartModel *)shoppingCartModel {
+    [Utilities showLoadingView];
     self.shoppingCardVM.cartProductUpdateNumberDC = [[CartProductUpdateNumberDC alloc] initWithDelegate:self];
     self.shoppingCardVM.cartProductUpdateNumberDC.cartProductIdArray = [NSMutableArray arrayWithObject:shoppingCartModel.shoppingCartProductID];
     self.shoppingCardVM.cartProductUpdateNumberDC.productNumberArray = [NSMutableArray arrayWithObject:shoppingCartModel.shoppingCartProductNumber];
@@ -180,8 +192,20 @@ static NSString* const kCellReuseIdentifier = @"ProductBriefInfoCell";
 
 //数据请求成功回调
 - (void)loadingDataFinished:(PPDataController *)controller{
+    [Utilities hideLoadingView];
     if ([controller isKindOfClass:[CartListDC class]]) {
-        self.totalPriceLabel.text = [NSString stringWithFormat:@"¥ %d",[self.shoppingCardVM getShoppingCartProductsSelectTotalPrice]];
+        if (self.isEditType) {
+            [self setNavRightItemWithName:@"编辑" target:self action:@selector(didClickOnEditNavButtonAction:)];
+            [self.shoppingCardVM.shoppingCartProductCellEditArray removeAllObjects];
+            self.bottomSubContentView1.hidden = NO;
+            self.bottomSubContentView2.hidden = YES;
+            [self sendCartProductUpdateNumberRequest];
+            self.isEditType = !self.isEditType;
+        }
+        [self.shoppingCardVM.shoppingCartProductCellSelectArray removeAllObjects];
+        self.totalPriceLabel.text = [NSString stringWithFormat:@"¥ %.2f",[self.shoppingCardVM getShoppingCartProductsSelectTotalPrice]];
+        [self.payButton setTitle:[NSString stringWithFormat:@"结算(%d)",[self.shoppingCardVM getShoppingCartProductsSelectCount]] forState:UIControlStateNormal];
+        self.selectAllButton.selected = NO;
         [self.tableView reloadData];
         [self.tableView headerEndRefreshing];
     } else if ([controller isKindOfClass:[CartProductDeleteDC class]]) {
@@ -191,27 +215,38 @@ static NSString* const kCellReuseIdentifier = @"ProductBriefInfoCell";
             [self.shoppingCardVM.shoppingCartProductCellEditArray removeObject:shoppingCartModel];
         }
         [self.tableView reloadData];
-        self.totalPriceLabel.text = [NSString stringWithFormat:@"¥ %d",[self.shoppingCardVM getShoppingCartProductsSelectTotalPrice]];
+        self.totalPriceLabel.text = [NSString stringWithFormat:@"¥ %.2f",[self.shoppingCardVM getShoppingCartProductsSelectTotalPrice]];
         [self.payButton setTitle:[NSString stringWithFormat:@"结算(%d)",[self.shoppingCardVM getShoppingCartProductsSelectCount]] forState:UIControlStateNormal];
         self.totalCountLabel.text = [NSString stringWithFormat:@"共 %d 件商品",[self.shoppingCardVM getShoppingCartProductsCount]];
     } else if ([controller isKindOfClass:[AddFavoriteDC class]]) {
         [Utilities showToastWithText:@"移到收藏夹成功"];
     } else if ([controller isKindOfClass:[CartProductUpdateNumberDC class]]) {
-        
+        [Utilities showToastWithText:@"商品更新数量成功"];
     }
 }
 
 //数据请求失败回调
 - (void)loadingData:(PPDataController *)controller failedWithError:(NSError *)error{
+    [Utilities hideLoadingView];
     if ([controller isKindOfClass:[CartListDC class]]) {
         [Utilities showToastWithText:@"购物车列表获取失败"];
         [self.tableView headerEndRefreshing];
     } else if ([controller isKindOfClass:[CartProductDeleteDC class]]) {
-        [Utilities showToastWithText:@"商品删除失败"];
+        if (self.shoppingCardVM.cartProductUpdateNumberDC.code.integerValue == 101) {
+            [Utilities showToastWithText:@"需要登录"];
+        } else {
+            [Utilities showToastWithText:@"商品删除失败"];
+        }
     } else if ([controller isKindOfClass:[AddFavoriteDC class]]) {
         [Utilities showToastWithText:@"商品移到收藏夹失败"];
     } else if ([controller isKindOfClass:[CartProductUpdateNumberDC class]]) {
-        [Utilities showToastWithText:@"商品更新数量失败"];
+        if (self.shoppingCardVM.cartProductUpdateNumberDC.code.integerValue == 403) {
+            [Utilities showToastWithText:@"商品不存在或已下架"];
+        } else if (self.shoppingCardVM.cartProductUpdateNumberDC.code.integerValue == 101) {
+            [Utilities showToastWithText:@"需要登录"];
+        } else {
+            [Utilities showToastWithText:@"商品更新数量失败"];
+        }
     }
 }
 
@@ -277,14 +312,14 @@ static NSString* const kCellReuseIdentifier = @"ProductBriefInfoCell";
 
 //点击了加按钮
 - (void)didClickedOnPlusButtonWithShoppingCartModel:(ShoppingCartModel *)shoppingCartModel {
-    self.totalPriceLabel.text = [NSString stringWithFormat:@"¥ %d",[self.shoppingCardVM getShoppingCartProductsSelectTotalPrice]];
+    self.totalPriceLabel.text = [NSString stringWithFormat:@"¥ %.2f",[self.shoppingCardVM getShoppingCartProductsSelectTotalPrice]];
     [self.payButton setTitle:[NSString stringWithFormat:@"结算(%d)",[self.shoppingCardVM getShoppingCartProductsSelectCount]] forState:UIControlStateNormal];
     self.totalCountLabel.text = [NSString stringWithFormat:@"共 %d 件商品",[self.shoppingCardVM getShoppingCartProductsCount]];
 }
 
 //点击了减按钮
 - (void)didClickedOnReduceButtonWithShoppingCartModel:(ShoppingCartModel *)shoppingCartModel {
-    self.totalPriceLabel.text = [NSString stringWithFormat:@"¥ %d",[self.shoppingCardVM getShoppingCartProductsSelectTotalPrice]];
+    self.totalPriceLabel.text = [NSString stringWithFormat:@"¥ %.2f",[self.shoppingCardVM getShoppingCartProductsSelectTotalPrice]];
     [self.payButton setTitle:[NSString stringWithFormat:@"结算(%d)",[self.shoppingCardVM getShoppingCartProductsSelectCount]] forState:UIControlStateNormal];
     self.totalCountLabel.text = [NSString stringWithFormat:@"共 %d 件商品",[self.shoppingCardVM getShoppingCartProductsCount]];
 }
@@ -303,7 +338,7 @@ static NSString* const kCellReuseIdentifier = @"ProductBriefInfoCell";
     } else {
         [self.shoppingCardVM.shoppingCartProductCellSelectArray addObject:shoppingCartModel];
     }
-    self.totalPriceLabel.text = [NSString stringWithFormat:@"¥ %d",[self.shoppingCardVM getShoppingCartProductsSelectTotalPrice]];
+    self.totalPriceLabel.text = [NSString stringWithFormat:@"¥ %.2f",[self.shoppingCardVM getShoppingCartProductsSelectTotalPrice]];
     [self.payButton setTitle:[NSString stringWithFormat:@"结算(%d)",[self.shoppingCardVM getShoppingCartProductsSelectCount]] forState:UIControlStateNormal];
 }
 
@@ -345,12 +380,17 @@ static NSString* const kCellReuseIdentifier = @"ProductBriefInfoCell";
     } else {
         [self.shoppingCardVM.shoppingCartProductCellSelectArray removeAllObjects];
     }
-    self.totalPriceLabel.text = [NSString stringWithFormat:@"¥ %d",[self.shoppingCardVM getShoppingCartProductsSelectTotalPrice]];
+    self.totalPriceLabel.text = [NSString stringWithFormat:@"¥ %.2f",[self.shoppingCardVM getShoppingCartProductsSelectTotalPrice]];
     [self.payButton setTitle:[NSString stringWithFormat:@"结算(%d)",[self.shoppingCardVM getShoppingCartProductsSelectCount]] forState:UIControlStateNormal];
     [self.tableView reloadData];
 }
 
 - (IBAction)didClickPayButtonAction:(id)sender {
+    if (self.shoppingCardVM.shoppingCartProductCellSelectArray.count == 0) {
+        [Utilities showToastWithText:@"您还未选择商品"];
+        return;
+    }
+    
     NSMutableArray *modelArray = [NSMutableArray array];
     for (ShoppingCartModel* item in self.shoppingCardVM.shoppingCartProductCellSelectArray) {
         OrderItemModel* submodel = [OrderItemModel new];

@@ -57,11 +57,22 @@
                 goodsModel.productImageUrl = [goodDic objectForKey:@"img"];
                 [model.productListGoodsArray addObject:goodsModel];
             }
-            [self.orderListArray addObject:model];
+            if (![self isOrderExist:model]) {
+                [self.orderListArray addObject:model];
+            }
         }
         result = YES;
     }
     return result;
+}
+
+- (BOOL)isOrderExist:(ProductListModel *)order {
+    for (ProductListModel *model in self.orderListArray) {
+        if (model.orderID.integerValue == order.orderID.integerValue) {
+            return YES;
+        }
+    }
+    return NO;
 }
 
 - (NSMutableArray *)orderListArray {

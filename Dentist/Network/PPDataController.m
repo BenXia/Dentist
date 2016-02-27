@@ -125,6 +125,7 @@ NSString* const kDataControllerErrorDomain = @"NetworkErrorDomain";
             
             if (self.requestHTTPBody) {
                 [urlRequest setHTTPBody:[[PPDataController makeBodyParamStringWithArgs:self.requestHTTPBody] dataUsingEncoding:NSUTF8StringEncoding]];
+                NSLog(@"111111 = %@",[PPDataController makeBodyParamStringWithArgs:self.requestHTTPBody]);
             }else if(self.requestHTTPBodyPlainJsonParams){
                 [urlRequest setHTTPBody:[[PPDataController makePlainJsonStringWithArgs:self.requestHTTPBodyPlainJsonParams] dataUsingEncoding:NSUTF8StringEncoding]];
             }

@@ -54,7 +54,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zmZ-Bj-YaV" userLabel="SubContentView1">
                             <rect key="frame" x="90" y="0.0" width="230" height="44"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="合计:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RkV-sI-w7h">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="合计:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RkV-sI-w7h">
                                     <rect key="frame" x="18" y="6" width="30" height="16"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="16" id="aV9-Ej-46n"/>
@@ -63,7 +63,7 @@
                                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥ 120.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lwi-cQ-vPq">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="¥ 0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lwi-cQ-vPq">
                                     <rect key="frame" x="49" y="6" width="53" height="16"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="16" id="yEV-Tr-oeS"/>
@@ -84,7 +84,7 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ysj-oC-uIm">
                                     <rect key="frame" x="115" y="0.0" width="115" height="44"/>
                                     <color key="backgroundColor" red="0.23921568630000001" green="0.71764705880000002" blue="0.92156862750000001" alpha="1" colorSpace="calibratedRGB"/>
-                                    <state key="normal" title="结算(10)"/>
+                                    <state key="normal" title="结算(0)"/>
                                     <connections>
                                         <action selector="didClickPayButtonAction:" destination="-1" eventType="touchUpInside" id="KYu-zO-uP1"/>
                                     </connections>

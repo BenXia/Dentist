@@ -356,7 +356,7 @@ PayFailedVCDelegate>
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
-        return 70;
+        return [OrderReceiverCell heightWithAddress:self.vm.addressModel.detailAddress ? self.vm.addressModel.detailAddress : @"收件人地址"];
     } else if (indexPath.row == 1) {
         return 50;
     } else if (indexPath.row == self.vm.productItemsArray.count + 2) {
@@ -402,6 +402,11 @@ PayFailedVCDelegate>
 #pragma mark - IBActions
 
 - (IBAction)didClickPayNowButtonAction:(id)sender {
+    if (self.vm.addressModel.ID.length == 0) {
+        [Utilities showToastWithText:@"请先填写收件地址" withImageName:nil blockUI:NO];
+        return;
+    }
+    
     self.createOrderDC.orderExpress = (self.deliverType == DeliverType_KuaiDi) ? @"express" : @"pick_up";
     self.createOrderDC.aid = self.vm.addressModel.ID;
     self.createOrderDC.payType = (self.payType == PayType_WeChat) ? @"weixin" : @"alipay";
