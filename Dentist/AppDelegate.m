@@ -10,8 +10,10 @@
 #import "AppInitializer.h"
 #import "AppDeinitializer.h"
 #import "LaunchViewController.h"
+#import "WXApi.h"
 
-@interface AppDelegate ()
+@interface AppDelegate () <
+    WXApiDelegate>
 
 @end
 
@@ -54,6 +56,8 @@
     
     self.window.rootViewController = navigationVC;
     
+    [WXApi registerApp:kWeiXinAppID];
+    
     return YES;
 }
 
@@ -78,5 +82,76 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    return [self application:application openURL:url options:@{}];
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    return [self application:application openURL:url options:@{}];
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url options:(NSDictionary<NSString*, id> *)options {
+    NSLog(@"scheme:%@",[url scheme]);
+    if ([[url scheme] isEqualToString:@"com.toboom.yayiabc"]) {
+        [component.payment.alipay parse:url application:application];
+        
+        return YES;
+    } else {
+        return [WXApi handleOpenURL:url delegate:self];
+    }
+}
+
+#pragma mark - WXApiDelegate
+
+/*! @brief 收到一个来自微信的请求，第三方应用程序处理完后调用sendResp向微信发送结果
+ *
+ * 收到一个来自微信的请求，异步处理完成后必须调用sendResp发送处理结果给微信。
+ * 可能收到的请求有GetMessageFromWXReq、ShowMessageFromWXReq等。
+ * @param req 具体请求内容，是自动释放的
+ */
+- (void)onReq:(BaseReq *)req {
+    
+}
+
+/*! @brief 发送一个sendReq后，收到微信的回应
+ *
+ * 收到一个来自微信的处理结果。调用一次sendReq后会收到onResp。
+ * 可能收到的处理结果有SendMessageToWXResp、SendAuthResp等。
+ * @param resp具体的回应内容，是自动释放的
+ */
+- (void)onResp:(BaseResp *)resp {
+    // 建议支付、分享的应答处理中各自去判断
+    
+    { // 支付
+        [component.payment.wechatpay process:resp];
+    }
+    
+    { // 分享
+        switch (resp.errCode) {
+            case WXSuccess:
+                DDLogInfo(@"微信分享成功");
+                break;
+            case WXErrCodeCommon:
+                DDLogError(@"微信分享错误：普通错误类型");
+                break;
+            case WXErrCodeUserCancel:
+                DDLogError(@"微信分享错误：用户点击取消并返回");
+                break;
+            case WXErrCodeSentFail:
+                DDLogError(@"微信分享错误：发送失败");
+                break;
+            case WXErrCodeAuthDeny:
+                DDLogError(@"微信分享错误：授权失败");
+                break;
+            case WXErrCodeUnsupport:
+                DDLogError(@"微信分享错误：微信不支持");
+                break;
+            default:
+                break;
+        }
+    }
+}
+
 
 @end
