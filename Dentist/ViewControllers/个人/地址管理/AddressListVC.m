@@ -20,6 +20,7 @@ WTLabelDelegate>
 @property (nonatomic, strong) DeleteAddressDC *deleteAddressRequest;
 @property (nonatomic, strong) WTLabel *blankLabel;
 @property (nonatomic, strong) NSIndexPath *willDeleteIndexPath;
+@property (nonatomic, strong) NSString *addressString;
 @end
 
 @implementation AddressListVC
@@ -66,8 +67,9 @@ WTLabelDelegate>
             cell.imageView.image = [UIImage imageNamed:@"btn_choice_t"];
         }
     }
+    self.addressString = [NSString stringWithFormat:@"%@%@%@%@",address.province,address.city,address.area,address.detailAddress];
     cell.textLabel.text = [NSString stringWithFormat:@"%@     %@",address.recipientName,address.recipientPhoneNum];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@%@%@%@",address.province,address.city,address.area,address.detailAddress];
+    cell.detailTextLabel.text = self.addressString;
     cell.detailTextLabel.numberOfLines = 0;
     
     return cell;
@@ -75,7 +77,8 @@ WTLabelDelegate>
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 60;
+    
+    return 44 + [self.addressString textSizeWithFont:[UIFont systemFontOfSize:15] constrainedToSize:CGSizeMake(kScreenWidth - 50, 1000) lineBreakMode:NSLineBreakByWordWrapping].height;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {

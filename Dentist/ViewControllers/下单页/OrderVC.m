@@ -567,8 +567,10 @@ PayFailedVCDelegate>
             // TODO-WT:支付宝支付
             ComponentAlipay_Order *order = [[ComponentAlipay_Order alloc] init];
             order.ID = self.createOrderDC.oid;
-            order.name = [self.createOrderDC.alipayDict objectForKey:@"name"];
-            order.desc = [self.createOrderDC.alipayDict objectForKey:@"desc"];
+//            order.name = [self.createOrderDC.alipayDict objectForKey:@"name"];
+//            order.desc = [self.createOrderDC.alipayDict objectForKey:@"desc"];
+            order.name = @"name";
+            order.desc = @"desc";
             order.price = self.createOrderDC.money;
             [[AlipayManager sharedAlipayManager] payWithAlipay:order completeBlock:^(NSDictionary *dic) {
                 [[GCDQueue mainQueue] queueBlock:^{

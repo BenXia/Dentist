@@ -145,8 +145,21 @@ PPDataControllerDelegate
 }
 
 - (void)didClickOnRightNavButtonAction:(id)sender {
-    NSMutableArray *imagesToUpload = [NSMutableArray array];
+    //检测必填数据
+    for (int i= 0 ; i < self.feedbackModelsArray.count; ++i) {
+        FeedbackModel* model = [self.feedbackModelsArray objectAtIndex:i];
+        if (!model.starNumber) {
+            [Utilities showToastWithText:[NSString stringWithFormat:@"请给第%d个商品打分",i+1]];
+            return;
+        }
+        if (model.feedBackText.length <= 0) {
+            [Utilities showToastWithText:[NSString stringWithFormat:@"请给第%d个商品评论",i+1]];
+            return;
+        }
+    }
     
+    //收集上传图片
+    NSMutableArray *imagesToUpload = [NSMutableArray array];
     for (int i = 0; i < self.feedbackModelsArray.count; i++) {
         FeedbackModel *feedback = [self.feedbackModelsArray objectAtIndex:i];
         for (int j = 0; j < feedback.imagesArray.count; j++) {
@@ -155,27 +168,31 @@ PPDataControllerDelegate
         }
     }
     
+    //开始发送
     [Utilities showLoadingView];
-    [self.picturesUploader uploadMultiImages:imagesToUpload
-                imageUploadType:kImageUploadType_PhotoUploadType
-                        success:^(NSArray *array) {
-                            [Utilities hideLoadingView];
-                            NSInteger index = 0;
-                            for (int i = 0; i < self.feedbackModelsArray.count && index < array.count; i++) {
-                                FeedbackModel *feedback = [self.feedbackModelsArray objectAtIndex:i];
-                                feedback.imageUrls = [NSMutableArray new];
-                                for (int j = 0; j < feedback.imagesArray.count && index < array.count; j++) {
-                                    [feedback.imageUrls addObject:[array objectAtIndex:index++]];
-                                }
-                            }
-
-                            [self sendAppraiseRequest];
-                            NSLog (@"array: %@", array);
-                        } fail:^(NSError *error) {
-                            [Utilities hideLoadingView];
-                            [Utilities showToastWithText:@"上传图片失败"];
-                            NSLog (@"error: %@", error);
-                        }];
+    if (imagesToUpload.count > 0) {
+        [self.picturesUploader uploadMultiImages:imagesToUpload
+                                 imageUploadType:kImageUploadType_PhotoUploadType
+                                         success:^(NSArray *array) {
+                                             NSInteger index = 0;
+                                             for (int i = 0; i < self.feedbackModelsArray.count && index < array.count; i++) {
+                                                 FeedbackModel *feedback = [self.feedbackModelsArray objectAtIndex:i];
+                                                 feedback.imageUrls = [NSMutableArray new];
+                                                 for (int j = 0; j < feedback.imagesArray.count && index < array.count; j++) {
+                                                     [feedback.imageUrls addObject:[array objectAtIndex:index++]];
+                                                 }
+                                             }
+                                             
+                                             [self sendAppraiseRequest];
+                                             NSLog (@"array: %@", array);
+                                         } fail:^(NSError *error) {
+                                             [Utilities hideLoadingView];
+                                             [Utilities showToastWithText:@"上传图片失败"];
+                                             NSLog (@"error: %@", error);
+                                         }];
+    }else{
+        [self sendAppraiseRequest];
+    }
 }
 
 #pragma mark - Request 
@@ -187,14 +204,6 @@ PPDataControllerDelegate
     NSMutableArray* imageUrlArray = [NSMutableArray new];
     for (int i= 0 ; i < self.feedbackModelsArray.count; ++i) {
         FeedbackModel* model = [self.feedbackModelsArray objectAtIndex:i];
-        if (!model.starNumber) {
-            [Utilities showToastWithText:[NSString stringWithFormat:@"请给第%d个商品打分",i+1]];
-            return;
-        }
-        if (model.feedBackText <= 0) {
-            [Utilities showToastWithText:[NSString stringWithFormat:@"请给第%d个商品评论",i+1]];
-            return;
-        }
         
         [productIdArray addObject:@(model.product.productID.intValue)];
         [scoreArray addObject:model.starNumber];
@@ -218,7 +227,6 @@ PPDataControllerDelegate
     self.dc.score = scoreArray;
     
     [self.dc requestWithArgs:nil];
-    [Utilities showLoadingView];
 }
 
 
@@ -230,7 +238,8 @@ PPDataControllerDelegate
     if (self.dc.appraiseSuccess) {
         [Utilities showToastWithText:@"评价成功"];
     }else{
-        [Utilities showToastWithText:@"评价失败"];
+        NSString* message = self.dc.message.length > 0 ? self.dc.message : @"评价失败";
+        [Utilities showToastWithText:message];
     }
 }
 //数据请求失败回调

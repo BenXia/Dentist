@@ -57,23 +57,33 @@ static AppInitializer* sInstance = nil;
 #pragma mark - initiate with server data
 
 - (void)initiateWithServerData {
-     dispatch_async(dispatch_get_main_queue(), ^{
-         //登录
-         if ([UserCache sharedUserCache].username.length>0 && [UserCache sharedUserCache].password.length>0) {
-             //自动登录
-             [self.loginVM autoLogin];
-         } else {
-             //手动登录
-             [[MainViewManager sharedInstance] loadLoginVC];
-         }
-         
-     });
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSString *lastShownGuideAppVersion = [[NSUserDefaults standardUserDefaults] stringForKey:kLastShownGuidanceVCAppVersion];
+        if (!lastShownGuideAppVersion || ![lastShownGuideAppVersion isEqualToString:[AppSystem appVersion]]) {
+            [[MainViewManager sharedInstance] loadGuidanceVCWithCompleteBlock:^{
+                [self login];
+            }];
+        } else {
+            [self login];
+        }
+    });
+}
+
+- (void)login{
+    //登录
+    if ([UserCache sharedUserCache].username.length>0 && [UserCache sharedUserCache].password.length>0) {
+        //自动登录
+        [self.loginVM autoLogin];
+    } else {
+        //手动登录
+        [[MainViewManager sharedInstance] loadLoginVC];
+    }
 }
 
 #pragma mark - Initiate local
 
 - (void)initiateLocalModule {
-
+    
     // 前端所有时间计算以北京时区为准GMT+8
     [NSTimeZone setDefaultTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8*60*60]];
     

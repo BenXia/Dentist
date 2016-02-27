@@ -64,6 +64,11 @@
                                                                    error:&error];
     if (!error || [resultdict isKindOfClass:[NSDictionary class]]) {
         self.responseCode = [[resultdict objectForKey:@"code"] intValue];
+        
+        if (self.responseCode != 200) {
+            return NO;
+        }
+        
         self.responseMsg = [resultdict objectForKey:@"msg"];
         self.oid = [resultdict objectForKey:@"oid"];
         self.money = [resultdict objectForKey:@"money"];

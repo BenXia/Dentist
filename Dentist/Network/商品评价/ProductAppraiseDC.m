@@ -44,12 +44,11 @@
                                                                    error:&error];
     if (!error || [resultDict isKindOfClass:[NSDictionary class]]) {
         NSNumber* code = [resultDict objectForKey:@"code"];
-        NSString* message = [resultDict objectForKey:@"msg"];
+        self.message = [resultDict objectForKey:@"msg"];
         if (code && code.intValue == 200) {
             self.appraiseSuccess = YES;
         }else{
             self.appraiseSuccess = NO;
-            NSLog(@"发布商品评论响应码:%d 消息:%@",code.intValue,message);
         }
         
         result = YES;
