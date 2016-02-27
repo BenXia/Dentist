@@ -48,6 +48,10 @@
     return @"商品详情";
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
+}
+
 - (void)didClickOnBackButton{
     [self dismissViewControllerAnimated:YES completion:nil];
 }

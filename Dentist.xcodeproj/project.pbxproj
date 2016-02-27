@@ -330,6 +330,7 @@
 		88965B271C814B98001FA633 /* 包邮@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88965B241C814B98001FA633 /* 包邮@3x.png */; };
 		88965B281C814B98001FA633 /* 赠@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88965B251C814B98001FA633 /* 赠@2x.png */; };
 		88965B2B1C8152BC001FA633 /* SearchProductModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88965B2A1C8152BC001FA633 /* SearchProductModel.m */; };
+		88965B301C81818A001FA633 /* ProductEvaluateDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88965B2E1C81818A001FA633 /* ProductEvaluateDC.m */; };
 		88C3BACD1C781F5B001F4D85 /* ProductDetailDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C3BACA1C781F5B001F4D85 /* ProductDetailDC.m */; };
 		88C3BACE1C781F5B001F4D85 /* ProductDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C3BACC1C781F5B001F4D85 /* ProductDetailModel.m */; };
 		88C3BAD21C78508C001F4D85 /* GroupProductView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C3BAD11C78508C001F4D85 /* GroupProductView.m */; };
@@ -477,7 +478,6 @@
 		B5DA4D181C7CB426003677DD /* CartListDC.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DA4D171C7CB426003677DD /* CartListDC.m */; };
 		B5DA4D1B1C7DD9C9003677DD /* CartProductUpdateNumberDC.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DA4D1A1C7DD9C9003677DD /* CartProductUpdateNumberDC.m */; };
 		B5DA4D1E1C7DDBBE003677DD /* CartProductDeleteDC.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DA4D1D1C7DDBBE003677DD /* CartProductDeleteDC.m */; };
-		B5DA4D211C7DDEDC003677DD /* ProductEvaluateDC.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DA4D201C7DDEDC003677DD /* ProductEvaluateDC.m */; };
 		B5DA4D291C8094C5003677DD /* OrderConfermDC.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DA4D281C8094C5003677DD /* OrderConfermDC.m */; };
 		B5F386061C45ED3A00E666F7 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F071C51C42D12900DAC58F /* CoreFoundation.framework */; };
 /* End PBXBuildFile section */
@@ -930,6 +930,8 @@
 		88965B251C814B98001FA633 /* 赠@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "赠@2x.png"; sourceTree = "<group>"; };
 		88965B291C8152BC001FA633 /* SearchProductModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchProductModel.h; sourceTree = "<group>"; };
 		88965B2A1C8152BC001FA633 /* SearchProductModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchProductModel.m; sourceTree = "<group>"; };
+		88965B2E1C81818A001FA633 /* ProductEvaluateDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductEvaluateDC.m; sourceTree = "<group>"; };
+		88965B2F1C81818A001FA633 /* ProductEvaluateDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductEvaluateDC.h; sourceTree = "<group>"; };
 		88C3BAC91C781F5B001F4D85 /* ProductDetailDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductDetailDC.h; sourceTree = "<group>"; };
 		88C3BACA1C781F5B001F4D85 /* ProductDetailDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductDetailDC.m; sourceTree = "<group>"; };
 		88C3BACB1C781F5B001F4D85 /* ProductDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductDetailModel.h; sourceTree = "<group>"; };
@@ -1146,8 +1148,6 @@
 		B5DA4D1A1C7DD9C9003677DD /* CartProductUpdateNumberDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartProductUpdateNumberDC.m; sourceTree = "<group>"; };
 		B5DA4D1C1C7DDBBE003677DD /* CartProductDeleteDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartProductDeleteDC.h; sourceTree = "<group>"; };
 		B5DA4D1D1C7DDBBE003677DD /* CartProductDeleteDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartProductDeleteDC.m; sourceTree = "<group>"; };
-		B5DA4D1F1C7DDEDC003677DD /* ProductEvaluateDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductEvaluateDC.h; sourceTree = "<group>"; };
-		B5DA4D201C7DDEDC003677DD /* ProductEvaluateDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductEvaluateDC.m; sourceTree = "<group>"; };
 		B5DA4D271C8094C5003677DD /* OrderConfermDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderConfermDC.h; sourceTree = "<group>"; };
 		B5DA4D281C8094C5003677DD /* OrderConfermDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderConfermDC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -2114,6 +2114,8 @@
 		88965B021C808E0F001FA633 /* 商品评价 */ = {
 			isa = PBXGroup;
 			children = (
+				88965B2E1C81818A001FA633 /* ProductEvaluateDC.m */,
+				88965B2F1C81818A001FA633 /* ProductEvaluateDC.h */,
 				88965B031C808E4F001FA633 /* ProductAppraiseDC.h */,
 				88965B041C808E4F001FA633 /* ProductAppraiseDC.m */,
 			);
@@ -2127,8 +2129,6 @@
 				88C3BACA1C781F5B001F4D85 /* ProductDetailDC.m */,
 				88C3BACB1C781F5B001F4D85 /* ProductDetailModel.h */,
 				88C3BACC1C781F5B001F4D85 /* ProductDetailModel.m */,
-				B5DA4D1F1C7DDEDC003677DD /* ProductEvaluateDC.h */,
-				B5DA4D201C7DDEDC003677DD /* ProductEvaluateDC.m */,
 			);
 			path = "商品详情";
 			sourceTree = "<group>";
@@ -3078,6 +3078,7 @@
 				33F0706E1C42A43200DAC58F /* ProfileVC.m in Sources */,
 				3309CFF31C7F55BD00986C30 /* PayTypeVC.m in Sources */,
 				33F070641C42A40F00DAC58F /* CategoryVC.m in Sources */,
+				88965B301C81818A001FA633 /* ProductEvaluateDC.m in Sources */,
 				33F070941C42B58E00DAC58F /* PPDataCache.m in Sources */,
 				B58339631C79AAAB00F9EBE2 /* ProductEvaluateVM.m in Sources */,
 				930C34AA1C7A0BEA008823F9 /* HZLocation.m in Sources */,
@@ -3112,7 +3113,6 @@
 				9393455C1C7B3CB30054E2EC /* DeleteAddressDC.m in Sources */,
 				9379D3AD1C63239100390702 /* MultilevelTableViewCell.m in Sources */,
 				88C3BAD21C78508C001F4D85 /* GroupProductView.m in Sources */,
-				B5DA4D211C7DDEDC003677DD /* ProductEvaluateDC.m in Sources */,
 				93DEA8691C4BA2D2008211F7 /* RegistDC.m in Sources */,
 				888811C41C7B5B5A00F6672C /* RemoveLookHistoryDC.m in Sources */,
 				33F0707A1C42AB8300DAC58F /* AppAppearance.m in Sources */,
