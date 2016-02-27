@@ -25,7 +25,7 @@
 #import "PPRepayDC.h"
 #import "PaySuccessVC.h"
 #import "PayFailedVC.h"
-#import "WeXinMD5Encrypt.h"
+#import "WeiXinMD5Encrypt.h"
 #import "AlipayManager.h"
 
 @interface OrderVC () <
@@ -139,6 +139,7 @@ PayFailedVCDelegate>
     
     self.repayDC.oid = orderId;
     self.payResultDC.oid = orderId;
+    self.createOrderDC.oid = orderId;
     self.orderDetailDC.oid = orderId;
 }
 
@@ -242,7 +243,7 @@ PayFailedVCDelegate>
     UInt32 timeStamp =[timeSp intValue];
     order.timeStamp = timeStamp;
     
-    WeXinMD5Encrypt *md5Generator = [[WeXinMD5Encrypt alloc] init];
+    WeiXinMD5Encrypt *md5Generator = [[WeiXinMD5Encrypt alloc] init];
     order.sign = [md5Generator createMD5SingForPay:config.appId
                                          partnerid:config.partnerId
                                           prepayid:order.prepayId
@@ -260,7 +261,9 @@ PayFailedVCDelegate>
     wechatpay.failedHandler         = ^ (NSError *error) {
         @strongify(self)
         
-        [self.payResultDC requestWithArgs:nil];
+        PayFailedVC *failedVC = [[PayFailedVC alloc] init];
+        failedVC.delegate = self;
+        [self.navigationController pushViewController:failedVC animated:YES];
     };
     [wechatpay pay];
 }
@@ -477,10 +480,6 @@ PayFailedVCDelegate>
 }
 
 - (void)didClickPayTypeButton {
-    if (self.orderId) {
-        return;
-    }
-    
     if ((self.payType == PayType_WeChat) && ![self.confirmOrderDC.payTypeArray containsObject:@"alipay"]) {
         [Utilities showToastWithText:@"暂时不支持其它支付方式" withImageName:nil blockUI:NO];
         return;
@@ -553,6 +552,9 @@ PayFailedVCDelegate>
             self.payType = PayType_WeChat;
         } else if ([self.confirmOrderDC.payTypeArray containsObject:@"alipay"]) {
             self.payType = PayType_AliPay;
+        } else {
+            [Utilities showToastWithText:@"数据有误，不支持任何配送方式" withImageName:nil blockUI:NO];
+            [self.navigationController popToRootViewControllerAnimated:YES];
         }
         
         [[GCDQueue mainQueue] queueBlock:^{
@@ -586,10 +588,20 @@ PayFailedVCDelegate>
         } else if (self.payType == PayType_AliPay) {
             // TODO-WT:支付宝支付
             
-            [self.payResultDC requestWithArgs:nil];
+            ComponentAlipay_Order *order = [[ComponentAlipay_Order alloc] init];
+            order.ID = self.createOrderDC.oid;
+            //            order.name = [self.createOrderDC.alipayDict objectForKey:@"name"];
+            //            order.desc = [self.createOrderDC.alipayDict objectForKey:@"desc"];
+            order.name = @"name";
+            order.desc = @"desc";
+            order.price = self.createOrderDC.money;
+            [[AlipayManager sharedAlipayManager] payWithAlipay:order completeBlock:^(NSDictionary *dic) {
+                [[GCDQueue mainQueue] queueBlock:^{
+                    [self alipayResult:dic];
+                }];
+            }];
         }
     } else if (controller == self.payResultDC) {
-        // TODO-Ben:接口联调
         if (self.payResultDC.responseCode == 200) {
             PaySuccessVC *successVC = [[PaySuccessVC alloc] init];
             
@@ -613,6 +625,8 @@ PayFailedVCDelegate>
             [self.navigationController pushViewController:failedVC animated:YES];
         }
     } else if (controller == self.orderDetailDC) {
+        [Utilities hideLoadingView];
+        
         OrderDetailModel *orderDetailModel = self.orderDetailDC.orderDetailModel;
         
         NSMutableArray *modelArray = [NSMutableArray array];
@@ -636,18 +650,28 @@ PayFailedVCDelegate>
         addressModel.detailAddress = orderDetailModel.orderReceiverAddress;
         self.addressModel = addressModel;
         
+        self.confirmOrderDC.kuaidiPrice = [orderDetailModel.orderProductListModel.productExpressPrice doubleValue];
         if ([orderDetailModel.pickUp intValue] == 0) {
             self.deliverType = DeliverType_KuaiDi;
-            self.deliverPrice = [orderDetailModel.orderProductListModel.productExpressPrice doubleValue];
+            self.deliverPrice = self.confirmOrderDC.kuaidiPrice;
         } else {
             self.deliverType = DeliverType_ZiTi;
             self.deliverPrice = 0;
         }
         
-        if (orderDetailModel.isWexinPay) {
+        self.confirmOrderDC.payTypeArray = orderDetailModel.payTypeArray;
+        
+        if ([orderDetailModel.currentPay isEqualToString:@"weixin"] && [orderDetailModel.payTypeArray containsObject:@"weixin"]) {
             self.payType = PayType_WeChat;
-        } else {
+        } else if ([orderDetailModel.currentPay isEqualToString:@"alipay"] && [orderDetailModel.payTypeArray containsObject:@"alipay"]) {
             self.payType = PayType_AliPay;
+        } else if ([orderDetailModel.payTypeArray containsObject:@"weixin"]) {
+            self.payType = PayType_WeChat;
+        } else if ([orderDetailModel.payTypeArray containsObject:@"alipay"]) {
+            self.payType = PayType_AliPay;
+        } else {
+            [Utilities showToastWithText:@"数据有误，不支持任何配送方式" withImageName:nil blockUI:NO];
+            [self.navigationController popToRootViewControllerAnimated:YES];
         }
         
         double goodsPriceToSet = 0;
@@ -662,8 +686,6 @@ PayFailedVCDelegate>
         self.feedbackText = orderDetailModel.feedbackText;
         
         [self.tableView reloadData];
-        
-        [Utilities showLoadingView];
         
         [self didClickPayNowButtonAction:nil];
     }
@@ -680,7 +702,7 @@ PayFailedVCDelegate>
     } else if (controller == self.payResultDC) {
         [Utilities showToastWithText:@"支付失败" withImageName:nil blockUI:NO];
     } else if (controller == self.orderDetailDC) {
-        [Utilities showLoadingView];
+        [Utilities hideLoadingView];
         
         [Utilities showToastWithText:@"获取订单信息失败" withImageName:nil blockUI:NO];
         [self.navigationController popViewControllerAnimated:YES];

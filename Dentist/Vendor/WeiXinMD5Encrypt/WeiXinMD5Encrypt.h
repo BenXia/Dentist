@@ -1,5 +1,5 @@
 //
-//  WeXinMD5Encrypt.h
+//  WeiXinMD5Encrypt.h
 //  Dentist
 //
 //  Created by Ben on 15/8/3.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface WeXinMD5Encrypt : NSObject
+@interface WeiXinMD5Encrypt : NSObject
 
 -(instancetype)initWithAppid:(NSString *)appid_key
                       mch_id:(NSString *)mch_id_key

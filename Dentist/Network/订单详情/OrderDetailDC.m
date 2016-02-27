@@ -58,12 +58,12 @@
         NSDate* createDate = [NSDate dateWithTimeIntervalSince1970:[createtime longLongValue]];
         self.orderDetailModel.orderProduceTime = [dateFormatter stringFromDate:createDate];
         
-        // TODO-Ben:
-        self.orderDetailModel.isWexinPay = YES;
-        self.orderDetailModel.piaoType = 0;
-        self.orderDetailModel.piaoTitle = @"";
-        self.orderDetailModel.piaoContent = @"";
-        self.orderDetailModel.feedbackText = @"";
+        self.orderDetailModel.currentPay = [orderDic objectForKey:@"paytype"];
+        self.orderDetailModel.payTypeArray = [orderDic objectForKey:@"pay"];
+        self.orderDetailModel.piaoType = [[orderDic objectForKey:@"piao_type"] intValue];
+        self.orderDetailModel.piaoTitle = [orderDic objectForKey:@"piao_title"];
+        self.orderDetailModel.piaoContent = [orderDic objectForKey:@"piao_content"];
+        self.orderDetailModel.feedbackText = [orderDic objectForKey:@"remark"];
         
         ProductListModel *model = [ProductListModel new];
         model.orderID = [orderDic objectForKey:@"oid"];
