@@ -331,6 +331,28 @@
 		88965B281C814B98001FA633 /* 赠@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88965B251C814B98001FA633 /* 赠@2x.png */; };
 		88965B2B1C8152BC001FA633 /* SearchProductModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88965B2A1C8152BC001FA633 /* SearchProductModel.m */; };
 		88965B301C81818A001FA633 /* ProductEvaluateDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88965B2E1C81818A001FA633 /* ProductEvaluateDC.m */; };
+		88965B3A1C818DF8001FA633 /* GuidanceVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88965B371C818DF8001FA633 /* GuidanceVC.xib */; };
+		88965B3B1C818DF8001FA633 /* GuidanceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88965B381C818DF8001FA633 /* GuidanceVC.m */; };
+		88965B511C819483001FA633 /* guide1_35_inch.png in Resources */ = {isa = PBXBuildFile; fileRef = 88965B3D1C819483001FA633 /* guide1_35_inch.png */; };
+		88965B521C819483001FA633 /* guide1_47_inch.png in Resources */ = {isa = PBXBuildFile; fileRef = 88965B3E1C819483001FA633 /* guide1_47_inch.png */; };
+		88965B531C819483001FA633 /* guide1_4_inch.png in Resources */ = {isa = PBXBuildFile; fileRef = 88965B3F1C819483001FA633 /* guide1_4_inch.png */; };
+		88965B541C819483001FA633 /* guide1_55_inch.png in Resources */ = {isa = PBXBuildFile; fileRef = 88965B401C819483001FA633 /* guide1_55_inch.png */; };
+		88965B551C819483001FA633 /* guide2_35_inch.png in Resources */ = {isa = PBXBuildFile; fileRef = 88965B411C819483001FA633 /* guide2_35_inch.png */; };
+		88965B561C819483001FA633 /* guide2_47_inch.png in Resources */ = {isa = PBXBuildFile; fileRef = 88965B421C819483001FA633 /* guide2_47_inch.png */; };
+		88965B571C819483001FA633 /* guide2_4_inch.png in Resources */ = {isa = PBXBuildFile; fileRef = 88965B431C819483001FA633 /* guide2_4_inch.png */; };
+		88965B581C819483001FA633 /* guide2_55_inch.png in Resources */ = {isa = PBXBuildFile; fileRef = 88965B441C819483001FA633 /* guide2_55_inch.png */; };
+		88965B591C819483001FA633 /* guide3_35_inch.png in Resources */ = {isa = PBXBuildFile; fileRef = 88965B451C819483001FA633 /* guide3_35_inch.png */; };
+		88965B5A1C819483001FA633 /* guide3_47_inch.png in Resources */ = {isa = PBXBuildFile; fileRef = 88965B461C819483001FA633 /* guide3_47_inch.png */; };
+		88965B5B1C819483001FA633 /* guide3_4_inch.png in Resources */ = {isa = PBXBuildFile; fileRef = 88965B471C819483001FA633 /* guide3_4_inch.png */; };
+		88965B5C1C819483001FA633 /* guide3_55_inch.png in Resources */ = {isa = PBXBuildFile; fileRef = 88965B481C819483001FA633 /* guide3_55_inch.png */; };
+		88965B5D1C819483001FA633 /* guide4_35_inch.png in Resources */ = {isa = PBXBuildFile; fileRef = 88965B491C819483001FA633 /* guide4_35_inch.png */; };
+		88965B5E1C819483001FA633 /* guide4_47_inch.png in Resources */ = {isa = PBXBuildFile; fileRef = 88965B4A1C819483001FA633 /* guide4_47_inch.png */; };
+		88965B5F1C819483001FA633 /* guide4_4_inch.png in Resources */ = {isa = PBXBuildFile; fileRef = 88965B4B1C819483001FA633 /* guide4_4_inch.png */; };
+		88965B601C819483001FA633 /* guide4_55_inch.png in Resources */ = {isa = PBXBuildFile; fileRef = 88965B4C1C819483001FA633 /* guide4_55_inch.png */; };
+		88965B611C819483001FA633 /* guide5_35_inch.png in Resources */ = {isa = PBXBuildFile; fileRef = 88965B4D1C819483001FA633 /* guide5_35_inch.png */; };
+		88965B621C819483001FA633 /* guide5_47_inch.png in Resources */ = {isa = PBXBuildFile; fileRef = 88965B4E1C819483001FA633 /* guide5_47_inch.png */; };
+		88965B631C819483001FA633 /* guide5_4_inch.png in Resources */ = {isa = PBXBuildFile; fileRef = 88965B4F1C819483001FA633 /* guide5_4_inch.png */; };
+		88965B641C819483001FA633 /* guide5_55_inch.png in Resources */ = {isa = PBXBuildFile; fileRef = 88965B501C819483001FA633 /* guide5_55_inch.png */; };
 		88C3BACD1C781F5B001F4D85 /* ProductDetailDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C3BACA1C781F5B001F4D85 /* ProductDetailDC.m */; };
 		88C3BACE1C781F5B001F4D85 /* ProductDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C3BACC1C781F5B001F4D85 /* ProductDetailModel.m */; };
 		88C3BAD21C78508C001F4D85 /* GroupProductView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C3BAD11C78508C001F4D85 /* GroupProductView.m */; };
@@ -932,6 +954,29 @@
 		88965B2A1C8152BC001FA633 /* SearchProductModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchProductModel.m; sourceTree = "<group>"; };
 		88965B2E1C81818A001FA633 /* ProductEvaluateDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductEvaluateDC.m; sourceTree = "<group>"; };
 		88965B2F1C81818A001FA633 /* ProductEvaluateDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductEvaluateDC.h; sourceTree = "<group>"; };
+		88965B371C818DF8001FA633 /* GuidanceVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuidanceVC.xib; sourceTree = "<group>"; };
+		88965B381C818DF8001FA633 /* GuidanceVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuidanceVC.m; sourceTree = "<group>"; };
+		88965B391C818DF8001FA633 /* GuidanceVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuidanceVC.h; sourceTree = "<group>"; };
+		88965B3D1C819483001FA633 /* guide1_35_inch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guide1_35_inch.png; sourceTree = "<group>"; };
+		88965B3E1C819483001FA633 /* guide1_47_inch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guide1_47_inch.png; sourceTree = "<group>"; };
+		88965B3F1C819483001FA633 /* guide1_4_inch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guide1_4_inch.png; sourceTree = "<group>"; };
+		88965B401C819483001FA633 /* guide1_55_inch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guide1_55_inch.png; sourceTree = "<group>"; };
+		88965B411C819483001FA633 /* guide2_35_inch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guide2_35_inch.png; sourceTree = "<group>"; };
+		88965B421C819483001FA633 /* guide2_47_inch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guide2_47_inch.png; sourceTree = "<group>"; };
+		88965B431C819483001FA633 /* guide2_4_inch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guide2_4_inch.png; sourceTree = "<group>"; };
+		88965B441C819483001FA633 /* guide2_55_inch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guide2_55_inch.png; sourceTree = "<group>"; };
+		88965B451C819483001FA633 /* guide3_35_inch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guide3_35_inch.png; sourceTree = "<group>"; };
+		88965B461C819483001FA633 /* guide3_47_inch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guide3_47_inch.png; sourceTree = "<group>"; };
+		88965B471C819483001FA633 /* guide3_4_inch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guide3_4_inch.png; sourceTree = "<group>"; };
+		88965B481C819483001FA633 /* guide3_55_inch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guide3_55_inch.png; sourceTree = "<group>"; };
+		88965B491C819483001FA633 /* guide4_35_inch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guide4_35_inch.png; sourceTree = "<group>"; };
+		88965B4A1C819483001FA633 /* guide4_47_inch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guide4_47_inch.png; sourceTree = "<group>"; };
+		88965B4B1C819483001FA633 /* guide4_4_inch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guide4_4_inch.png; sourceTree = "<group>"; };
+		88965B4C1C819483001FA633 /* guide4_55_inch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guide4_55_inch.png; sourceTree = "<group>"; };
+		88965B4D1C819483001FA633 /* guide5_35_inch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guide5_35_inch.png; sourceTree = "<group>"; };
+		88965B4E1C819483001FA633 /* guide5_47_inch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guide5_47_inch.png; sourceTree = "<group>"; };
+		88965B4F1C819483001FA633 /* guide5_4_inch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guide5_4_inch.png; sourceTree = "<group>"; };
+		88965B501C819483001FA633 /* guide5_55_inch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guide5_55_inch.png; sourceTree = "<group>"; };
 		88C3BAC91C781F5B001F4D85 /* ProductDetailDC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductDetailDC.h; sourceTree = "<group>"; };
 		88C3BACA1C781F5B001F4D85 /* ProductDetailDC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductDetailDC.m; sourceTree = "<group>"; };
 		88C3BACB1C781F5B001F4D85 /* ProductDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductDetailModel.h; sourceTree = "<group>"; };
@@ -1920,6 +1965,9 @@
 		33F070401C42964A00DAC58F /* 启动页 */ = {
 			isa = PBXGroup;
 			children = (
+				88965B371C818DF8001FA633 /* GuidanceVC.xib */,
+				88965B381C818DF8001FA633 /* GuidanceVC.m */,
+				88965B391C818DF8001FA633 /* GuidanceVC.h */,
 				33F070431C429A2700DAC58F /* LaunchViewController.h */,
 				33F070441C429A2700DAC58F /* LaunchViewController.m */,
 				33F070451C429A2700DAC58F /* LaunchViewController.xib */,
@@ -1974,6 +2022,7 @@
 		33F070851C42B46E00DAC58F /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				88965B3C1C819483001FA633 /* 引导图 */,
 				939E58651C8085FD00E24080 /* 断网默认图 */,
 				88816DD41C7F5BBA00314B43 /* 分类 */,
 				93EBD6831C7F2D14005FA9A1 /* 分享 */,
@@ -2121,6 +2170,33 @@
 				88965B041C808E4F001FA633 /* ProductAppraiseDC.m */,
 			);
 			path = "商品评价";
+			sourceTree = "<group>";
+		};
+		88965B3C1C819483001FA633 /* 引导图 */ = {
+			isa = PBXGroup;
+			children = (
+				88965B3D1C819483001FA633 /* guide1_35_inch.png */,
+				88965B3E1C819483001FA633 /* guide1_47_inch.png */,
+				88965B3F1C819483001FA633 /* guide1_4_inch.png */,
+				88965B401C819483001FA633 /* guide1_55_inch.png */,
+				88965B411C819483001FA633 /* guide2_35_inch.png */,
+				88965B421C819483001FA633 /* guide2_47_inch.png */,
+				88965B431C819483001FA633 /* guide2_4_inch.png */,
+				88965B441C819483001FA633 /* guide2_55_inch.png */,
+				88965B451C819483001FA633 /* guide3_35_inch.png */,
+				88965B461C819483001FA633 /* guide3_47_inch.png */,
+				88965B471C819483001FA633 /* guide3_4_inch.png */,
+				88965B481C819483001FA633 /* guide3_55_inch.png */,
+				88965B491C819483001FA633 /* guide4_35_inch.png */,
+				88965B4A1C819483001FA633 /* guide4_47_inch.png */,
+				88965B4B1C819483001FA633 /* guide4_4_inch.png */,
+				88965B4C1C819483001FA633 /* guide4_55_inch.png */,
+				88965B4D1C819483001FA633 /* guide5_35_inch.png */,
+				88965B4E1C819483001FA633 /* guide5_47_inch.png */,
+				88965B4F1C819483001FA633 /* guide5_4_inch.png */,
+				88965B501C819483001FA633 /* guide5_55_inch.png */,
+			);
+			path = "引导图";
 			sourceTree = "<group>";
 		};
 		88C3BAC81C781F5B001F4D85 /* 商品详情 */ = {
@@ -2658,6 +2734,7 @@
 				930C34471C795CEB008823F9 /* SetNickVC.xib in Resources */,
 				93624C221C44170100262B65 /* btn_custommade_default.png in Resources */,
 				3360B3E61C7C91B700C60AC0 /* 支付方式-支付宝@2x.png in Resources */,
+				88965B5A1C819483001FA633 /* guide3_47_inch.png in Resources */,
 				33440D0B1C783B7D00A441E3 /* topnav_icon08@3x.png in Resources */,
 				939E588C1C80861100E24080 /* 收藏的商品.png in Resources */,
 				93624C1F1C44170100262B65 /* app_logo.png in Resources */,
@@ -2672,6 +2749,7 @@
 				3360B3EF1C7C963F00C60AC0 /* FeedbackCell.xib in Resources */,
 				3360B4001C7CA41200C60AC0 /* btn_photoplus_default@3x.png in Resources */,
 				888811CE1C7B65A600F6672C /* goods_tag_Present@2x.png in Resources */,
+				88965B581C819483001FA633 /* guide2_55_inch.png in Resources */,
 				33D187451C70CE3800658F3D /* 立即购买@3x.png in Resources */,
 				939E588E1C80861100E24080 /* 收藏的商品@3x.png in Resources */,
 				93EBD68C1C7F2D14005FA9A1 /* icon_pengyouquan@2x.png in Resources */,
@@ -2716,10 +2794,13 @@
 				33CAF8A81C781B380015B4BC /* LoginVC.xib in Resources */,
 				33DD6CE31C611A5500CE6B31 /* pic_logo2x.png in Resources */,
 				33DD6CED1C611A5500CE6B31 /* 删除@3x.png in Resources */,
+				88965B561C819483001FA633 /* guide2_47_inch.png in Resources */,
 				3309CFEA1C7F484600986C30 /* ic_pay_weixin@3x.png in Resources */,
 				939E589A1C80875600E24080 /* 首页右上角信息栏@2x.png in Resources */,
 				88367A981C7CA6AB00658214 /* LookHistoryVC.xib in Resources */,
+				88965B5D1C819483001FA633 /* guide4_35_inch.png in Resources */,
 				33DD6CCF1C611A5500CE6B31 /* ico_certification.png in Resources */,
+				88965B551C819483001FA633 /* guide2_35_inch.png in Resources */,
 				3360B4021C7CA41200C60AC0 /* btn_photoplus_pressed@3x.png in Resources */,
 				33CAE4511C7373AE0038748F /* OrderBottomInfoCell.xib in Resources */,
 				33DD6CB41C611A5500CE6B31 /* car.png in Resources */,
@@ -2731,12 +2812,14 @@
 				932839CA1C637EFF004C21CD /* 已完成@2x.png in Resources */,
 				33DD6CD11C611A5500CE6B31 /* ico_failed.png in Resources */,
 				93A1F5DD1C6281D900CFEEC4 /* TodayIntroduceCell.xib in Resources */,
+				88965B511C819483001FA633 /* guide1_35_inch.png in Resources */,
 				33DD6C9D1C611A5500CE6B31 /* Btn_Collection_pressed@2X.png in Resources */,
 				33DD6CDA1C611A5500CE6B31 /* img_avatar.png in Resources */,
 				33DD6CF21C611A5500CE6B31 /* 定制套装@2x.png in Resources */,
 				888E70F31C7F2D7100A12377 /* 快递@3x.png in Resources */,
 				888E70F51C7F2D7100A12377 /* 自提@3x.png in Resources */,
 				33CAF8971C7810D20015B4BC /* web_left_highlighted@2x.png in Resources */,
+				88965B541C819483001FA633 /* guide1_55_inch.png in Resources */,
 				3309CFDB1C7F483100986C30 /* goods_tag_Present@3x.png in Resources */,
 				939E58891C80861100E24080 /* 设置.png in Resources */,
 				9379D3AE1C63239100390702 /* MultilevelTableViewCell.xib in Resources */,
@@ -2744,6 +2827,7 @@
 				33CAF1021C72098200348763 /* OrderVC.xib in Resources */,
 				88965B171C814B3A001FA633 /* 包邮2@2x.png in Resources */,
 				33DD6D241C611A5500CE6B31 /* 首页-消息提示@2x.png in Resources */,
+				88965B5B1C819483001FA633 /* guide3_4_inch.png in Resources */,
 				3309CFDD1C7F483100986C30 /* goods_tagL_Present@3x.png in Resources */,
 				33DD6CEA1C611A5500CE6B31 /* 临床@2x.png in Resources */,
 				33440D051C783B0700A441E3 /* common_topnav_icon01@3x.png in Resources */,
@@ -2751,6 +2835,7 @@
 				33DD6CF01C611A5500CE6B31 /* 培训课程@2x.png in Resources */,
 				9379D3AC1C63239100390702 /* MultilevelCollectionViewCell.xib in Resources */,
 				33CAE4421C7373200038748F /* OrderItemHeaderCell.xib in Resources */,
+				88965B531C819483001FA633 /* guide1_4_inch.png in Resources */,
 				33DD6CD81C611A5500CE6B31 /* Ico_PopPublished.png in Resources */,
 				3309CFD81C7F483100986C30 /* Btn_Go_default@3x.png in Resources */,
 				93EBD68A1C7F2D14005FA9A1 /* ic_share05@2x.png in Resources */,
@@ -2774,6 +2859,7 @@
 				33DD6D091C611A5500CE6B31 /* 技工@3x.png in Resources */,
 				93624C211C44170100262B65 /* btn_clinical_pressed.png in Resources */,
 				33440D1F1C783C1B00A441E3 /* ELCAssetTablePicker.xib in Resources */,
+				88965B5E1C819483001FA633 /* guide4_47_inch.png in Resources */,
 				3360B3E71C7C91B700C60AC0 /* 支付方式-支付宝@3x.png in Resources */,
 				33F070651C42A40F00DAC58F /* CategoryVC.xib in Resources */,
 				33D028781C74BD2900277C3C /* FeedbackVC.xib in Resources */,
@@ -2807,6 +2893,7 @@
 				939E58941C80874600E24080 /* 头像@2x.png in Resources */,
 				33DD6BF81C6119A600CE6B31 /* btn_classification_f@2x.png in Resources */,
 				9379D3AA1C63239100390702 /* CollectionHeader.xib in Resources */,
+				88965B641C819483001FA633 /* guide5_55_inch.png in Resources */,
 				88C3BAD51C787068001F4D85 /* goodsdetails_ico_TopDrug@2x.png in Resources */,
 				88367AA61C7CB11900658214 /* SubCategoryVC.xib in Resources */,
 				33440D201C783C1B00A441E3 /* selected_photo_overlay@2x.png in Resources */,
@@ -2820,12 +2907,16 @@
 				3309CFE71C7F484600986C30 /* 确认订单-购买资质-已认证@2x.png in Resources */,
 				3360B4031C7CA41200C60AC0 /* like_f@3x.png in Resources */,
 				33DD6CCD1C611A5500CE6B31 /* ico_browserecord.png in Resources */,
+				88965B571C819483001FA633 /* guide2_4_inch.png in Resources */,
+				88965B611C819483001FA633 /* guide5_35_inch.png in Resources */,
+				88965B631C819483001FA633 /* guide5_4_inch.png in Resources */,
 				93624C261C44170100262B65 /* btn_lesson_default.png in Resources */,
 				888E70FB1C7F320D00A12377 /* SearchProductVC.xib in Resources */,
 				33DD6BF71C6119A600CE6B31 /* btn_cart_t@2x.png in Resources */,
 				93A1F5DF1C6281D900CFEEC4 /* TuanGouCell.xib in Resources */,
 				33DD6D251C611A5500CE6B31 /* 首页-消息提示@3x.png in Resources */,
 				33D028801C74C4BE00277C3C /* icon_close@3x.png in Resources */,
+				88965B521C819483001FA633 /* guide1_47_inch.png in Resources */,
 				3332F9C51C785225006B8864 /* icon_failed@3x.png in Resources */,
 				88965B221C814B90001FA633 /* 赠@3x.png in Resources */,
 				3332F9C41C785225006B8864 /* icon_failed@2x.png in Resources */,
@@ -2845,6 +2936,7 @@
 				33DD6C9A1C611A5500CE6B31 /* Btn_Buying_pressed@2X.png in Resources */,
 				33DD6CD51C611A5500CE6B31 /* ico_ordercommenting.png in Resources */,
 				B58339671C79BB3400F9EBE2 /* like_f@2x.png in Resources */,
+				88965B591C819483001FA633 /* guide3_35_inch.png in Resources */,
 				33F0706A1C42A42100DAC58F /* CartVC.xib in Resources */,
 				3360B4041C7CA41200C60AC0 /* like_t@2x.png in Resources */,
 				33DD6CA51C611A5500CE6B31 /* btn_numberplus90_default.png in Resources */,
@@ -2864,8 +2956,10 @@
 				33DD6BEA1C61195600CE6B31 /* btn_choice_t@3x.png in Resources */,
 				33DD6CDF1C611A5500CE6B31 /* msg_null.png in Resources */,
 				3309CFDE1C7F483100986C30 /* goodsdetails_ico_TopDrug@3x.png in Resources */,
+				88965B601C819483001FA633 /* guide4_55_inch.png in Resources */,
 				33DD6CAD1C611A5500CE6B31 /* Btn_Search_default@2X.png in Resources */,
 				33DD6CC71C611A5500CE6B31 /* home_Bg_time@2x.png in Resources */,
+				88965B5F1C819483001FA633 /* guide4_4_inch.png in Resources */,
 				33DD6BEC1C61195600CE6B31 /* ic_top_search@3x.png in Resources */,
 				939E586B1C8085FD00E24080 /* 网络不给力-03.jpg in Resources */,
 				33DD6D1C1C611A5500CE6B31 /* 评价晒单-星-未点击@2x.png in Resources */,
@@ -2906,6 +3000,7 @@
 				33DD6D231C611A5500CE6B31 /* 赠@3x.png in Resources */,
 				33DD6D171C611A5500CE6B31 /* 积@3x.png in Resources */,
 				33440D061C783B0700A441E3 /* common_topnav_icon02@2x.png in Resources */,
+				88965B621C819483001FA633 /* guide5_47_inch.png in Resources */,
 				3360B3E51C7C91B700C60AC0 /* 支付方式-微信支付@3x.png in Resources */,
 				93EBD68D1C7F2D14005FA9A1 /* icon_pengyouquan@3x.png in Resources */,
 				33DD6BFA1C6119A600CE6B31 /* btn_homepage_f@2x.png in Resources */,
@@ -2935,7 +3030,9 @@
 				3360B4051C7CA41200C60AC0 /* like_t@3x.png in Resources */,
 				33DD6BF61C6119A600CE6B31 /* btn_cart_f@2x.png in Resources */,
 				33DD6B501C60EDCC00CE6B31 /* AgreementVC.xib in Resources */,
+				88965B5C1C819483001FA633 /* guide3_55_inch.png in Resources */,
 				33440D211C783C1B00A441E3 /* selected_photo_overlay@3x.png in Resources */,
+				88965B3A1C818DF8001FA633 /* GuidanceVC.xib in Resources */,
 				939E588A1C80861100E24080 /* 设置@2x.png in Resources */,
 				33DD6D081C611A5500CE6B31 /* 技工@2x.png in Resources */,
 				33DD6CB31C611A5500CE6B31 /* buy.png in Resources */,
@@ -3151,6 +3248,7 @@
 				88965B2B1C8152BC001FA633 /* SearchProductModel.m in Sources */,
 				33F070461C429A2700DAC58F /* LaunchViewController.m in Sources */,
 				33DD6BB61C6103CA00CE6B31 /* IQSegmentedNextPrevious.m in Sources */,
+				88965B3B1C818DF8001FA633 /* GuidanceVC.m in Sources */,
 				939345631C7B43AD0054E2EC /* ProductCategoryModel.m in Sources */,
 				B597107D1C788D1E006BC9FE /* OrderListTableViewCell.m in Sources */,
 				93A1F5DC1C6281D900CFEEC4 /* TodayIntroduceCell.m in Sources */,

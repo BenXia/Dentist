@@ -14,6 +14,7 @@
 #import "CartVC.h"
 #import "ProfileVC.h"
 #import "LoginVC.h"
+#import "GuidanceVC.h"
 
 typedef enum {
     emLoginView,
@@ -133,6 +134,11 @@ static MainViewManager* sInstance = nil;
 
 - (void)loadRegistVC {
     
+}
+
+- (void)loadGuidanceVCWithCompleteBlock:(Block)block{
+    GuidanceVC* guidanceVC = [[GuidanceVC alloc] initWithCompleteBlock:block];
+    [[AppDelegate sharedAppDelegate] replaceRootControllerBy:guidanceVC];
 }
 
 #pragma mark - Prepare view branching
