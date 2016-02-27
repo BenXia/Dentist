@@ -192,6 +192,9 @@ UIScrollViewDelegate>
         self.edgesForExtendedLayout = UIRectEdgeNone;
     }
     
+    self.baseTitleLabel.numberOfLines = 0;
+    self.baseSubtitleLabel.numberOfLines = 0;
+    self.giftContentLabel.numberOfLines = 0;
     [self initNavBar];
     [self initMainScrollView];
     [self initHeaderImageView];

@@ -252,8 +252,6 @@
 		33DD6D1D1C611A5500CE6B31 /* 评价晒单-星-未点击@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33DD6C8E1C611A5500CE6B31 /* 评价晒单-星-未点击@3x.png */; };
 		33DD6D1E1C611A5500CE6B31 /* 评价晒单-相机@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33DD6C8F1C611A5500CE6B31 /* 评价晒单-相机@2x.png */; };
 		33DD6D1F1C611A5500CE6B31 /* 评价晒单-相机@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33DD6C901C611A5500CE6B31 /* 评价晒单-相机@3x.png */; };
-		33DD6D221C611A5500CE6B31 /* 赠@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33DD6C931C611A5500CE6B31 /* 赠@2x.png */; };
-		33DD6D231C611A5500CE6B31 /* 赠@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33DD6C941C611A5500CE6B31 /* 赠@3x.png */; };
 		33DD6D241C611A5500CE6B31 /* 首页-消息提示@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33DD6C951C611A5500CE6B31 /* 首页-消息提示@2x.png */; };
 		33DD6D251C611A5500CE6B31 /* 首页-消息提示@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33DD6C961C611A5500CE6B31 /* 首页-消息提示@3x.png */; };
 		33F06F901C4244E100DAC58F /* libStudioCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33C988991C42418B00262141 /* libStudioCommon.a */; };
@@ -829,8 +827,6 @@
 		33DD6C8E1C611A5500CE6B31 /* 评价晒单-星-未点击@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "评价晒单-星-未点击@3x.png"; sourceTree = "<group>"; };
 		33DD6C8F1C611A5500CE6B31 /* 评价晒单-相机@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "评价晒单-相机@2x.png"; sourceTree = "<group>"; };
 		33DD6C901C611A5500CE6B31 /* 评价晒单-相机@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "评价晒单-相机@3x.png"; sourceTree = "<group>"; };
-		33DD6C931C611A5500CE6B31 /* 赠@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "赠@2x.png"; sourceTree = "<group>"; };
-		33DD6C941C611A5500CE6B31 /* 赠@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "赠@3x.png"; sourceTree = "<group>"; };
 		33DD6C951C611A5500CE6B31 /* 首页-消息提示@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "首页-消息提示@2x.png"; sourceTree = "<group>"; };
 		33DD6C961C611A5500CE6B31 /* 首页-消息提示@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "首页-消息提示@3x.png"; sourceTree = "<group>"; };
 		33F06F931C42477300DAC58F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -1798,8 +1794,6 @@
 				33DD6C8E1C611A5500CE6B31 /* 评价晒单-星-未点击@3x.png */,
 				33DD6C8F1C611A5500CE6B31 /* 评价晒单-相机@2x.png */,
 				33DD6C901C611A5500CE6B31 /* 评价晒单-相机@3x.png */,
-				33DD6C931C611A5500CE6B31 /* 赠@2x.png */,
-				33DD6C941C611A5500CE6B31 /* 赠@3x.png */,
 				33DD6C951C611A5500CE6B31 /* 首页-消息提示@2x.png */,
 				33DD6C961C611A5500CE6B31 /* 首页-消息提示@3x.png */,
 			);
@@ -2978,7 +2972,6 @@
 				3309CFDA1C7F483100986C30 /* btn_Go_pressed@3x.png in Resources */,
 				33CAF89D1C7810D20015B4BC /* web_right@2x.png in Resources */,
 				33F06FBF1C424D2600DAC58F /* StudioCommonBundle.bundle in Resources */,
-				33DD6D221C611A5500CE6B31 /* 赠@2x.png in Resources */,
 				33DD6BBC1C6103CA00CE6B31 /* IQKeyboardManager.bundle in Resources */,
 				33440D191C783C1B00A441E3 /* photoViewer_error_placeholder@2x.png in Resources */,
 				88965B1D1C814B3A001FA633 /* 箭头@2x.png in Resources */,
@@ -3000,7 +2993,6 @@
 				33DD6B3A1C60ED2800CE6B31 /* ProductBriefInfoCell.xib in Resources */,
 				33DD6CBE1C611A5500CE6B31 /* dot_focus.png in Resources */,
 				33DD6CC61C611A5500CE6B31 /* home_bg_discount.png in Resources */,
-				33DD6D231C611A5500CE6B31 /* 赠@3x.png in Resources */,
 				33DD6D171C611A5500CE6B31 /* 积@3x.png in Resources */,
 				33440D061C783B0700A441E3 /* common_topnav_icon02@2x.png in Resources */,
 				88965B621C819483001FA633 /* guide5_47_inch.png in Resources */,
