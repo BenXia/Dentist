@@ -523,15 +523,31 @@ PayFailedVCDelegate>
             [self.tableView reloadData];
         }];
     } else if (controller == self.createOrderDC) {
-        // TODO-Ben:调用支付
         self.payResultDC.oid = self.createOrderDC.oid ? self.createOrderDC.oid : @"";
+        
+        if (self.payType == PayType_WeChat) {
+            // TODO-Ben:微信支付
+            
+            [self.payResultDC requestWithArgs:nil];
+        } else if (self.payType == PayType_AliPay) {
+            // TODO-WT:支付宝支付
+            
+            [self.payResultDC requestWithArgs:nil];
+        }
         
         [self.payResultDC requestWithArgs:nil];
     } else if (controller == self.repayDC) {
-        // TODO-Ben:调用支付
         self.payResultDC.oid = self.repayDC.orderNumberId ? self.repayDC.orderNumberId : @"";
         
-        [self.payResultDC requestWithArgs:nil];
+        if (self.payType == PayType_WeChat) {
+            // TODO-Ben:微信支付
+            
+            [self.payResultDC requestWithArgs:nil];
+        } else if (self.payType == PayType_AliPay) {
+            // TODO-WT:支付宝支付
+            
+            [self.payResultDC requestWithArgs:nil];
+        }
     } else if (controller == self.payResultDC) {
         if (self.payResultDC.responseCode == 200) {
             PaySuccessVC *successVC = [[PaySuccessVC alloc] init];
