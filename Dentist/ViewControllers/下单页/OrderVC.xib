@@ -9,7 +9,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OrderVC">
             <connections>
                 <outlet property="bottomContentView" destination="W2n-V5-R8h" id="2RB-E3-mtZ"/>
+                <outlet property="noDeliverFeeLabel" destination="eO9-6K-O4g" id="bg1-KC-8a4"/>
                 <outlet property="tableView" destination="PmZ-ka-35H" id="Qkb-eF-z8s"/>
+                <outlet property="totalPriceLabel" destination="dzf-bF-C2u" id="14s-Za-eGn"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -30,7 +32,7 @@
                     <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="合计:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6oD-6T-dae">
-                            <rect key="frame" x="63" y="6" width="30" height="16"/>
+                            <rect key="frame" x="76.5" y="6" width="30" height="16"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="16" id="ec9-wd-tGt"/>
                             </constraints>
@@ -38,8 +40,8 @@
                             <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥ 120.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dzf-bF-C2u">
-                            <rect key="frame" x="94" y="6" width="53" height="16"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥ 0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dzf-bF-C2u">
+                            <rect key="frame" x="107" y="6" width="39.5" height="16"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="16" id="gDK-W9-6fl"/>
                             </constraints>
@@ -47,7 +49,7 @@
                             <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="不含运费" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eO9-6K-O4g">
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="不含运费" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eO9-6K-O4g">
                             <rect key="frame" x="99" y="22" width="48" height="16"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="16" id="Rfj-bN-xo9"/>

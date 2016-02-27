@@ -12,10 +12,10 @@
 @implementation ProductEvaluateDC
 
 - (NSDictionary *)requestURLArgs {
-    if (self.nextId.intValue > 0) {
-        return @{@"method":@"item.score",@"v":@"0.0.1",@"iid":self.productId,@"next_iid":self.nextId};
+    if (self.nextId != nil) {
+        return @{@"method":@"item.score",@"v":@"0.0.1",@"iid":self.productId,@"next_iid":[NSNumber numberWithInt:self.nextId.intValue]};
     } else {
-        return @{@"method":@"item.score",@"v":@"0.0.1",@"iid":[NSNumber numberWithInteger:self.productId.integerValue]};
+        return @{@"method":@"item.score",@"v":@"0.0.1",@"iid":self.productId};
     }
 }
 

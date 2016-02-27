@@ -48,6 +48,10 @@
     if (!error || [resultdict isKindOfClass:[NSDictionary class]]) {
         self.responseCode = [[resultdict objectForKey:@"code"] intValue];
         
+        if (self.responseCode != 200) {
+            return NO;
+        }
+        
         NSDictionary *addressDict = [resultdict objectForKey:@"address"];
         if ([addressDict isKindOfClass:[NSArray class]]) {
             addressDict = [((NSArray *)addressDict) firstObject];

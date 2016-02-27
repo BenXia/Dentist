@@ -20,6 +20,8 @@
 
 - (void)loadLoginVC;
 
+- (void)loadGuidanceVCWithCompleteBlock:(Block)block;
+
 #pragma mark - 工具方法
 
 + (UINavigationController *)rootNavigationController;

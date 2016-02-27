@@ -25,6 +25,8 @@
 - (instancetype)initWithProductId:(NSString *)productId {
     if (self = [super init]) {
         self.productEvaluateVM.productId = productId;
+        self.productEvaluateVM.productEvaluateDC = [[ProductEvaluateDC alloc] initWithDelegate:self];
+        self.productEvaluateVM.productEvaluateDC.productId = self.productEvaluateVM.productId;
     }
     return self;
 }
@@ -32,6 +34,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initUI];
+    [self initRefreshView];
     [self initData];
 }
 
@@ -47,9 +50,20 @@
 }
 
 - (void)initData {
-    self.productEvaluateVM.productEvaluateDC = [[ProductEvaluateDC alloc] initWithDelegate:self];
-    self.productEvaluateVM.productEvaluateDC.productId = self.productEvaluateVM.productId;
     [self.productEvaluateVM.productEvaluateDC requestWithArgs:nil];
+}
+
+-(void)initRefreshView{
+    // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
+    [self.tableView addFooterWithTarget:self action:@selector(footerRereshing)];
+    
+    self.tableView.footerPullToRefreshText = @"上拉可以加载更多数据了";
+    self.tableView.footerReleaseToRefreshText = @"松开马上加载更多数据了";
+    self.tableView.footerRefreshingText = @"正在加载中";
+}
+
+-(void)footerRereshing{
+    [self initData];
 }
 
 - (BOOL)prefersStatusBarHidden {
@@ -104,12 +118,13 @@
 
 //数据请求成功回调
 - (void)loadingDataFinished:(PPDataController *)controller{
+    [self.tableView footerEndRefreshing];
     [self.tableView reloadData];
 }
 
 //数据请求失败回调
 - (void)loadingData:(PPDataController *)controller failedWithError:(NSError *)error{
-    
+    [self.tableView footerEndRefreshing];
     [Utilities showToastWithText:@"商品获取失败"];
 }
 
