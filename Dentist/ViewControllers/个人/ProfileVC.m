@@ -187,7 +187,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 1) {
         [Utilities makePhoneCall:@"4000014980"];
-    } else {
+    } else if (indexPath.section == 0 && indexPath.row == 0){
         AllOrderListVC * allOrderListVC = [[AllOrderListVC alloc] initWithOrderStatusType:OrderStatusType_All];
         allOrderListVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:allOrderListVC animated:YES];
