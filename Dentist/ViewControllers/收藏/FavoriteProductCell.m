@@ -48,6 +48,9 @@
         [self.productImageView sd_setImageWithURL:[NSURL URLWithString:favoriteModel.img_url]];
         self.productTitleLabel.text = favoriteModel.title;
         [self.priceLabel themeWithPrice:favoriteModel.price.doubleValue bigFont:14 smallFont:12];
+        
+        hasGift = favoriteModel.hasGift;
+        hasFreeSend = favoriteModel.hasFreeSend;
       
     }else if([model isKindOfClass:[SearchProductModel class]]){
         SearchProductModel* searchModel = model;
@@ -55,7 +58,8 @@
         self.productTitleLabel.text = searchModel.title;
         [self.priceLabel themeWithPrice:searchModel.price.doubleValue bigFont:14 smallFont:12];
         
-        hasGift = searchModel.gifts.intValue != 0;
+        hasGift = searchModel.hasGift;
+        hasFreeSend = searchModel.hasFreeSend;
     }
     
     if (hasFreeSend && !hasGift) {

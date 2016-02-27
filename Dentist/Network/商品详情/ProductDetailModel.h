@@ -96,4 +96,6 @@ typedef GroupContentItem LikeProductItem;
 @property (assign,nonatomic) int product_score; //评论人数
 @property (assign,nonatomic) float product_score_good;//好评率
 
+@property (assign,nonatomic) BOOL is_baoyou;
+
 @end

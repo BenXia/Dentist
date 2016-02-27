@@ -15,7 +15,7 @@
 @property (strong,nonatomic) NSString* img_url;
 @property (strong,nonatomic) NSString* price;
 
-@property (strong,nonatomic) NSString* gifts;
-@property (strong,nonatomic) NSString* groups;
+@property (assign,nonatomic) BOOL hasGift;
+@property (assign,nonatomic) BOOL hasFreeSend;
 
 @end
