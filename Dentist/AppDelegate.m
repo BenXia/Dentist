@@ -11,6 +11,7 @@
 #import "AppDeinitializer.h"
 #import "LaunchViewController.h"
 #import "WXApi.h"
+#import <AlipaySDK/AlipaySDK.h>
 
 @interface AppDelegate () <
     WXApiDelegate>
@@ -94,8 +95,12 @@
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url options:(NSDictionary<NSString*, id> *)options {
     NSLog(@"scheme:%@",[url scheme]);
     if ([[url scheme] isEqualToString:@"com.toboom.yayiabc"]) {
-        [component.payment.alipay parse:url application:application];
-        
+//        [component.payment.alipay parse:url application:application];
+//        
+//        [[AppTransition sharedInstance] parse:url];
+        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+            NSLog(@"result = %@",resultDic);
+        }];
         return YES;
     } else {
         return [WXApi handleOpenURL:url delegate:self];

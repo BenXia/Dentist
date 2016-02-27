@@ -12,8 +12,13 @@
 #import <AlipaySDK/AlipaySDK.h>
 #import "APAuthV2Info.h"
 
+#define kPrivateKeyString @"MIICWwIBAAKBgQDCxRJWs+FECo2zLDY8ZgsXnQbUNqZBtEo6g4ihqcypCRsmGyWZWEdO8FV+tBn3UdWFRb/TYfO6adFbQYLIsav2Fs8BxFEKk1ovDU++4jxXlH6GEMiuCyux5pqgR3OwaYTUx/pL34p+6277/QpRqx3I5QBCmGiVO3C9YKWASkRCHwIDAQABAoGAaKfaPcp0Pcpp75/PGM9AIJUYyUkANwf4Zs6sySljNmUVOHmXz3kW//y2A9okpbdMQ0uCUsQsYbtgameeLdcCbc3k0qkb0h+kofBA41h1W9OOV73FTwpxNZO3JMgr9c4n19j2561i4vuPHK6UlvW71PHfQUiU+j4KYgGK9i1SgaECQQDsKC1a8tR5VBuTQJIiDsnewSX+0df3IiiZWRNpie/plz0PlT3Sp3O5hbZwwkoRn/iYgFClJ3jOhy6Uoohplo5vAkEA0yKkXB6HFtdmnPRrED2S4RZaducTuf5p5cSEK4pCHcpoWlAg019spfwVbrp0/ZiEcUDqkp4Ep1OXn2847JpfUQJAVEqC5dOGw0eiEA0cG8vrgfau+SUtUKiAlTuWEjWJzHaO9ODwECB0zeNMGzM9/Mx8jvI91rUgCZd2qNbamdWDQQJAZmBr1gcvddHofb6+k1dn+yC9qN4PYKaObs1FUV9vA8b7pp8n65ZftnRvaAudYsIrpkbV91YL557O7I4fygpooQJAa5lkdGJwy2z6LGfYYYq0860oSuJy5AfLzp9uWwSdlF8Hd393duR4XMJVTycOCpr+eGx4rSvrfpX7YKleBT6ONA=="
+
 @implementation AlipayManager
-- (void)payWithAlipay:(ComponentAlipay_Order *)alipay_Order {
+
+SINGLETON_GCD(AlipayManager);
+
+- (void)payWithAlipay:(ComponentAlipay_Order *)alipay_Order completeBlock:(DictionaryBlock) completeBlock{
     
     /*
      *商户的唯一的parnter和seller。
@@ -25,7 +30,7 @@
     /*============================================================================*/
     NSString *partner = @"";
     NSString *seller = @"";
-    NSString *privateKey = @"";
+    NSString *privateKey = kPrivateKeyString;
     /*============================================================================*/
     /*============================================================================*/
     /*============================================================================*/
@@ -55,7 +60,7 @@
     order.productName = alipay_Order.name; //商品标题
     order.productDescription = alipay_Order.desc; //商品描述
     order.amount = alipay_Order.price; //商品价格
-    order.notifyURL =  @"http://www.xxx.com"; //回调URL
+    order.notifyURL =  @"http://www.xxx.com"; //回调URL TODO:WT 回调URL,后台提供
     
     order.service = @"mobile.securitypay.pay";
     order.paymentType = @"1";
@@ -64,7 +69,7 @@
     order.showUrl = @"m.alipay.com";
     
     //应用注册scheme,在AlixPayDemo-Info.plist定义URL types
-    NSString *appScheme = @"alisdkdemo";
+    NSString *appScheme = @"com.toboom.yayiabc";
     
     //将商品信息拼接成字符串
     NSString *orderSpec = [order description];
@@ -79,10 +84,7 @@
     if (signedString != nil) {
         orderString = [NSString stringWithFormat:@"%@&sign=\"%@\"&sign_type=\"%@\"",
                        orderSpec, signedString, @"RSA"];
-        
-        [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
-            NSLog(@"reslut = %@",resultDic);
-        }];
+        [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:completeBlock];
     }
 }
 @end

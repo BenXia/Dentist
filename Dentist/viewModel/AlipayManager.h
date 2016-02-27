@@ -10,5 +10,7 @@
 #import "ComponentAlipay_Order.h"
 
 @interface AlipayManager : NSObject
-- (void)payWithAlipay:(ComponentAlipay_Order *)order;
+
++ (AlipayManager *)sharedAlipayManager;
+- (void)payWithAlipay:(ComponentAlipay_Order *)order completeBlock:(DictionaryBlock) completeBlock;
 @end
