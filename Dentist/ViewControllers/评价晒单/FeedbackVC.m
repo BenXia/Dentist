@@ -203,7 +203,7 @@ PPDataControllerDelegate
         if (model.imageUrls.count > 0) {
             NSMutableString* formatString = [NSMutableString new];
             for (NSString* imageUrl in model.imageUrls) {
-                NSString* linkSymbol = formatString ? @"###" : @"";
+                NSString* linkSymbol = formatString.length > 0 ? @"###" : @"";
                 [formatString appendFormat:@"%@%@",linkSymbol,imageUrl];
             }
             [imageUrlArray addObject:formatString];

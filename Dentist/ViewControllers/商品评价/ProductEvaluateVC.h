@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ProductEvaluateVC : UIViewController
+@interface ProductEvaluateVC : BaseViewController
 
 - (instancetype)initWithProductId:(NSString *)productId;
 

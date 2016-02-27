@@ -37,6 +37,9 @@
 }
 
 - (BOOL)parseContent:(NSString *)content {
+    
+    NSLog(@"确认订单响应数据：%@",content);
+    
     BOOL result = NO;
     NSError *error = nil;
     NSDictionary *resultdict = [NSJSONSerialization JSONObjectWithString:content

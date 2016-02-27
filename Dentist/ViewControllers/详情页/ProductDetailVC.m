@@ -89,6 +89,8 @@ UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet GroupProductView *groupFirstProductView;
 @property (weak, nonatomic) IBOutlet GroupProductView *groupSecondProductView;
 @property (weak, nonatomic) IBOutlet GroupProductView *groupThirdProductView;
+@property (weak, nonatomic) IBOutlet UILabel *groupSecondAddSymbol;
+@property (weak, nonatomic) IBOutlet UILabel *groupThirdAddSymbol;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *groupAddSymbolLabelWidthConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *groupProductViewWidthConstraint;
 
@@ -225,7 +227,7 @@ UIScrollViewDelegate>
 }
 
 - (void)initMainScrollView {
-    self.scrollView.backgroundColor = [UIColor bgGray002Color];
+    self.scrollView.backgroundColor = [UIColor themeBackGrayColor];
 
 }
 
@@ -306,11 +308,12 @@ UIScrollViewDelegate>
     }
     
     //上拉提示
-    [self addScrollSubview:self.dragTipView];
-    self.scrollContentHeight += kHeightOfSectionHeader;
+    if (self.dc.productDetail.description_p.length > 0) {
+        [self addScrollSubview:self.dragTipView];
+        self.scrollContentHeight += kHeightOfSectionHeader;
+    }
     
     self.scrollView.contentSize = CGSizeMake(kScreenWidth, self.scrollContentHeight);
-    
     
     //选择分类弹出视图
     [self refreshPopupCustomiseView];
@@ -380,14 +383,22 @@ UIScrollViewDelegate>
 -(void)refreshGroupDiscountView{
     GroupItem* firstGroup = [self.dc.productDetail.groups firstObject];
     NSArray* groupProductViewArray = @[self.groupSecondProductView,self.groupThirdProductView];
+    NSArray* groupAddSymbolArray = @[self.groupSecondAddSymbol,self.groupThirdAddSymbol];
     for (UIView* view in groupProductViewArray) {
         view.tag = -1;
+        view.hidden = YES;
+    }
+    for (UIView* view in groupAddSymbolArray) {
+        view.hidden = YES;
     }
     double totalPrice = self.dc.productDetail.price;
-    for (NSInteger i=0; i < firstGroup.items.count; ++i) {
+    for (NSInteger i=0; i < firstGroup.items.count && i < groupProductViewArray.count; ++i) {
         GroupContentItem* item  = [firstGroup.items objectAtIndex:i];
         GroupProductView* view = [groupProductViewArray objectAtIndex:i];
+        UIView* addSymbol = [groupAddSymbolArray objectAtIndex:i];
         view.tag = i;
+        view.hidden = NO;
+        addSymbol.hidden = NO;
         [view.imageView sd_setImageWithURL:[NSURL URLWithString:item.img]];
         view.titleLabel.text = item.title;
         view.priceLabel.text = [NSString stringWithFormat:@"%@%.2f",kYuanSymbolStr,item.price];
@@ -731,11 +742,7 @@ UIScrollViewDelegate>
 
 #pragma mark - UI Action
 
-- (void)headerRereshing {
-    NSLog(@"下拉刷新");
-}
-
-- (void)footerRereshing {
+- (void)didDragFromBottom {
     NSLog(@"上拉刷新");
     ProductDescriptionVC* descriptionVC = [[ProductDescriptionVC alloc] initWithHtmlString:self.dc.productDetail.description_p];
     UINavigationController* navVC = [[UINavigationController alloc] initWithRootViewController:descriptionVC];
@@ -883,24 +890,21 @@ UIScrollViewDelegate>
     if (point.y < 0) {
         self.topBarBackgroundView.alpha = 0;
         self.topBarBackgroundView.layer.shadowOpacity = 0;
-        [self.topBarBackButton setImage:[UIImage imageNamed:@"btn_backround_default"] forState:UIControlStateNormal];
-//        self.statusBarStyle = UIStatusBarStyleLightContent;
+        [self.topBarBackButton setImage:[UIImage imageNamed:@"箭头"] forState:UIControlStateNormal];
     } else {
         self.topBarBackgroundView.alpha = ((point.y > originHeaderHeight) ? 1 : (point.y / originHeaderHeight ));
         self.topBarBackgroundView.layer.shadowOpacity = ((point.y > originHeaderHeight) ? 0.2 : (point.y / originHeaderHeight * 0.2));
         if (self.topBarBackgroundView.alpha < 1) {
-            [self.topBarBackButton setImage:[UIImage imageNamed:@"btn_backround_default"] forState:UIControlStateNormal];
-//            self.statusBarStyle = UIStatusBarStyleLightContent;
+            [self.topBarBackButton setImage:[UIImage imageNamed:@"箭头"] forState:UIControlStateNormal];
         }else{
             [self.topBarBackButton setImage:[UIImage imageNamed:@"btn_back_white"] forState:UIControlStateNormal];
-//            self.statusBarStyle = UIStatusBarStyleDefault;
         }
     }
     
     //TODO-GUO:MJRefresh不好用，只能这样了
     CGFloat limit = self.scrollContentHeight > self.scrollView.height ? self.scrollContentHeight - self.scrollView.height + 80 : 80;
-    if (point.y >=  limit) {
-        [self footerRereshing];
+    if (point.y >=  limit && self.dc.productDetail.description_p.length > 0) {
+        [self didDragFromBottom];
     }
 }
 

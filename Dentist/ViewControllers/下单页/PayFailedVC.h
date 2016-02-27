@@ -11,7 +11,7 @@
 
 @protocol PayFailedVCDelegate;
 
-@interface PayFailedVC : UIViewController
+@interface PayFailedVC : BaseViewController
 
 @property (nonatomic, assign) PayType currentPayType;
 @property (nonatomic, weak) id<PayFailedVCDelegate> delegate;

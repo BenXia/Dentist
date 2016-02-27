@@ -9,11 +9,11 @@
 #import <UIKit/UIKit.h>
 
 typedef enum : NSUInteger {
-     kAddressToAdd,
+    kAddressToAdd,
     kAddressToChange,
 } AddressTodoType;
 
-@interface CreateOrEditAddressVC : UIViewController
+@interface CreateOrEditAddressVC : BaseViewController
 @property (nonatomic, assign) AddressTodoType type;
 @property (nonatomic, strong) Address *addressModel;
 @end
