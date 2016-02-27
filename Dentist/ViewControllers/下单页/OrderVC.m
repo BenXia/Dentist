@@ -7,7 +7,9 @@
 //
 
 #import "OrderVC.h"
-#import "OrderVM.h"
+#import "OrderDetailDC.h"
+#import "ProductListGoodsModel.h"
+#import "ProductListModel.h"
 #import "OrderReceiverCell.h"
 #import "OrderItemHeaderCell.h"
 #import "OrderItemCell.h"
@@ -39,12 +41,19 @@ PayFailedVCDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *bottomContentView;
 
+@property (weak, nonatomic) IBOutlet UILabel *totalPriceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *noDeliverFeeLabel;
+
 @property (nonatomic, strong) PPConfirmOrderDC *confirmOrderDC;
 @property (nonatomic, strong) PPCreateOrderDC *createOrderDC;
 @property (nonatomic, strong) PPPayResultDC *payResultDC;
 @property (nonatomic, strong) PPRepayDC *repayDC;
 
-@property (nonatomic, strong) OrderVM *vm;
+@property (nonatomic, strong) Address *addressModel;
+@property (nonatomic, strong) NSMutableArray *productItemsArray;
+
+@property (nonatomic, strong) OrderDetailDC *orderDetailDC;
+@property (nonatomic, strong) NSString *orderId;
 
 @property (nonatomic, assign) DeliverType deliverType;
 @property (nonatomic, assign) double deliverPrice;
@@ -54,7 +63,6 @@ PayFailedVCDelegate>
 @property (nonatomic, assign) int piaoType;
 @property (nonatomic, strong) NSString *piaoTitle;
 @property (nonatomic, strong) NSString *piaoContent;
-
 
 @property (nonatomic, strong) NSString *feedbackText;
 
@@ -79,6 +87,9 @@ PayFailedVCDelegate>
         
         self.repayDC = [[PPRepayDC alloc] init];
         self.repayDC.delegate = self;
+        
+        self.orderDetailDC = [[OrderDetailDC alloc] init];
+        self.orderDetailDC.delegate = self;
     }
     
     return self;
@@ -90,9 +101,12 @@ PayFailedVCDelegate>
     
     [self initUIReleated];
     
-    [self bindViewModel];
-    
-    [self.confirmOrderDC requestWithArgs:nil];
+    if (!self.orderId) {
+        [self.confirmOrderDC requestWithArgs:nil];
+    } else {
+        [Utilities showLoadingView];
+        [self.orderDetailDC requestWithArgs:nil];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -106,10 +120,10 @@ PayFailedVCDelegate>
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Setter methods
+#pragma mark - Public methods
 
 - (void)setProductItemsArray:(NSMutableArray *)productItemsArray {
-    self.vm.productItemsArray = productItemsArray;
+    _productItemsArray = productItemsArray;
     
     self.confirmOrderDC.productItemsArray = productItemsArray;
     self.createOrderDC.productItemsArray = productItemsArray;
@@ -120,6 +134,16 @@ PayFailedVCDelegate>
     self.createOrderDC.groupIds = groupIds;
 }
 
+- (void)setOrderId:(NSString *)orderId {
+    _orderId = orderId;
+    
+    self.repayDC.oid = orderId;
+    self.payResultDC.oid = orderId;
+    self.orderDetailDC.oid = orderId;
+}
+
+#pragma mark - Setter methods
+
 - (void)setPayType:(PayType)payType {
     _payType = payType;
     
@@ -129,11 +153,19 @@ PayFailedVCDelegate>
 - (void)setDeliverType:(DeliverType)deliverType {
     _deliverType = deliverType;
     
+    if (deliverType == DeliverType_ZiTi) {
+        self.noDeliverFeeLabel.hidden = NO;
+    } else {
+        self.noDeliverFeeLabel.hidden = YES;
+    }
+    
     [self.tableView reloadData];
 }
 
 - (void)setDeliverPrice:(double)deliverPrice {
     _deliverPrice = deliverPrice;
+    
+    self.totalPriceLabel.text = [NSString stringWithFormat:@"¥ %.2f", self.confirmOrderDC.goodsPrice + self.deliverPrice];
     
     [self.tableView reloadData];
 }
@@ -158,14 +190,6 @@ PayFailedVCDelegate>
 
 #pragma mark - Private methods
 
-- (OrderVM *)vm {
-    if (!_vm) {
-        _vm = [[OrderVM alloc] init];
-    }
-    
-    return _vm;
-}
-
 - (void)initUIReleated {
     if ([self respondsToSelector:@selector(edgesForExtendedLayout)]) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -188,88 +212,58 @@ PayFailedVCDelegate>
     [self.tableView registerNib:[UINib nibWithNibName:@"OrderBottomInfoCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"OrderBottomInfoCell"];
 }
 
-- (void)bindViewModel {
-    //    @weakify(self);
-    //
-    //    // 对智康家长隐藏科目入口
-    //    [[[RACObserve([StudentInfoModel sharedInstance], isFromZhiKang) distinctUntilChanged] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(NSNumber* x) {
-    //        @strongify(self);
-    //        [self.tableView reloadData];
-    //        [self refreshHeaderCourseListView];
-    //
-    //        if ([StudentInfoModel sharedInstance].isLoggedin && [StudentInfoModel sharedInstance].isFromZhiKang) {
-    //            self.tableView.contentOffset = CGPointZero;
-    //            self.tableView.scrollEnabled = NO;
-    //        } else {
-    //            self.tableView.scrollEnabled = YES;
-    //        }
-    //    }];
-    //
-    //    // 监听登录状态(对智康家长隐藏科目入口)
-    //    [[[RACObserve([StudentInfoModel sharedInstance], isLoggedin) distinctUntilChanged] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
-    //        @strongify(self);
-    //        [self.tableView reloadData];
-    //        [self refreshHeaderCourseListView];
-    //
-    //        if ([StudentInfoModel sharedInstance].isLoggedin && [StudentInfoModel sharedInstance].isFromZhiKang) {
-    //            self.tableView.contentOffset = CGPointZero;
-    //            self.tableView.scrollEnabled = NO;
-    //        } else {
-    //            self.tableView.scrollEnabled = YES;
-    //        }
-    //    }];
-    //
-    //    // 刷新城市信息
-    //    [[RACObserve([StudentInfoModel sharedInstance], cityId) deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(NSNumber* cityId) {
-    //        @strongify(self);
-    //        if (cityId) {
-    //            self.selectedCity = [[CityCache sharedCityCache] objectForId:cityId];
-    //            self.cityNameLabel.text = self.selectedCity.cityName;
-    //
-    //            [self.bannerVM.cmd_getHomePageBanners execute:cityId];
-    //
-    //            [self.homePageVM.cmd_getPromotedTeacherArray execute:cityId];
-    //        }
-    //    }];
-    //
-    //    // 未登录成功时，使用定位城市
-    //    if (![StudentInfoModel sharedInstance].isLoggedin) {
-    //        [[LocationService sharedInstance] currentLocationWithBlock:^(LocationModel *location) {
-    //            //用户手动选择了城市后，不再使用定位信息
-    //            if ([StudentInfoModel sharedInstance].cityId) {
-    //                return ;
-    //            }
-    //            //定位失败会强制选择城市
-    //            NSString *cityName=[[UserCityService sharedUserCityService] getUserCityName];
-    //            if (cityName) {
-    //                [StudentInfoModel sharedInstance].cityId = [[CityCache sharedCityCache] idForname:cityName];
-    //            } else if (location) {
-    //                [StudentInfoModel sharedInstance].cityId =  @(location.cityID);
-    //                [StudentInfoModel saveCityIdToCache:@(location.cityID)];
-    //            } else {
-    //                [self didClickSelectCity];
-    //            }
-    //        }];
-    //    }
-    //
-    //    // Banner广告
-    //    RACCommand* cmd_getHomePageBanners = self.bannerVM.cmd_getHomePageBanners;
-    //    [cmd_getHomePageBanners.executionSignals subscribeNext:^(RACSignal* x) {
-    //        [[x deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
-    //            @strongify(self);
-    //            [self refreshBanner];
-    //        }];
-    //    }];
-    //
-    //    // 名师风采列表
-    //    [self.homePageVM.cmd_getPromotedTeacherArray.executionSignals subscribeNext:^(RACSignal* x) {
-    //        [[x deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
-    //            @strongify(self);
-    //            [self.tableView reloadData];
-    //        }];
-    //    }];
-}
+#pragma mark - WeXinPay API
 
+- (void)weixinPayWithDict:(NSDictionary *)weixinDict {
+    ComponentWechatPay_Order *order = component.payment.wechatpay.order;
+    ComponentWechatPay_Config *config = component.payment.wechatpay.config;
+    
+    //weixin =     {
+    //    appid = wx983825eaeef912b7;
+    //    "mch_id" = 1292687201;
+    //    "nonce_str" = NBe6LOSEsxxMSLDy;
+    //    "prepay_id" = wx20160227000908562ac409430006092890;
+    //    "result_code" = SUCCESS;
+    //    "return_code" = SUCCESS;
+    //    "return_msg" = OK;
+    //    sign = 6BCA9F2B2BBA86A3187EEA1AE45FDE13;
+    //    "trade_type" = APP;
+    //};
+    
+    config.appId                    = [weixinDict objectForKey:@"appid"];
+    config.partnerId                = [weixinDict objectForKey:@"mch_id"];
+    order.package                   = @"Sign=WXPay";
+    order.nonceStr                  = [weixinDict objectForKey:@"nonce_str"];
+    order.prepayId                  = [weixinDict objectForKey:@"prepay_id"];
+    //            order.sign                      = [weixinDict objectForKey:@"sign"];;
+    
+    NSDate *datenow = [NSDate date];
+    NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)[datenow timeIntervalSince1970]];
+    UInt32 timeStamp =[timeSp intValue];
+    order.timeStamp = timeStamp;
+    
+    WeXinMD5Encrypt *md5Generator = [[WeXinMD5Encrypt alloc] init];
+    order.sign = [md5Generator createMD5SingForPay:config.appId
+                                         partnerid:config.partnerId
+                                          prepayid:order.prepayId
+                                           package:order.package
+                                          noncestr:order.nonceStr
+                                         timestamp:order.timeStamp];
+    
+    @weakify(self);
+    ComponentWechatPay  *wechatpay  = component.payment.wechatpay;
+    wechatpay.succeedHandler        = ^ (id object) {
+        @strongify(self)
+        
+        [self.payResultDC requestWithArgs:nil];
+    };
+    wechatpay.failedHandler         = ^ (NSError *error) {
+        @strongify(self)
+        
+        [self.payResultDC requestWithArgs:nil];
+    };
+    [wechatpay pay];
+}
 
 #pragma mark - UITableViewDataSource & UITableViewDelegate
 
@@ -278,7 +272,7 @@ PayFailedVCDelegate>
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.vm.productItemsArray.count + 4;
+    return self.productItemsArray.count + 4;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -287,9 +281,13 @@ PayFailedVCDelegate>
         cell.backgroundColor = [UIColor clearColor];
         cell.accessoryType = UITableViewCellAccessoryNone;
         
-        cell.receiverNameLabel.text = self.vm.addressModel.recipientName ? self.vm.addressModel.recipientName : @"收件人姓名";
-        cell.receiverPhoneNumberLabel.text = self.vm.addressModel.recipientPhoneNum ? self.vm.addressModel.recipientPhoneNum : @"收件人电话";
-        cell.receiverAddressLabel.text = self.vm.addressModel.detailAddress ? self.vm.addressModel.detailAddress : @"收件人地址";
+        cell.receiverNameLabel.text = self.addressModel.recipientName ? self.addressModel.recipientName : @"收件人姓名";
+        cell.receiverPhoneNumberLabel.text = self.addressModel.recipientPhoneNum ? self.addressModel.recipientPhoneNum : @"收件人电话";
+        cell.receiverAddressLabel.text = self.addressModel.detailAddress ? self.addressModel.detailAddress : @"收件人地址";
+        
+        if (self.orderId) {
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
         
         return cell;
     } else if (indexPath.row == 1) {
@@ -298,7 +296,7 @@ PayFailedVCDelegate>
         cell.accessoryType = UITableViewCellAccessoryNone;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
-    } else if (indexPath.row == self.vm.productItemsArray.count + 2) {
+    } else if (indexPath.row == self.productItemsArray.count + 2) {
         OrderItemFooterCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderItemFooterCell"];
         cell.backgroundColor = [UIColor clearColor];
         cell.accessoryType = UITableViewCellAccessoryNone;
@@ -313,7 +311,7 @@ PayFailedVCDelegate>
         cell.orderItemsCountLabel.text = [NSString stringWithFormat:@"%d", itemsCount];
         
         return cell;
-    } else if (indexPath.row == self.vm.productItemsArray.count + 3) {
+    } else if (indexPath.row == self.productItemsArray.count + 3) {
         OrderBottomInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderBottomInfoCell"];
         cell.backgroundColor = [UIColor clearColor];
         cell.accessoryType = UITableViewCellAccessoryNone;
@@ -336,6 +334,10 @@ PayFailedVCDelegate>
         cell.payTypeImageView.image = [UIImage imageNamed:((self.payType == PayType_WeChat) ? @"ic_pay_weixin.png" : @"pay_pic.png")];
         cell.payTypeLabel.text = (self.payType == PayType_WeChat) ? @"微信支付" : @"支付宝";
         
+        if (self.orderId) {
+            cell.feedbackTextField.userInteractionEnabled = NO;
+        }
+        
         return cell;
     } else {
         OrderItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderItemCell"];
@@ -343,7 +345,7 @@ PayFailedVCDelegate>
         cell.accessoryType = UITableViewCellAccessoryNone;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
-        OrderItemModel *model = [self.vm.productItemsArray objectAtIndex:indexPath.row - 2];
+        OrderItemModel *model = [self.productItemsArray objectAtIndex:indexPath.row - 2];
         [cell.productImageView setImageURL:[NSURL URLWithString:model.productImageUrl]];
         cell.productTitleLabel.text = model.productTitle;
         cell.productCustomiseLabel.text = model.descriptionString;
@@ -356,12 +358,12 @@ PayFailedVCDelegate>
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
-        return [OrderReceiverCell heightWithAddress:self.vm.addressModel.detailAddress ? self.vm.addressModel.detailAddress : @"收件人地址"];
+        return [OrderReceiverCell heightWithAddress:self.addressModel.detailAddress ? self.addressModel.detailAddress : @"收件人地址"];
     } else if (indexPath.row == 1) {
         return 50;
-    } else if (indexPath.row == self.vm.productItemsArray.count + 2) {
+    } else if (indexPath.row == self.productItemsArray.count + 2) {
         return 40;
-    } else if (indexPath.row == self.vm.productItemsArray.count + 3) {
+    } else if (indexPath.row == self.productItemsArray.count + 3) {
         return 230;
     } else {
         return 96;
@@ -383,40 +385,49 @@ PayFailedVCDelegate>
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
-        
-        AddressListVC *vc = [[AddressListVC alloc] init];
-        vc.isSelectAddress = YES;
-        vc.selectedCompleteBlock = ^(Address *address) {
-            self.vm.addressModel = address;
+        if (!self.orderId) {
+            [tableView deselectRowAtIndexPath:indexPath animated:YES];
             
-            [[GCDQueue mainQueue] queueBlock:^{
-                [self.tableView reloadData];
-            }];
-        };
-        
-        [self.navigationController pushViewController:vc animated:YES];
+            AddressListVC *vc = [[AddressListVC alloc] init];
+            vc.isSelectAddress = YES;
+            vc.selectedCompleteBlock = ^(Address *address) {
+                self.addressModel = address;
+                
+                [[GCDQueue mainQueue] queueBlock:^{
+                    [self.tableView reloadData];
+                }];
+            };
+            
+            [self.navigationController pushViewController:vc animated:YES];
+        }
     }
 }
 
 #pragma mark - IBActions
 
 - (IBAction)didClickPayNowButtonAction:(id)sender {
-    if (self.vm.addressModel.ID.length == 0) {
-        [Utilities showToastWithText:@"请先填写收件地址" withImageName:nil blockUI:NO];
-        return;
+    if (!self.orderId) {
+        if (self.addressModel.ID.length == 0) {
+            [Utilities showToastWithText:@"请先填写收件地址" withImageName:nil blockUI:NO];
+            return;
+        }
+        
+        self.createOrderDC.orderExpress = (self.deliverType == DeliverType_KuaiDi) ? @"express" : @"pick_up";
+        self.createOrderDC.aid = self.addressModel.ID;
+        self.createOrderDC.payType = (self.payType == PayType_WeChat) ? @"weixin" : @"alipay";
+        self.createOrderDC.orderCertArray = @[];
+        self.createOrderDC.piaoType = [NSString stringWithFormat:@"%d", self.piaoType];
+        self.createOrderDC.piaoTitle = self.piaoTitle ? self.piaoTitle : @"";
+        self.createOrderDC.piaoContent = self.piaoContent ? self.piaoContent : @"";
+        self.createOrderDC.remarkNum = self.feedbackText ? self.feedbackText : @"";
+        
+        [self.createOrderDC requestWithArgs:nil];
+    } else {
+        self.repayDC.oid = self.createOrderDC.oid;
+        self.repayDC.payType = (self.payType == PayType_WeChat) ? @"weixin" : @"alipay";
+        
+        [self.repayDC requestWithArgs:nil];
     }
-    
-    self.createOrderDC.orderExpress = (self.deliverType == DeliverType_KuaiDi) ? @"express" : @"pick_up";
-    self.createOrderDC.aid = self.vm.addressModel.ID;
-    self.createOrderDC.payType = (self.payType == PayType_WeChat) ? @"weixin" : @"alipay";
-    self.createOrderDC.orderCertArray = @[];
-    self.createOrderDC.piaoType = [NSString stringWithFormat:@"%d", self.piaoType];
-    self.createOrderDC.piaoTitle = self.piaoTitle ? self.piaoTitle : @"";
-    self.createOrderDC.piaoContent = self.piaoContent ? self.piaoContent : @"";
-    self.createOrderDC.remarkNum = self.feedbackText ? self.feedbackText : @"";
-    
-    [self.createOrderDC requestWithArgs:nil];
 }
 
 #pragma mark - OrderBottomInfoCellDelegate
@@ -426,10 +437,18 @@ PayFailedVCDelegate>
 }
 
 - (void)didClickCertificateButton {
+    if (self.orderId) {
+        return;
+    }
+    
     // need do nothing
 }
 
 - (void)didClickDeliverButton {
+    if (self.orderId) {
+        return;
+    }
+    
     if ((self.deliverType == DeliverType_KuaiDi) && !self.confirmOrderDC.enableZiti) {
         [Utilities showToastWithText:@"暂时不支持其它配送方式" withImageName:nil blockUI:NO];
         return;
@@ -447,6 +466,10 @@ PayFailedVCDelegate>
 }
 
 - (void)didClickTicketButton {
+    if (self.orderId) {
+        return;
+    }
+    
     InvoiceVC *vc = [[InvoiceVC alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
     vc.delegate = self;
@@ -454,6 +477,10 @@ PayFailedVCDelegate>
 }
 
 - (void)didClickPayTypeButton {
+    if (self.orderId) {
+        return;
+    }
+    
     if ((self.payType == PayType_WeChat) && ![self.confirmOrderDC.payTypeArray containsObject:@"alipay"]) {
         [Utilities showToastWithText:@"暂时不支持其它支付方式" withImageName:nil blockUI:NO];
         return;
@@ -507,8 +534,8 @@ PayFailedVCDelegate>
 
 - (void)loadingDataFinished:(PPDataController *)controller {
     if (controller == self.confirmOrderDC) {
-        self.vm.addressModel = self.confirmOrderDC.address;
-        self.vm.productItemsArray = [NSMutableArray arrayWithArray:self.confirmOrderDC.orderItemsArray];
+        self.addressModel = self.confirmOrderDC.address;
+        self.productItemsArray = [NSMutableArray arrayWithArray:self.confirmOrderDC.orderItemsArray];
         
         if (!self.confirmOrderDC.enableKuaidi && !self.confirmOrderDC.enableZiti) {
             [Utilities showToastWithText:@"数据有误，不支持任何配送方式" withImageName:nil blockUI:NO];
@@ -519,7 +546,7 @@ PayFailedVCDelegate>
             self.deliverPrice = self.confirmOrderDC.kuaidiPrice;
         } else if (self.confirmOrderDC.enableZiti) {
             self.deliverType = DeliverType_ZiTi;
-            self.deliverType = 0;
+            self.deliverPrice = 0;
         }
         
         if ([self.confirmOrderDC.payTypeArray containsObject:@"wexin"]) {
@@ -535,55 +562,7 @@ PayFailedVCDelegate>
         self.payResultDC.oid = self.createOrderDC.oid ? self.createOrderDC.oid : @"";
         
         if (self.payType == PayType_WeChat) {
-            // TODO-Ben:微信支付
-            ComponentWechatPay_Order *order = component.payment.wechatpay.order;
-            ComponentWechatPay_Config *config = component.payment.wechatpay.config;
-            
-            //weixin =     {
-            //    appid = wx983825eaeef912b7;
-            //    "mch_id" = 1292687201;
-            //    "nonce_str" = NBe6LOSEsxxMSLDy;
-            //    "prepay_id" = wx20160227000908562ac409430006092890;
-            //    "result_code" = SUCCESS;
-            //    "return_code" = SUCCESS;
-            //    "return_msg" = OK;
-            //    sign = 6BCA9F2B2BBA86A3187EEA1AE45FDE13;
-            //    "trade_type" = APP;
-            //};
-            
-            config.appId                    = [self.createOrderDC.weixinDict objectForKey:@"appid"];
-            config.partnerId                = [self.createOrderDC.weixinDict objectForKey:@"mch_id"];
-            order.package                   = @"Sign=WXPay";
-            order.nonceStr                  = [self.createOrderDC.weixinDict objectForKey:@"nonce_str"];
-            order.prepayId                  = [self.createOrderDC.weixinDict objectForKey:@"prepay_id"];
-//            order.sign                      = [self.createOrderDC.weixinDict objectForKey:@"sign"];;
-            
-            NSDate *datenow = [NSDate date];
-            NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)[datenow timeIntervalSince1970]];
-            UInt32 timeStamp =[timeSp intValue];
-            order.timeStamp = timeStamp;
-            
-            WeXinMD5Encrypt *md5Generator = [[WeXinMD5Encrypt alloc] init];
-            order.sign = [md5Generator createMD5SingForPay:config.appId
-                                                 partnerid:config.partnerId
-                                                  prepayid:order.prepayId
-                                                   package:order.package
-                                                  noncestr:order.nonceStr
-                                                 timestamp:order.timeStamp];
-            
-            @weakify(self);
-            ComponentWechatPay  *wechatpay  = component.payment.wechatpay;
-            wechatpay.succeedHandler        = ^ (id object) {
-                @strongify(self)
-                
-                [self.payResultDC requestWithArgs:nil];
-            };
-            wechatpay.failedHandler         = ^ (NSError *error) {
-                @strongify(self)
-                
-                [self.payResultDC requestWithArgs:nil];
-            };
-            [wechatpay pay];
+            [self weixinPayWithDict:self.createOrderDC.weixinDict];
         } else if (self.payType == PayType_AliPay) {
             // TODO-WT:支付宝支付
             ComponentAlipay_Order *order = [[ComponentAlipay_Order alloc] init];
@@ -596,60 +575,12 @@ PayFailedVCDelegate>
                     [self alipayResult:dic];
                 }];
             }];
-            
         }
     } else if (controller == self.repayDC) {
         self.payResultDC.oid = self.repayDC.orderNumberId ? self.repayDC.orderNumberId : @"";
         
         if (self.payType == PayType_WeChat) {
-            ComponentWechatPay_Order *order = component.payment.wechatpay.order;
-            ComponentWechatPay_Config *config = component.payment.wechatpay.config;
-            
-            //weixin =     {
-            //    appid = wx983825eaeef912b7;
-            //    "mch_id" = 1292687201;
-            //    "nonce_str" = NBe6LOSEsxxMSLDy;
-            //    "prepay_id" = wx20160227000908562ac409430006092890;
-            //    "result_code" = SUCCESS;
-            //    "return_code" = SUCCESS;
-            //    "return_msg" = OK;
-            //    sign = 6BCA9F2B2BBA86A3187EEA1AE45FDE13;
-            //    "trade_type" = APP;
-            //};
-            
-            config.appId                    = [self.repayDC.weixinDict objectForKey:@"appid"];
-            config.partnerId                = [self.repayDC.weixinDict objectForKey:@"mch_id"];
-            order.package                   = @"Sign=WXPay";
-            order.nonceStr                  = [self.repayDC.weixinDict objectForKey:@"nonce_str"];
-            order.prepayId                  = [self.repayDC.weixinDict objectForKey:@"prepay_id"];
-            //            order.sign                      = [self.repayDC.weixinDict objectForKey:@"sign"];;
-            
-            NSDate *datenow = [NSDate date];
-            NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)[datenow timeIntervalSince1970]];
-            UInt32 timeStamp =[timeSp intValue];
-            order.timeStamp = timeStamp;
-            
-            WeXinMD5Encrypt *md5Generator = [[WeXinMD5Encrypt alloc] init];
-            order.sign = [md5Generator createMD5SingForPay:config.appId
-                                                 partnerid:config.partnerId
-                                                  prepayid:order.prepayId
-                                                   package:order.package
-                                                  noncestr:order.nonceStr
-                                                 timestamp:order.timeStamp];
-            
-            @weakify(self);
-            ComponentWechatPay  *wechatpay  = component.payment.wechatpay;
-            wechatpay.succeedHandler        = ^ (id object) {
-                @strongify(self)
-                
-                [self.payResultDC requestWithArgs:nil];
-            };
-            wechatpay.failedHandler         = ^ (NSError *error) {
-                @strongify(self)
-                
-                [self.payResultDC requestWithArgs:nil];
-            };
-            [wechatpay pay];
+            [self weixinPayWithDict:self.repayDC.weixinDict];
         } else if (self.payType == PayType_AliPay) {
             // TODO-WT:支付宝支付
             
@@ -659,9 +590,9 @@ PayFailedVCDelegate>
         if (self.payResultDC.responseCode == 200) {
             PaySuccessVC *successVC = [[PaySuccessVC alloc] init];
             
-            successVC.receiverName = self.vm.addressModel.recipientName;
-            successVC.receiverPhoneNumber = self.vm.addressModel.recipientPhoneNum;
-            successVC.receiverAddress = self.vm.addressModel.detailAddress;
+            successVC.receiverName = self.addressModel.recipientName;
+            successVC.receiverPhoneNumber = self.addressModel.recipientPhoneNum;
+            successVC.receiverAddress = self.addressModel.detailAddress;
             
             NSDate *payDate = [NSDate dateWithTimeIntervalSince1970:[self.payResultDC.paytime longLongValue]];
             NSDate *createDate = [NSDate dateWithTimeIntervalSince1970:[self.payResultDC.createtime longLongValue]];
@@ -678,23 +609,78 @@ PayFailedVCDelegate>
             failedVC.delegate = self;
             [self.navigationController pushViewController:failedVC animated:YES];
         }
+    } else if (controller == self.orderDetailDC) {
+        OrderDetailModel *orderDetailModel = self.orderDetailDC.orderDetailModel;
+        
+        NSMutableArray *modelArray = [NSMutableArray array];
+        for (ProductListGoodsModel* item in orderDetailModel.orderProductListModel.productListGoodsArray) {
+            OrderItemModel* submodel = [OrderItemModel new];
+            submodel.productId = item.productID;
+            submodel.productTitle = item.productTitle;
+            submodel.productImageUrl = item.productImageUrl;
+            submodel.descriptionString = item.productModel;
+            submodel.productPrice = [item.productPrice floatValue];
+            submodel.buyNum = [item.productNumber intValue];
+            [modelArray addObject:submodel];
+        }
+        self.productItemsArray = modelArray;
+        self.confirmOrderDC.productItemsArray = modelArray;
+        self.createOrderDC.productItemsArray = modelArray;
+        
+        Address *addressModel = [[Address alloc] init];
+        addressModel.recipientName = orderDetailModel.orderReceiverName;
+        addressModel.recipientPhoneNum = orderDetailModel.orderReceiverPhone;
+        addressModel.detailAddress = orderDetailModel.orderReceiverAddress;
+        self.addressModel = addressModel;
+        
+        if ([orderDetailModel.pickUp intValue] == 0) {
+            self.deliverType = DeliverType_KuaiDi;
+            self.deliverPrice = [orderDetailModel.orderProductListModel.productExpressPrice doubleValue];
+        } else {
+            self.deliverType = DeliverType_ZiTi;
+            self.deliverPrice = 0;
+        }
+        
+        if (orderDetailModel.isWexinPay) {
+            self.payType = PayType_WeChat;
+        } else {
+            self.payType = PayType_AliPay;
+        }
+        
+        double goodsPriceToSet = 0;
+        for (ProductListGoodsModel* goodItem in orderDetailModel.orderProductListModel.productListGoodsArray) {
+            goodsPriceToSet += [goodItem.productPrice doubleValue] * [goodItem.productNumber intValue];
+        }
+        self.confirmOrderDC.goodsPrice = goodsPriceToSet;
+        
+        self.piaoType = orderDetailModel.piaoType;
+        self.piaoTitle = orderDetailModel.piaoTitle;
+        self.piaoContent = orderDetailModel.piaoContent;
+        self.feedbackText = orderDetailModel.feedbackText;
+        
+        [self.tableView reloadData];
+        
+        [Utilities showLoadingView];
+        
+        [self didClickPayNowButtonAction:nil];
     }
 }
 
 - (void)loadingData:(PPDataController *)controller failedWithError:(NSError *)error {
     if (controller == self.confirmOrderDC) {
-        @weakify(self);
-        [[GCDQueue mainQueue] queueBlock:^{
-            @strongify(self);
-            [Utilities showToastWithText:@"确认订单失败" withImageName:nil blockUI:NO];
-            [self.navigationController popViewControllerAnimated:YES];
-        }];
+        [Utilities showToastWithText:@"确认订单失败" withImageName:nil blockUI:NO];
+        [self.navigationController popViewControllerAnimated:YES];
     } else if (controller == self.createOrderDC) {
         [Utilities showToastWithText:@"生成订单失败" withImageName:nil blockUI:NO];
     } else if (controller == self.repayDC) {
         [Utilities showToastWithText:@"重新支付失败" withImageName:nil blockUI:NO];
     } else if (controller == self.payResultDC) {
         [Utilities showToastWithText:@"支付失败" withImageName:nil blockUI:NO];
+    } else if (controller == self.orderDetailDC) {
+        [Utilities showLoadingView];
+        
+        [Utilities showToastWithText:@"获取订单信息失败" withImageName:nil blockUI:NO];
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 
@@ -707,10 +693,6 @@ PayFailedVCDelegate>
 - (void)didClickPayAgainButtonInPayFailedVC {
     [self.navigationController popViewControllerAnimated:YES];
     
-    // 方案一：
-    //[self didClickPayNowButtonAction:nil];
-    
-    // 方案二：
     self.repayDC.oid = self.createOrderDC.oid;
     self.repayDC.payType = (self.payType == PayType_WeChat) ? @"weixin" : @"alipay";
     

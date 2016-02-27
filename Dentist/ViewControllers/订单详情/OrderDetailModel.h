@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class ProductListModel;
+@class Address;
 @interface OrderDetailModel : NSObject
 
 @property (nonatomic, strong) NSString *orderStatus;               //订单状态
@@ -23,5 +24,12 @@
 @property (nonatomic, strong) NSString *orderPayTime;              //支付时间
 @property (nonatomic, strong) NSString *orderProduceTime;          //下单时间
 @property (nonatomic, strong) ProductListModel  *orderProductListModel;        //订单商品model
+
+// TODO-Ben:联调
+@property (nonatomic, assign) BOOL isWexinPay;
+@property (nonatomic, assign) int piaoType;
+@property (nonatomic, strong) NSString *piaoTitle;
+@property (nonatomic, strong) NSString *piaoContent;
+@property (nonatomic, strong) NSString *feedbackText;
 
 @end
