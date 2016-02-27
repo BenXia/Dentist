@@ -120,7 +120,7 @@
         switch (indexPath.row) {
             case 0: {
                 //cell.textLabel.text = @"推荐给朋友";
-                [Utilities showPopup:self.shareVC.view touchBackgroundHide:YES animationType:PopupAnimationType_Drop];
+                //[Utilities showPopup:self.shareVC.view touchBackgroundHide:YES animationType:PopupAnimationType_Drop];
             }
                 break;
             case 1: {
@@ -129,7 +129,7 @@
             }
                 break;
             case 2: {
-                [Utilities makePhoneCall:@"4003335656"];
+                [Utilities makePhoneCall:@"40088889990"];
             }
                 break;
             case 3: {
@@ -149,6 +149,7 @@
                 break;
             case 1: {
                 //cell.textLabel.text = @"清除缓存";
+                [Utilities showAlertView:@"已清除缓存！" :nil :@"确定"];
             }
             default:
                 break;

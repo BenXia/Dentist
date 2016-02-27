@@ -50,6 +50,7 @@
             NSMutableArray *goodsList = [ordersDic objectForKey:@"goods"];
             for (NSDictionary *goodDic in goodsList) {
                 ProductListGoodsModel *goodsModel = [ProductListGoodsModel new];
+                goodsModel.productID = [goodDic objectForKey:@"iid"];
                 goodsModel.productTitle = [goodDic objectForKey:@"title"];
                 goodsModel.productModel = [goodDic objectForKey:@"sids"];
                 goodsModel.productPrice = [goodDic objectForKey:@"price"];
