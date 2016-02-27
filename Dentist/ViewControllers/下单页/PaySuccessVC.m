@@ -42,6 +42,19 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)didClickOnBackButton {
+    NSArray *vcs = self.navigationController.viewControllers;
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kOrderChangedNotification object:self];
+    
+    if (vcs.count >= 3) {
+        UIViewController *vcToPop = [vcs objectAtIndexIfIndexInBounds:vcs.count - 3];
+        [self.navigationController popToViewController:vcToPop animated:YES];
+    } else {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
+}
+
 #pragma mark - Private methods
 
 - (void)initUIRelated {
