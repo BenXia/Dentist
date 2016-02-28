@@ -23,6 +23,7 @@
 
 static const CGFloat kTopImageViewRatio = 16.f/9;
 static CGFloat kHomePageTopBarHeight = 64;
+static BOOL kHideHomePageCourseListCell = YES;
 
 @interface HomePageVC () <
 SDCycleScrollViewDelegate,
@@ -109,15 +110,6 @@ saleActivityCellDelegate>
     [self.tableView reloadData];
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];    
-}
-
-- (void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
-    
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -128,7 +120,6 @@ saleActivityCellDelegate>
         self.groupBuyingRequest = [[GroupBuyingDC alloc] initWithDelegate:self];
         [self.groupBuyingRequest requestWithArgs:nil];
     }
-    
 }
 
 #pragma mark - Navigation Style
@@ -206,7 +197,6 @@ saleActivityCellDelegate>
     [self.tableView registerNib:[UINib nibWithNibName:@"SaleActivityCell" bundle:nil] forCellReuseIdentifier:[SaleActivityCell identifier]];
 }
 
-
 - (void)refreshBanner {
     NSMutableArray *imagesURLStrings = [NSMutableArray array];
     for (BannerModel* banner in self.adBannerRequest.bannerArr) {
@@ -230,12 +220,15 @@ saleActivityCellDelegate>
     CGPoint point = self.tableView.contentOffset;
     CGFloat originHeaderHeight = self.tableHeaderView.height;
     
-    if (point.y >= originHeaderHeight) {
-        self.headerCourseListView.hidden = NO;
-    } else {
+    if (kHideHomePageCourseListCell) {
         self.headerCourseListView.hidden = YES;
+    } else {
+        if (point.y >= originHeaderHeight) {
+            self.headerCourseListView.hidden = NO;
+        } else {
+            self.headerCourseListView.hidden = YES;
+        }
     }
-
 }
 
 #pragma mark - NetWork
@@ -252,8 +245,6 @@ saleActivityCellDelegate>
     
     self.groupBuyingRequest = [[GroupBuyingDC alloc] initWithDelegate:self];
     [self.groupBuyingRequest requestWithArgs:nil];
-    
-    
 }
 
 #pragma mark - IBActions
@@ -309,7 +300,11 @@ saleActivityCellDelegate>
 #pragma mark - UITableViewDataSource & UITableViewDelegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 4;
+    if (kHideHomePageCourseListCell) {
+        return 3;
+    } else {
+        return 4;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -317,20 +312,22 @@ saleActivityCellDelegate>
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0) {
+    NSInteger rowNum = kHideHomePageCourseListCell ? (indexPath.section + 1) : indexPath.section;
+    
+    if (rowNum == 0) {
         return self.tableViewCourseListCell;
-    } else if (indexPath.section == 1) {
+    } else if (rowNum == 1) {
         TodayIntroduceCell *cell = [tableView dequeueReusableCellWithIdentifier:[TodayIntroduceCell identifier] forIndexPath:indexPath];
         cell.cellModel = self.adTodayIntroduceRequest.productArray;
         cell.delegate = self;
         return cell;
-    } else if (indexPath.section == 2) {
+    } else if (rowNum == 2) {
         TuanGouCell *cell = [tableView dequeueReusableCellWithIdentifier:[TuanGouCell identifier] forIndexPath:indexPath];
         cell.cellModelArray = self.groupBuyingRequest.productArray;
         cell.endTime = self.groupBuyingRequest.end_time;
         cell.delegate = self;
         return cell;
-    }  else if (indexPath.section == 3) {
+    } else if (rowNum == 3) {
         SaleActivityCell *cell = [tableView dequeueReusableCellWithIdentifier:[SaleActivityCell identifier] forIndexPath:indexPath];
         cell.delegate = self;
         cell.cellModelArray = self.salesPromotionRequest.productArray;
@@ -342,30 +339,32 @@ saleActivityCellDelegate>
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
             cell.backgroundColor = [UIColor themeBlueColor];
         }
-        //[cell refreshUIWithTeacherList:self.homePageVM.promotedTeacherArray];
         
         return cell;
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0) {
+    NSInteger rowNum = kHideHomePageCourseListCell ? (indexPath.section + 1) : indexPath.section;
+    
+    if (rowNum == 0) {
         float cellHeight = (kScreenWidth - 5*24)/4 + 48;
         return cellHeight;
-    } else if (indexPath.section == 1) {
+    } else if (rowNum == 1) {
         return 200;
-    } else if (indexPath.section == 2) {
+    } else if (rowNum == 2) {
         return 320;
-    } else if (indexPath.section == 3) {
+    } else if (rowNum == 3) {
         return 400;
     } else {
         return 300;
     }
-    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if (section == 0) {
+    NSInteger sectionNum = kHideHomePageCourseListCell ? (section + 1) : section;
+    
+    if (sectionNum == 0) {
         return 0;
     } else {
         return 12;
@@ -425,17 +424,13 @@ saleActivityCellDelegate>
     self.view.userInteractionEnabled = YES;
     if (controller == self.adBannerRequest) {
         [self refreshBanner];
-        
     } else if (controller == self.adTodayIntroduceRequest) {
         [self.tableView reloadData];
     } else if (controller == self.groupBuyingRequest){
         [self.tableView reloadData];
-        
     } else if (controller == self.salesPromotionRequest){
-        
         [self.tableView reloadData];
     }
 }
-
 
 @end
