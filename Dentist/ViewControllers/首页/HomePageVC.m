@@ -57,10 +57,6 @@ saleActivityCellDelegate>
 
 #pragma mark - View life cycle
 
-+ (void)initialize {
-    kHomePageTopBarHeight = (kScreenWidth > 320) ? 64 : 54;
-}
-
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -84,15 +80,13 @@ saleActivityCellDelegate>
     
     [self downLoadfromNet];
     
-    self.needHideNavBarWithAnimation = YES;
-    
     //监听通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveNotification:) name:kNotificationActionOver object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES  animated:self.needHideNavBarWithAnimation];
+    [self.navigationController setNavigationBarHidden:YES  animated:animated];
     float cellHeight = (kScreenWidth - 5*24)/4 + 48;
     self.headerCourseListView.frame = CGRectMake(0, kHomePageTopBarHeight, kScreenWidth, cellHeight);
     self.tableViewCourseListCell.width = kScreenWidth;
@@ -100,8 +94,6 @@ saleActivityCellDelegate>
 
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
-    self.needHideNavBarWithAnimation = YES;
     
     //根页面禁止右滑返回
     self.navigationController.interactivePopGestureRecognizer.delegate = nil;
@@ -124,13 +116,13 @@ saleActivityCellDelegate>
 
 #pragma mark - Navigation Style
 
-- (UIColor*)preferNavBarBackgroundColor{
-    return [UIColor themeBlueColor];
-}
-
-- (UIColor*)preferNavBarNormalTitleColor{
-    return [UIColor whiteColor];
-}
+//- (UIColor*)preferNavBarBackgroundColor{
+//    return [UIColor themeBlueColor];
+//}
+//
+//- (UIColor*)preferNavBarNormalTitleColor{
+//    return [UIColor whiteColor];
+//}
 
 - (UIColor*)preferNavBarHighlightedTitleColor {
     return kWhiteHighlightedColor;

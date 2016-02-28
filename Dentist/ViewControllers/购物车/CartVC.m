@@ -66,13 +66,13 @@ static NSString* const kCellReuseIdentifier = @"ProductBriefInfoCell";
 
 #pragma mark - Navigation Style
 
-- (UIColor*)preferNavBarBackgroundColor{
-    return [UIColor themeBlueColor];
-}
-
-- (UIColor*)preferNavBarNormalTitleColor{
-    return [UIColor whiteColor];
-}
+//- (UIColor*)preferNavBarBackgroundColor{
+//    return [UIColor themeBlueColor];
+//}
+//
+//- (UIColor*)preferNavBarNormalTitleColor{
+//    return [UIColor whiteColor];
+//}
 
 - (UIColor*)preferNavBarHighlightedTitleColor {
     return kWhiteHighlightedColor;
