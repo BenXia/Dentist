@@ -67,4 +67,37 @@
     }
     return numberArray;
 }
+
+- (void)updateCurrentProductNumberToLastNumber {
+    for (NSString *idString in self.cartProductUpdateNumberDC.cartProductIdArray) {
+        for (ShoppingCartModel *model in self.cartListDC.shoppingCartProductsArray) {
+            if (idString.integerValue == model.shoppingCartProductID.integerValue) {
+                model.shoppingCartProductLastNumber = model.shoppingCartProductNumber;
+            }
+        }
+    }
+}
+
+- (void)updateLastProductNumberToCurrentNumber {
+    for (NSString *idString in self.cartProductUpdateNumberDC.cartProductIdArray) {
+        for (ShoppingCartModel *model in self.cartListDC.shoppingCartProductsArray) {
+            if (idString.integerValue == model.shoppingCartProductID.integerValue) {
+                model.shoppingCartProductNumber = model.shoppingCartProductLastNumber;
+            }
+        }
+    }
+}
+
+- (BOOL)needUpdateProductNumber {
+    for (NSString *idString in self.cartProductUpdateNumberDC.cartProductIdArray) {
+        for (ShoppingCartModel *model in self.cartListDC.shoppingCartProductsArray) {
+            if (idString.integerValue == model.shoppingCartProductID.integerValue) {
+                if (model.shoppingCartProductNumber.intValue != model.shoppingCartProductLastNumber.intValue) {
+                    return YES;
+                }
+            }
+        }
+    }
+    return NO;
+}
 @end

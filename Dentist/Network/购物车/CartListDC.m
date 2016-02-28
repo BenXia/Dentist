@@ -36,6 +36,7 @@
             ShoppingCartModel *model = [ShoppingCartModel new];
             model.shoppingCartProductID     = [dic objectForKey:@"iid"];
             model.shoppingCartProductNumber = [dic objectForKey:@"cart_num"];
+            model.shoppingCartProductLastNumber = [dic objectForKey:@"cart_num"]; //保存购物车上一次数据
             model.shoppingCartProductSids = [dic objectForKey:@"sids"];
             model.shoppingCartProductPrice = [dic objectForKey:@"price"];
             model.shoppingCartProductSurplusNumber = [dic objectForKey:@"num"];
