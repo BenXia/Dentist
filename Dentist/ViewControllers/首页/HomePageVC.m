@@ -269,9 +269,6 @@ saleActivityCellDelegate>
 
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
     BannerModel *model = self.adBannerRequest.bannerArr[index];
-    //TODO-GUO
-//    ProductDetailVC *detailVC = [[ProductDetailVC alloc] initWithProductId:@"144"];
-
     ProductDetailVC *detailVC = [[ProductDetailVC alloc] initWithProductId:model.iid];
     detailVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:detailVC animated:YES];
@@ -390,7 +387,6 @@ saleActivityCellDelegate>
 
 - (void)todayIntroduceCell:(TodayIntroduceCell *)cell toProductDetailWith:(NSString *)iid {
     ProductDetailVC *detailVC = [[ProductDetailVC alloc] initWithProductId:iid];
-    //ProductDetailVC *detailVC = [[ProductDetailVC alloc] initWithProductId:@"144"];
     detailVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:detailVC animated:YES];
 }
