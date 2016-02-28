@@ -35,11 +35,7 @@
                                                                  options:0
                                                                    error:&error];
     if (!error || [resultDict isKindOfClass:[NSDictionary class]]) {
-        if ([[resultDict objectForKey:@"code"] intValue] == 200) {
-            self.sendSmsSuccess = YES;
-        } else {
-            self.sendSmsSuccess = NO;
-        }
+        self.responseCode = [[resultDict objectForKey:@"code"] intValue];
         
         result = YES;
     }

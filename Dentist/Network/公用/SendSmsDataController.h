@@ -14,6 +14,6 @@
 @property (nonatomic, strong) NSString *phoneNumber;
 
 // Output
-@property (nonatomic, assign) BOOL sendSmsSuccess;
+@property (nonatomic, assign) int responseCode;
 
 @end
