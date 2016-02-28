@@ -45,8 +45,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
     [self initUI];
+    [self initObserver];
     [self initRefreshView];
     [self orderListRequest];
 }
@@ -94,6 +94,24 @@
     [self.allOrderListVM.orderListDC requestWithArgs:nil];
 }
 
+#pragma mark - Notification
+
+- (void)initObserver {
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleNotification:)
+                                                 name:kOrderChangedNotification
+                                               object:nil];
+}
+
+- (void)handleNotification:(NSNotification *)notification {
+    self.allOrderListVM.orderListDC.orderListArray = nil;
+    self.allOrderListVM.orderListDC.next_iid= nil;
+    [self orderListRequest];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 #pragma mark - UITableViewDataSource & UITableViewDelegate
 

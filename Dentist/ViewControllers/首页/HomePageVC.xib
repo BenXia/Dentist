@@ -34,7 +34,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cDH-ff-Ykl" userLabel="SelectCityButton">
-                            <rect key="frame" x="0.0" y="22" width="70" height="40"/>
+                            <rect key="frame" x="5" y="22" width="70" height="40"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="70" id="Pkb-ig-Vrr"/>
@@ -42,7 +42,7 @@
                             <state key="normal" image="logo_1.png"/>
                         </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bNv-Gc-3fl" userLabel="SearchContentView">
-                            <rect key="frame" x="78" y="24" width="190" height="36"/>
+                            <rect key="frame" x="78" y="24" width="232" height="36"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_top_search.png" translatesAutoresizingMaskIntoConstraints="NO" id="WpG-E0-fiT">
                                     <rect key="frame" x="9" y="9" width="18" height="18"/>
@@ -52,13 +52,13 @@
                                     </constraints>
                                 </imageView>
                                 <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入关键字搜索" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KDo-mL-rvs">
-                                    <rect key="frame" x="30" y="2" width="160" height="32"/>
+                                    <rect key="frame" x="30" y="2" width="202" height="32"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E75-8x-cc3" userLabel="TopButton">
-                                    <rect key="frame" x="0.0" y="2" width="190" height="32"/>
+                                    <rect key="frame" x="0.0" y="2" width="232" height="32"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <connections>
                                         <action selector="didTapSearchButton:" destination="-1" eventType="touchUpInside" id="V6k-tT-15D"/>
@@ -79,7 +79,7 @@
                                 <constraint firstAttribute="trailing" secondItem="E75-8x-cc3" secondAttribute="trailing" id="xio-KA-QRJ"/>
                             </constraints>
                         </view>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mz4-gd-QHm">
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mz4-gd-QHm">
                             <rect key="frame" x="276" y="30" width="36" height="23"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="36" id="fbV-bJ-Oj2"/>
@@ -90,14 +90,14 @@
                     <color key="backgroundColor" red="0.17254901959999999" green="0.36470588240000001" blue="0.65098039220000004" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="cDH-ff-Ykl" secondAttribute="bottom" constant="2" id="4rK-r1-mu2"/>
-                        <constraint firstItem="mz4-gd-QHm" firstAttribute="leading" secondItem="bNv-Gc-3fl" secondAttribute="trailing" constant="8" id="Hru-zX-HLm"/>
+                        <constraint firstItem="mz4-gd-QHm" firstAttribute="leading" secondItem="bNv-Gc-3fl" secondAttribute="trailing" constant="-34" id="Hru-zX-HLm"/>
                         <constraint firstAttribute="height" constant="64" id="K7T-0a-EAN"/>
                         <constraint firstAttribute="trailing" secondItem="mz4-gd-QHm" secondAttribute="trailing" constant="8" id="MwN-ZA-i7t"/>
                         <constraint firstItem="mz4-gd-QHm" firstAttribute="centerY" secondItem="bNv-Gc-3fl" secondAttribute="centerY" id="QaR-Cg-9yU"/>
-                        <constraint firstItem="bNv-Gc-3fl" firstAttribute="leading" secondItem="cDH-ff-Ykl" secondAttribute="trailing" constant="8" id="SZr-kC-Io6"/>
+                        <constraint firstItem="bNv-Gc-3fl" firstAttribute="leading" secondItem="cDH-ff-Ykl" secondAttribute="trailing" constant="3" id="SZr-kC-Io6"/>
                         <constraint firstItem="bNv-Gc-3fl" firstAttribute="top" secondItem="gHQ-rt-Oht" secondAttribute="top" constant="24" id="hbd-IC-R6O"/>
                         <constraint firstAttribute="bottom" secondItem="bNv-Gc-3fl" secondAttribute="bottom" constant="4" id="nrK-gO-gx3"/>
-                        <constraint firstItem="cDH-ff-Ykl" firstAttribute="leading" secondItem="gHQ-rt-Oht" secondAttribute="leading" id="oBR-4J-4ry"/>
+                        <constraint firstItem="cDH-ff-Ykl" firstAttribute="leading" secondItem="gHQ-rt-Oht" secondAttribute="leading" constant="5" id="oBR-4J-4ry"/>
                         <constraint firstItem="cDH-ff-Ykl" firstAttribute="top" secondItem="gHQ-rt-Oht" secondAttribute="top" constant="22" id="t2I-Zb-Vzp"/>
                     </constraints>
                 </view>
