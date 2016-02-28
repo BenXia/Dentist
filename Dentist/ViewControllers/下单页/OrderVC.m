@@ -236,7 +236,7 @@ PayFailedVCDelegate>
     order.package                   = @"Sign=WXPay";
     order.nonceStr                  = [weixinDict objectForKey:@"nonce_str"];
     order.prepayId                  = [weixinDict objectForKey:@"prepay_id"];
-    //            order.sign                      = [weixinDict objectForKey:@"sign"];;
+    //order.sign                      = [weixinDict objectForKey:@"sign"];;
     
     NSDate *datenow = [NSDate date];
     NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)[datenow timeIntervalSince1970]];
@@ -259,13 +259,64 @@ PayFailedVCDelegate>
         [self.payResultDC requestWithArgs:nil];
     };
     wechatpay.failedHandler         = ^ (NSError *error) {
-        @strongify(self)
-        
-        PayFailedVC *failedVC = [[PayFailedVC alloc] init];
-        failedVC.delegate = self;
-        [self.navigationController pushViewController:failedVC animated:YES];
+        [Utilities showToastWithText:@"支付未完成" withImageName:nil blockUI:NO];
     };
     [wechatpay pay];
+}
+
+#pragma mark - Alipay Related
+
+- (void)alipayWithOrderId:(NSString *)orderId
+                     name:(NSString *)name
+              description:(NSString *)description
+                    money:(NSString *)money {
+    ComponentAlipay_Order *order = [[ComponentAlipay_Order alloc] init];
+    order.ID = self.createOrderDC.oid;
+    order.name = self.createOrderDC.subject;
+    order.desc = self.createOrderDC.body;
+    order.price = self.createOrderDC.money;
+    [[AlipayManager sharedAlipayManager] payWithAlipay:order completeBlock:^(NSDictionary *dic) {
+        [[GCDQueue mainQueue] queueBlock:^{
+            [self alipayResult:dic];
+        }];
+    }];
+}
+
+- (void)alipayResult:(NSDictionary *)resultDict {
+    NSNumber *status = [resultDict objectForKey:@"resultStatus"];
+    switch ([status intValue]) {
+        case kAlipayErrorCode_Succeed: {
+            self.aliPayErrorDesc = @"支付宝支付成功";
+            [self.payResultDC requestWithArgs:nil];
+        }
+            break;
+            
+        case kAlipayErrorCode_Dealing: {
+            self.aliPayErrorDesc = @"支付订单正在处理中";
+        }
+            break;
+            
+        case kAlipayErrorCode_Failed: {
+            self.aliPayErrorDesc = @"支付宝支付失败";
+        }
+            break;
+            
+        case kAlipayErrorCode_Cancel: {
+            self.aliPayErrorDesc = @"支付订单取消";
+        }
+            break;
+            
+        case kAlipayErrorCode_NetError: {
+            self.aliPayErrorDesc = @"网络连接失败";
+        }
+            
+        default: {
+            self.aliPayErrorDesc = @"支付未完成";
+        }
+            break;
+    }
+    
+    [Utilities showToastWithText:self.aliPayErrorDesc withImageName:nil blockUI:NO];
 }
 
 #pragma mark - UITableViewDataSource & UITableViewDelegate
@@ -566,19 +617,10 @@ PayFailedVCDelegate>
         if (self.payType == PayType_WeChat) {
             [self weixinPayWithDict:self.createOrderDC.weixinDict];
         } else if (self.payType == PayType_AliPay) {
-            // TODO-WT:支付宝支付
-            ComponentAlipay_Order *order = [[ComponentAlipay_Order alloc] init];
-            order.ID = self.createOrderDC.oid;
-//            order.name = [self.createOrderDC.alipayDict objectForKey:@"name"];
-//            order.desc = [self.createOrderDC.alipayDict objectForKey:@"desc"];
-            order.name = @"name";
-            order.desc = @"desc";
-            order.price = self.createOrderDC.money;
-            [[AlipayManager sharedAlipayManager] payWithAlipay:order completeBlock:^(NSDictionary *dic) {
-                [[GCDQueue mainQueue] queueBlock:^{
-                    [self alipayResult:dic];
-                }];
-            }];
+            [self alipayWithOrderId:self.createOrderDC.oid
+                               name:self.createOrderDC.subject
+                        description:self.createOrderDC.body
+                              money:self.createOrderDC.money];
         }
     } else if (controller == self.repayDC) {
         self.payResultDC.oid = self.repayDC.orderNumberId ? self.repayDC.orderNumberId : @"";
@@ -586,20 +628,10 @@ PayFailedVCDelegate>
         if (self.payType == PayType_WeChat) {
             [self weixinPayWithDict:self.repayDC.weixinDict];
         } else if (self.payType == PayType_AliPay) {
-            // TODO-WT:支付宝支付
-            
-            ComponentAlipay_Order *order = [[ComponentAlipay_Order alloc] init];
-            order.ID = self.createOrderDC.oid;
-            //            order.name = [self.createOrderDC.alipayDict objectForKey:@"name"];
-            //            order.desc = [self.createOrderDC.alipayDict objectForKey:@"desc"];
-            order.name = @"name";
-            order.desc = @"desc";
-            order.price = self.createOrderDC.money;
-            [[AlipayManager sharedAlipayManager] payWithAlipay:order completeBlock:^(NSDictionary *dic) {
-                [[GCDQueue mainQueue] queueBlock:^{
-                    [self alipayResult:dic];
-                }];
-            }];
+            [self alipayWithOrderId:self.createOrderDC.oid
+                               name:self.createOrderDC.subject
+                        description:self.createOrderDC.body
+                              money:self.createOrderDC.money];
         }
     } else if (controller == self.payResultDC) {
         if (self.payResultDC.responseCode == 200) {
@@ -722,43 +754,6 @@ PayFailedVCDelegate>
     self.repayDC.payType = (self.payType == PayType_WeChat) ? @"weixin" : @"alipay";
     
     [self.repayDC requestWithArgs:nil];
-}
-
-- (void)alipayResult:(NSDictionary *)resultDict {
-    NSNumber *status = [resultDict objectForKey:@"resultStatus"];
-    switch ([status intValue]) {
-        case kAlipayErrorCode_Succeed: {
-            self.aliPayErrorDesc = @"支付宝支付成功";
-            [self.payResultDC requestWithArgs:nil];
-        }
-            break;
-            
-        case kAlipayErrorCode_Dealing: {
-            self.aliPayErrorDesc = @"支付订单正在处理中";
-        }
-            break;
-            
-        case kAlipayErrorCode_Failed: {
-            self.aliPayErrorDesc = @"支付宝支付失败";
-        }
-            break;
-            
-        case kAlipayErrorCode_Cancel: {
-            self.aliPayErrorDesc = @"支付宝 支付订单取消";
-        }
-            break;
-            
-        case kAlipayErrorCode_NetError: {
-            self.aliPayErrorDesc = @"网络连接失败";
-        }
-            
-        default: {
-            self.aliPayErrorDesc = @"unknown";
-        }
-            break;
-    }
-    
-    [Utilities showToastWithText:self.aliPayErrorDesc];
 }
 
 @end

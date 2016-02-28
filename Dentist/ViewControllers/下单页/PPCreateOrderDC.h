@@ -34,6 +34,8 @@
 @property (nonatomic, strong) NSString *time_expire;
 @property (nonatomic, strong) NSString *time_start;
 @property (nonatomic, strong) NSDictionary *weixinDict;
+@property (nonatomic, strong) NSString *subject;
+@property (nonatomic, strong) NSString *body;
 //weixin =     {
 //    appid = wx983825eaeef912b7;
 //    "mch_id" = 1292687201;
@@ -45,6 +47,5 @@
 //    sign = 6BCA9F2B2BBA86A3187EEA1AE45FDE13;
 //    "trade_type" = APP;
 //};
-@property (nonatomic, strong) NSDictionary *alipayDict;
 
 @end
