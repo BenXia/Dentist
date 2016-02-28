@@ -95,12 +95,15 @@
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url options:(NSDictionary<NSString*, id> *)options {
     NSLog(@"scheme:%@",[url scheme]);
     if ([[url scheme] isEqualToString:@"com.toboom.yayiabc"]) {
-//        [component.payment.alipay parse:url application:application];
-//        
-//        [[AppTransition sharedInstance] parse:url];
-        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
-            NSLog(@"result = %@",resultDic);
-        }];
+        [[AlipaySDK defaultService] processAuth_V2Result:url
+                                         standbyCallback:^(NSDictionary *resultDic) {
+                                             NSLog(@"result = %@",resultDic);
+                                         }];
+        [[AlipaySDK defaultService] processOrderWithPaymentResult:url
+                                                  standbyCallback:^(NSDictionary *resultDic) {
+                                                      NSLog(@"result = %@",resultDic);
+                                                  }];
+        
         return YES;
     } else {
         return [WXApi handleOpenURL:url delegate:self];
