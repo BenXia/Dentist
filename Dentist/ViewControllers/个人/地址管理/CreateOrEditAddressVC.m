@@ -14,6 +14,8 @@
 #define PickerViewHeight             250
 
 @interface CreateOrEditAddressVC () <UITextFieldDelegate,PPDataControllerDelegate>
+@property (strong, nonatomic) IBOutlet UIView *tableHeaderView;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *phoneNumTextField;
 @property (weak, nonatomic) IBOutlet UITextField *areaTextField;
@@ -167,6 +169,13 @@
         default:
             break;
     }
+    
+    self.view.backgroundColor = [UIColor themeBackGrayColor];
+    self.tableView.backgroundColor = [UIColor themeBackGrayColor];
+    
+    self.tableHeaderView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-64);
+    self.tableView.tableHeaderView = self.tableHeaderView;
+    self.tableView.tableFooterView = [UIView new];
 }
 
 - (void)refreshUI {
@@ -193,6 +202,8 @@
     [UIView animateWithDuration:0.5 animations:^{
         self.classTimePickerContentView.alpha = 0;
         self.pickerBackgroundView.frame = CGRectMake(0, self.classTimePickerContentView.frame.size.height, [UIScreen mainScreen].bounds.size.width, PickerViewHeight);
+    }completion:^(BOOL finished) {
+        self.classTimePickerContentView.hidden = YES;
     }];
 }
 
@@ -202,6 +213,7 @@
     [self.phoneNumTextField resignFirstResponder];
     [self.detailAddressTextField resignFirstResponder];
     [self.postCodeTextField resignFirstResponder];
+    self.classTimePickerContentView.hidden = NO;
     [UIView animateWithDuration:0.5 animations:^{
         self.classTimePickerContentView.alpha = 1;
         self.pickerBackgroundView.frame = CGRectMake(0, self.classTimePickerContentView.frame.size.height - PickerViewHeight, [UIScreen mainScreen].bounds.size.width, PickerViewHeight);
