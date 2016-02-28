@@ -521,7 +521,6 @@ UIScrollViewDelegate>
     //商品信息
     [self.popInfoImageView sd_setImageWithURL:[NSURL URLWithString:[productDetail.img_url firstObject]]];
     [self.popInfoPriceLabel themeWithPrice:productDetail.price bigFont:18 smallFont:14];
-    self.popInfoRemainNumLabel.text = [NSString stringWithFormat:@"库存 %d件",productDetail.num];
     
     //默认选中分类的索引
     NSString* curSpecStr = self.dc.productDetail.sids;
@@ -662,6 +661,11 @@ UIScrollViewDelegate>
     if (self.dc.productDetail.p_sids.count == 0) {
         self.popInfoSelectTipLabel.text = @"";
         self.isSelectSpecCompleted = YES;
+        
+        //刷新库存
+        self.popInfoRemainNumLabel.text = [NSString stringWithFormat:@"库存 %d件",self.dc.productDetail.num];
+        self.editNumerView.max = @(self.dc.productDetail.num);
+        self.editNumerView.min = self.dc.productDetail.num > 0 ? @(1) : @(0);
     }else{
         
         NSMutableString* noSelectedTipStr = [NSMutableString new];
@@ -695,6 +699,11 @@ UIScrollViewDelegate>
             self.isSelectSpecCompleted = NO;
             
             self.selectTipLabel.text = [NSString stringWithFormat:@"请选择%@",noSelectedTipStr];
+            
+            //刷新库存
+            self.popInfoRemainNumLabel.text = [NSString stringWithFormat:@"库存 %d件",self.dc.productDetail.num];
+            self.editNumerView.max = @(self.dc.productDetail.num);
+            self.editNumerView.min = self.dc.productDetail.num > 0 ? @(1) : @(0);
         }else{
             self.popInfoSelectTipLabel.text = selectedTipStr;
             self.popInfoSelectTipLabel.textColor = [UIColor fontGray007Color];
@@ -710,6 +719,7 @@ UIScrollViewDelegate>
                     self.specProduct = specProduct;
                     self.popInfoRemainNumLabel.text = [NSString stringWithFormat:@"库存 %d件",specProduct.num];
                     self.editNumerView.max = @(specProduct.num);
+                    self.editNumerView.min = specProduct.num > 0 ? @(1) : @(0);
                     break;
                 }
             }
@@ -843,7 +853,11 @@ UIScrollViewDelegate>
         return;
     }
     if (self.buyNum <= 0) {
-        [Utilities showToastWithText:@"请选择商品数量"];
+        if (self.dc.productDetail.num == 0 && self.specProduct.num == 0) {
+            [Utilities showToastWithText:@"库存不足"];
+        }else{
+            [Utilities showToastWithText:@"请选择商品数量"];
+        }
         return;
     }
     NSString* productId = self.specProduct.iid ? self.specProduct.iid : self.dc.productDetail.iid;
@@ -862,7 +876,11 @@ UIScrollViewDelegate>
         return;
     }
     if (self.buyNum <= 0) {
-        [Utilities showToastWithText:@"请选择商品数量"];
+        if (self.dc.productDetail.num == 0 && self.specProduct.num == 0) {
+            [Utilities showToastWithText:@"库存不足"];
+        }else{
+            [Utilities showToastWithText:@"请选择商品数量"];
+        }
         return;
     }
     
