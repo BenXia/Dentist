@@ -12,13 +12,6 @@
 #import "OrderListDC.h"
 #import "DeleteOrderDC.h"
 
-typedef NS_ENUM(NSInteger,OrderStatusType) {
-    OrderStatusType_NeedHandle = 0,
-    OrderStatusType_Complete ,
-    OrderStatusType_NeedPraise ,
-    OrderStatusType_All ,
-};
-
 @interface AllOrderListVM : NSObject
 
 @property (strong, nonatomic) OrderListDC        *orderListDC;

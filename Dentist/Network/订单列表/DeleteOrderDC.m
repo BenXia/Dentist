@@ -10,26 +10,17 @@
 
 @implementation DeleteOrderDC
 
-//- (NSDictionary *)requestURLArgs {
-//    NSString* token = [UserCache sharedUserCache].token ? [UserCache sharedUserCache].token : @"";
-//    return @{@"method":@"order.delivery",@"v":@"0.0.1",@"auth":token};
-//}
-//
-//- (RequestMethod)requestMethod {
-//    return RequestMethodPOST;
-//}
-//
-//-(NSDictionary*)requestHTTPBody{
-//    return @{@"oid":self.oid};
-//}
-
 - (NSDictionary *)requestURLArgs {
     NSString* token = [UserCache sharedUserCache].token ? [UserCache sharedUserCache].token : @"";
-    return @{@"method":@"order.detail",@"v":@"0.0.1",@"auth":token,@"oid":[NSNumber numberWithInteger:self.oid.integerValue]};
+    return @{@"method":@"order.del",@"v":@"0.0.1",@"auth":token};
 }
 
 - (RequestMethod)requestMethod {
-    return RequestMethodGET;
+    return RequestMethodPOST;
+}
+
+-(NSDictionary*)requestHTTPBody{
+    return @{@"oid":[NSNumber numberWithInteger:self.oid.integerValue]};
 }
 
 - (void)requestWillStart {
@@ -51,6 +42,8 @@
         
         if (self.responseCode != 200) {
             return NO;
+        } else {
+            return YES;
         }
     }
     
