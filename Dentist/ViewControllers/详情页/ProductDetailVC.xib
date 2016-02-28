@@ -34,6 +34,7 @@
                 <outlet property="baseTitleLabel" destination="cmo-Gs-yQI" id="nh6-DH-Olk"/>
                 <outlet property="baseTitleLabelLeadingConstraint" destination="Uce-2G-ayK" id="dTP-Ac-rX6"/>
                 <outlet property="baseTitleLabelTopConstraint" destination="tjm-NL-Yjt" id="9xs-c1-zh8"/>
+                <outlet property="bottomButtonView" destination="VVf-F1-d7o" id="Zu4-ZK-F16"/>
                 <outlet property="dragTipView" destination="TjC-WE-6QL" id="8jd-XH-vqq"/>
                 <outlet property="giftContentLabel" destination="Hym-Fn-kVv" id="fbs-e7-Zb9"/>
                 <outlet property="giftContentLabelTrailingConstraint" destination="zrn-Pw-aKP" id="Ncg-n2-m2e"/>

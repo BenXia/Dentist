@@ -175,6 +175,9 @@
     self.areaTextField.text = [NSString stringWithFormat:@"%@%@%@",self.addressModel.province,self.addressModel.city,self.addressModel.area];
     self.detailAddressTextField.text = self.addressModel.detailAddress;
     self.postCodeTextField.text = self.addressModel.postCode;
+    if (self.addressModel.isDefault) {
+        [self.defaultAddressBtn setImage:[UIImage imageNamed:@"btn_choice_t"] forState:UIControlStateNormal];
+    }
 }
 
 - (void)downloadfromNet {

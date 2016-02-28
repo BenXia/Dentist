@@ -464,7 +464,6 @@
 		93DEA8D31C4BCBAA008211F7 /* SDCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 93DEA8CA1C4BCBAA008211F7 /* SDCollectionViewCell.m */; };
 		93DEA8D41C4BCBAA008211F7 /* SDCycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93DEA8CC1C4BCBAA008211F7 /* SDCycleScrollView.m */; };
 		93DEA8D51C4BCBAA008211F7 /* UIView+SDExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 93DEA8CE1C4BCBAA008211F7 /* UIView+SDExtension.m */; };
-		93E68AA51C7C9CA400B3A85D /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = 93E68AA41C7C9CA400B3A85D /* area.plist */; };
 		93EBD68A1C7F2D14005FA9A1 /* ic_share05@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93EBD6841C7F2D14005FA9A1 /* ic_share05@2x.png */; };
 		93EBD68B1C7F2D14005FA9A1 /* ic_share05@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93EBD6851C7F2D14005FA9A1 /* ic_share05@3x.png */; };
 		93EBD68C1C7F2D14005FA9A1 /* icon_pengyouquan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93EBD6861C7F2D14005FA9A1 /* icon_pengyouquan@2x.png */; };
@@ -1137,7 +1136,6 @@
 		93DEA8CC1C4BCBAA008211F7 /* SDCycleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCycleScrollView.m; sourceTree = "<group>"; };
 		93DEA8CD1C4BCBAA008211F7 /* UIView+SDExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SDExtension.h"; sourceTree = "<group>"; };
 		93DEA8CE1C4BCBAA008211F7 /* UIView+SDExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SDExtension.m"; sourceTree = "<group>"; };
-		93E68AA41C7C9CA400B3A85D /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
 		93EBD6841C7F2D14005FA9A1 /* ic_share05@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_share05@2x.png"; sourceTree = "<group>"; };
 		93EBD6851C7F2D14005FA9A1 /* ic_share05@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_share05@3x.png"; sourceTree = "<group>"; };
 		93EBD6861C7F2D14005FA9A1 /* icon_pengyouquan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_pengyouquan@2x.png"; sourceTree = "<group>"; };
@@ -1812,7 +1810,6 @@
 		33F06F921C42477300DAC58F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				93E68AA41C7C9CA400B3A85D /* area.plist */,
 				33F070531C429C1100DAC58F /* constdef.h */,
 				33F070541C429C1100DAC58F /* Dentist-Prefix.pch */,
 				33F06F931C42477300DAC58F /* Images.xcassets */,
@@ -3001,7 +2998,6 @@
 				33440D021C783B0700A441E3 /* common_completed_icon@2x.png in Resources */,
 				88965B0C1C814B19001FA633 /* 搜索放大镜@3x.png in Resources */,
 				33DD6C9C1C611A5500CE6B31 /* Btn_Collection_default@2X.png in Resources */,
-				93E68AA51C7C9CA400B3A85D /* area.plist in Resources */,
 				33DD6B3A1C60ED2800CE6B31 /* ProductBriefInfoCell.xib in Resources */,
 				33DD6CBE1C611A5500CE6B31 /* dot_focus.png in Resources */,
 				33DD6CC61C611A5500CE6B31 /* home_bg_discount.png in Resources */,
