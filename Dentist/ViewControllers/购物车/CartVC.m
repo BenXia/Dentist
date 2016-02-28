@@ -309,6 +309,9 @@ static NSString* const kCellReuseIdentifier = @"ProductBriefInfoCell";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.isEditType) {
+        return;
+    }
     ShoppingCartModel *model = [self.shoppingCardVM.cartListDC.shoppingCartProductsArray objectAtIndex:indexPath.row];
     ProductDetailVC* detailVC = [[ProductDetailVC alloc] initWithProductId:model.shoppingCartProductID];
     [self.navigationController pushViewController:detailVC animated:YES];
