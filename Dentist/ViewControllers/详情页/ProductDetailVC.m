@@ -14,6 +14,7 @@
 #import "ProductDescriptionVC.h"
 #import "AddCartDC.h"
 #import "AddFavoriteDC.h"
+#import "RemoveFavoriteDC.h"
 #import "ProductEvaluateTableViewCell.h"
 #import "ProductEvaluateModel.h"
 #import "ProductEvaluateVC.h"
@@ -41,6 +42,7 @@ UIScrollViewDelegate>
 @property (nonatomic, strong) ProductDetailDC *dc;
 @property (nonatomic, strong) AddCartDC* addCartDC;
 @property (nonatomic, strong) AddFavoriteDC* addFavoriteDC;
+@property (nonatomic, strong) RemoveFavoriteDC* removeFavoriteDC;
 
 @property (strong,nonatomic) NSMutableDictionary* dicFromSepcTitleToButtons;
 @property (strong,nonatomic) NSMutableDictionary* dicFromSepcDataToTitle;
@@ -60,6 +62,8 @@ UIScrollViewDelegate>
 
 @property (strong, nonatomic) SDCycleScrollView *cycleScrollView;
 @property (assign, nonatomic) CGFloat cycleScrollViewHeight;
+
+@property (weak, nonatomic) IBOutlet UIButton *addFavoriteButton;
 
 @property (strong, nonatomic) IBOutlet UIView *baseInfoView;
 @property (weak, nonatomic) IBOutlet UILabel *baseTitleLabel;
@@ -146,6 +150,7 @@ UIScrollViewDelegate>
         self.dc = [[ProductDetailDC alloc]initWithDelegate:self];
         self.addCartDC = [[AddCartDC alloc] initWithDelegate:self];
         self.addFavoriteDC = [[AddFavoriteDC alloc] initWithDelegate:self];
+        self.removeFavoriteDC = [[RemoveFavoriteDC alloc] initWithDelegate:self];
         self.dc.productId = productId;
         self.buyNum = 1;
         self.statusBarStyle = UIStatusBarStyleLightContent;
@@ -231,7 +236,7 @@ UIScrollViewDelegate>
 
 - (void)initMainScrollView {
     self.scrollView.backgroundColor = [UIColor themeBackGrayColor];
-
+    
 }
 
 -(void)initGroupDiscountView{
@@ -757,11 +762,22 @@ UIScrollViewDelegate>
 }
 
 - (IBAction)didClickFavoriteButtonAction:(id)sender {
-    if (self.dc.productDetail.iid) {
-        self.addFavoriteDC.productIds = @[self.dc.productDetail.iid];
-        [self.addFavoriteDC requestWithArgs:nil];
+    if (self.addFavoriteButton.selected == NO) {
+        //收藏
+        if (self.dc.productDetail.iid) {
+            self.addFavoriteDC.productIds = @[self.dc.productDetail.iid];
+            [self.addFavoriteDC requestWithArgs:nil];
+        }else{
+            [Utilities showToastWithText:@"商品不存在"];
+        }
     }else{
-        [Utilities showToastWithText:@"商品不存在"];
+        //取消收藏
+        if (self.dc.productDetail.iid) {
+            self.removeFavoriteDC.productIds = @[self.dc.productDetail.iid];
+            [self.removeFavoriteDC requestWithArgs:nil];
+        }else{
+            [Utilities showToastWithText:@"商品不存在"];
+        }
     }
 }
 
@@ -966,8 +982,17 @@ UIScrollViewDelegate>
     if (controller == self.dc) {
         [self refreshUI];
     }else if(controller == self.addFavoriteDC){
-        [Utilities showToastWithText:@"添加收藏成功"];
+        if (self.addFavoriteDC.code == 200) {
+            [Utilities showToastWithText:@"添加收藏成功"];
+            self.addFavoriteButton.selected = YES;
+        }
+    }else if(controller == self.removeFavoriteDC){
+        if(self.removeFavoriteDC.code == 200){
+            [Utilities showToastWithText:@"取消收藏成功"];
+            self.addFavoriteButton.selected = NO;
+        }
     }else if(controller == self.addCartDC){
+        [self hidePopupCustomiseView:nil];
         switch (self.addCartDC.code) {
             case 200:
                 [Utilities showToastWithText:@"添加购物车成功"];
@@ -990,7 +1015,10 @@ UIScrollViewDelegate>
         [Utilities showToastWithText:@"获取商品详情失败"];
     }else if(controller == self.addFavoriteDC){
         [Utilities showToastWithText:@"添加收藏失败"];
+    }else if(controller == self.removeFavoriteDC){
+        [Utilities showToastWithText:@"取消收藏失败"];
     }else if(controller == self.addCartDC){
+        [self hidePopupCustomiseView:nil];
         [Utilities showToastWithText:@"添加购物车失败"];
     }
 }
