@@ -19,13 +19,13 @@
     return RequestMethodPOST;
 }
 
--(NSDictionary*)requestHTTPBodyPlainJsonParams{
+-(NSDictionary*)requestHTTPBody{
     NSMutableDictionary* paramDic = [NSMutableDictionary new];
     [paramDic setObject:self.oid forKey:@"oid"];
     [paramDic setObject:self.iid forKey:@"iid[]"];
     [paramDic setObject:self.score forKey:@"score[]"];
     [paramDic setObject:self.content forKey:@"content[]"];
-    
+
     if (self.imgs && self.imgs.count > 0) {
         [paramDic setObject:self.imgs forKey:@"imgs[]"];
     }
