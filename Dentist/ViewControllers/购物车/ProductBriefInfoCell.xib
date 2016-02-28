@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -19,12 +19,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rfN-cD-jY1">
-                                <rect key="frame" x="10" y="18" width="26" height="44"/>
+                                <rect key="frame" x="0.0" y="0.0" width="42" height="85"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="26" id="2zR-F6-GOA"/>
-                                    <constraint firstAttribute="height" constant="44" id="aGE-wG-KXO"/>
+                                    <constraint firstAttribute="width" constant="42" id="2zR-F6-GOA"/>
+                                    <constraint firstAttribute="height" constant="85" id="aGE-wG-KXO"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <inset key="imageEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" image="btn_choice_f.png">
                                     <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -230,12 +231,12 @@
                             <constraint firstAttribute="trailing" secondItem="gYi-Ud-flh" secondAttribute="trailing" constant="10" id="LoI-oB-8oK"/>
                             <constraint firstItem="f25-m9-Ep8" firstAttribute="top" secondItem="BXr-Kx-EBp" secondAttribute="bottom" constant="-2" id="Msh-Sz-1hM"/>
                             <constraint firstItem="BXr-Kx-EBp" firstAttribute="trailing" secondItem="gYi-Ud-flh" secondAttribute="trailing" id="N11-as-gjd"/>
-                            <constraint firstItem="rfN-cD-jY1" firstAttribute="leading" secondItem="zrU-Os-IgW" secondAttribute="leading" constant="10" id="P7d-lU-iJZ"/>
+                            <constraint firstItem="rfN-cD-jY1" firstAttribute="leading" secondItem="zrU-Os-IgW" secondAttribute="leading" id="P7d-lU-iJZ"/>
                             <constraint firstItem="BXr-Kx-EBp" firstAttribute="leading" secondItem="gYi-Ud-flh" secondAttribute="leading" id="P7r-tt-ztT"/>
                             <constraint firstItem="Qvt-dl-OXW" firstAttribute="leading" secondItem="5w6-s0-qdg" secondAttribute="trailing" constant="10" id="P8a-K0-i5b"/>
                             <constraint firstAttribute="trailing" secondItem="8dI-pH-vea" secondAttribute="trailing" id="PSr-yd-Kma"/>
                             <constraint firstItem="gYi-Ud-flh" firstAttribute="top" secondItem="zrU-Os-IgW" secondAttribute="top" constant="6" id="TD5-Ro-SB0"/>
-                            <constraint firstItem="rfN-cD-jY1" firstAttribute="top" secondItem="zrU-Os-IgW" secondAttribute="top" constant="18" id="cAc-Yb-S1v"/>
+                            <constraint firstItem="rfN-cD-jY1" firstAttribute="top" secondItem="zrU-Os-IgW" secondAttribute="top" id="cAc-Yb-S1v"/>
                             <constraint firstItem="8dI-pH-vea" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="f25-m9-Ep8" secondAttribute="trailing" id="cBh-nA-tfw"/>
                             <constraint firstItem="5w6-s0-qdg" firstAttribute="leading" secondItem="zrU-Os-IgW" secondAttribute="leading" constant="42" id="caY-wu-f03"/>
                             <constraint firstItem="f25-m9-Ep8" firstAttribute="leading" secondItem="gYi-Ud-flh" secondAttribute="leading" id="hYq-xT-UZd"/>

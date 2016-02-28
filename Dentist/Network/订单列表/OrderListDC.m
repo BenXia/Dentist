@@ -16,9 +16,9 @@
 - (NSDictionary *)requestURLArgs {
     NSString* token = [UserCache sharedUserCache].token ? [UserCache sharedUserCache].token : @"";
     if (self.next_iid.integerValue > 0) {
-        return @{@"method":@"order.mylist",@"v":@"0.0.1",@"auth":token,@"next_iid":self.next_iid};
+        return @{@"method":@"order.mylist",@"v":@"0.0.1",@"auth":token,@"next_iid":self.next_iid,@"pagesize":@"10"};
     } else {
-        return @{@"method":@"order.mylist",@"v":@"0.0.1",@"auth":token};
+        return @{@"method":@"order.mylist",@"v":@"0.0.1",@"auth":token,@"pagesize":@"10"};
     }
 }
 
