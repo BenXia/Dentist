@@ -38,13 +38,7 @@ WTLabelDelegate>
     [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"新建" style:UIBarButtonItemStylePlain target:self action:@selector(didClickOnRightBtn)]];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 #pragma mark - UITableViewDataSource & UITableViewDelegate
-
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.addressListRequest.addressArr.count;
@@ -150,6 +144,7 @@ WTLabelDelegate>
         }];
     } else if (controller == self.deleteAddressRequest) {
         [[GCDQueue mainQueue] queueBlock:^{
+            [self.addressListRequest.addressArr removeObjectAtIndex:self.willDeleteIndexPath.row];
             [self refreshTableView];
         }];
     }

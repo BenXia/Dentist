@@ -21,8 +21,9 @@
 #import "AddressListVC.h"
 #import "PPConfirmOrderDC.h"
 #import "PPCreateOrderDC.h"
-#import "PPPayResultDC.h"
+#import "DeleteOrderDC.h"
 #import "PPRepayDC.h"
+#import "PPPayResultDC.h"
 #import "PaySuccessVC.h"
 #import "PayFailedVC.h"
 #import "WeiXinMD5Encrypt.h"
@@ -46,6 +47,7 @@ PayFailedVCDelegate>
 
 @property (nonatomic, strong) PPConfirmOrderDC *confirmOrderDC;
 @property (nonatomic, strong) PPCreateOrderDC *createOrderDC;
+@property (nonatomic, strong) DeleteOrderDC *deleteOrderDC;
 @property (nonatomic, strong) PPPayResultDC *payResultDC;
 @property (nonatomic, strong) PPRepayDC *repayDC;
 
@@ -81,6 +83,9 @@ PayFailedVCDelegate>
         
         self.createOrderDC = [[PPCreateOrderDC alloc] init];
         self.createOrderDC.delegate = self;
+        
+        self.deleteOrderDC = [[DeleteOrderDC alloc] init];
+        self.deleteOrderDC.delegate = self;
         
         self.payResultDC = [[PPPayResultDC alloc] init];
         self.payResultDC.delegate = self;
@@ -271,10 +276,10 @@ PayFailedVCDelegate>
               description:(NSString *)description
                     money:(NSString *)money {
     ComponentAlipay_Order *order = [[ComponentAlipay_Order alloc] init];
-    order.ID = self.createOrderDC.oid;
-    order.name = self.createOrderDC.subject;
-    order.desc = self.createOrderDC.body;
-    order.price = self.createOrderDC.money;
+    order.ID = orderId;
+    order.name = name;
+    order.desc = description;
+    order.price = money;
     [[AlipayManager sharedAlipayManager] payWithAlipay:order completeBlock:^(NSDictionary *dic) {
         [[GCDQueue mainQueue] queueBlock:^{
             [self alipayResult:dic];
@@ -466,22 +471,56 @@ PayFailedVCDelegate>
             return;
         }
         
-        self.createOrderDC.orderExpress = (self.deliverType == DeliverType_KuaiDi) ? @"express" : @"pick_up";
-        self.createOrderDC.aid = self.addressModel.ID;
-        self.createOrderDC.payType = (self.payType == PayType_WeChat) ? @"weixin" : @"alipay";
-        self.createOrderDC.orderCertArray = @[];
-        self.createOrderDC.piaoType = [NSString stringWithFormat:@"%d", self.piaoType];
-        self.createOrderDC.piaoTitle = self.piaoTitle ? self.piaoTitle : @"";
-        self.createOrderDC.piaoContent = self.piaoContent ? self.piaoContent : @"";
-        self.createOrderDC.remarkNum = self.feedbackText ? self.feedbackText : @"";
-        
-        [self.createOrderDC requestWithArgs:nil];
+        if (!self.createOrderDC.oid) {
+            [self handleCreateOrderAction];
+        } else {
+            NSString *orderExpress = (self.deliverType == DeliverType_KuaiDi) ? @"express" : @"pick_up";
+            NSString *aid = self.addressModel.ID;
+            NSString *piaoType = [NSString stringWithFormat:@"%d", self.piaoType];
+            NSString *piaoTitle = self.piaoTitle ? self.piaoTitle : @"";
+            NSString *piaoContent = self.piaoContent ? self.piaoContent : @"";
+            NSString *remarkNum = self.feedbackText ? self.feedbackText : @"";
+            
+            if ([self.createOrderDC.orderExpress isEqualToString:orderExpress] &&
+                [self.createOrderDC.aid isEqualToString:aid] &&
+                [self.createOrderDC.piaoType isEqualToString:piaoType] &&
+                [self.createOrderDC.piaoTitle isEqualToString:piaoTitle] &&
+                [self.createOrderDC.piaoContent isEqualToString:piaoContent] &&
+                [self.createOrderDC.remarkNum isEqualToString:remarkNum]) {
+                
+                self.repayDC.oid = self.createOrderDC.oid;
+                self.repayDC.payType = (self.payType == PayType_WeChat) ? @"weixin" : @"alipay";
+                
+                [self.repayDC requestWithArgs:nil];
+            } else {
+                [self handleDeleteCurrentCreateOrderAction];
+            }
+        }
     } else {
         self.repayDC.oid = self.createOrderDC.oid;
         self.repayDC.payType = (self.payType == PayType_WeChat) ? @"weixin" : @"alipay";
         
         [self.repayDC requestWithArgs:nil];
     }
+}
+
+- (void)handleDeleteCurrentCreateOrderAction {
+    self.deleteOrderDC.oid = self.createOrderDC.oid;
+    
+    [self.deleteOrderDC requestWithArgs:nil];
+}
+
+- (void)handleCreateOrderAction {
+    self.createOrderDC.orderExpress = (self.deliverType == DeliverType_KuaiDi) ? @"express" : @"pick_up";
+    self.createOrderDC.aid = self.addressModel.ID;
+    self.createOrderDC.payType = (self.payType == PayType_WeChat) ? @"weixin" : @"alipay";
+    self.createOrderDC.orderCertArray = @[];
+    self.createOrderDC.piaoType = [NSString stringWithFormat:@"%d", self.piaoType];
+    self.createOrderDC.piaoTitle = self.piaoTitle ? self.piaoTitle : @"";
+    self.createOrderDC.piaoContent = self.piaoContent ? self.piaoContent : @"";
+    self.createOrderDC.remarkNum = self.feedbackText ? self.feedbackText : @"";
+    
+    [self.createOrderDC requestWithArgs:nil];
 }
 
 #pragma mark - OrderBottomInfoCellDelegate
@@ -620,7 +659,7 @@ PayFailedVCDelegate>
             [self alipayWithOrderId:self.createOrderDC.oid
                                name:self.createOrderDC.subject
                         description:self.createOrderDC.body
-                              money:self.createOrderDC.money];
+                              money:self.createOrderDC.totalFee];
         }
     } else if (controller == self.repayDC) {
         self.payResultDC.oid = self.repayDC.orderNumberId ? self.repayDC.orderNumberId : @"";
@@ -628,10 +667,10 @@ PayFailedVCDelegate>
         if (self.payType == PayType_WeChat) {
             [self weixinPayWithDict:self.repayDC.weixinDict];
         } else if (self.payType == PayType_AliPay) {
-            [self alipayWithOrderId:self.createOrderDC.oid
-                               name:self.createOrderDC.subject
-                        description:self.createOrderDC.body
-                              money:self.createOrderDC.money];
+            [self alipayWithOrderId:self.repayDC.oid
+                               name:self.repayDC.subject
+                        description:self.repayDC.body
+                              money:self.repayDC.totalFee];
         }
     } else if (controller == self.payResultDC) {
         if (self.payResultDC.responseCode == 200) {
@@ -720,6 +759,8 @@ PayFailedVCDelegate>
         [self.tableView reloadData];
         
         [self didClickPayNowButtonAction:nil];
+    } else if (controller == self.deleteOrderDC) {
+        [self handleCreateOrderAction];
     }
 }
 
@@ -738,6 +779,11 @@ PayFailedVCDelegate>
         
         [Utilities showToastWithText:@"获取订单信息失败" withImageName:nil blockUI:NO];
         [self.navigationController popViewControllerAnimated:YES];
+    } else if (controller == self.deleteOrderDC) {
+        
+        NSLog (@"删除订单失败");
+        
+        [self handleCreateOrderAction];
     }
 }
 

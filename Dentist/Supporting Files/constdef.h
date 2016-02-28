@@ -22,6 +22,11 @@ typedef NS_ENUM(NSUInteger, MainTabIndexType) {
     kMainTabIndexType_Unknown            = 100,
 };
 
+// 日志相关
+#ifndef DEBUG
+#define NSLog(...)
+#endif
+
 // 通知相关
 #define kOrderChangedNotification  @"kOrderChangedNotification"
 
