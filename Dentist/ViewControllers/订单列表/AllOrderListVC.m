@@ -175,13 +175,10 @@
     self.allOrderListVM.model = model;
     QQingAlertView *alertView = [[QQingAlertView alloc] initWithTitle:nil message:@"确认要删除该条订单么？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
     [alertView showWithDismissBlock:^(QQingAlertView *alertView, int dismissButtonIndex) {
+        [Utilities showLoadingView];
         self.allOrderListVM.deleteOrderDC.oid = model.orderID;
         [self.allOrderListVM.deleteOrderDC requestWithArgs:nil];
     }];
-//    UIButton *btn = (UIButton *)sender;
-//    [self.allOrderListVM.orderListDC.orderListArray removeObjectAtIndex:btn.tag];
-//    [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:btn.tag] withRowAnimation:UITableViewRowAnimationFade];
-//    [self.tableView reloadData];
 }
 
 - (void)payOrder:(id)sender {
