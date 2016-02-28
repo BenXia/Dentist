@@ -39,6 +39,8 @@
     if (self = [super init]) {
         self.allOrderListVM.orderListDC = [[OrderListDC alloc] initWithDelegate:self];
         self.allOrderListVM.orderStatusType = type;
+        
+        self.allOrderListVM.deleteOrderDC = [[DeleteOrderDC alloc] initWithDelegate:self];
     }
     return self;
 }
@@ -169,9 +171,17 @@
 
 - (void)deleteOrder:(id)sender {
     UIButton *btn = (UIButton *)sender;
-    [self.allOrderListVM.orderListDC.orderListArray removeObjectAtIndex:btn.tag];
-    [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:btn.tag] withRowAnimation:UITableViewRowAnimationFade];
-    [self.tableView reloadData];
+    ProductListModel *model = [self.allOrderListVM.orderListDC.orderListArray objectAtIndexIfIndexInBounds:btn.tag];
+    self.allOrderListVM.model = model;
+    QQingAlertView *alertView = [[QQingAlertView alloc] initWithTitle:nil message:@"确认要删除该条订单么？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    [alertView showWithDismissBlock:^(QQingAlertView *alertView, int dismissButtonIndex) {
+        self.allOrderListVM.deleteOrderDC.oid = model.orderID;
+        [self.allOrderListVM.deleteOrderDC requestWithArgs:nil];
+    }];
+//    UIButton *btn = (UIButton *)sender;
+//    [self.allOrderListVM.orderListDC.orderListArray removeObjectAtIndex:btn.tag];
+//    [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:btn.tag] withRowAnimation:UITableViewRowAnimationFade];
+//    [self.tableView reloadData];
 }
 
 - (void)payOrder:(id)sender {
@@ -223,8 +233,16 @@
     [Utilities hideLoadingView];
     [self.tableView headerEndRefreshing];
     [self.tableView footerEndRefreshing];
-    [self.allOrderListVM filterDataWithOrderStatusType];
-    [self.tableView reloadData];
+
+    if ([controller isKindOfClass:[OrderListDC class]]) {
+        [self.allOrderListVM filterDataWithOrderStatusType];
+        [self.tableView reloadData];
+    } else if ([controller isKindOfClass:[DeleteOrderDC class]]) {
+        [self.allOrderListVM.orderListDC.orderListArray removeObject:self.allOrderListVM.model];
+        NSUInteger index = [self.allOrderListVM.orderListDC.orderListArray indexOfObject:self.allOrderListVM.model];
+        [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:index] withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableView reloadData];
+    }
 }
 
 //数据请求失败回调
@@ -233,7 +251,11 @@
     [Utilities hideLoadingView];
     [self.tableView headerEndRefreshing];
     [self.tableView footerEndRefreshing];
-    [Utilities showToastWithText:@"订单列表获取失败"];
+    if ([controller isKindOfClass:[OrderListDC class]]) {
+        [Utilities showToastWithText:@"订单列表获取失败"];
+    } else if ([controller isKindOfClass:[DeleteOrderDC class]]) {
+        [Utilities showToastWithText:@"订单删除失败"];
+    }
 }
 
 #pragma mark - Data Init
