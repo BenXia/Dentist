@@ -237,6 +237,7 @@ PPDataControllerDelegate
     [Utilities hideLoadingView];
     if (self.dc.appraiseSuccess) {
         [Utilities showToastWithText:@"评价成功"];
+        [self postNotification:kNotificationAppraiseSuccess withObject:self.dc.oid];
     }else{
         NSString* message = self.dc.message.length > 0 ? self.dc.message : @"评价失败";
         [Utilities showToastWithText:message];

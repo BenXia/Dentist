@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#define kNotificationAppraiseSuccess @"kNotificationAppraiseSuccess"
+
 @interface FeedbackVC : UIViewController
 
 //products为ProductListGoodsModel数组
