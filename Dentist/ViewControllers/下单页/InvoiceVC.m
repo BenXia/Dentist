@@ -9,6 +9,8 @@
 #import "InvoiceVC.h"
 
 @interface InvoiceVC ()
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) IBOutlet UIView *tableHeaderView;
 
 @property (weak, nonatomic) IBOutlet UIButton *ordinaryInvoiceButton;
 @property (weak, nonatomic) IBOutlet UIButton *needNoInvoiceButton;
@@ -45,6 +47,13 @@
     if ([self respondsToSelector:@selector(edgesForExtendedLayout)]) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
     }
+    
+    self.view.backgroundColor = [UIColor themeBackGrayColor];
+    self.tableView.backgroundColor = [UIColor themeBackGrayColor];
+    self.tableHeaderView.backgroundColor = [UIColor themeBackGrayColor];
+    self.tableHeaderView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-64);
+    self.tableView.tableHeaderView = self.tableHeaderView;
+    self.tableView.tableFooterView = [UIView new];
     
     [self setNavTitleString:@"发票信息"];
     [self setNavRightItemWithName:@"保存" target:self action:@selector(didClickSaveNavButtonAction:)];
