@@ -285,7 +285,7 @@ static NSString* const kCellReuseIdentifier = @"ProductBriefInfoCell";
     cell.accessoryType = UITableViewCellAccessoryNone;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.delegate = self;
-    ShoppingCartModel *model = [self.shoppingCardVM.cartListDC.shoppingCartProductsArray objectAtIndex:indexPath.row];
+    ShoppingCartModel *model = [self.shoppingCardVM.cartListDC.shoppingCartProductsArray objectAtIndexIfIndexInBounds:indexPath.row];
     [cell setCellWithShoppingCartModel:model];
     
     if ([self.shoppingCardVM.shoppingCartProductCellEditArray containsObject:model]) {

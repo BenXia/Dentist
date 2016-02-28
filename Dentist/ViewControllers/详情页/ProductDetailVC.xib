@@ -8,6 +8,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProductDetailVC">
             <connections>
+                <outlet property="addFavoriteButton" destination="DYe-ph-CYC" id="Vxm-ux-0H7"/>
                 <outlet property="appraiseContentView" destination="ZPl-KT-vqQ" id="ik7-x4-LeB"/>
                 <outlet property="appraiseContentViewHeightConstraint" destination="mXQ-ee-lh5" id="BPk-Qt-BvK"/>
                 <outlet property="appraiseHeaderView" destination="C0j-QG-XoI" id="tWF-ay-zHK"/>
@@ -139,6 +140,7 @@
                             <state key="normal" title=" 收藏" image="收藏.png">
                                 <color key="titleColor" red="0.21960784310000001" green="0.45098039220000002" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
+                            <state key="selected" title=" 已收藏" image="已收藏.png"/>
                             <connections>
                                 <action selector="didClickFavoriteButtonAction:" destination="-1" eventType="touchUpInside" id="Aeq-0Y-4Xr"/>
                             </connections>
@@ -512,7 +514,7 @@
                                 <constraint firstAttribute="width" constant="20" id="0W8-sP-xfY"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                            <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rMe-cj-18i" customClass="GroupProductView">
@@ -522,7 +524,7 @@
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lZ4-ji-R5q">
                             <rect key="frame" x="152" y="39" width="20" height="22"/>
                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                            <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dph-hX-hXw" customClass="GroupProductView">
@@ -532,7 +534,7 @@
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="=" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zc8-hw-Yha">
                             <rect key="frame" x="232" y="39" width="20" height="22"/>
                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                            <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
@@ -903,6 +905,7 @@
         <image name="icon_close.png" width="17" height="17"/>
         <image name="加入购物车.png" width="24" height="23"/>
         <image name="包邮2.png" width="35" height="18"/>
+        <image name="已收藏.png" width="25" height="24"/>
         <image name="快递.png" width="16" height="12"/>
         <image name="收藏.png" width="24" height="23"/>
         <image name="有赠品.png" width="46" height="18"/>

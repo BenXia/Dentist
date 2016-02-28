@@ -290,6 +290,8 @@
 		88367AA11C7CACF400658214 /* SearchProductDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88367AA01C7CACF400658214 /* SearchProductDC.m */; };
 		88367AA51C7CB11900658214 /* SubCategoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88367AA31C7CB11900658214 /* SubCategoryVC.m */; };
 		88367AA61C7CB11900658214 /* SubCategoryVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88367AA41C7CB11900658214 /* SubCategoryVC.xib */; };
+		887988121C829734004BB938 /* 已收藏@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 887988101C829734004BB938 /* 已收藏@2x.png */; };
+		887988131C829734004BB938 /* 已收藏@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 887988111C829734004BB938 /* 已收藏@3x.png */; };
 		888811AC1C7B4DEC00F6672C /* GuessYouLikeProductView.m in Sources */ = {isa = PBXBuildFile; fileRef = 888811AB1C7B4DEC00F6672C /* GuessYouLikeProductView.m */; };
 		888811B61C7B592600F6672C /* MyFavoriteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 888811B41C7B592600F6672C /* MyFavoriteVC.m */; };
 		888811B71C7B592600F6672C /* MyFavoriteVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 888811B51C7B592600F6672C /* MyFavoriteVC.xib */; };
@@ -898,6 +900,8 @@
 		88367AA21C7CB11900658214 /* SubCategoryVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubCategoryVC.h; sourceTree = "<group>"; };
 		88367AA31C7CB11900658214 /* SubCategoryVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubCategoryVC.m; sourceTree = "<group>"; };
 		88367AA41C7CB11900658214 /* SubCategoryVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SubCategoryVC.xib; sourceTree = "<group>"; };
+		887988101C829734004BB938 /* 已收藏@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "已收藏@2x.png"; sourceTree = "<group>"; };
+		887988111C829734004BB938 /* 已收藏@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "已收藏@3x.png"; sourceTree = "<group>"; };
 		888811AA1C7B4DEC00F6672C /* GuessYouLikeProductView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuessYouLikeProductView.h; sourceTree = "<group>"; };
 		888811AB1C7B4DEC00F6672C /* GuessYouLikeProductView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuessYouLikeProductView.m; sourceTree = "<group>"; };
 		888811B31C7B592600F6672C /* MyFavoriteVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFavoriteVC.h; sourceTree = "<group>"; };
@@ -1557,6 +1561,8 @@
 		33D1873B1C70CE3800658F3D /* 详情页 */ = {
 			isa = PBXGroup;
 			children = (
+				887988101C829734004BB938 /* 已收藏@2x.png */,
+				887988111C829734004BB938 /* 已收藏@3x.png */,
 				88965B0D1C814B3A001FA633 /* 包邮2@2x.png */,
 				88965B0E1C814B3A001FA633 /* 包邮2@3x.png */,
 				88965B0F1C814B3A001FA633 /* 购买套餐@2x.png */,
@@ -1849,6 +1855,7 @@
 		33F070391C4295F200DAC58F /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				33F070411C42964A00DAC58F /* 主页 */,
 				888E70F61C7F31DB00A12377 /* 搜索商品 */,
 				888811B11C7B58AF00F6672C /* 浏览历史 */,
 				888811B21C7B58AF00F6672C /* 收藏 */,
@@ -1859,9 +1866,9 @@
 				33F070401C42964A00DAC58F /* 启动页 */,
 				33F070421C42964A00DAC58F /* 注册 */,
 				33F0703F1C42964A00DAC58F /* 登录 */,
-				33F070411C42964A00DAC58F /* 主页 */,
 				33F0703D1C4295F200DAC58F /* 首页 */,
 				33F0703B1C4295F200DAC58F /* 分类 */,
+				33F0703C1C4295F200DAC58F /* 购物车 */,
 				33F0703A1C4295F200DAC58F /* 个人 */,
 				33D187351C70C98E00658F3D /* 商品详情 */,
 				33CAF0FD1C72094C00348763 /* 下单页 */,
@@ -1918,8 +1925,7 @@
 				B5DA4D0D1C7B4402003677DD /* ShoppingCardVM.h */,
 				B5DA4D0E1C7B4402003677DD /* ShoppingCardVM.m */,
 			);
-			name = "购物车";
-			path = "../购物车";
+			path = "购物车";
 			sourceTree = "<group>";
 		};
 		33F0703D1C4295F200DAC58F /* 首页 */ = {
@@ -1937,7 +1943,6 @@
 				93DEA86E1C4BC552008211F7 /* HomePageVC.h */,
 				93DEA86F1C4BC552008211F7 /* HomePageVC.m */,
 				93DEA8701C4BC552008211F7 /* HomePageVC.xib */,
-				33F0703C1C4295F200DAC58F /* 购物车 */,
 				93DEA88B1C4BC6FB008211F7 /* HomePageCourseListCell.h */,
 				93DEA88C1C4BC6FB008211F7 /* HomePageCourseListCell.m */,
 				9377AC601C5375DB003B24B1 /* HomePageCourseListCell.xib */,
@@ -2818,6 +2823,7 @@
 				3309CFDB1C7F483100986C30 /* goods_tag_Present@3x.png in Resources */,
 				939E58891C80861100E24080 /* 设置.png in Resources */,
 				9379D3AE1C63239100390702 /* MultilevelTableViewCell.xib in Resources */,
+				887988131C829734004BB938 /* 已收藏@3x.png in Resources */,
 				33DD6CDC1C611A5500CE6B31 /* like_fs.png in Resources */,
 				33CAF1021C72098200348763 /* OrderVC.xib in Resources */,
 				88965B171C814B3A001FA633 /* 包邮2@2x.png in Resources */,
@@ -2960,6 +2966,7 @@
 				33DD6BEC1C61195600CE6B31 /* ic_top_search@3x.png in Resources */,
 				939E586B1C8085FD00E24080 /* 网络不给力-03.jpg in Resources */,
 				33DD6D1C1C611A5500CE6B31 /* 评价晒单-星-未点击@2x.png in Resources */,
+				887988121C829734004BB938 /* 已收藏@2x.png in Resources */,
 				33DD6BFC1C6119A600CE6B31 /* btn_user_f@2x.png in Resources */,
 				33D187431C70CE3800658F3D /* 收藏@3x.png in Resources */,
 				33DD6CC41C611A5500CE6B31 /* goods_tagL_Present@2X.png in Resources */,
