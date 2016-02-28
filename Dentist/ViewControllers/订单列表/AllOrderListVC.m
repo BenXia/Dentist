@@ -39,7 +39,8 @@
     if (self = [super init]) {
         self.allOrderListVM.orderListDC = [[OrderListDC alloc] initWithDelegate:self];
         self.allOrderListVM.orderStatusType = type;
-        
+        self.allOrderListVM.orderListDC.orderStatusType = type;
+
         self.allOrderListVM.deleteOrderDC = [[DeleteOrderDC alloc] initWithDelegate:self];
     }
     return self;
@@ -102,6 +103,11 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handleNotification:)
                                                  name:kOrderChangedNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleNotification:)
+                                                 name:kNotificationAppraiseSuccess
                                                object:nil];
 }
 
@@ -175,9 +181,11 @@
     self.allOrderListVM.model = model;
     QQingAlertView *alertView = [[QQingAlertView alloc] initWithTitle:nil message:@"确认要删除该条订单么？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
     [alertView showWithDismissBlock:^(QQingAlertView *alertView, int dismissButtonIndex) {
-        [Utilities showLoadingView];
-        self.allOrderListVM.deleteOrderDC.oid = model.orderID;
-        [self.allOrderListVM.deleteOrderDC requestWithArgs:nil];
+        if (dismissButtonIndex == 1) {
+            [Utilities showLoadingView];
+            self.allOrderListVM.deleteOrderDC.oid = model.orderID;
+            [self.allOrderListVM.deleteOrderDC requestWithArgs:nil];
+        }
     }];
 }
 
@@ -235,8 +243,8 @@
         [self.allOrderListVM filterDataWithOrderStatusType];
         [self.tableView reloadData];
     } else if ([controller isKindOfClass:[DeleteOrderDC class]]) {
-        [self.allOrderListVM.orderListDC.orderListArray removeObject:self.allOrderListVM.model];
         NSUInteger index = [self.allOrderListVM.orderListDC.orderListArray indexOfObject:self.allOrderListVM.model];
+        [self.allOrderListVM.orderListDC.orderListArray removeObject:self.allOrderListVM.model];
         [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:index] withRowAnimation:UITableViewRowAnimationFade];
         [self.tableView reloadData];
     }
@@ -300,6 +308,10 @@
             orderStateLabel.text = @"已评价";
         }
             break;
+        case 9: {
+            orderStateLabel.text = @"已退款";
+        }
+            break;
         case 10: {
             orderStateLabel.text = @"已关闭";
         }
@@ -347,6 +359,11 @@
             break;
         case 4: {
             return [self createDeliveredSectionFooterView:productListModel
+                                              withSection:section];
+        }
+            break;
+        case 9: {
+            return [self createSuccessSectionFooterView:productListModel
                                               withSection:section];
         }
             break;
@@ -486,8 +503,11 @@
     praiseButton.frame = CGRectMake(kScreenWidth - kInsert*2 - kPayButtonWidth*2, kSectionFooterViewHeight/2 + 5, kPayButtonWidth, kPayButtonHeight);
     [praiseButton setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
     [praiseButton setTitle:@"评价晒单" forState:UIControlStateNormal];
+    [praiseButton setTitleColor:[UIColor themeButtonBlueColor]];
     praiseButton.layer.cornerRadius = praiseButton.height/2;
     praiseButton.layer.masksToBounds = YES;
+    praiseButton.layer.borderWidth = 1;
+    praiseButton.layer.borderColor = [UIColor themeButtonBlueColor].CGColor;
     praiseButton.tag = section;
     [praiseButton addTarget:self action:@selector(praiseOrder:) forControlEvents:UIControlEventTouchUpInside];
     return praiseButton;

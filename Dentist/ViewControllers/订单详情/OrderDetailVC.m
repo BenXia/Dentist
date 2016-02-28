@@ -75,6 +75,7 @@
 - (void)initUI {
     self.title = @"订单详情";
     self.view.backgroundColor = [UIColor backGroundGrayColor];
+    self.bottomView.hidden = YES;
     self.receiverProductButton.layer.cornerRadius = self.receiverProductButton.frame.size.height/2;
     [self.receiverProductButton.layer masksToBounds];
 }
@@ -86,12 +87,21 @@
                                              selector:@selector(handleNotification:)
                                                  name:kOrderChangedNotification
                                                object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleNotification:)
+                                                 name:kNotificationAppraiseSuccess
+                                               object:nil];
 }
 
 - (void)handleNotification:(NSNotification *)notification {
-    self.orderDetailVM.orderDetailDC.orderDetailModel.orderStatus = @"1";
-    [self loadingDataFinished:self.orderDetailVM.orderDetailDC];
-    [Utilities showToastWithText:@"支付成功成功"];
+    if ([notification.name isEqualToString:kOrderChangedNotification]) {
+        self.orderDetailVM.orderDetailDC.orderDetailModel.orderStatus = @"1";
+        [self loadingDataFinished:self.orderDetailVM.orderDetailDC];
+    } else {
+        self.orderDetailVM.orderDetailDC.orderDetailModel.orderStatus = @"4";
+        [self loadingDataFinished:self.orderDetailVM.orderDetailDC];
+    }
 }
 
 - (void)dealloc {
@@ -112,6 +122,7 @@
             break;
         case 1:
         case 4:
+        case 9:
         case 10: {
             //按钮隐藏
         }
@@ -158,6 +169,7 @@
             case 0: {
                 self.orderStateLabel.text = @"待支付";
                 [self.receiverProductButton setTitle:@"立即支付" forState:UIControlStateNormal];
+                self.bottomView.hidden = NO;
             }
                 break;
             case 1: {
@@ -169,11 +181,13 @@
                 break;
             case 2: {
                 self.orderStateLabel.text = @"已发货,待收货";
+                self.bottomView.hidden = NO;
             }
                 break;
             case 3: {
                 self.orderStateLabel.text = @"已收货,待评价";
                 [self.receiverProductButton setTitle:@"立即评价" forState:UIControlStateNormal];
+                self.bottomView.hidden = NO;
             }
                 break;
             case 4: {
@@ -182,6 +196,13 @@
                 self.tableViewBottomContrainst.constant = 0;
                 self.bottomView.hidden = YES;
                 
+            }
+                break;
+            case 9: {
+                self.orderStateLabel.text = @"已退款";
+                self.tableView.tableFooterView = self.tableViewTimeView;
+                self.tableViewBottomContrainst.constant = 0;
+                self.bottomView.hidden = YES;
             }
                 break;
             case 10: {

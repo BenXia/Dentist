@@ -15,10 +15,34 @@
 
 - (NSDictionary *)requestURLArgs {
     NSString* token = [UserCache sharedUserCache].token ? [UserCache sharedUserCache].token : @"";
+    
+    NSString *statusString = nil;
+    switch (self.orderStatusType) {
+        case OrderStatusType_NeedHandle: {
+            statusString = @"0,1,2";
+        }
+            break;
+        case OrderStatusType_Complete: {
+            statusString = @"4,9,10";
+        }
+            break;
+        case OrderStatusType_NeedPraise: {
+            statusString = @"3";
+        }
+            break;
+        case OrderStatusType_All: {
+            statusString = @"0,1,2,3,4,9,10";
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
     if (self.next_iid.integerValue > 0) {
-        return @{@"method":@"order.mylist",@"v":@"0.0.1",@"auth":token,@"next_iid":self.next_iid,@"pagesize":@"10"};
+        return @{@"method":@"order.mylist",@"v":@"0.0.1",@"auth":token,@"next_iid":self.next_iid,@"pagesize":@"10",@"status":statusString};
     } else {
-        return @{@"method":@"order.mylist",@"v":@"0.0.1",@"auth":token,@"pagesize":@"10"};
+        return @{@"method":@"order.mylist",@"v":@"0.0.1",@"auth":token,@"pagesize":@"10",@"status":statusString};
     }
 }
 
@@ -38,7 +62,7 @@
     if (!error || [resultDict isKindOfClass:[NSDictionary class]]) {
         self.next_iid = [resultDict objectForKey:@"next_iid"];
         self.pagesize = [resultDict objectForKey:@"pagesize"];
-        self.status = [resultDict objectForKey:@"status"];
+//        self.status = [resultDict objectForKey:@"status"];
         
         NSArray *ordersArray = [resultDict objectForKey:@"orders"];
         for (NSDictionary *ordersDic in ordersArray) {

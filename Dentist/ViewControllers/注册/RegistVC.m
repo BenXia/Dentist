@@ -162,10 +162,19 @@ typedef enum : NSUInteger {
         }
         
     } else if (controller == self.sendSmsRequest) {
-        if (self.sendSmsRequest.sendSmsSuccess) {
+        
+        if (self.sendSmsRequest.responseCode == 200) {
             [[GCDQueue mainQueue] queueBlock:^{
                 [Utilities showToastWithText:[NSString stringWithFormat:@"验证码获取成功"]];
-                self.isGetSms = YES;
+            }];
+            
+        } else if (self.sendSmsRequest.responseCode == 40003){
+            [[GCDQueue mainQueue] queueBlock:^{
+                [Utilities showToastWithText:@"手机号已经存在"];
+            }];
+        } else {
+            [[GCDQueue mainQueue] queueBlock:^{
+                [Utilities showToastWithText:[NSString stringWithFormat:@"验证码获取失败"]];
             }];
             
         }
