@@ -34,8 +34,12 @@
 @property (nonatomic, strong) NSString *time_expire;
 @property (nonatomic, strong) NSString *time_start;
 @property (nonatomic, strong) NSDictionary *weixinDict;
+
+@property (nonatomic, strong) NSString *totalFee;
 @property (nonatomic, strong) NSString *subject;
 @property (nonatomic, strong) NSString *body;
+@property (nonatomic, strong) NSString *outTradeNumberId;
+
 //weixin =     {
 //    appid = wx983825eaeef912b7;
 //    "mch_id" = 1292687201;

@@ -17,9 +17,14 @@
 @property (nonatomic, assign) int responseCode;
 @property (nonatomic, strong) NSString *orderNumberId;
 @property (nonatomic, strong) NSString *responseMsg;
-//@property (nonatomic, strong) NSString *money;
-//@property (nonatomic, strong) NSString *time_expire;
-//@property (nonatomic, strong) NSString *time_start;
+@property (nonatomic, strong) NSString *money;
+@property (nonatomic, strong) NSString *time_expire;
+@property (nonatomic, strong) NSString *time_start;
 @property (nonatomic, strong) NSDictionary *weixinDict;
+
+@property (nonatomic, strong) NSString *totalFee;
+@property (nonatomic, strong) NSString *subject;
+@property (nonatomic, strong) NSString *body;
+@property (nonatomic, strong) NSString *outTradeNumberId;
 
 @end

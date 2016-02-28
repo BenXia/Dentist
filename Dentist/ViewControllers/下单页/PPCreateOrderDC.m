@@ -73,8 +73,11 @@
         self.oid = [resultdict objectForKey:@"oid"];
         self.time_expire = [resultdict objectForKey:@"time_expire"];
         self.time_start = [resultdict objectForKey:@"time_start"];
+        self.money = [resultdict objectForKey:@"money"];
         self.weixinDict = [resultdict objectForKey:@"weixin"];
-        self.money = [resultdict objectForKey:@"total_fee"];
+        
+        self.outTradeNumberId = [resultdict objectForKey:@"out_trade_no"];
+        self.totalFee = [resultdict objectForKey:@"total_fee"];
         self.subject = [resultdict objectForKey:@"subject"];
         self.body = [resultdict objectForKey:@"body"];
         

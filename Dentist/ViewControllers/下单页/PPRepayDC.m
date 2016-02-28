@@ -37,10 +37,15 @@
         }
         
         self.orderNumberId = [resultdict objectForKey:@"oid"];
-        //self.money = [resultdict objectForKey:@"money"];
-        //self.time_expire = [resultdict objectForKey:@"time_expire"];
-        //self.time_start = [resultdict objectForKey:@"time_start"];
+        self.money = [resultdict objectForKey:@"money"];
+        self.time_expire = [resultdict objectForKey:@"time_expire"];
+        self.time_start = [resultdict objectForKey:@"time_start"];
         self.weixinDict = [resultdict objectForKey:@"weixin"];
+        
+        self.outTradeNumberId = [resultdict objectForKey:@"out_trade_no"];
+        self.totalFee = [resultdict objectForKey:@"total_fee"];
+        self.subject = [resultdict objectForKey:@"subject"];
+        self.body = [resultdict objectForKey:@"body"];
         
         result = YES;
     }
