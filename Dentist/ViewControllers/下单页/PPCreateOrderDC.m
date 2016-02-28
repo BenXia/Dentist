@@ -18,6 +18,12 @@
     return RequestMethodPOST;
 }
 
+- (void)requestWillStart {
+    [super requestWillStart];
+    
+    self.responseMsg = @"";
+}
+
 - (NSDictionary *)requestHTTPBody {
     if (self.groupIds) {
         NSString *mainProductIds = ((OrderItemModel *)[self.productItemsArray objectAtIndex:0]).productId;
@@ -64,12 +70,12 @@
                                                                    error:&error];
     if (!error || [resultdict isKindOfClass:[NSDictionary class]]) {
         self.responseCode = [[resultdict objectForKey:@"code"] intValue];
+        self.responseMsg = [resultdict objectForKey:@"msg"];
         
         if (self.responseCode != 200) {
             return NO;
         }
-        
-        self.responseMsg = [resultdict objectForKey:@"msg"];
+
         self.oid = [resultdict objectForKey:@"oid"];
         self.time_expire = [resultdict objectForKey:@"time_expire"];
         self.time_start = [resultdict objectForKey:@"time_start"];

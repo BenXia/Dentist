@@ -32,6 +32,12 @@
     return RequestMethodGET;
 }
 
+- (void)requestWillStart {
+    [super requestWillStart];
+    
+    self.responseMsg = @"";
+}
+
 - (BOOL)parseContent:(NSString *)content {
     BOOL result = NO;
     
@@ -40,8 +46,10 @@
                                                                  options:0
                                                                    error:&error];
     if (!error || [resultDict isKindOfClass:[NSDictionary class]]) {
-        NSNumber* code = [resultDict objectForKey:@"code"];
-        if (code.intValue != 200) {
+        self.responseCode = [[resultDict objectForKey:@"code"] intValue];
+        self.responseMsg = [resultDict objectForKey:@"msg"];
+        
+        if (self.responseCode != 200) {
             return NO;
         }
     }

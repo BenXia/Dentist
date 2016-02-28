@@ -771,19 +771,36 @@ PayFailedVCDelegate>
         [Utilities showToastWithText:self.confirmOrderDC.responseMsg withImageName:nil blockUI:NO];
         [self.navigationController popViewControllerAnimated:YES];
     } else if (controller == self.createOrderDC) {
-        [Utilities showToastWithText:@"生成订单失败" withImageName:nil blockUI:NO];
+        if (self.createOrderDC.responseMsg.length > 0) {
+            [Utilities showToastWithText:self.createOrderDC.responseMsg withImageName:nil blockUI:NO];
+        } else {
+            [Utilities showToastWithText:@"生成订单失败" withImageName:nil blockUI:NO];
+        }
     } else if (controller == self.repayDC) {
-        [Utilities showToastWithText:@"重新支付失败" withImageName:nil blockUI:NO];
+        if (self.repayDC.responseMsg.length > 0) {
+            [Utilities showToastWithText:self.repayDC.responseMsg withImageName:nil blockUI:NO];
+        } else {
+            [Utilities showToastWithText:@"重新支付失败" withImageName:nil blockUI:NO];
+        }
     } else if (controller == self.payResultDC) {
-        [Utilities showToastWithText:@"支付失败" withImageName:nil blockUI:NO];
+        if (self.payResultDC.responseMsg.length > 0) {
+            [Utilities showToastWithText:self.payResultDC.responseMsg withImageName:nil blockUI:NO];
+        } else {
+            [Utilities showToastWithText:@"支付失败" withImageName:nil blockUI:NO];
+        }
     } else if (controller == self.orderDetailDC) {
         [Utilities hideLoadingView];
         
-        [Utilities showToastWithText:@"获取订单信息失败" withImageName:nil blockUI:NO];
+        if (self.orderDetailDC.responseMsg.length > 0) {
+            [Utilities showToastWithText:self.orderDetailDC.responseMsg withImageName:nil blockUI:NO];
+        } else {
+            [Utilities showToastWithText:@"获取订单信息失败" withImageName:nil blockUI:NO];
+        }
+        
         [self.navigationController popViewControllerAnimated:YES];
     } else if (controller == self.deleteOrderDC) {
         
-        NSLog (@"删除订单失败");
+        NSLog (@"删除订单失败:%@", self.deleteOrderDC.responseMsg);
         
         [self handleCreateOrderAction];
     }

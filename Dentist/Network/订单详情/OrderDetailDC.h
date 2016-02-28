@@ -12,6 +12,11 @@
 @interface OrderDetailDC : PPDataController
 
 @property(nonatomic, strong) NSString *oid;
+
+// Output
 @property(nonatomic, strong) OrderDetailModel *orderDetailModel;
+
+@property (nonatomic, assign) int responseCode;
+@property (nonatomic, strong) NSString *responseMsg;
 
 @end

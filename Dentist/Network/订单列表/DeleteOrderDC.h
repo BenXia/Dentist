@@ -12,4 +12,8 @@
 
 @property(nonatomic, strong) NSString *oid;
 
+// output
+@property (nonatomic, assign) int responseCode;
+@property (nonatomic, strong) NSString *responseMsg;
+
 @end

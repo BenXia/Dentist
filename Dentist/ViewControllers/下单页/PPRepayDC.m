@@ -18,6 +18,12 @@
     return RequestMethodPOST;
 }
 
+- (void)requestWillStart {
+    [super requestWillStart];
+    
+    self.responseMsg = @"";
+}
+
 - (NSDictionary *)requestHTTPBody {
     return @{@"oid":self.oid, @"pay":self.payType};
 }

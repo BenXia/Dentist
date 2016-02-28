@@ -18,6 +18,12 @@
     return RequestMethodPOST;
 }
 
+- (void)requestWillStart {
+    [super requestWillStart];
+    
+    self.responseMsg = @"";
+}
+
 - (NSDictionary *)requestHTTPBody {
     if (self.groupIds) {
         NSString *mainProductIds = ((OrderItemModel *)[self.productItemsArray objectAtIndex:0]).productId;
@@ -37,7 +43,6 @@
 }
 
 - (BOOL)parseContent:(NSString *)content {
-    
     NSLog(@"确认订单响应数据：%@",content);
     
     BOOL result = NO;
@@ -48,6 +53,7 @@
     if (!error || [resultdict isKindOfClass:[NSDictionary class]]) {
         self.responseCode = [[resultdict objectForKey:@"code"] intValue];
         self.responseMsg = [resultdict objectForKey:@"msg"];
+        
         if (self.responseCode != 200) {
             return NO;
         }

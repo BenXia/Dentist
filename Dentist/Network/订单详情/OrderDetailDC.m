@@ -12,7 +12,6 @@
 
 @implementation OrderDetailDC
 
-
 - (NSDictionary *)requestURLArgs {
     NSString* token = [UserCache sharedUserCache].token ? [UserCache sharedUserCache].token : @"";
     return @{@"method":@"order.detail",@"v":@"0.0.1",@"auth":token,@"oid":[NSNumber numberWithInteger:self.oid.integerValue]};
@@ -20,6 +19,12 @@
 
 - (RequestMethod)requestMethod {
     return RequestMethodGET;
+}
+
+- (void)requestWillStart {
+    [super requestWillStart];
+    
+    self.responseMsg = @"";
 }
 
 - (BOOL)parseContent:(NSString *)content {
@@ -32,6 +37,12 @@
                                                                  options:0
                                                                    error:&error];
     if (!error || [resultDict isKindOfClass:[NSDictionary class]]) {
+        self.responseCode = [[resultDict objectForKey:@"code"] intValue];
+        self.responseMsg = [resultDict objectForKey:@"msg"];
+        
+        if (self.responseCode != 200) {
+            return NO;
+        }
         
         NSDictionary *orderDic = [resultDict objectForKey:@"order"];
         self.orderDetailModel = [OrderDetailModel new];

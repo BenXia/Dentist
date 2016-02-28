@@ -15,8 +15,8 @@
 
 //output
 @property (nonatomic, assign) int responseCode;
-@property (nonatomic, strong) NSString *orderNumberId;
 @property (nonatomic, strong) NSString *responseMsg;
+@property (nonatomic, strong) NSString *orderNumberId;
 @property (nonatomic, strong) NSString *money;
 @property (nonatomic, strong) NSString *time_expire;
 @property (nonatomic, strong) NSString *time_start;
