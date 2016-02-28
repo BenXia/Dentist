@@ -86,7 +86,8 @@
 }
 
 -(void)footerRereshing{
-    [self orderListRequest];
+    [Utilities showLoadingView];
+    [self.allOrderListVM.orderListDC requestWithArgs:nil];
 }
 
 - (void)orderListRequest {
@@ -220,6 +221,7 @@
 //数据请求成功回调
 - (void)loadingDataFinished:(PPDataController *)controller{
     [self hideLoadingView];
+    [Utilities hideLoadingView];
     [self.tableView headerEndRefreshing];
     [self.tableView footerEndRefreshing];
     [self.allOrderListVM filterDataWithOrderStatusType];
@@ -229,6 +231,7 @@
 //数据请求失败回调
 - (void)loadingData:(PPDataController *)controller failedWithError:(NSError *)error{
     [self hideLoadingView];
+    [Utilities hideLoadingView];
     [self.tableView headerEndRefreshing];
     [self.tableView footerEndRefreshing];
     [Utilities showToastWithText:@"订单列表获取失败"];
