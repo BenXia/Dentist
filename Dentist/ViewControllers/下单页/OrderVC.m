@@ -241,7 +241,7 @@ PayFailedVCDelegate>
     order.package                   = @"Sign=WXPay";
     order.nonceStr                  = [weixinDict objectForKey:@"nonce_str"];
     order.prepayId                  = [weixinDict objectForKey:@"prepay_id"];
-    //order.sign                      = [weixinDict objectForKey:@"sign"];;
+    order.sign                      = [weixinDict objectForKey:@"sign"];;
     
     NSDate *datenow = [NSDate date];
     NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)[datenow timeIntervalSince1970]];
@@ -658,7 +658,7 @@ PayFailedVCDelegate>
         if (self.payType == PayType_WeChat) {
             [self weixinPayWithDict:self.createOrderDC.weixinDict];
         } else if (self.payType == PayType_AliPay) {
-            [self alipayWithOrderId:self.createOrderDC.oid
+            [self alipayWithOrderId:self.createOrderDC.outTradeNumberId
                                name:self.createOrderDC.subject
                         description:self.createOrderDC.body
                               money:self.createOrderDC.totalFee];
@@ -669,7 +669,7 @@ PayFailedVCDelegate>
         if (self.payType == PayType_WeChat) {
             [self weixinPayWithDict:self.repayDC.weixinDict];
         } else if (self.payType == PayType_AliPay) {
-            [self alipayWithOrderId:self.repayDC.oid
+            [self alipayWithOrderId:self.repayDC.outTradeNumberId
                                name:self.repayDC.subject
                         description:self.repayDC.body
                               money:self.repayDC.totalFee];
@@ -723,6 +723,12 @@ PayFailedVCDelegate>
         addressModel.detailAddress = orderDetailModel.orderReceiverAddress;
         self.addressModel = addressModel;
         
+        double goodsPriceToSet = 0;
+        for (ProductListGoodsModel* goodItem in orderDetailModel.orderProductListModel.productListGoodsArray) {
+            goodsPriceToSet += [goodItem.productPrice doubleValue] * [goodItem.productNumber intValue];
+        }
+        self.confirmOrderDC.goodsPrice = goodsPriceToSet;
+        
         self.confirmOrderDC.kuaidiPrice = [orderDetailModel.orderProductListModel.productExpressPrice doubleValue];
         if ([orderDetailModel.pickUp intValue] == 0) {
             self.deliverType = DeliverType_KuaiDi;
@@ -747,20 +753,12 @@ PayFailedVCDelegate>
             [self.navigationController popToRootViewControllerAnimated:YES];
         }
         
-        double goodsPriceToSet = 0;
-        for (ProductListGoodsModel* goodItem in orderDetailModel.orderProductListModel.productListGoodsArray) {
-            goodsPriceToSet += [goodItem.productPrice doubleValue] * [goodItem.productNumber intValue];
-        }
-        self.confirmOrderDC.goodsPrice = goodsPriceToSet;
-        
         self.piaoType = orderDetailModel.piaoType;
         self.piaoTitle = orderDetailModel.piaoTitle;
         self.piaoContent = orderDetailModel.piaoContent;
         self.feedbackText = orderDetailModel.feedbackText;
         
         [self.tableView reloadData];
-        
-        [self didClickPayNowButtonAction:nil];
     } else if (controller == self.deleteOrderDC) {
         [self handleCreateOrderAction];
     }
