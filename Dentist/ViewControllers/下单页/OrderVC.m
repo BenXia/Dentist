@@ -750,7 +750,7 @@ PayFailedVCDelegate>
             self.payType = PayType_AliPay;
         } else {
             [Utilities showToastWithText:@"数据有误，不支持任何配送方式" withImageName:nil blockUI:NO];
-            [self.navigationController popToRootViewControllerAnimated:YES];
+            [self.navigationController popViewControllerAnimated:YES];
         }
         
         self.piaoType = orderDetailModel.piaoType;

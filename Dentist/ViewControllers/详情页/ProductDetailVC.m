@@ -50,6 +50,7 @@ UIScrollViewDelegate>
 @property (assign,nonatomic) int buyNum;                    //当前购买数
 @property (assign,nonatomic) BOOL isSelectSpecCompleted;    //选择分类完成
 @property (strong,nonatomic) SpecProductItem* specProduct;  //选择分类后的商品
+@property (strong,nonatomic) NSString* specProductDescription;  //选择分类后的描述信息
 
 @property (assign,nonatomic) UIStatusBarStyle statusBarStyle;
 @property (nonatomic, assign) BOOL statusBarHidden; // 需要控制状态栏隐藏和显示，在PhotosBrowserVC里面难以实现
@@ -723,6 +724,7 @@ UIScrollViewDelegate>
             self.isSelectSpecCompleted = YES;
             
             self.selectTipLabel.text = [NSString stringWithFormat:@"已选:%@",selectedTipStr];
+            self.specProductDescription = selectedTipStr;
             
             //刷新库存
             NSArray* specProductArray = self.dc.productDetail.p_iids;
@@ -904,6 +906,12 @@ UIScrollViewDelegate>
         model.productId = self.dc.productDetail.iid;
         model.descriptionString = self.dc.productDetail.sids;
     }
+    
+    //保证描述字段正确
+    if (model.descriptionString.length == 0 && self.specProductDescription.length > 0) {
+        model.descriptionString = self.specProductDescription;
+    }
+    
     model.productTitle = self.dc.productDetail.title;
     model.productImageUrl = [self.dc.productDetail.img_url firstObject];
     model.productPrice = self.dc.productDetail.price;
