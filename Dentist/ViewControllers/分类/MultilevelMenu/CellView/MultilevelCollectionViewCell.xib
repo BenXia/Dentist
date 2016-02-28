@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MultilevelCollectionViewCell" id="gTV-IL-0wX" customClass="MultilevelCollectionViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="114" height="136.5"/>
+            <rect key="frame" x="0.0" y="0.0" width="114" height="137"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="114" height="136.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="114" height="137"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_clinical_default.png" translatesAutoresizingMaskIntoConstraints="NO" id="UQU-yh-jjZ">
-                        <rect key="frame" x="8.5" y="7" width="96" height="96"/>
+                        <rect key="frame" x="9" y="7" width="96" height="96"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="UQU-yh-jjZ" secondAttribute="height" multiplier="1:1" id="1nx-u3-stm"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="23u-hU-07T">
-                        <rect key="frame" x="0.0" y="109" width="114" height="14.5"/>
+                        <rect key="frame" x="0.0" y="109" width="114" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="14.5" id="lib-Im-ofl"/>
                         </constraints>

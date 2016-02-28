@@ -382,6 +382,7 @@ static NSString* const kCellReuseIdentifier = @"ProductBriefInfoCell";
     self.selectAllButton.selected = !self.selectAllButton.selected;
     
     if (self.selectAllButton.selected) {
+        [self.shoppingCardVM.shoppingCartProductCellSelectArray removeAllObjects];
         [self.shoppingCardVM.shoppingCartProductCellSelectArray addObjectsFromArray:self.shoppingCardVM.cartListDC.shoppingCartProductsArray];
     } else {
         [self.shoppingCardVM.shoppingCartProductCellSelectArray removeAllObjects];

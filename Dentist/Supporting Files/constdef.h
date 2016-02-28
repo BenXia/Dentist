@@ -30,6 +30,9 @@ typedef NS_ENUM(NSUInteger, MainTabIndexType) {
 #define kBlackHighlightedColor          [UIColor lightGrayColor]
 #define kBlankOldY 120
 
+// 默认图
+#define kPlaceholderImageView  @"app_logo"
+
 // 支付相关
 #define kWeiXinAppID @"wx983825eaeef912b7"
 #define kWeiXinMchID @"1292687201"

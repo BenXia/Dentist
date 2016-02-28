@@ -47,7 +47,7 @@
     self.productImageView.layer.borderColor = RGB(236, 236, 236).CGColor;
     self.productImageView.supportProgressIndicator = NO;
     self.productImageView.supportFailRetry = NO;
-    self.productImageView.defaultImageName = @"微信";
+    self.productImageView.defaultImageName = kPlaceholderImageView;
     
     self.editContentView.hidden = YES;
     self.productTitleLabel.hidden = NO;

@@ -33,7 +33,7 @@
     self.productPriceLabel.text = [NSString stringWithFormat:@"¥ %@",productListGoodsModel.productPrice];
     self.productNumberLabel.text = [NSString stringWithFormat:@"x %@",productListGoodsModel.productNumber];
     [self.productImageView sd_setImageWithURL:[NSURL URLWithString:productListGoodsModel.productImageUrl]
-                             placeholderImage:[UIImage imageNamed:@"user_pic_boy"]];
+                             placeholderImage:[UIImage imageNamed:kPlaceholderImageView]];
 
 }
 @end

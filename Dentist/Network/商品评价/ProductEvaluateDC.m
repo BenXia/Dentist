@@ -13,9 +13,9 @@
 
 - (NSDictionary *)requestURLArgs {
     if (self.nextId != nil) {
-        return @{@"method":@"item.score",@"v":@"0.0.1",@"iid":self.productId,@"next_iid":[NSNumber numberWithInt:self.nextId.intValue]};
+        return @{@"method":@"item.score",@"v":@"0.0.1",@"iid":self.productId,@"next_iid":[NSNumber numberWithInt:self.nextId.intValue],@"pagesize":@"10"};
     } else {
-        return @{@"method":@"item.score",@"v":@"0.0.1",@"iid":self.productId};
+        return @{@"method":@"item.score",@"v":@"0.0.1",@"iid":self.productId,@"pagesize":@"10"};
     }
 }
 
