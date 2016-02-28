@@ -39,5 +39,8 @@ typedef NS_ENUM(NSUInteger, MainTabIndexType) {
 #define kWeiXinPrivateKey   @"gkuguRSRGF54kipo987t5vc421098klJ"
 #define kWeiXinAppSecretKey @"d4624c36b6795d1d99dcf0547af5443d"
 
+// 用于检测是否需要展示引导图
+#define kLastShownGuidanceVCAppVersion    @"LastShownGuidanceVCAppVersion"
+
 
 #endif

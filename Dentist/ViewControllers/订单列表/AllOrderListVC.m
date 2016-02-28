@@ -86,7 +86,6 @@
 }
 
 -(void)footerRereshing{
-    [Utilities showLoadingView];
     [self.allOrderListVM.orderListDC requestWithArgs:nil];
 }
 

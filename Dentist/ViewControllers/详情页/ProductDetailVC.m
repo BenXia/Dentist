@@ -63,6 +63,8 @@ UIScrollViewDelegate>
 @property (strong, nonatomic) SDCycleScrollView *cycleScrollView;
 @property (assign, nonatomic) CGFloat cycleScrollViewHeight;
 
+
+@property (weak, nonatomic) IBOutlet UIView *bottomButtonView;
 @property (weak, nonatomic) IBOutlet UIButton *addFavoriteButton;
 
 @property (strong, nonatomic) IBOutlet UIView *baseInfoView;
@@ -201,6 +203,7 @@ UIScrollViewDelegate>
     self.baseSubtitleLabel.numberOfLines = 0;
     self.giftContentLabel.numberOfLines = 0;
     [self initNavBar];
+    [self initBottomButtonView];
     [self initMainScrollView];
     [self initHeaderImageView];
     [self initGroupDiscountView];
@@ -237,6 +240,15 @@ UIScrollViewDelegate>
 - (void)initMainScrollView {
     self.scrollView.backgroundColor = [UIColor themeBackGrayColor];
     
+}
+
+- (void)initBottomButtonView{
+    //加阴影
+    self.bottomButtonView.layer.shadowOffset = CGSizeMake(2, -2);
+    self.bottomButtonView.layer.shadowOpacity = 0.2;
+    self.bottomButtonView.layer.shadowRadius = 1;
+    self.bottomButtonView.layer.shadowColor = [UIColor grayColor].CGColor;
+    [self.bottomButtonView.layer setShadowPath:[UIBezierPath bezierPathWithRect:CGRectMake(0, 0, kScreenWidth, self.bottomButtonView.height)].CGPath];
 }
 
 -(void)initGroupDiscountView{
@@ -406,7 +418,7 @@ UIScrollViewDelegate>
         view.tag = i;
         view.hidden = NO;
         addSymbol.hidden = NO;
-        [view.imageView sd_setImageWithURL:[NSURL URLWithString:item.img]];
+        [view.imageView sd_setImageWithURL:[NSURL URLWithString:item.img] placeholderImage:[UIImage imageNamed:kPlaceholderImageView]];
         view.titleLabel.text = item.title;
         view.priceLabel.text = [NSString stringWithFormat:@"%@%.2f",kYuanSymbolStr,item.price];
         totalPrice += item.price;
@@ -417,7 +429,7 @@ UIScrollViewDelegate>
     
     //默认选中主商品
     self.groupFirstProductView.selected = YES;
-    [self.groupFirstProductView.imageView sd_setImageWithURL:[NSURL URLWithString:[self.dc.productDetail.img_url firstObject]]];
+    [self.groupFirstProductView.imageView sd_setImageWithURL:[NSURL URLWithString:[self.dc.productDetail.img_url firstObject]] placeholderImage:[UIImage imageNamed:kPlaceholderImageView]];
     self.groupFirstProductView.titleLabel.text = self.dc.productDetail.title;
     self.groupFirstProductView.priceLabel.text = [NSString stringWithFormat:@"%@%.2f",kYuanSymbolStr,self.dc.productDetail.price];
     
@@ -503,7 +515,7 @@ UIScrollViewDelegate>
         LikeProductItem* item = [self.dc.productDetail.likes objectAtIndex:i];
         GuessYouLikeProductView* itemView = [[GuessYouLikeProductView alloc] initWithFrame:CGRectMake(PIXEL_12*(i+1)+itemWidth*i, PIXEL_12, itemWidth, itemHeight)];
         itemView.titleLabel.text = item.title;
-        [itemView.imageView sd_setImageWithURL:[NSURL URLWithString:item.img]];
+        [itemView.imageView sd_setImageWithURL:[NSURL URLWithString:item.img] placeholderImage:[UIImage imageNamed:kPlaceholderImageView]];
         itemView.priceLabel.text = [NSString stringWithFormat:@"%@%.2f",kYuanSymbolStr,item.price];
         itemView.delegate = self;
         itemView.tag = i;
@@ -519,7 +531,7 @@ UIScrollViewDelegate>
     NSArray* specArray = productDetail.p_sids;
     
     //商品信息
-    [self.popInfoImageView sd_setImageWithURL:[NSURL URLWithString:[productDetail.img_url firstObject]]];
+    [self.popInfoImageView sd_setImageWithURL:[NSURL URLWithString:[productDetail.img_url firstObject]] placeholderImage:[UIImage imageNamed:kPlaceholderImageView]];
     [self.popInfoPriceLabel themeWithPrice:productDetail.price bigFont:18 smallFont:14];
     
     //默认选中分类的索引

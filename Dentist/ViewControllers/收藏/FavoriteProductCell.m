@@ -45,7 +45,7 @@
     BOOL hasGift = YES;
     if ([model isKindOfClass:[FavoriteProductModel class]]) {
         FavoriteProductModel* favoriteModel = model;
-        [self.productImageView sd_setImageWithURL:[NSURL URLWithString:favoriteModel.img_url]];
+        [self.productImageView sd_setImageWithURL:[NSURL URLWithString:favoriteModel.img_url] placeholderImage:[UIImage imageNamed:kPlaceholderImageView]];
         self.productTitleLabel.text = favoriteModel.title;
         [self.priceLabel themeWithPrice:favoriteModel.price.doubleValue bigFont:14 smallFont:12];
         
@@ -54,7 +54,7 @@
       
     }else if([model isKindOfClass:[SearchProductModel class]]){
         SearchProductModel* searchModel = model;
-        [self.productImageView sd_setImageWithURL:[NSURL URLWithString:searchModel.img_url]];
+        [self.productImageView sd_setImageWithURL:[NSURL URLWithString:searchModel.img_url] placeholderImage:[UIImage imageNamed:kPlaceholderImageView]];
         self.productTitleLabel.text = searchModel.title;
         [self.priceLabel themeWithPrice:searchModel.price.doubleValue bigFont:14 smallFont:12];
         
