@@ -628,6 +628,8 @@ PayFailedVCDelegate>
         
         if (!self.confirmOrderDC.enableKuaidi && !self.confirmOrderDC.enableZiti) {
             [Utilities showToastWithText:@"数据有误，不支持任何配送方式" withImageName:nil blockUI:NO];
+            self.deliverType = DeliverType_ZiTi;
+            self.deliverPrice = 0;
         }
         
         if (self.confirmOrderDC.enableKuaidi) {
@@ -766,7 +768,7 @@ PayFailedVCDelegate>
 
 - (void)loadingData:(PPDataController *)controller failedWithError:(NSError *)error {
     if (controller == self.confirmOrderDC) {
-        [Utilities showToastWithText:@"确认订单失败" withImageName:nil blockUI:NO];
+        [Utilities showToastWithText:self.confirmOrderDC.responseMsg withImageName:nil blockUI:NO];
         [self.navigationController popViewControllerAnimated:YES];
     } else if (controller == self.createOrderDC) {
         [Utilities showToastWithText:@"生成订单失败" withImageName:nil blockUI:NO];

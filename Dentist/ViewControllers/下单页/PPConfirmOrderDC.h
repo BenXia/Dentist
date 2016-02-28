@@ -17,6 +17,7 @@
 
 //output
 @property (nonatomic, assign) int responseCode;
+@property (nonatomic, strong) NSString *responseMsg;
 @property (nonatomic, strong) Address *address;
 @property (nonatomic, strong) NSArray *orderItemsArray;
 @property (nonatomic, strong) NSArray *payTypeArray;
