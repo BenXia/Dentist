@@ -57,8 +57,9 @@
         self.orderDetailVM.orderDetailDC = [[OrderDetailDC alloc] initWithDelegate:self];
         self.orderDetailVM.orderConfermDC = [[OrderConfermDC alloc] initWithDelegate:self];
 
-        
         self.orderDetailVM.orderDetailDC.oid = oid;
+        self.orderDetailVM.orderConfermDC.oid = oid;
+
     }
     return self;
 }
@@ -143,6 +144,7 @@
 
 - (void)orderConfermRequest {
     [self showLoadingView];
+    
     [self.orderDetailVM.orderConfermDC requestWithArgs:nil];
 }
 
