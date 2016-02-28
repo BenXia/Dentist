@@ -61,6 +61,12 @@
     [self.classTimePickerContentView removeFromSuperview];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    self.tableHeaderView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-64);
+    self.tableView.tableHeaderView = self.tableHeaderView;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

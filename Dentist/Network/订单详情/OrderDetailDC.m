@@ -63,7 +63,11 @@
         NSDate* payDate = [NSDate dateWithTimeIntervalSince1970:[paytime longLongValue]];
         NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-        self.orderDetailModel.orderPayTime = [dateFormatter stringFromDate:payDate];
+        if ([paytime isEqualToString:@"0"]) {
+            self.orderDetailModel.orderPayTime = @"无";
+        } else {
+            self.orderDetailModel.orderPayTime = [dateFormatter stringFromDate:payDate];
+        }
         
         NSString *createtime = [orderDic objectForKey:@"createtime"];
         NSDate* createDate = [NSDate dateWithTimeIntervalSince1970:[createtime longLongValue]];

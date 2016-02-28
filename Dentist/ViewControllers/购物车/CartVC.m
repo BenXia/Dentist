@@ -66,13 +66,13 @@ static NSString* const kCellReuseIdentifier = @"ProductBriefInfoCell";
 
 #pragma mark - Navigation Style
 
-- (UIColor*)preferNavBarBackgroundColor{
-    return [UIColor themeBlueColor];
-}
-
-- (UIColor*)preferNavBarNormalTitleColor{
-    return [UIColor whiteColor];
-}
+//- (UIColor*)preferNavBarBackgroundColor{
+//    return [UIColor themeBlueColor];
+//}
+//
+//- (UIColor*)preferNavBarNormalTitleColor{
+//    return [UIColor whiteColor];
+//}
 
 - (UIColor*)preferNavBarHighlightedTitleColor {
     return kWhiteHighlightedColor;
@@ -309,6 +309,9 @@ static NSString* const kCellReuseIdentifier = @"ProductBriefInfoCell";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.isEditType) {
+        return;
+    }
     ShoppingCartModel *model = [self.shoppingCardVM.cartListDC.shoppingCartProductsArray objectAtIndex:indexPath.row];
     ProductDetailVC* detailVC = [[ProductDetailVC alloc] initWithProductId:model.shoppingCartProductID];
     [self.navigationController pushViewController:detailVC animated:YES];

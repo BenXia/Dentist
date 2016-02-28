@@ -8,6 +8,4 @@
 
 @interface HomePageVC : BaseViewController
 
-@property (nonatomic, assign) BOOL needHideNavBarWithAnimation;
-
 @end
