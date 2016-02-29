@@ -42,7 +42,14 @@ static const CGFloat kItemNumPerLine = 2;
     
     [self initCollectionView];
     
-    [self.searchBar becomeFirstResponder];
+    if (self.firstSearchKey.length > 0) {
+        self.dc.searchKey = self.firstSearchKey;
+        self.searchBar.text = self.firstSearchKey;
+        [self.dc requestWithArgs:nil];
+        [Utilities showLoadingView];
+    }else{
+        [self.searchBar becomeFirstResponder];
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated{

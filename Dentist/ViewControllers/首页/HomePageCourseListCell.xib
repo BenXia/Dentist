@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -12,7 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="112"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="111.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="111"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o1V-Ct-EI3">
@@ -22,27 +22,39 @@
                             <constraint firstAttribute="width" secondItem="o1V-Ct-EI3" secondAttribute="height" multiplier="1:1" id="yKc-OE-agv"/>
                         </constraints>
                         <state key="normal" image="btn_clinical_default.png"/>
+                        <connections>
+                            <action selector="didClickOnMenuButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="y3Q-pp-Ll0"/>
+                        </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ya-fZ-XEU">
-                        <rect key="frame" x="112" y="12" width="63.5" height="64"/>
+                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ya-fZ-XEU">
+                        <rect key="frame" x="112" y="12" width="64" height="64"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="3Ya-fZ-XEU" secondAttribute="height" multiplier="1:1" id="Cm8-SR-Q4s"/>
                         </constraints>
                         <state key="normal" image="btn_mechanic_default.png"/>
+                        <connections>
+                            <action selector="didClickOnMenuButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="jda-Dy-POQ"/>
+                        </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZID-lK-ssN">
-                        <rect key="frame" x="199" y="12" width="64" height="64"/>
+                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZID-lK-ssN">
+                        <rect key="frame" x="200" y="12" width="63" height="64"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="ZID-lK-ssN" secondAttribute="height" multiplier="1:1" id="6hW-QH-S1b"/>
                         </constraints>
                         <state key="normal" image="btn_custommade_default.png"/>
+                        <connections>
+                            <action selector="didClickOnMenuButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="hVB-Pb-SKl"/>
+                        </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6yH-Xx-DRN">
-                        <rect key="frame" x="287" y="12" width="63.5" height="64"/>
+                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6yH-Xx-DRN">
+                        <rect key="frame" x="287" y="12" width="64" height="64"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="6yH-Xx-DRN" secondAttribute="height" multiplier="1:1" id="inc-RB-G05"/>
                         </constraints>
                         <state key="normal" image="btn_lesson_default.png"/>
+                        <connections>
+                            <action selector="didClickOnMenuButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="id3-uP-unm"/>
+                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="临床" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GLL-tW-aI7">
                         <rect key="frame" x="42" y="80" width="28" height="17"/>
@@ -51,7 +63,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="技工" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9zl-CF-MDb">
-                        <rect key="frame" x="129" y="80" width="28" height="17"/>
+                        <rect key="frame" x="130" y="80" width="28" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>

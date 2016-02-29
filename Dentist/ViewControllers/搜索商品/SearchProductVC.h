@@ -10,4 +10,6 @@
 
 @interface SearchProductVC : BaseViewController
 
+@property (strong,nonatomic) NSString* firstSearchKey;
+
 @end

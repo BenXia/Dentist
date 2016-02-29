@@ -51,9 +51,10 @@ NSString* const kHomePageCourseListCellIdentifier = @"HomePageCourseListCell";
 
 #pragma mark - IBActions
 
-- (void)didClickOnCourseButton:(UIButton *)courseButton {
-    if ([self.delegate respondsToSelector:@selector(didSelectCourseWithId:)]) {
-        [self.delegate didSelectCourseWithId:(int)courseButton.tag];
+- (IBAction)didClickOnMenuButton:(UIButton *)sender {
+    if ([self.delegate respondsToSelector:@selector(didCourseListCell:clickMenuTitle:)]) {
+        NSString* title = [kHomePageCourseListSortArray objectAtIndexIfIndexInBounds:sender.tag];
+        [self.delegate didCourseListCell:self clickMenuTitle:title];
     }
 }
 

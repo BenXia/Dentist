@@ -21,8 +21,8 @@ extern NSString* const kHomePageCourseListCellIdentifier;
 @protocol HomePageCourseListCellDelegate <NSObject>
 
 @optional
-- (void)didSelectCourseWithId:(int)courseId;
+
 - (void)didCourseListCell:(HomePageCourseListCell *)cell scrollToOffset:(CGPoint)offset;
-- (void)didClickOnTestButtonAction:(id)sender;
+- (void)didCourseListCell:(HomePageCourseListCell *)cell clickMenuTitle:(NSString*)title;
 
 @end

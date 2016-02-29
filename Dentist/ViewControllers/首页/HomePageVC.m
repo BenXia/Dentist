@@ -23,7 +23,7 @@
 
 static const CGFloat kTopImageViewRatio = 16.f/9;
 static CGFloat kHomePageTopBarHeight = 64;
-static BOOL kHideHomePageCourseListCell = YES;
+static BOOL kHideHomePageCourseListCell = NO;
 
 @interface HomePageVC () <
 SDCycleScrollViewDelegate,
@@ -369,9 +369,11 @@ saleActivityCellDelegate>
 
 #pragma mark - HomePageCourseListCellDelegate
 
-- (void)didSelectCourseWithId:(int)courseId {
-    // （重要）设置下订单方式：首页老师列表（包括科目横向列表）
-    
+- (void)didCourseListCell:(HomePageCourseListCell *)cell clickMenuTitle:(NSString*)title{
+    SearchProductVC* searchVC = [[SearchProductVC alloc] init];
+    searchVC.hidesBottomBarWhenPushed = YES;
+    searchVC.firstSearchKey = title;
+    [self.navigationController pushViewController:searchVC animated:YES];
 }
 
 #pragma mark - CellDelegate
