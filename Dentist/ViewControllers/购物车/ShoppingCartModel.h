@@ -19,5 +19,6 @@
 @property (nonatomic, strong) NSString *shoppingCartProductTitle;            //购物车商品标题
 @property (nonatomic, strong) NSString *shoppingCartProductImage;            //购物车商品图片
 @property (nonatomic, strong) NSString *shoppingCartProductBuyCert;          //购物车商品是否需要证书？
+@property (nonatomic, strong) NSString *shoppingCartProductLastNumber;       //购物车商品上一次数量
 
 @end

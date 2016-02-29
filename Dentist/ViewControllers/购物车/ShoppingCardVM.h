@@ -37,8 +37,12 @@
 - (NSMutableArray *)getAllProductIDArray;
 //所有商品的数量数组
 - (NSMutableArray *)getAllProductNumberArray;
-
-
+//同步商品数量当前和之前数据一致
+- (void)updateCurrentProductNumberToLastNumber;
+//商品数量返回到之前数据
+- (void)updateLastProductNumberToCurrentNumber;
+//是否需要更新数量
+- (BOOL)needUpdateProductNumber;
 
 
 @end
