@@ -43,7 +43,7 @@
             addressModel.recipientPhoneNum = [addressDict objectForKey:@"mobile"];
             addressModel.postCode = [addressDict objectForKey:@"zipcode"];
             addressModel.ID = [addressDict objectForKey:@"aid"];
-            addressModel.isDefault = [addressDict objectForKey:@"is_default"];
+            addressModel.isDefault = [[addressDict objectForKey:@"is_default"] isEqualToString:@"1"];;
             [self.addressArr addObject:addressModel];
         }
         result = YES;
