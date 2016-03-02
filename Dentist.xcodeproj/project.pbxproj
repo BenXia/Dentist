@@ -285,6 +285,7 @@
 		33F071A81C42CF1900DAC58F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F071A71C42CF1900DAC58F /* Security.framework */; };
 		33F071DB1C42DAAB00DAC58F /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F071DA1C42DAAB00DAC58F /* libstdc++.6.0.9.dylib */; };
 		49A440E851BCC056B96B1CCC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 51B5961869359BC6C0460396 /* libPods.a */; };
+		882D8E8C1C87443F0091B9E2 /* 关于我们.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 882D8E8B1C87443F0091B9E2 /* 关于我们.jpg */; };
 		88367A971C7CA6AB00658214 /* LookHistoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88367A951C7CA6AB00658214 /* LookHistoryVC.m */; };
 		88367A981C7CA6AB00658214 /* LookHistoryVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88367A961C7CA6AB00658214 /* LookHistoryVC.xib */; };
 		88367A9B1C7CA73A00658214 /* GetLookHistoryDC.m in Sources */ = {isa = PBXBuildFile; fileRef = 88367A9A1C7CA73A00658214 /* GetLookHistoryDC.m */; };
@@ -892,6 +893,7 @@
 		390308D4EA1697DF926D8B12 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		430052BE562558A3994A1C1C /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		51B5961869359BC6C0460396 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		882D8E8B1C87443F0091B9E2 /* 关于我们.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "关于我们.jpg"; sourceTree = "<group>"; };
 		88367A941C7CA6AB00658214 /* LookHistoryVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LookHistoryVC.h; sourceTree = "<group>"; };
 		88367A951C7CA6AB00658214 /* LookHistoryVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LookHistoryVC.m; sourceTree = "<group>"; };
 		88367A961C7CA6AB00658214 /* LookHistoryVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LookHistoryVC.xib; sourceTree = "<group>"; };
@@ -2334,6 +2336,7 @@
 		9379D3B31C6338BB00390702 /* 我的 */ = {
 			isa = PBXGroup;
 			children = (
+				882D8E8B1C87443F0091B9E2 /* 关于我们.jpg */,
 				939E586C1C80861100E24080 /* 待处理.png */,
 				939E586D1C80861100E24080 /* 待评价.png */,
 				939E586E1C80861100E24080 /* 地址管理.png */,
@@ -2767,6 +2770,7 @@
 				93EBD68B1C7F2D14005FA9A1 /* ic_share05@3x.png in Resources */,
 				88965B0B1C814B19001FA633 /* 搜索放大镜@2x.png in Resources */,
 				33D028721C74BCDF00277C3C /* PayFailedVC.xib in Resources */,
+				882D8E8C1C87443F0091B9E2 /* 关于我们.jpg in Resources */,
 				33DD6CA21C611A5500CE6B31 /* btn_msg_default.png in Resources */,
 				33D028681C74BCA100277C3C /* InvoiceVC.xib in Resources */,
 				93624C231C44170100262B65 /* btn_custommade_pressed.png in Resources */,

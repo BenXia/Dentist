@@ -173,7 +173,7 @@
             cell.detailTextLabel.text = @"查看全部";
         } else if (indexPath.section == 1) {
             cell.textLabel.text = @"客服热线";
-            cell.detailTextLabel.text = @"400-8888-9990";
+            cell.detailTextLabel.text = @"400-001-4980";
         } else if (indexPath.section == 2) {
             cell.textLabel.text = @"使用帮助";
             cell.detailTextLabel.text = @"";
