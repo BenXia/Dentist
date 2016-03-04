@@ -85,14 +85,14 @@
 - (void)setEndTime:(long long)endTime {
     _endTime = endTime;
     NSTimeInterval currentTimeInterval = [[NSDate date] timeIntervalSince1970];
-    self.totalCountDownEndTimeInterval = [[NSString stringWithFormat:@"%.0f",endTime - currentTimeInterval] doubleValue];
-    if (self.totalCountDownEndTimeInterval>0) {
+    self.totalCountDownEndTimeInterval = [[NSString stringWithFormat:@"%.0f", endTime - currentTimeInterval] doubleValue];
+    if (self.totalCountDownEndTimeInterval > 0) {
         [self startCountDown];
     }
 }
 
 -(void)startCountDown{
-    self.totalCountDown = [[SimpleCountdown alloc]initWithTimeout:self.totalCountDownEndTimeInterval autoStart:NO];
+    self.totalCountDown = [[SimpleCountdown alloc] initWithTimeout:self.totalCountDownEndTimeInterval autoStart:NO];
     self.totalCountDown.delegate = self;
     self.totalCountDown.countdown = YES;
     [self.totalCountDown start];

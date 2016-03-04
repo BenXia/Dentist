@@ -217,6 +217,7 @@ static NSString* const kCellReuseIdentifier = @"ProductBriefInfoCell";
             [self.shoppingCardVM.cartListDC.shoppingCartProductsArray removeObject:shoppingCartModel];
             [self.shoppingCardVM.shoppingCartProductCellSelectArray removeObject:shoppingCartModel];
             [self.shoppingCardVM.shoppingCartProductCellEditArray removeObject:shoppingCartModel];
+            [self.shoppingCardVM.shoppingCartProductCellDeleteArray removeObject:shoppingCartModel];
             index--;
         }
         [self.tableView reloadData];
