@@ -163,7 +163,7 @@ saleActivityCellDelegate>
     _cycleScrollView.delegate = self;
     _cycleScrollView.autoScroll = NO;
     _cycleScrollView.autoScrollTimeInterval = 10;
-    _cycleScrollView.placeholderImage = [UIImage imageNamed:@"网络不给力-03"];
+    _cycleScrollView.placeholderImage = [UIImage imageNamed:@"网络不给力-03.jpg"];
     _cycleScrollView.needChangeHeight = YES;
 }
 
@@ -416,15 +416,18 @@ saleActivityCellDelegate>
 
 - (void)loadingDataFinished:(PPDataController *)controller {
     self.view.userInteractionEnabled = YES;
-    if (controller == self.adBannerRequest) {
-        [self refreshBanner];
-    } else if (controller == self.adTodayIntroduceRequest) {
-        [self.tableView reloadData];
-    } else if (controller == self.groupBuyingRequest){
-        [self.tableView reloadData];
-    } else if (controller == self.salesPromotionRequest){
-        [self.tableView reloadData];
-    }
+    [[GCDQueue mainQueue] queueBlock:^{
+        if (controller == self.adBannerRequest) {
+            [self refreshBanner];
+        } else if (controller == self.adTodayIntroduceRequest) {
+            [self.tableView reloadData];
+        } else if (controller == self.groupBuyingRequest){
+            [self.tableView reloadData];
+        } else if (controller == self.salesPromotionRequest){
+            [self.tableView reloadData];
+        }
+
+    }];
 }
 
 @end

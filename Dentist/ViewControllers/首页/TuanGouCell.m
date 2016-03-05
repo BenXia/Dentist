@@ -69,13 +69,13 @@
     for (int i = 0 ; i< cellModelArray.count; i++) {
         ProductIntroduceModel *model = cellModelArray[i];
         if (i == 0) {
-            [self.firstImageView sd_setImageWithURL:[NSURL URLWithString:model.img_url] placeholderImage:[UIImage imageNamed:@"网络不给力-02.png"]];
+            [self.firstImageView sd_setImageWithURL:[NSURL URLWithString:model.img_url] placeholderImage:[UIImage imageNamed:@"网络不给力-02.jpg"]];
         } else if (i == 1) {
-            [self.secondImageView sd_setImageWithURL:[NSURL URLWithString:model.img_url] placeholderImage:[UIImage imageNamed:@"网络不给力-02.png"]];
+            [self.secondImageView sd_setImageWithURL:[NSURL URLWithString:model.img_url] placeholderImage:[UIImage imageNamed:@"网络不给力-02.jpg"]];
         } else if (i == 2) {
             [self.thirdImageView sd_setImageWithURL:[NSURL URLWithString:model.img_url] placeholderImage:[UIImage imageNamed:@"网络不给力-02.png"]];
         } else if (i == 3) {
-            [self.fourthImageView sd_setImageWithURL:[NSURL URLWithString:model.img_url]placeholderImage:[UIImage imageNamed:@"网络不给力-02.png"]];
+            [self.fourthImageView sd_setImageWithURL:[NSURL URLWithString:model.img_url]placeholderImage:[UIImage imageNamed:@"网络不给力-02.jpg"]];
         }
         
     }
