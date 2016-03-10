@@ -18,7 +18,7 @@
 }
 
 - (NSDictionary *)requestHTTPBody {
-    if (!self.province&&!self.city&&!self.area&&!self.addressString&&!self.mobile&&!self.zipcode) {
+    if (!self.province || !self.city || !self.area || !self.addressString || !self.mobile || !self.zipcode) {
         return nil;
     }
     if (self.aid) {
