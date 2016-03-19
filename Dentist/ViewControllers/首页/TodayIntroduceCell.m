@@ -27,7 +27,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    self.contentView.backgroundColor = [UIColor backGroundGrayColor];
+    self.contentView.backgroundColor = [g_commonConfig backGroundGrayColor];
     UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onProductImage:)];
     UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onProductImage:)];
     UITapGestureRecognizer *tap3 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onProductImage:)];

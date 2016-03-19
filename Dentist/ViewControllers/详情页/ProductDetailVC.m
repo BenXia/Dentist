@@ -212,7 +212,7 @@ UIScrollViewDelegate>
 }
 
 - (void)initNavBar{
-    self.topBarBackgroundView.backgroundColor = [UIColor themeBlueColor];
+    self.topBarBackgroundView.backgroundColor = [g_commonConfig themeBlueColor];
     self.topBarBackgroundView.layer.shadowOffset = CGSizeMake(2, 2);
     self.topBarBackgroundView.layer.shadowOpacity = 0.2;
     self.topBarBackgroundView.layer.shadowColor = [UIColor blackColor].CGColor;
@@ -228,8 +228,8 @@ UIScrollViewDelegate>
     _cycleScrollView.pageControlStyle=SDCycleScrollViewPageContolStyleClassic;
     _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
     _cycleScrollView.showPageControl = YES;
-    _cycleScrollView.dotColor = [UIColor themeBlueColor]; // 自定义分页控件小圆标颜色
-    _cycleScrollView.notSelectDotColor = [UIColor gray003Color];
+    _cycleScrollView.dotColor = [g_commonConfig themeBlueColor]; // 自定义分页控件小圆标颜色
+    _cycleScrollView.notSelectDotColor = [g_commonConfig gray003Color];
     _cycleScrollView.backgroundColor = [UIColor whiteColor];
     _cycleScrollView.delegate = self;
     _cycleScrollView.autoScroll = NO;
@@ -239,7 +239,7 @@ UIScrollViewDelegate>
 }
 
 - (void)initMainScrollView {
-    self.scrollView.backgroundColor = [UIColor themeBackGrayColor];
+    self.scrollView.backgroundColor = [g_commonConfig themeBackGrayColor];
     
 }
 
@@ -257,7 +257,7 @@ UIScrollViewDelegate>
     self.groupSecondProductView.delegate = self;
     self.groupThirdProductView.delegate = self;
     
-    [self.groupBuyButton setBackgroundColor:[UIColor themeCyanColor]];
+    [self.groupBuyButton setBackgroundColor:[g_commonConfig themeCyanColor]];
     [self.groupBuyButton setTitleColor:[UIColor whiteColor]];
     [self.groupBuyButton circular:self.groupBuyButton.height/2];
     
@@ -276,7 +276,7 @@ UIScrollViewDelegate>
     self.popupCustomiseView.layer.shadowRadius = 1;
     self.popupCustomiseView.layer.shadowColor = [UIColor blackColor].CGColor;
     
-    [self.popInfoImageView setBorderColor:[UIColor lineGray001Color]];
+    [self.popInfoImageView setBorderColor:[g_commonConfig lineGray001Color]];
     [self.popInfoImageView setBorderWidth:1];
     
     [self.popupCustomiseViewBackgroundView addSubview:self.popupCustomiseView];
@@ -473,7 +473,7 @@ UIScrollViewDelegate>
     NSRange goodRange = [appraiseTotalStr rangeOfString:goodPercentStr];
     NSRange numRange = [appraiseTotalStr rangeOfString:totalNumStr];
     [attStr addAttributes:@{NSForegroundColorAttributeName:[UIColor redColor]} range:goodRange];
-    [attStr addAttributes:@{NSForegroundColorAttributeName:[UIColor gray006Color]} range:numRange];
+    [attStr addAttributes:@{NSForegroundColorAttributeName:[g_commonConfig gray006Color]} range:numRange];
     self.appraiseTotalLabel.attributedText = attStr;
     
     //添加Cell
@@ -562,7 +562,7 @@ UIScrollViewDelegate>
         self.popScrollContentHeight += PIXEL_8;
         UILabel* titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(kGapXOfPopScrollView, self.popScrollContentHeight, kScreenWidth - 2*kGapXOfPopScrollView, 30)];
         titleLabel.text = specItem.name;
-        titleLabel.textColor = [UIColor gray005Color];
+        titleLabel.textColor = [g_commonConfig gray005Color];
         titleLabel.font = [UIFont systemFontOfSize:kFontOfPopScrollViewTitle];
         [titleLabel ajustHeightWithLimitWidth:kScreenWidth - 2*kGapXOfPopScrollView];
         [self.popScrollView addSubview:titleLabel];
@@ -586,16 +586,16 @@ UIScrollViewDelegate>
             [button addTarget:self action:@selector(didSelectOptionInPopupCustomiseView:) forControlEvents:UIControlEventTouchUpInside];
             [button setTitle:str forState:UIControlStateNormal];
             button.titleLabel.font = [UIFont systemFontOfSize:kFontOfPopScrollViewOption];
-            [button setTitleColor:[UIColor fontGray006Color]];
+            [button setTitleColor:[g_commonConfig fontGray006Color]];
             [button.layer setCornerRadius:3];
             [button setBorderWidth:1];
             [RACObserve(button, selected) subscribeNext:^(NSNumber* x) {
                 if (x.boolValue) {
                     [button setTitleColor:[UIColor whiteColor]];
-                    [button setBackgroundColor:[UIColor themeCyanColor]];
-                    [button setBorderColor:[UIColor themeCyanColor]];
+                    [button setBackgroundColor:[g_commonConfig themeCyanColor]];
+                    [button setBorderColor:[g_commonConfig themeCyanColor]];
                 }else{
-                    [button setTitleColor:[UIColor gray006Color]];
+                    [button setTitleColor:[g_commonConfig gray006Color]];
                     [button setBackgroundColor:[UIColor whiteColor]];
                     [button setBorderColor:[UIColor lightGrayColor]];
                 }
@@ -617,7 +617,7 @@ UIScrollViewDelegate>
         //分割线
         self.popScrollContentHeight += kGapYOfPopScrollView;
         UIView* lineView = [[UIView alloc]initWithFrame:CGRectMake(kGapXOfPopScrollView, self.popScrollContentHeight, kScreenWidth - 2*kGapXOfPopScrollView, 1)];
-        lineView.backgroundColor = [UIColor lineGray000Color];
+        lineView.backgroundColor = [g_commonConfig lineGray000Color];
         [self.popScrollView addSubview:lineView];
         self.popScrollContentHeight += lineView.height;
         
@@ -640,7 +640,7 @@ UIScrollViewDelegate>
     UILabel* numLabel = [[UILabel alloc] initWithFrame:CGRectMake(kGapXOfPopScrollView, self.popScrollContentHeight, 100, 30)];
     numLabel.text = @"购买数量";
     numLabel.font = [UIFont systemFontOfSize:kFontOfPopScrollViewOption];
-    numLabel.textColor = [UIColor gray005Color];
+    numLabel.textColor = [g_commonConfig gray005Color];
     numLabel.centerY = editNumerView.centerY;
     [self.popScrollView addSubview:numLabel];
     self.popScrollContentHeight += editNumerView.height;
@@ -648,7 +648,7 @@ UIScrollViewDelegate>
     //分割线
     self.popScrollContentHeight += kGapYOfPopScrollView;
     UIView* lineView = [[UIView alloc]initWithFrame:CGRectMake(kGapXOfPopScrollView, self.popScrollContentHeight, kScreenWidth - 2*kGapXOfPopScrollView, 1)];
-    lineView.backgroundColor = [UIColor lineGray000Color];
+    lineView.backgroundColor = [g_commonConfig lineGray000Color];
     [self.popScrollView addSubview:lineView];
     self.popScrollContentHeight += lineView.height;
     
@@ -707,7 +707,7 @@ UIScrollViewDelegate>
         }
         if (noSelectedTipStr.length > 0) {
             self.popInfoSelectTipLabel.text = [NSString stringWithFormat:@"请选择%@",noSelectedTipStr];
-            self.popInfoSelectTipLabel.textColor = [UIColor fontGray006Color];
+            self.popInfoSelectTipLabel.textColor = [g_commonConfig fontGray006Color];
             self.popInfoSelectTipLabel.font = [UIFont systemFontOfSize:15];
             self.isSelectSpecCompleted = NO;
             
@@ -719,7 +719,7 @@ UIScrollViewDelegate>
             self.editNumerView.min = self.dc.productDetail.num > 0 ? @(1) : @(0);
         }else{
             self.popInfoSelectTipLabel.text = selectedTipStr;
-            self.popInfoSelectTipLabel.textColor = [UIColor fontGray007Color];
+            self.popInfoSelectTipLabel.textColor = [g_commonConfig fontGray007Color];
             self.popInfoSelectTipLabel.font = [UIFont boldSystemFontOfSize:15];
             self.isSelectSpecCompleted = YES;
             

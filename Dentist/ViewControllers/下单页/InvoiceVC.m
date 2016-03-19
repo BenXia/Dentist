@@ -48,9 +48,9 @@
         self.edgesForExtendedLayout = UIRectEdgeNone;
     }
     
-    self.view.backgroundColor = [UIColor themeBackGrayColor];
-    self.tableView.backgroundColor = [UIColor themeBackGrayColor];
-    self.tableHeaderView.backgroundColor = [UIColor themeBackGrayColor];
+    self.view.backgroundColor = [g_commonConfig themeBackGrayColor];
+    self.tableView.backgroundColor = [g_commonConfig themeBackGrayColor];
+    self.tableHeaderView.backgroundColor = [g_commonConfig themeBackGrayColor];
     self.tableHeaderView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-64);
     self.tableView.tableHeaderView = self.tableHeaderView;
     self.tableView.tableFooterView = [UIView new];
@@ -60,9 +60,9 @@
     
     for (UIButton *btn in self.invoiceTypeButtonsArray) {
         [btn setBackgroundImage:[UIImage imageWithColor:[UIColor whiteColor]] forState:UIControlStateNormal];
-        [btn setBackgroundImage:[UIImage imageWithColor:[UIColor themeCyanColor]] forState:UIControlStateSelected];
+        [btn setBackgroundImage:[UIImage imageWithColor:[g_commonConfig themeCyanColor]] forState:UIControlStateSelected];
         [btn setBackgroundImage:[UIImage imageWithColor:RGB(230, 230, 230)] forState:UIControlStateDisabled];
-        [btn setTitleColor:[UIColor gray007Color] forState:UIControlStateNormal];
+        [btn setTitleColor:[g_commonConfig gray007Color] forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
         [btn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
         [btn circularCorner];

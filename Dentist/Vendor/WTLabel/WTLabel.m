@@ -7,7 +7,6 @@
 //
 
 #import "WTLabel.h"
-#import "UIColor+theme.h"
 
 #define kDefaultHeadImageWidth 42
 #define kDefaultHeadImageHeight 42

@@ -65,7 +65,7 @@
     [self setNavTitleString:@"付款结果"];
     
     self.receiverAddressLabel.numberOfLines = 0;
-    [self.continueBuyButton thematizedWithBackgroundColor:[UIColor themeCyanColor]];
+    [self.continueBuyButton thematizedWithBackgroundColor:[g_commonConfig themeCyanColor]];
     [self.continueBuyButton circular:self.continueBuyButton.height / 2];
     
     self.receiverLabel.text = self.receiverName;

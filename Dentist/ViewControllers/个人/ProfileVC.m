@@ -79,7 +79,7 @@
 }
 
 - (void)initUI {
-    [self.userLevelBtn liningThematized:[UIColor themeButtonBlueColor]];
+    [self.userLevelBtn liningThematized:[g_commonConfig themeButtonBlueColor]];
     self.headImageView.layer.cornerRadius = self.headImageView.width/2;
     self.headImageView.layer.masksToBounds = YES;
     self.headImageView.userInteractionEnabled = YES;
@@ -165,9 +165,9 @@
         UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.textLabel.font = [UIFont systemFontOfSize:14];
-        cell.textLabel.textColor = [UIColor gray005Color];
+        cell.textLabel.textColor = [g_commonConfig gray005Color];
         cell.detailTextLabel.font = [UIFont systemFontOfSize:14];
-        cell.detailTextLabel.textColor = [UIColor gray006Color];
+        cell.detailTextLabel.textColor = [g_commonConfig gray006Color];
         if (indexPath.section == 0 && indexPath.row == 0) {
             cell.textLabel.text = @"我的订单";
             cell.detailTextLabel.text = @"查看全部";

@@ -176,8 +176,8 @@
             break;
     }
     
-    self.view.backgroundColor = [UIColor themeBackGrayColor];
-    self.tableView.backgroundColor = [UIColor themeBackGrayColor];
+    self.view.backgroundColor = [g_commonConfig themeBackGrayColor];
+    self.tableView.backgroundColor = [g_commonConfig themeBackGrayColor];
     
     self.tableHeaderView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-64);
     self.tableView.tableHeaderView = self.tableHeaderView;

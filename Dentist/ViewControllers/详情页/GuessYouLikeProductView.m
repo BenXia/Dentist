@@ -59,7 +59,7 @@
     
     _imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.width)];
     [_imageView setBorderWidth:1];
-    [_imageView setBorderColor:[UIColor lineGray001Color]];
+    [_imageView setBorderColor:[g_commonConfig lineGray001Color]];
     
     _priceLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, frame.size.height - kHeightOfPriceLabel , frame.size.width, kHeightOfPriceLabel)];
     _priceLabel.textColor = [UIColor redColor];
@@ -70,7 +70,7 @@
     _titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, frame.size.width
                                                            , frame.size.width, frame.size.height - frame.size.width - kHeightOfPriceLabel)];
     _titleLabel.textAlignment = NSTextAlignmentCenter;
-    _titleLabel.textColor = [UIColor fontGray005Color];
+    _titleLabel.textColor = [g_commonConfig fontGray005Color];
     _titleLabel.font = [UIFont systemFontOfSize:10];
     _titleLabel.numberOfLines = 0;
     

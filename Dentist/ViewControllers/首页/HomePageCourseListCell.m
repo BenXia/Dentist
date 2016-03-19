@@ -37,10 +37,10 @@ NSString* const kHomePageCourseListCellIdentifier = @"HomePageCourseListCell";
     [self.mechanicBtn setImage:[UIImage imageNamed:@"btn_mechanic_pressed"] forState:UIControlStateSelected];
     [self.custommadeBtn setImage:[UIImage imageNamed:@"btn_custommade_pressed"] forState:UIControlStateSelected];
     [self.lessonBtn setImage:[UIImage imageNamed:@"btn_lesson_pressed"] forState:UIControlStateSelected];
-    self.clinicalLabel.textColor = [UIColor gray007Color];
-    self.mechanicLabel.textColor = [UIColor gray007Color];
-    self.custommadeLabel.textColor = [UIColor gray007Color];
-    self.lessonLabel.textColor = [UIColor gray007Color];
+    self.clinicalLabel.textColor = [g_commonConfig gray007Color];
+    self.mechanicLabel.textColor = [g_commonConfig gray007Color];
+    self.custommadeLabel.textColor = [g_commonConfig gray007Color];
+    self.lessonLabel.textColor = [g_commonConfig gray007Color];
     
 }
 

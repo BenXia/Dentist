@@ -42,7 +42,7 @@
     [self setNavTitleString:@"设置"];
     
     self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 1)];
-    [self.quitBtn liningThematized:[UIColor themeBlueColor]];
+    [self.quitBtn liningThematized:[g_commonConfig themeBlueColor]];
     self.quitBtn.layer.cornerRadius = 20;
     [self.weixinPyqBtn centerImageAndTitle];
     [self.sinaBtn centerImageAndTitle];

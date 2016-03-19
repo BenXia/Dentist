@@ -97,12 +97,12 @@ static NSString* const kCellReuseIdentifier = @"ProductBriefInfoCell";
     }
     
     // Buttons
-    [self.payButton setNormalBackgroundColor:[UIColor themeCyanColor]
-                      disableBackgroundColor:[UIColor gray005Color]];
-    [self.moveToFavoriteButton setNormalBackgroundColor:[UIColor themeBlueColor]
-                                 disableBackgroundColor:[UIColor gray005Color]];
-    [self.removeButton setNormalBackgroundColor:[UIColor themeCyanColor]
-                         disableBackgroundColor:[UIColor gray005Color]];
+    [self.payButton setNormalBackgroundColor:[g_commonConfig themeCyanColor]
+                      disableBackgroundColor:[g_commonConfig gray005Color]];
+    [self.moveToFavoriteButton setNormalBackgroundColor:[g_commonConfig themeBlueColor]
+                                 disableBackgroundColor:[g_commonConfig gray005Color]];
+    [self.removeButton setNormalBackgroundColor:[g_commonConfig themeCyanColor]
+                         disableBackgroundColor:[g_commonConfig gray005Color]];
     
     self.edgesForExtendedLayout = UIRectEdgeNone;
     

@@ -28,7 +28,7 @@
 }
 
 - (void)replaceRootControllerBy:(UIViewController *)vc {
-    self.rootNavigationController = [[BaseNavigationController alloc] initWithRootViewController:vc];
+    self.rootNavigationController = [[SafePushNavigationController alloc] initWithRootViewController:vc];
     self.rootNavigationController.navigationBarHidden = YES;
     self.window.rootViewController = self.rootNavigationController;
 }
@@ -50,7 +50,7 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    BaseNavigationController *navigationVC = [BaseNavigationController new];
+    SafePushNavigationController *navigationVC = [SafePushNavigationController new];
     UIViewController* launchVC = [[LaunchViewController alloc] init];
     navigationVC.navigationBar.hidden = YES;
     [navigationVC pushViewController:launchVC animated:NO];

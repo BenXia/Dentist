@@ -60,7 +60,7 @@
         [self.view insertSubview:self.easyWebViewController.view belowSubview:self.bottomActivityView];
         [self.easyWebViewController didMoveToParentViewController:self];
         self.bottomBar.alpha = 0.95;
-        self.bottomBar.backgroundColor = [UIColor themeBlueColor];
+        self.bottomBar.backgroundColor = [g_commonConfig themeBlueColor];
         self.easyWebViewController.easyJSWebView.scrollView.clipsToBounds = NO;
     }
 

@@ -131,7 +131,7 @@ saleActivityCellDelegate>
 #pragma mark - Private methods
 
 - (void)initUIReleated {
-    self.view.backgroundColor = [UIColor backGroundGrayColor];
+    self.view.backgroundColor = [g_commonConfig backGroundGrayColor];
     self.topBarHeightConstraint.constant = kHomePageTopBarHeight;
     [self initNavigationBar];
     [self initBanner];
@@ -157,8 +157,8 @@ saleActivityCellDelegate>
     _cycleScrollView.imageURLStringsGroup = nil;
     _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
     _cycleScrollView.pageControlStyle=SDCycleScrollViewPageContolStyleClassic;
-    _cycleScrollView.dotColor = [UIColor themeBlueColor]; // 自定义分页控件小圆标颜色
-    _cycleScrollView.notSelectDotColor = [UIColor gray003Color];
+    _cycleScrollView.dotColor = [g_commonConfig themeBlueColor]; // 自定义分页控件小圆标颜色
+    _cycleScrollView.notSelectDotColor = [g_commonConfig gray003Color];
     _cycleScrollView.backgroundColor = [UIColor whiteColor];
     _cycleScrollView.delegate = self;
     _cycleScrollView.autoScroll = NO;
@@ -329,7 +329,7 @@ saleActivityCellDelegate>
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if (!cell) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-            cell.backgroundColor = [UIColor themeBlueColor];
+            cell.backgroundColor = [g_commonConfig themeBlueColor];
         }
         
         return cell;

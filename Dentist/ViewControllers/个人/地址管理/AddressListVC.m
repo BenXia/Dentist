@@ -176,7 +176,7 @@ WTLabelDelegate>
         _blankLabel.y = kBlankOldY;
         _blankLabel.centerX = [UIUtils screenWidth]/2;
         [_blankLabel setButtonTitle:@"新建"];
-        [_blankLabel.btn liningThematized:[UIColor themeButtonBlueColor]];
+        [_blankLabel.btn liningThematized:[g_commonConfig themeButtonBlueColor]];
         _blankLabel.delegate = self;
         _blankLabel.hidden = YES;
         [self.view addSubview:_blankLabel];

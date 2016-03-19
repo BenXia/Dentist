@@ -69,16 +69,16 @@ static MainViewManager* sInstance = nil;
     _tabBarController = nil;
     
     HomePageVC *homePageVC = [[HomePageVC alloc] init];
-    UINavigationController *nav1 = [[BaseNavigationController alloc] initWithRootViewController:homePageVC];
+    UINavigationController *nav1 = [[SafePushNavigationController alloc] initWithRootViewController:homePageVC];
     
     CategoryVC *categoryVC = [[CategoryVC alloc] init];
-    UINavigationController *nav2 = [[BaseNavigationController alloc] initWithRootViewController:categoryVC];
+    UINavigationController *nav2 = [[SafePushNavigationController alloc] initWithRootViewController:categoryVC];
     
     CartVC *cartVC = [[CartVC alloc] init];
-    UINavigationController *nav3 = [[BaseNavigationController alloc] initWithRootViewController:cartVC];
+    UINavigationController *nav3 = [[SafePushNavigationController alloc] initWithRootViewController:cartVC];
 
     ProfileVC *profileVC = [[ProfileVC alloc] init];
-    UINavigationController *nav4 = [[BaseNavigationController alloc] initWithRootViewController:profileVC];
+    UINavigationController *nav4 = [[SafePushNavigationController alloc] initWithRootViewController:profileVC];
     
     _tabBarController = [[MainPageTabBarVC alloc] init];
     _tabBarController.tabBar.translucent = NO;
@@ -96,7 +96,7 @@ static MainViewManager* sInstance = nil;
                                                        nil]
                                              forState:UIControlStateNormal];
     [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                       [UIColor themeBlueColor], NSForegroundColorAttributeName,
+                                                       [g_commonConfig themeBlueColor], NSForegroundColorAttributeName,
                                                        [UIFont systemFontOfSize:14.0], NSFontAttributeName,
                                                        nil]
                                              forState:UIControlStateSelected];

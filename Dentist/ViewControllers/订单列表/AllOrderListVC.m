@@ -55,7 +55,7 @@
 }
 
 - (void)initUI {
-    self.view.backgroundColor = [UIColor backGroundGrayColor];
+    self.view.backgroundColor = [g_commonConfig backGroundGrayColor];
     switch (self.allOrderListVM.orderStatusType) {
         case OrderStatusType_NeedHandle: {
             self.title = @"待处理订单";
@@ -276,10 +276,10 @@
     orderNumLabel.font = [UIFont systemFontOfSize:13];
     NSMutableAttributedString *AttributedStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"订单号:%@",productListModel.orderID]];
     [AttributedStr addAttribute:NSForegroundColorAttributeName
-                          value:[UIColor gray005Color]
+                          value:[g_commonConfig gray005Color]
                           range:NSMakeRange(0, 4)];
     [AttributedStr addAttribute:NSForegroundColorAttributeName
-                          value:[UIColor gray007Color]
+                          value:[g_commonConfig gray007Color]
                           range:NSMakeRange(4, AttributedStr.length - 4)];
     orderNumLabel.attributedText = AttributedStr;
     
@@ -322,7 +322,7 @@
     }
     
     UIImageView *lineImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, kSectionHeaderViewHeight - 20 - 1, kScreenWidth, 1)];
-    lineImageView.backgroundColor = [UIColor gray003Color];
+    lineImageView.backgroundColor = [g_commonConfig gray003Color];
 
     [sectionHeaderBackView addSubview:orderNumLabel];
     [sectionHeaderBackView addSubview:orderStateLabel];
@@ -452,7 +452,7 @@
 //创建订单整体描述的label
 - (UILabel *)createDescriptionLabel:(ProductListModel *)productListModel {
     UILabel *descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(kInsert, 0, kScreenWidth, kSectionFooterViewHeight/2)];
-    descriptionLabel.textColor = [UIColor gray006Color];
+    descriptionLabel.textColor = [g_commonConfig gray006Color];
     descriptionLabel.font = [UIFont systemFontOfSize:13];
     if (productListModel.productExpressPrice.floatValue > 0) {
         descriptionLabel.text = [NSString stringWithFormat:@"共%lu件商品；合计：%.2f元(含快递费 %.2f元)",(unsigned long)productListModel.productListGoodsArray.count,[AllOrderListVM getOrderTotalPriceWithProductListModel:productListModel],[productListModel.productExpressPrice floatValue]];
@@ -465,7 +465,7 @@
 //创建高度为1的横线
 - (UIImageView *)createLineImageView {
     UIImageView *lineImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, kSectionFooterViewHeight/2, kScreenWidth, 1)];
-    lineImageView.backgroundColor = [UIColor gray003Color];
+    lineImageView.backgroundColor = [g_commonConfig gray003Color];
     return lineImageView;
 }
 
@@ -488,7 +488,7 @@
     payButton.frame = CGRectMake(kScreenWidth - kInsert - kPayButtonWidth, kSectionFooterViewHeight/2 + 5, kPayButtonWidth, kPayButtonHeight);
     [payButton setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
     [payButton setTitle:title forState:UIControlStateNormal];
-    payButton.backgroundColor = [UIColor themeButtonBlueColor];
+    payButton.backgroundColor = [g_commonConfig themeButtonBlueColor];
     payButton.layer.cornerRadius = payButton.height/2;
     payButton.layer.masksToBounds = YES;
     payButton.tag = section;
@@ -503,11 +503,11 @@
     praiseButton.frame = CGRectMake(kScreenWidth - kInsert*2 - kPayButtonWidth*2, kSectionFooterViewHeight/2 + 5, kPayButtonWidth, kPayButtonHeight);
     [praiseButton setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
     [praiseButton setTitle:@"评价晒单" forState:UIControlStateNormal];
-    [praiseButton setTitleColor:[UIColor themeButtonBlueColor]];
+    [praiseButton setTitleColor:[g_commonConfig themeButtonBlueColor]];
     praiseButton.layer.cornerRadius = praiseButton.height/2;
     praiseButton.layer.masksToBounds = YES;
     praiseButton.layer.borderWidth = 1;
-    praiseButton.layer.borderColor = [UIColor themeButtonBlueColor].CGColor;
+    praiseButton.layer.borderColor = [g_commonConfig themeButtonBlueColor].CGColor;
     praiseButton.tag = section;
     [praiseButton addTarget:self action:@selector(praiseOrder:) forControlEvents:UIControlEventTouchUpInside];
     return praiseButton;

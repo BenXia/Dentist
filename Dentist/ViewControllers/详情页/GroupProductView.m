@@ -59,12 +59,12 @@
     
     _imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.width)];
     [_imageView setBorderWidth:1];
-    [_imageView setBorderColor:[UIColor lineGray001Color]];
+    [_imageView setBorderColor:[g_commonConfig lineGray001Color]];
     
     _titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, frame.size.width
                                                            , frame.size.width, frame.size.height - frame.size.width)];
     _titleLabel.textAlignment = NSTextAlignmentCenter;
-    _titleLabel.textColor = [UIColor fontGray005Color];
+    _titleLabel.textColor = [g_commonConfig fontGray005Color];
     _titleLabel.font = [UIFont systemFontOfSize:10];
     _titleLabel.numberOfLines = 0;
     
@@ -88,9 +88,9 @@
 -(void)setSelected:(BOOL)selected{
     _selected = selected;
     if (_selected) {
-        [_imageView setBorderColor:[UIColor themeCyanColor]];
+        [_imageView setBorderColor:[g_commonConfig themeCyanColor]];
     }else{
-        [_imageView setBorderColor:[UIColor lineGray001Color]];
+        [_imageView setBorderColor:[g_commonConfig lineGray001Color]];
     }
 }
 

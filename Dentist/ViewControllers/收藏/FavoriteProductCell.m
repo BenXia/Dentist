@@ -76,7 +76,7 @@
         self.selectButton.hidden = NO;
         self.selectButton.selected = isSelected;
         if (isSelected) {
-            [self setBorderColor:[UIColor themeCyanColor]];
+            [self setBorderColor:[g_commonConfig themeCyanColor]];
         }else{
             [self setBorderColor:[UIColor clearColor]];
         }

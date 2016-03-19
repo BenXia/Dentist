@@ -46,7 +46,7 @@
 
 - (void)initUI {
     self.title = @"商品评价";
-    self.view.backgroundColor = [UIColor backGroundGrayColor];
+    self.view.backgroundColor = [g_commonConfig backGroundGrayColor];
 }
 
 - (void)initData {

@@ -56,7 +56,7 @@
     self.searchOrderButton.layer.borderColor = RGB(61, 183, 235).CGColor;
     self.searchOrderButton.layer.borderWidth = 1;
     
-    [self.repayButton thematizedWithBackgroundColor:[UIColor themeCyanColor]];
+    [self.repayButton thematizedWithBackgroundColor:[g_commonConfig themeCyanColor]];
     [self.repayButton circular:self.repayButton.height / 2];
     
     if (self.currentPayType == PayType_WeChat) {

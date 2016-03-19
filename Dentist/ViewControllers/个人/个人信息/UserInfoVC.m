@@ -61,8 +61,8 @@ UINavigationControllerDelegate>
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        cell.textLabel.textColor = [UIColor gray005Color];
-        cell.detailTextLabel.textColor = [UIColor gray006Color];
+        cell.textLabel.textColor = [g_commonConfig gray005Color];
+        cell.detailTextLabel.textColor = [g_commonConfig gray006Color];
         cell.textLabel.font = [UIFont systemFontOfSize:14];
         cell.detailTextLabel.font = [UIFont systemFontOfSize:15];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;

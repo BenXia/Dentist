@@ -95,7 +95,7 @@
     }
 
     UIImageView* lastImageView = nil;
-    self.scrollView.backgroundColor = [UIColor themeBackGrayColor];
+    self.scrollView.backgroundColor = [g_commonConfig themeBackGrayColor];
     for (int i = 0; i < _scrollViewImages.count; ++i) {
         UIImageView* imageView = [[UIImageView alloc] initWithFrame:CGRectMake(i*kScreenWidth, 0, kScreenWidth, kScreenHeight)];
         imageView.userInteractionEnabled = YES;
@@ -108,15 +108,15 @@
     UIButton* startButton = [[UIButton alloc] initWithFrame:CGRectMake(kGapXOfStartButton, kScreenHeight-100, kScreenWidth-2*kGapXOfStartButton, 44)];
     [startButton setTitle:@"立即体验" forState:UIControlStateNormal];
     startButton.titleLabel.font = [UIFont systemFontOfSize:18];
-    [startButton colorlumpThematized:[UIColor themeCyanColor]];
+    [startButton colorlumpThematized:[g_commonConfig themeCyanColor]];
     [startButton addTarget:self action:@selector(didClickStartButton) forControlEvents:UIControlEventTouchUpInside];
     [lastImageView addSubview:startButton];
     
     UIPageControl* pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, kScreenHeight - 20, kScreenWidth, 10)];
     pageControl.numberOfPages = _scrollViewImages.count;
     pageControl.currentPage = 0;
-    pageControl.pageIndicatorTintColor = [[UIColor gray003Color] colorWithAlphaComponent:0.8];
-    pageControl.currentPageIndicatorTintColor = [UIColor themeBlueColor];
+    pageControl.pageIndicatorTintColor = [[g_commonConfig gray003Color] colorWithAlphaComponent:0.8];
+    pageControl.currentPageIndicatorTintColor = [g_commonConfig themeBlueColor];
     [self.view addSubview:pageControl];
     self.pageControl = pageControl;
 }

@@ -54,7 +54,7 @@ static AppAppearance* sInstance = nil;
 }
 
 - (void)navigationBarAppearance {
-    [[UINavigationBar appearance] setBarTintColor:[UIColor themeBlueColor]];
+    [[UINavigationBar appearance] setBarTintColor:[g_commonConfig themeBlueColor]];
     
     //设置导航栏返回按钮颜色
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
@@ -84,7 +84,7 @@ static AppAppearance* sInstance = nil;
                                                        nil]
                                              forState:UIControlStateNormal];
     [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                       [UIColor themeBlueColor], NSForegroundColorAttributeName,
+                                                       [g_commonConfig themeBlueColor], NSForegroundColorAttributeName,
                                                        [UIFont systemFontOfSize:14.0], NSFontAttributeName,
                                                        nil]
                                              forState:UIControlStateSelected];
