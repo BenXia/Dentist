@@ -170,8 +170,8 @@ read versionString
 #if [ ! -f ../Pods/Pods.xcodeproj/project.pbxproj.backup ]; then
 #    sed -i.backup -e 's/\(.*\)ONLY_ACTIVE_ARCH = YES;/\1ONLY_ACTIVE_ARCH = NO;/g' -e 's/\(.*\)COPY_PHASE_STRIP = NO;/\1COPY_PHASE_STRIP = YES;/g' -e 's/\(.*\)DEBUG_INFORMATION_FORMAT = dwarf;/\1DEBUG_INFORMATION_FORMAT = \"dwarf-with-dsym\";/g' ../Pods/Pods.xcodeproj/project.pbxproj
 #fi
-#if [ ! -f ../DentistCommon/DentistCommon.xcodeproj/project.pbxproj.backup ]; then
-#    sed -i.backup -e 's/\(.*\)ONLY_ACTIVE_ARCH = YES;/\1ONLY_ACTIVE_ARCH = NO;/g' -e 's/\(.*\)COPY_PHASE_STRIP = NO;/\1COPY_PHASE_STRIP = YES;/g' -e 's/\(.*\)DEBUG_INFORMATION_FORMAT = dwarf;/\1DEBUG_INFORMATION_FORMAT = \"dwarf-with-dsym\";/g' ../DentistCommon/DentistCommon.xcodeproj/project.pbxproj
+#if [ ! -f ../StudioCommon/StudioCommon.xcodeproj/project.pbxproj.backup ]; then
+#    sed -i.backup -e 's/\(.*\)ONLY_ACTIVE_ARCH = YES;/\1ONLY_ACTIVE_ARCH = NO;/g' -e 's/\(.*\)COPY_PHASE_STRIP = NO;/\1COPY_PHASE_STRIP = YES;/g' -e 's/\(.*\)DEBUG_INFORMATION_FORMAT = dwarf;/\1DEBUG_INFORMATION_FORMAT = \"dwarf-with-dsym\";/g' ../StudioCommon/StudioCommon.xcodeproj/project.pbxproj
 #fi
 
 
@@ -183,7 +183,7 @@ cd ${binDir}
 ##还原Debug模式的Build Active Architecture Only配置
 #mv ../Dentist.xcodeproj/project.pbxproj.backup ../Dentist.xcodeproj/project.pbxproj
 #mv ../Pods/Pods.xcodeproj/project.pbxproj.backup ../Pods/Pods.xcodeproj/project.pbxproj
-#mv ../DentistCommon/DentistCommon.xcodeproj/project.pbxproj.backup ../DentistCommon/DentistCommon.xcodeproj/project.pbxproj
+#mv ../StudioCommon/StudioCommon.xcodeproj/project.pbxproj.backup ../StudioCommon/StudioCommon.xcodeproj/project.pbxproj
 
 if [ ${ret} -eq 0 ]; then
    	open ${destinationDir}
