@@ -1965,9 +1965,9 @@
 		33F070401C42964A00DAC58F /* 启动页 */ = {
 			isa = PBXGroup;
 			children = (
-				88965B371C818DF8001FA633 /* GuidanceVC.xib */,
-				88965B381C818DF8001FA633 /* GuidanceVC.m */,
 				88965B391C818DF8001FA633 /* GuidanceVC.h */,
+				88965B381C818DF8001FA633 /* GuidanceVC.m */,
+				88965B371C818DF8001FA633 /* GuidanceVC.xib */,
 				33F070431C429A2700DAC58F /* LaunchViewController.h */,
 				33F070441C429A2700DAC58F /* LaunchViewController.m */,
 				33F070451C429A2700DAC58F /* LaunchViewController.xib */,

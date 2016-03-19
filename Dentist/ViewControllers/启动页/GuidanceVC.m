@@ -13,24 +13,25 @@
 
 @interface GuidanceVC () <UIScrollViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (strong,nonatomic) UIPageControl* pageControl;
+@property (nonatomic, weak)   IBOutlet UIScrollView *scrollView;
+@property (nonatomic, strong) UIPageControl* pageControl;
 
-@property (nonatomic,strong) NSArray *scrollViewImages;
-@property (nonatomic,strong) Block completeBlock;
+@property (nonatomic, strong) NSArray *scrollViewImages;
+@property (nonatomic, strong) Block completeBlock;
+
+@property (nonatomic, assign) BOOL isFirstEnter;
 
 @end
 
 @implementation GuidanceVC
 
-
--(instancetype)initWithCompleteBlock:(Block)block{
+- (instancetype)initWithCompleteBlock:(Block)block {
     if (self = [super init]) {
         self.completeBlock = block;
+        self.isFirstEnter = YES;
     }
     return self;
 }
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -39,14 +40,18 @@
         self.edgesForExtendedLayout = UIRectEdgeNone;
     }
     // Do any additional setup after loading the view from its nib.
-    
-    //加载图片
-    [self initUI];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
+    
     [self.navigationController setNavigationBarHidden:YES];
+    
+    if (self.isFirstEnter) {
+        self.isFirstEnter = NO;
+        
+        [self initUI];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -118,7 +123,7 @@
 
 #pragma mark - UI Action
 
--(void)didClickStartButton{
+- (void)didClickStartButton {
     [[NSUserDefaults standardUserDefaults] setObject:[AppSystem appVersion] forKey:kLastShownGuidanceVCAppVersion];
     if (self.completeBlock) {
         self.completeBlock();
@@ -127,7 +132,7 @@
 
 #pragma mark - UIScrollViewDelegate
 
--(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     CGPoint offset = scrollView.contentOffset;
     int currentPage = offset.x / kScreenWidth;
     if (currentPage != self.pageControl.currentPage) {
@@ -137,3 +142,4 @@
 }
 
 @end
+

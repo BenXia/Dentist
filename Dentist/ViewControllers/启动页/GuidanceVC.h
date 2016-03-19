@@ -10,6 +10,6 @@
 
 @interface GuidanceVC : BaseViewController
 
--(instancetype)initWithCompleteBlock:(Block)block;
+- (instancetype)initWithCompleteBlock:(Block)block;
 
 @end
