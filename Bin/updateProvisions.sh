@@ -15,7 +15,17 @@ function rmOldProvisioningProfiles()
     OLD_IFS=$IFS
 IFS="
 "
-    for file in `grep -r -l "yayiabc" .`
+    for file in `grep -r -l "developmentProvisionProfile" .`
+    do
+        rm ${file}
+    done
+    
+    for file in `grep -r -l "adHocProvisionProfile" .`
+    do
+        rm ${file}
+    done
+
+    for file in `grep -r -l "productProvisionProfile" .`
     do
         rm ${file}
     done
