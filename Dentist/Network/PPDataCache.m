@@ -93,7 +93,7 @@ SINGLETON_GCD(PPDataCache);
                                   atomically:YES
                                     encoding:NSUTF8StringEncoding
                                        error:nil];
-            
+            (void)result;
             NSLog(@"write cache file result: %d", result);
         }
     }
