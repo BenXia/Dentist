@@ -31,7 +31,7 @@
 - (void)initNavigationBar {
     self.title = @"登录";
     self.navigationController.navigationBarHidden = NO;
-    [self.navigationItem setLeftBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"忘记密码" style:UIBarButtonItemStylePlain target:self action:@selector(onForgetPassword)]];
+    //[self.navigationItem setLeftBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"忘记密码" style:UIBarButtonItemStylePlain target:self action:@selector(onForgetPassword)]];
     [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"注册" style:UIBarButtonItemStylePlain target:self action:@selector(onRegist)]];
 }
 
